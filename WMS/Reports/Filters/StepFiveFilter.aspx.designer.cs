@@ -13,31 +13,58 @@ namespace WMS.Reports.Filters {
     public partial class StepFiveFilter {
         
         /// <summary>
-        /// ButtonSkip control.
+        /// btnStepOne control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSkip;
+        protected global::System.Web.UI.WebControls.LinkButton btnStepOne;
         
         /// <summary>
-        /// ButtonNext control.
+        /// btnStepTwo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNext;
+        protected global::System.Web.UI.WebControls.LinkButton btnStepTwo;
         
         /// <summary>
-        /// ButtonFinish control.
+        /// btnStepThree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonFinish;
+        protected global::System.Web.UI.WebControls.LinkButton btnStepThree;
+        
+        /// <summary>
+        /// btnStepFour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnStepFour;
+        
+        /// <summary>
+        /// btnStepFive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnStepFive;
+        
+        /// <summary>
+        /// btnStepSix control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnStepSix;
         
         /// <summary>
         /// dateFrom control.

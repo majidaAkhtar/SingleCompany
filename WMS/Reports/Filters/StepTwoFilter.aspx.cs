@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WMS.CustomClass;
+using WMS.HelperClass;
 using WMS.Models;
 using WMSLibrary;
 
@@ -157,35 +158,6 @@ namespace WMS.Reports.Filters
             GridViewShift.DataBind();
         }
 
-        #region Navigation Buttons
-        protected void ButtonNext_Click(object sender, EventArgs e)
-        {
-            // Save selected Company ID and Name in Session
-            SaveShiftIDs();
-            SaveDivisionIDs();
-            SaveDateSession();
-            // Go to the next page
-            string url = "~/Reports/Filters/StepThreeFilter.aspx";
-            Response.Redirect(url);
-        }
-        protected void ButtonSkip_Click(object sender, EventArgs e)
-        {
-            // Save selected Company ID and Name in Session
-            SaveShiftIDs();
-            // Go to the next page
-            string url = "~/Filters/DeptFilter.aspx";
-            Response.Redirect(url);
-        }
-        protected void ButtonFinish_Click(object sender, EventArgs e)
-        {
-            // Save selected Company ID and Name in Session
-            SaveShiftIDs();
-            SaveDivisionIDs();
-            // Go to the next page
-            string url = "~/Reports/ReportContainer.aspx";
-            Response.Redirect(url);
-        }
-        #endregion
 
         protected void GridViewDivision_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -202,5 +174,52 @@ namespace WMS.Reports.Filters
                 e.Row.Cells[0].Text = "Page " + (GridViewShift.PageIndex + 1) + " of " + GridViewShift.PageCount;
             }
         }
+        #region Navigation Buttons
+        private void NavigationCommonCalls(string path)
+        {
+            SaveDateSession();
+            SaveDivisionIDs();
+            SaveShiftIDs();
+            Response.Redirect(path);
+        }
+        protected void btnStepOne_Click(object sender, EventArgs e)
+        {
+            NavigationCommonCalls("~/Reports/Filters/StepOneFilter.aspx");
+        }
+
+        protected void btnStepTwo_Click(object sender, EventArgs e)
+        {
+            NavigationCommonCalls("~/Reports/Filters/StepTwoFilter.aspx");
+        }
+
+        protected void btnStepThree_Click(object sender, EventArgs e)
+        {
+            NavigationCommonCalls("~/Reports/Filters/StepThreeFilter.aspx");
+        }
+
+        protected void btnStepFour_Click(object sender, EventArgs e)
+        {
+            NavigationCommonCalls("~/Reports/Filters/StepFourFilter.aspx");
+        }
+
+        protected void btnStepFive_Click(object sender, EventArgs e)
+        {
+            NavigationCommonCalls("~/Reports/Filters/StepFiveFilter.aspx");
+        }
+
+        protected void btnStepSix_Click(object sender, EventArgs e)
+        {
+            SaveDateSession();
+            SaveShiftIDs();
+            SaveDivisionIDs();
+            FiltersModel fm = Session["FiltersModel"] as FiltersModel;
+            if (MyHelper.UserHasValuesInSession(fm))
+            {
+                Response.Redirect("~/Reports/Filters/StepSixFilter.aspx");
+            }
+        }
+
+
+        #endregion
     }
 }
