@@ -49,8 +49,8 @@ namespace WMS.Reports
                 User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
                 QueryBuilder qb = new QueryBuilder();
                 string query = qb.MakeCustomizeQuery(LoggedInUser);
-                DataTable dt = qb.GetValuesfromDB("select * from ViewLateComer " + query + " and AttDate = '" + date.Date.Year.ToString() + "-" + date.Date.Month.ToString() + "-" + date.Date.Day.ToString() + "'" +" and StatusLI=1 ");
-                List<ViewLateComer> _View = dt.ToList<ViewLateComer>();
+                DataTable dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and AttDate = '" + date.Date.Year.ToString() + "-" + date.Date.Month.ToString() + "-" + date.Date.Day.ToString() + "'" +" and StatusLI=1 ");
+                List<ViewAttData> _View = dt.ToList<ViewAttData>();
                 LoadReport(PathString, _View);
             }
         }
@@ -654,15 +654,15 @@ namespace WMS.Reports
             DivLocGrid.Visible = false;
             DivTypeGrid.Visible = false;
             ReportViewer1.Visible = true;
-            List<ViewLateComer> _TempViewList = new List<ViewLateComer>();
+            List<ViewAttData> _TempViewList = new List<ViewAttData>();
 
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.MakeCustomizeQuery(LoggedInUser);
             string _dateTo = "'" + DateTo.Date.Year.ToString() + "-" + DateTo.Date.Month.ToString() + "-" + DateTo.Date.Day.ToString() + "'";
             string _dateFrom = "'" + DateFrom.Date.Year.ToString() + "-" + DateFrom.Date.Month.ToString() + "-" + DateFrom.Date.Day.ToString() + "'";
-            DataTable dt = qb.GetValuesfromDB("select * from ViewLateComer " + query + " and (AttDate >= " + _dateFrom + " and AttDate <= " + _dateTo + " )"+" and StatusLI=1 ");
-            List<ViewLateComer> _ViewList = dt.ToList<ViewLateComer>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and (AttDate >= " + _dateFrom + " and AttDate <= " + _dateTo + " )"+" and StatusLI=1 ");
+            List<ViewAttData> _ViewList = dt.ToList<ViewAttData>();
             if (SelectedEmps.Count > 0)
             {
                 foreach (var emp in SelectedEmps)
@@ -780,7 +780,7 @@ namespace WMS.Reports
                 PathString = "/WMS/Reports/RDLC/DRLateIn.rdlc";
             LoadReport(PathString, _ViewList);
         }
-        private void LoadReport(string path, List<ViewLateComer> _Employee)
+        private void LoadReport(string path, List<ViewAttData> _Employee)
         {
             string DateToFor = "";
             if (DateFrom.Date.ToString("d") == DateTo.ToString("d"))
@@ -797,7 +797,7 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
             System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<ViewLateComer> ie;
+            IEnumerable<ViewAttData> ie;
             ie = _Employee.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportViewer1.LocalReport.DataSources.Clear();

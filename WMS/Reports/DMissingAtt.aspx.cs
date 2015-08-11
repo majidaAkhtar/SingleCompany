@@ -49,8 +49,8 @@ namespace WMS.Reports
                 User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
                 QueryBuilder qb = new QueryBuilder();
                 string query = qb.MakeCustomizeQuery(LoggedInUser);
-                DataTable dt = qb.GetValuesfromDB("select * from ViewMissingAtt " + query + " and AttDate = '" + date.Date.Year.ToString() + "-" + date.Date.Month.ToString() + "-" + date.Date.Day.ToString() + "'" + " and ((TimeIn is null and TimeOut is not null) or (TimeIn is not null and TimeOut is null) )");
-                List<ViewMissingAtt> _View = dt.ToList<ViewMissingAtt>();
+                DataTable dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and AttDate = '" + date.Date.Year.ToString() + "-" + date.Date.Month.ToString() + "-" + date.Date.Day.ToString() + "'" + " and ((TimeIn is null and TimeOut is not null) or (TimeIn is not null and TimeOut is null) )");
+                List<ViewAttData> _View = dt.ToList<ViewAttData>();
                 LoadReport(PathString, _View);
             }
         }
@@ -656,16 +656,16 @@ namespace WMS.Reports
             DivTypeGrid.Visible = false;
             DivGridComapny.Visible = false;
             ReportViewer1.Visible = true;
-            List<ViewMissingAtt> _ViewList = new List<ViewMissingAtt>();
-            List<ViewMissingAtt> _TempViewList = new List<ViewMissingAtt>();
+            List<ViewAttData> _ViewList = new List<ViewAttData>();
+            List<ViewAttData> _TempViewList = new List<ViewAttData>();
 
             string dateTo = "'" + DateTo.Date.Year.ToString() + "-" + DateTo.Date.Month.ToString() + "-" + DateTo.Date.Day.ToString() + "'";
             string dateFrom = "'" + DateFrom.Date.Year.ToString() + "-" + DateFrom.Date.Month.ToString() + "-" + DateFrom.Date.Day.ToString() + "'";
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.MakeCustomizeQuery(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from ViewMissingAtt " + query + " and AttDate >= " + dateFrom  +"  and AttDate <= "+dateTo);
-            _ViewList = dt.ToList<ViewMissingAtt>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and AttDate >= " + dateFrom  +"  and AttDate <= "+dateTo);
+            _ViewList = dt.ToList<ViewAttData>();
 
             if (Option == "Any")
             {
@@ -812,7 +812,7 @@ namespace WMS.Reports
                     return DropDownList1.Text;
             }
         }
-        private void LoadReport(string path, List<ViewMissingAtt> _Employee)
+        private void LoadReport(string path, List<ViewAttData> _Employee)
         {
             string DateToFor = "";
             if (DateFrom.Date.ToString("d") == DateTo.ToString("d"))
@@ -829,7 +829,7 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
             System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<ViewMissingAtt> ie;
+            IEnumerable<ViewAttData> ie;
             ie = _Employee.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportViewer1.LocalReport.DataSources.Clear();

@@ -50,8 +50,8 @@ namespace WMS.Reports
                 User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
                 QueryBuilder qb = new QueryBuilder();
                 string query = qb.MakeCustomizeQuery(LoggedInUser);
-                DataTable dt = qb.GetValuesfromDB("select * from ViewMultipleInOut " + query + " and AttDate = '" + date.Date.Year.ToString() + "-" + date.Date.Month.ToString() + "-" + date.Date.Day.ToString() + "'");
-                List<ViewMultipleInOut> _View = dt.ToList<ViewMultipleInOut>();
+                DataTable dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and AttDate = '" + date.Date.Year.ToString() + "-" + date.Date.Month.ToString() + "-" + date.Date.Day.ToString() + "'");
+                List<ViewAttData> _View = dt.ToList<ViewAttData>();
                 LoadReport(PathString, _View);
             }
         }
@@ -678,15 +678,15 @@ namespace WMS.Reports
             DivTypeGrid.Visible = false;
             ReportViewer1.Visible = true;
             DivGridComapny.Visible = false;
-            List<ViewMultipleInOut> _TempViewList = new List<ViewMultipleInOut>();
+            List<ViewAttData> _TempViewList = new List<ViewAttData>();
 
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.MakeCustomizeQuery(LoggedInUser);
             string _dateTo = "'" + DateTo.Date.Year.ToString() + "-" + DateTo.Date.Month.ToString() + "-" + DateTo.Date.Day.ToString() + "'";
             string _dateFrom = "'" + DateFrom.Date.Year.ToString() + "-" + DateFrom.Date.Month.ToString() + "-" + DateFrom.Date.Day.ToString() + "'";
-            DataTable dt = qb.GetValuesfromDB("select * from ViewMultipleInOut " + query + " and (AttDate >= " + _dateFrom + " and AttDate <= " + _dateTo + " )");
-            List<ViewMultipleInOut> _ViewList = dt.ToList<ViewMultipleInOut>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and (AttDate >= " + _dateFrom + " and AttDate <= " + _dateTo + " )");
+            List<ViewAttData> _ViewList = dt.ToList<ViewAttData>();
 
             if (SelectedEmps.Count > 0)
             {
@@ -825,7 +825,7 @@ namespace WMS.Reports
                     return DateTime.Parse(dateTo.Value);
             }
         }
-        private void LoadReport(string path, List<ViewMultipleInOut> _Employee)
+        private void LoadReport(string path, List<ViewAttData> _Employee)
         {
             string DateToFor = "";
             if (DateFrom.Date.ToString("d") == DateTo.ToString("d"))
@@ -842,7 +842,7 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
             System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<ViewMultipleInOut> ie;
+            IEnumerable<ViewAttData> ie;
             ie = _Employee.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportViewer1.LocalReport.DataSources.Clear();
