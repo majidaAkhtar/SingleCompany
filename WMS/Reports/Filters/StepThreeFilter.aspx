@@ -11,29 +11,24 @@
                         <h4>Filters Navigation</h4>
                     </li>
                     <li >
-                        <a class="inactive-link" href="StepOneFilter.aspx">Step One<p>Company, Locations</p></a>
-                        
+                        <asp:LinkButton ID="btnStepOne" runat="server" CssClass="inactive-link" OnClick="btnStepOne_Click" >Step One<p>Company, Locations</p></asp:LinkButton>
                     </li>
                     <li>
-                        <a class="inactive-link" href="StepTwoFilter.aspx">Step Two<p>Divisions, Shifts</p></a>
+                        <asp:LinkButton ID="btnStepTwo" runat="server" CssClass="inactive-link" OnClick="btnStepTwo_Click" >Step Two<p>Divisions, Shifts</p></asp:LinkButton>
                     </li>
                     <li>
-                        <a class="active-link" href="StepThreeFilter.aspx">Step Three<p>Departments, Employee Type</p></a>
+                        <asp:LinkButton ID="btnStepThree" runat="server"  CssClass="active-link" OnClick="btnStepThree_Click" >Step Three<p>Departments, Employee Type</p></asp:LinkButton>
                     </li>
                     <li>
-                        <a class="inactive-link" href="StepFourFilter.aspx">Step Four<p>Sections, Crew</p></a>
+                        <asp:LinkButton ID="btnStepFour" runat="server" CssClass="inactive-link" OnClick="btnStepFour_Click" >Step Four<p>Sections, Crew</p></asp:LinkButton>
                     </li>
                     <li>
-                        <a class="inactive-link" href="StepFiveFilter.aspx">Step Five<p>Employee</p></a>
+                        <asp:LinkButton ID="btnStepFive" runat="server"  CssClass="inactive-link" OnClick="btnStepFive_Click" >Step Five<p>Employee</p></asp:LinkButton>
                     </li>
                     <li>
-                        <a class="inactive-link" href="StepSixFilter.aspx">Finish<p>Generate Report</p></a>
+                        <asp:LinkButton ID="btnStepSix" runat="server" CssClass="inactive-link" OnClick="btnStepSix_Click" >Finish<p>Generate Report</p></asp:LinkButton>
+
                     </li>
-                    <div style=" margin-left:40px; margin-top:20px">
-                        <asp:Button ID="ButtonSkip" runat="server"  Text="Skip"  CssClass="btn-warning btn-sm btnCustomMargin" OnClick="ButtonSkip_Click" />
-                        <asp:Button ID="ButtonNext" runat="server"  Text="Next" CssClass="btn-info btn-sm"  OnClick="ButtonNext_Click" />
-                        <asp:Button ID="ButtonFinish" runat="server"  Text="Finish"  CssClass="btn-success btn-sm" OnClick="ButtonFinish_Click" />
-                    </div>
                 </ul>
                 
             <!-- /#sidebar-wrapper -->
@@ -153,7 +148,7 @@
                             { Response.Write("<br>" + item.FilterName); }
                         } 
                     }%>
-                        <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter.Count > 0)
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter.Count > 0)
                        { 
                      { Response.Write("<h3>Divisions</h3>"); }
                      foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter)
@@ -181,6 +176,30 @@
                        { 
                      { Response.Write("<h3>Employee Type</h3>"); }
                      foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Section</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                        <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Crew</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Employee</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter)
                         {
                             { Response.Write("<br>" + item.FilterName); }
                         } 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WMS.Models;
+using WMSLibrary;
 
 namespace WMS.HelperClass
 {
@@ -118,6 +119,29 @@ namespace WMS.HelperClass
             Detail,
             Summary,
             Grpah
+        }
+        public static bool UserHasValuesInSession(FiltersModel fm)
+        {
+            bool check = false;
+            if (fm.CompanyFilter.Count > 0)
+                check = true;
+            if (fm.LocationFilter.Count > 0)
+                check = true;
+            if (fm.DivisionFilter.Count > 0)
+                check = true;
+            if (fm.ShiftFilter.Count > 0)
+                check = true;
+            if (fm.DepartmentFilter.Count > 0)
+                check = true;
+            if (fm.SectionFilter.Count > 0)
+                check = true;
+            if (fm.TypeFilter.Count > 0)
+                check = true;
+            if (fm.CrewFilter.Count > 0)
+                check = true;
+            if (fm.EmployeeFilter.Count > 0)
+                check = true;
+            return check;
         }
     }
 }
