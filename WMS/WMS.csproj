@@ -613,9 +613,6 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewAbsent.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewAttData.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
@@ -631,12 +628,6 @@
     <Compile Include="Models\ViewDepartment.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewEarlyIN.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewEarlyOut.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewEditAttendance.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
@@ -647,9 +638,6 @@
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewEmpType.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewLateComer.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewLateOut.cs">
@@ -667,34 +655,19 @@
     <Compile Include="Models\ViewLvConsumed.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewMissingAtt.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewMonthlyData.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewMonthlyDataPer.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewMultipleInOut.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewOverTime.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewPollData.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewPresentEmp.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewSection.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewSLData.cs">
-      <DependentUpon>TASModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewSummary.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewUserLocation.cs">

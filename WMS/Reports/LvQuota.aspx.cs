@@ -46,22 +46,22 @@ namespace WMS.Reports
                 }
                 else
                     PathString = "/WMS/Reports/RDLC/.rdlc";
-                List<ViewMultipleInOut> _View = new List<ViewMultipleInOut>();
+                List<ViewAttData> _View = new List<ViewAttData>();
                 if (_loggedUser.ViewContractual == false && _loggedUser.ViewPermanentMgm == true && _loggedUser.ViewPermanentStaff == false)
                 {
-                    _View = context.ViewMultipleInOuts.Where(aa => aa.CompanyID == _loggedUser.CompanyID && (aa.TypeID == 7 || aa.TypeID == 27 || aa.TypeID == 28)).ToList();
+                    _View = context.ViewAttDatas.Where(aa => aa.CompanyID == _loggedUser.CompanyID && (aa.TypeID == 7 || aa.TypeID == 27 || aa.TypeID == 28)).ToList();
                 }
                 else if (_loggedUser.ViewContractual == false && _loggedUser.ViewPermanentMgm == false && _loggedUser.ViewPermanentStaff == true)
                 {
-                    _View = context.ViewMultipleInOuts.Where(aa => aa.CompanyID == _loggedUser.CompanyID && (aa.TypeID == 2 || aa.TypeID == 3 || aa.TypeID == 9)).ToList();
+                    _View = context.ViewAttDatas.Where(aa => aa.CompanyID == _loggedUser.CompanyID && (aa.TypeID == 2 || aa.TypeID == 3 || aa.TypeID == 9)).ToList();
                 }
                 else if (_loggedUser.ViewContractual == true && _loggedUser.ViewPermanentMgm == false && _loggedUser.ViewPermanentStaff == false)
                 {
-                    _View = context.ViewMultipleInOuts.Where(aa => aa.CatID != 2).ToList();
+                    _View = context.ViewAttDatas.Where(aa => aa.CatID != 2).ToList();
                 }
                 else
                 {
-                    _View = context.ViewMultipleInOuts.Where(aa => aa.CompanyID == _loggedUser.CompanyID).ToList();
+                    _View = context.ViewAttDatas.Where(aa => aa.CompanyID == _loggedUser.CompanyID).ToList();
                 }
                 LoadReport(PathString, _View);
             }
@@ -666,26 +666,26 @@ namespace WMS.Reports
             DivLocGrid.Visible = false;
             DivTypeGrid.Visible = false;
             ReportViewer1.Visible = true;
-            List<ViewMultipleInOut> _ViewList = new List<ViewMultipleInOut>();
-            List<ViewMultipleInOut> _TempViewList = new List<ViewMultipleInOut>();
+            List<ViewAttData> _ViewList = new List<ViewAttData>();
+            List<ViewAttData> _TempViewList = new List<ViewAttData>();
             User _loggedUser = HttpContext.Current.Session["LoggedUser"] as User;
 
 
             if (_loggedUser.ViewContractual == false && _loggedUser.ViewPermanentMgm == true && _loggedUser.ViewPermanentStaff == false)
             {
-                _ViewList = context.ViewMultipleInOuts.Where(aa => (aa.TypeID == 7 || aa.TypeID == 27 || aa.TypeID == 28) && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
+                _ViewList = context.ViewAttDatas.Where(aa => (aa.TypeID == 7 || aa.TypeID == 27 || aa.TypeID == 28) && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
             }
             else if (_loggedUser.ViewContractual == false && _loggedUser.ViewPermanentMgm == false && _loggedUser.ViewPermanentStaff == true)
             {
-                _ViewList = context.ViewMultipleInOuts.Where(aa => (aa.TypeID == 2 || aa.TypeID == 3 || aa.TypeID == 9) && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
+                _ViewList = context.ViewAttDatas.Where(aa => (aa.TypeID == 2 || aa.TypeID == 3 || aa.TypeID == 9) && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
             }
             else if (_loggedUser.ViewContractual == true && _loggedUser.ViewPermanentMgm == false && _loggedUser.ViewPermanentStaff == false)
             {
-                _ViewList = context.ViewMultipleInOuts.Where(aa => aa.CatID != 2 && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
+                _ViewList = context.ViewAttDatas.Where(aa => aa.CatID != 2 && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
             }
             else
             {
-                _ViewList = context.ViewMultipleInOuts.Where(aa => aa.CompanyID == _loggedUser.CompanyID && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
+                _ViewList = context.ViewAttDatas.Where(aa => aa.CompanyID == _loggedUser.CompanyID && aa.AttDate >= DateFrom.Date && aa.AttDate <= DateTo.Date).ToList();
             }
 
             if (SelectedEmps.Count > 0)
@@ -812,7 +812,7 @@ namespace WMS.Reports
                     return DateTime.Parse(dateTo.Value);
             }
         }
-        private void LoadReport(string path, List<ViewMultipleInOut> _Employee)
+        private void LoadReport(string path, List<ViewAttData> _Employee)
         {
             string DateToFor = "";
             if (DateFrom.Date.ToString("d") == DateTo.ToString("d"))
@@ -829,7 +829,7 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
             System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<ViewMultipleInOut> ie;
+            IEnumerable<ViewAttData> ie;
             ie = _Employee.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportViewer1.LocalReport.DataSources.Clear();
