@@ -157,6 +157,7 @@
     <Content Include="Reports\EmployeeDetail.aspx" />
     <Content Include="Reports\Filters\StepFourFilter.aspx" />
     <Content Include="Reports\Filters\StepOneFilter.aspx" />
+    <Content Include="Reports\Filters\StepSixFilter.aspx" />
     <Content Include="Reports\Filters\StepTwoFilter.aspx" />
     <Content Include="Reports\Filters\StepFiveFilter.aspx" />
     <Content Include="Reports\Filters\StepThreeFilter.aspx" />
@@ -237,6 +238,7 @@
     <Content Include="Models\TASReportDataSet.xss">
       <DependentUpon>TASReportDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\as.pubxml" />
     <None Include="Properties\PublishProfiles\WMSFatima.pubxml" />
     <Content Include="ReportingEngine.Master" />
@@ -308,9 +310,14 @@
     <Content Include="Scripts\site.avatar.js" />
     <Content Include="Scripts\Employee\wingSection.js" />
     <Content Include="Scripts\Employee\wingSectionCreate.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
+    <Content Include="Views\web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppForms\WebForm1.aspx.cs">
@@ -882,6 +889,13 @@
     <Compile Include="Reports\Filters\StepOneFilter.aspx.designer.cs">
       <DependentUpon>StepOneFilter.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Filters\StepSixFilter.aspx.cs">
+      <DependentUpon>StepSixFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Filters\StepSixFilter.aspx.designer.cs">
+      <DependentUpon>StepSixFilter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Filters\StepTwoFilter.aspx.cs">
       <DependentUpon>StepTwoFilter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -998,8 +1012,6 @@
     <Compile Include="Views\CompanyController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1143,12 +1155,6 @@
     <Content Include="Views\Company\Details.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

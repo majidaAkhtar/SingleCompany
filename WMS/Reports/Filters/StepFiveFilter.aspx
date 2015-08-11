@@ -172,7 +172,6 @@
                             { Response.Write("<br>" + item.FilterName); }
                         } 
                     }%>
-                    }%>
                 </section>
                 </div>
                 <div class="row">

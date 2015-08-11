@@ -16,6 +16,7 @@ namespace WMS.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+             String reportName = Request.QueryString["reportname"];
             if (!Page.IsPostBack)
             {
                 List<string> list = Session["ReportSession"] as List<string>;
