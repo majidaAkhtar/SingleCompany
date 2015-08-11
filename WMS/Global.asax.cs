@@ -28,7 +28,7 @@ namespace WMS
             List<string> list = Session["ReportSession"] as List<string>;
             list.Add(DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd"));
             list.Add(DateTime.Today.ToString("yyyy-MM-dd"));
-            list.Add("ViewAttData");
+            list.Add("EmpView");
             Session["ReportSession"] = list;
         }
         protected void Session_End(object sender, EventArgs e)

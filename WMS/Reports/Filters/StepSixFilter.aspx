@@ -44,7 +44,7 @@
                                 <li>
                                     <h5>HR Reports</h5>
                                     <ul>
-                                        <li><a href="../ReportContainer.aspx?reportname=emp_detail">Employee Detail</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=emp_record">Employee Record</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_detail_excel">Employee Detail (Only for Excel)</a></li>
                                     </ul>
                                 </li>
@@ -52,6 +52,8 @@
                                     <h5>Daily Attendance</h5>
                                     <ul>
                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Detailed Attendance</a></li>
+                                            <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Consolidated Attendance</a></li>
+
                                         <li><a href="../ReportContainer.aspx?reportname=present">Present</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=absent">Absent</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=lv_application">Leave Application</a></li>
