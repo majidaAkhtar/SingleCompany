@@ -27,7 +27,7 @@
                         <a class="inactive-link" href="StepFiveFilter.aspx">Step Five<p>Employee</p></a>
                     </li>
                     <li>
-                        <a class="inactive-link" href="">Finish<p>Generate Report</p></a>
+                        <a class="inactive-link" href="StepSixFilter.aspx">Finish<p>Generate Report</p></a>
                     </li>
                     <div style=" margin-left:40px; margin-top:20px">
                         <asp:Button ID="ButtonSkip" runat="server"  Text="Skip"  CssClass="btn-warning btn-sm btnCustomMargin" OnClick="ButtonSkip_Click" />

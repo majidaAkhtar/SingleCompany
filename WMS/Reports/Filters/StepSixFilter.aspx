@@ -25,9 +25,6 @@
                     <li>
                         <a class="inactive-link" href="StepFiveFilter.aspx">Step Five<p>Employee</p></a>
                     </li>
-                    <li>
-                        <a class="active-link" href="StepSixFilter.aspx">Finish<p>Generate Report</p></a>
-                    </li>
                     <%--<div style=" margin-left:40px; margin-top:20px">
                         <asp:Button ID="ButtonSkip" runat="server"  Text="Skip"  CssClass="btn-warning btn-sm btnCustomMargin" OnClick="ButtonSkip_Click" />
                         <asp:Button ID="ButtonNext" runat="server"  Text="Next" CssClass="btn-info btn-sm"  OnClick="ButtonNext_Click" />
@@ -111,6 +108,62 @@
                        { 
                      { Response.Write("<h3>Locations</h3>"); }
                      foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).LocationFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Divisions</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                        <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Shifts</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DepartmentFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Departments</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DepartmentFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Employee Type</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Section</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                        <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Crew</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter)
+                        {
+                            { Response.Write("<br>" + item.FilterName); }
+                        } 
+                    }%>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter.Count > 0)
+                       { 
+                     { Response.Write("<h3>Employee</h3>"); }
+                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter)
                         {
                             { Response.Write("<br>" + item.FilterName); }
                         } 
