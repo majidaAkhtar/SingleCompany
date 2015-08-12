@@ -27,7 +27,7 @@ namespace WMS
         {
             using (TAS2013Entities dc = new TAS2013Entities())
             {
-                var v = dc.Users.Where(aa => aa.UserName == "wms.ffl").FirstOrDefault();
+               var v = dc.Users.Where(aa => aa.UserName == "wms.ffl").FirstOrDefault();
                 if (v != null)
                 {
                     Session["MDevice"] = "0";

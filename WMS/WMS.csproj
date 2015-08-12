@@ -628,6 +628,9 @@
     <Compile Include="Models\ViewDepartment.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewDetailAttData.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewEditAttendance.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
@@ -1142,7 +1145,7 @@
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MLvApplication.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\MLvConsumed.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRLeaveBal.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MYLeaveSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RAuditLog.rdlc" />

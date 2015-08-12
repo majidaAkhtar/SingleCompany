@@ -107,6 +107,7 @@ namespace WMS.Models
         public DbSet<ViewCard> ViewCards { get; set; }
         public DbSet<ViewCrew> ViewCrews { get; set; }
         public DbSet<ViewDepartment> ViewDepartments { get; set; }
+        public DbSet<ViewDetailAttData> ViewDetailAttDatas { get; set; }
         public DbSet<ViewEditAttendance> ViewEditAttendances { get; set; }
         public DbSet<ViewEmergencyDetail> ViewEmergencyDetails { get; set; }
         public DbSet<ViewEmpPic> ViewEmpPics { get; set; }

@@ -840,7 +840,7 @@ namespace WMS.Reports
         {
             using (var ctx = new TAS2013Entities())
             {
-                DateTime dt = new DateTime();
+                
                 List<LvConsumed> _lvConsumed = new List<LvConsumed>();
                 LvConsumed _lvTemp = new LvConsumed();
                 _lvConsumed = ctx.LvConsumeds.ToList();

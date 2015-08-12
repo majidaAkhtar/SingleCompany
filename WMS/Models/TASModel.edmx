@@ -428,6 +428,109 @@
       [ViewDepartment].[DivisionName] AS [DivisionName]
       FROM [dbo].[ViewDepartment] AS [ViewDepartment]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ViewDetailAttData" EntityType="TAS2013Model.Store.ViewDetailAttData" store:Type="Views" store:Schema="dbo" store:Name="ViewDetailAttData">
+            <DefiningQuery>SELECT 
+      [ViewDetailAttData].[EmpDate] AS [EmpDate], 
+      [ViewDetailAttData].[AttDate] AS [AttDate], 
+      [ViewDetailAttData].[Expr2] AS [Expr2], 
+      [ViewDetailAttData].[DutyCode] AS [DutyCode], 
+      [ViewDetailAttData].[DutyTime] AS [DutyTime], 
+      [ViewDetailAttData].[TimeIn] AS [TimeIn], 
+      [ViewDetailAttData].[TimeOut] AS [TimeOut], 
+      [ViewDetailAttData].[WorkMin] AS [WorkMin], 
+      [ViewDetailAttData].[LateIn] AS [LateIn], 
+      [ViewDetailAttData].[LateOut] AS [LateOut], 
+      [ViewDetailAttData].[EarlyOut] AS [EarlyOut], 
+      [ViewDetailAttData].[EarlyIn] AS [EarlyIn], 
+      [ViewDetailAttData].[OTMin] AS [OTMin], 
+      [ViewDetailAttData].[GZOTMin] AS [GZOTMin], 
+      [ViewDetailAttData].[StatusP] AS [StatusP], 
+      [ViewDetailAttData].[StatusAB] AS [StatusAB], 
+      [ViewDetailAttData].[StatusLI] AS [StatusLI], 
+      [ViewDetailAttData].[StatusEI] AS [StatusEI], 
+      [ViewDetailAttData].[StatusLO] AS [StatusLO], 
+      [ViewDetailAttData].[StatusEO] AS [StatusEO], 
+      [ViewDetailAttData].[StatusOT] AS [StatusOT], 
+      [ViewDetailAttData].[StatusGZOT] AS [StatusGZOT], 
+      [ViewDetailAttData].[StatusGZ] AS [StatusGZ], 
+      [ViewDetailAttData].[StatusDO] AS [StatusDO], 
+      [ViewDetailAttData].[StatusHD] AS [StatusHD], 
+      [ViewDetailAttData].[StatusSL] AS [StatusSL], 
+      [ViewDetailAttData].[StatusOD] AS [StatusOD], 
+      [ViewDetailAttData].[StatusHL] AS [StatusHL], 
+      [ViewDetailAttData].[StatusLeave] AS [StatusLeave], 
+      [ViewDetailAttData].[StatusMN] AS [StatusMN], 
+      [ViewDetailAttData].[ShifMin] AS [ShifMin], 
+      [ViewDetailAttData].[Expr3] AS [Expr3], 
+      [ViewDetailAttData].[Tin0] AS [Tin0], 
+      [ViewDetailAttData].[Tout0] AS [Tout0], 
+      [ViewDetailAttData].[Tin1] AS [Tin1], 
+      [ViewDetailAttData].[Tout1] AS [Tout1], 
+      [ViewDetailAttData].[Tin2] AS [Tin2], 
+      [ViewDetailAttData].[Tout2] AS [Tout2], 
+      [ViewDetailAttData].[Tin3] AS [Tin3], 
+      [ViewDetailAttData].[Tout3] AS [Tout3], 
+      [ViewDetailAttData].[Tin4] AS [Tin4], 
+      [ViewDetailAttData].[Tout4] AS [Tout4], 
+      [ViewDetailAttData].[Tin5] AS [Tin5], 
+      [ViewDetailAttData].[Tout5] AS [Tout5], 
+      [ViewDetailAttData].[Tin6] AS [Tin6], 
+      [ViewDetailAttData].[Tout6] AS [Tout6], 
+      [ViewDetailAttData].[DesignationName] AS [DesignationName], 
+      [ViewDetailAttData].[GradeName] AS [GradeName], 
+      [ViewDetailAttData].[CompName] AS [CompName], 
+      [ViewDetailAttData].[JobTitle] AS [JobTitle], 
+      [ViewDetailAttData].[CityName] AS [CityName], 
+      [ViewDetailAttData].[RegionName] AS [RegionName], 
+      [ViewDetailAttData].[LocName] AS [LocName], 
+      [ViewDetailAttData].[CrewName] AS [CrewName], 
+      [ViewDetailAttData].[TypeName] AS [TypeName], 
+      [ViewDetailAttData].[CatName] AS [CatName], 
+      [ViewDetailAttData].[ShiftName] AS [ShiftName], 
+      [ViewDetailAttData].[EmpNo] AS [EmpNo], 
+      [ViewDetailAttData].[EmpName] AS [EmpName], 
+      [ViewDetailAttData].[JobID] AS [JobID], 
+      [ViewDetailAttData].[DesigID] AS [DesigID], 
+      [ViewDetailAttData].[Gender] AS [Gender], 
+      [ViewDetailAttData].[CardNo] AS [CardNo], 
+      [ViewDetailAttData].[FpID] AS [FpID], 
+      [ViewDetailAttData].[PinCode] AS [PinCode], 
+      [ViewDetailAttData].[FatherName] AS [FatherName], 
+      [ViewDetailAttData].[NicNo] AS [NicNo], 
+      [ViewDetailAttData].[BloodGroup] AS [BloodGroup], 
+      [ViewDetailAttData].[BirthDate] AS [BirthDate], 
+      [ViewDetailAttData].[MarStatus] AS [MarStatus], 
+      [ViewDetailAttData].[JoinDate] AS [JoinDate], 
+      [ViewDetailAttData].[ValidDate] AS [ValidDate], 
+      [ViewDetailAttData].[IssueDate] AS [IssueDate], 
+      [ViewDetailAttData].[ResignDate] AS [ResignDate], 
+      [ViewDetailAttData].[HomeAdd] AS [HomeAdd], 
+      [ViewDetailAttData].[ProcessAtt] AS [ProcessAtt], 
+      [ViewDetailAttData].[Status] AS [Status], 
+      [ViewDetailAttData].[PhoneNo] AS [PhoneNo], 
+      [ViewDetailAttData].[Email] AS [Email], 
+      [ViewDetailAttData].[Remarks] AS [Remarks], 
+      [ViewDetailAttData].[CellNo] AS [CellNo], 
+      [ViewDetailAttData].[FlagFP] AS [FlagFP], 
+      [ViewDetailAttData].[FlagFace] AS [FlagFace], 
+      [ViewDetailAttData].[FlagCard] AS [FlagCard], 
+      [ViewDetailAttData].[SectionName] AS [SectionName], 
+      [ViewDetailAttData].[DeptName] AS [DeptName], 
+      [ViewDetailAttData].[DivisionName] AS [DivisionName], 
+      [ViewDetailAttData].[CompanyID] AS [CompanyID], 
+      [ViewDetailAttData].[CatID] AS [CatID], 
+      [ViewDetailAttData].[SecID] AS [SecID], 
+      [ViewDetailAttData].[ShiftID] AS [ShiftID], 
+      [ViewDetailAttData].[TypeID] AS [TypeID], 
+      [ViewDetailAttData].[LocID] AS [LocID], 
+      [ViewDetailAttData].[GradeID] AS [GradeID], 
+      [ViewDetailAttData].[DeptID] AS [DeptID], 
+      [ViewDetailAttData].[DivID] AS [DivID], 
+      [ViewDetailAttData].[CrewID] AS [CrewID], 
+      [ViewDetailAttData].[CityID] AS [CityID], 
+      [ViewDetailAttData].[EmpID] AS [EmpID]
+      FROM [dbo].[ViewDetailAttData] AS [ViewDetailAttData]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="ViewEditAttendance" EntityType="TAS2013Model.Store.ViewEditAttendance" store:Type="Views" store:Schema="dbo" store:Name="ViewEditAttendance">
             <DefiningQuery>SELECT 
       [ViewEditAttendance].[AttEditID] AS [AttEditID], 
@@ -3063,6 +3166,120 @@
           <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
+      warning 6002: The table/view 'TAS2013.dbo.ViewDetailAttData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewDetailAttData">
+          <Key>
+            <PropertyRef Name="EmpDate" />
+            <PropertyRef Name="LocName" />
+            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="ShiftName" />
+            <PropertyRef Name="EmpNo" />
+            <PropertyRef Name="EmpName" />
+            <PropertyRef Name="ProcessAtt" />
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpDate" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="AttDate" Type="date" />
+          <Property Name="Expr2" Type="nvarchar" MaxLength="15" />
+          <Property Name="DutyCode" Type="char" MaxLength="1" />
+          <Property Name="DutyTime" Type="time" />
+          <Property Name="TimeIn" Type="datetime" />
+          <Property Name="TimeOut" Type="datetime" />
+          <Property Name="WorkMin" Type="smallint" />
+          <Property Name="LateIn" Type="smallint" />
+          <Property Name="LateOut" Type="smallint" />
+          <Property Name="EarlyOut" Type="smallint" />
+          <Property Name="EarlyIn" Type="smallint" />
+          <Property Name="OTMin" Type="smallint" />
+          <Property Name="GZOTMin" Type="smallint" />
+          <Property Name="StatusP" Type="bit" />
+          <Property Name="StatusAB" Type="bit" />
+          <Property Name="StatusLI" Type="bit" />
+          <Property Name="StatusEI" Type="bit" />
+          <Property Name="StatusLO" Type="bit" />
+          <Property Name="StatusEO" Type="bit" />
+          <Property Name="StatusOT" Type="bit" />
+          <Property Name="StatusGZOT" Type="bit" />
+          <Property Name="StatusGZ" Type="bit" />
+          <Property Name="StatusDO" Type="bit" />
+          <Property Name="StatusHD" Type="bit" />
+          <Property Name="StatusSL" Type="bit" />
+          <Property Name="StatusOD" Type="bit" />
+          <Property Name="StatusHL" Type="bit" />
+          <Property Name="StatusLeave" Type="bit" />
+          <Property Name="StatusMN" Type="bit" />
+          <Property Name="ShifMin" Type="smallint" />
+          <Property Name="Expr3" Type="varchar" MaxLength="100" />
+          <Property Name="Tin0" Type="datetime" />
+          <Property Name="Tout0" Type="datetime" />
+          <Property Name="Tin1" Type="datetime" />
+          <Property Name="Tout1" Type="datetime" />
+          <Property Name="Tin2" Type="datetime" />
+          <Property Name="Tout2" Type="datetime" />
+          <Property Name="Tin3" Type="datetime" />
+          <Property Name="Tout3" Type="datetime" />
+          <Property Name="Tin4" Type="datetime" />
+          <Property Name="Tout4" Type="datetime" />
+          <Property Name="Tin5" Type="datetime" />
+          <Property Name="Tout5" Type="datetime" />
+          <Property Name="Tin6" Type="datetime" />
+          <Property Name="Tout6" Type="datetime" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="100" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompName" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="CrewName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShiftName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="EmpName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="JobID" Type="smallint" />
+          <Property Name="DesigID" Type="int" />
+          <Property Name="Gender" Type="tinyint" />
+          <Property Name="CardNo" Type="char" MaxLength="10" />
+          <Property Name="FpID" Type="int" />
+          <Property Name="PinCode" Type="char" MaxLength="4" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NicNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroup" Type="nvarchar" MaxLength="6" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="MarStatus" Type="nvarchar" MaxLength="15" />
+          <Property Name="JoinDate" Type="date" />
+          <Property Name="ValidDate" Type="date" />
+          <Property Name="IssueDate" Type="date" />
+          <Property Name="ResignDate" Type="date" />
+          <Property Name="HomeAdd" Type="nvarchar" MaxLength="300" />
+          <Property Name="ProcessAtt" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="CellNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlagFP" Type="bit" />
+          <Property Name="FlagFace" Type="bit" />
+          <Property Name="FlagCard" Type="bit" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="CatID" Type="smallint" />
+          <Property Name="SecID" Type="smallint" />
+          <Property Name="ShiftID" Type="tinyint" />
+          <Property Name="TypeID" Type="tinyint" />
+          <Property Name="LocID" Type="smallint" />
+          <Property Name="GradeID" Type="tinyint" />
+          <Property Name="DeptID" Type="smallint" />
+          <Property Name="DivID" Type="smallint" />
+          <Property Name="CrewID" Type="smallint" />
+          <Property Name="CityID" Type="smallint" />
+          <Property Name="EmpID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
       warning 6002: The table/view 'TAS2013.dbo.ViewEditAttendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="ViewEditAttendance">
@@ -4830,6 +5047,7 @@
           <EntitySet Name="ViewCards" EntityType="TAS2013Model.ViewCard" />
           <EntitySet Name="ViewCrews" EntityType="TAS2013Model.ViewCrew" />
           <EntitySet Name="ViewDepartments" EntityType="TAS2013Model.ViewDepartment" />
+          <EntitySet Name="ViewDetailAttDatas" EntityType="TAS2013Model.ViewDetailAttData" />
           <EntitySet Name="ViewEditAttendances" EntityType="TAS2013Model.ViewEditAttendance" />
           <EntitySet Name="ViewEmergencyDetails" EntityType="TAS2013Model.ViewEmergencyDetail" />
           <EntitySet Name="ViewEmpPics" EntityType="TAS2013Model.ViewEmpPic" />
@@ -6828,6 +7046,117 @@
           <Property Name="DivID" Type="Int16" />
           <Property Name="DeptID" Type="Int16" Nullable="false" />
           <Property Name="DivisionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ViewDetailAttData">
+          <Key>
+            <PropertyRef Name="EmpDate" />
+            <PropertyRef Name="LocName" />
+            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="ShiftName" />
+            <PropertyRef Name="EmpNo" />
+            <PropertyRef Name="EmpName" />
+            <PropertyRef Name="ProcessAtt" />
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpDate" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="AttDate" Type="DateTime" Precision="0" />
+          <Property Name="Expr2" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="DutyCode" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="DutyTime" Type="Time" Precision="7" />
+          <Property Name="TimeIn" Type="DateTime" Precision="3" />
+          <Property Name="TimeOut" Type="DateTime" Precision="3" />
+          <Property Name="WorkMin" Type="Int16" />
+          <Property Name="LateIn" Type="Int16" />
+          <Property Name="LateOut" Type="Int16" />
+          <Property Name="EarlyOut" Type="Int16" />
+          <Property Name="EarlyIn" Type="Int16" />
+          <Property Name="OTMin" Type="Int16" />
+          <Property Name="GZOTMin" Type="Int16" />
+          <Property Name="StatusP" Type="Boolean" />
+          <Property Name="StatusAB" Type="Boolean" />
+          <Property Name="StatusLI" Type="Boolean" />
+          <Property Name="StatusEI" Type="Boolean" />
+          <Property Name="StatusLO" Type="Boolean" />
+          <Property Name="StatusEO" Type="Boolean" />
+          <Property Name="StatusOT" Type="Boolean" />
+          <Property Name="StatusGZOT" Type="Boolean" />
+          <Property Name="StatusGZ" Type="Boolean" />
+          <Property Name="StatusDO" Type="Boolean" />
+          <Property Name="StatusHD" Type="Boolean" />
+          <Property Name="StatusSL" Type="Boolean" />
+          <Property Name="StatusOD" Type="Boolean" />
+          <Property Name="StatusHL" Type="Boolean" />
+          <Property Name="StatusLeave" Type="Boolean" />
+          <Property Name="StatusMN" Type="Boolean" />
+          <Property Name="ShifMin" Type="Int16" />
+          <Property Name="Expr3" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Tin0" Type="DateTime" Precision="3" />
+          <Property Name="Tout0" Type="DateTime" Precision="3" />
+          <Property Name="Tin1" Type="DateTime" Precision="3" />
+          <Property Name="Tout1" Type="DateTime" Precision="3" />
+          <Property Name="Tin2" Type="DateTime" Precision="3" />
+          <Property Name="Tout2" Type="DateTime" Precision="3" />
+          <Property Name="Tin3" Type="DateTime" Precision="3" />
+          <Property Name="Tout3" Type="DateTime" Precision="3" />
+          <Property Name="Tin4" Type="DateTime" Precision="3" />
+          <Property Name="Tout4" Type="DateTime" Precision="3" />
+          <Property Name="Tin5" Type="DateTime" Precision="3" />
+          <Property Name="Tout5" Type="DateTime" Precision="3" />
+          <Property Name="Tin6" Type="DateTime" Precision="3" />
+          <Property Name="Tout6" Type="DateTime" Precision="3" />
+          <Property Name="DesignationName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="GradeName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CompName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RegionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LocName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="CrewName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="CatName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ShiftName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmpNo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="JobID" Type="Int16" />
+          <Property Name="DesigID" Type="Int32" />
+          <Property Name="Gender" Type="Byte" />
+          <Property Name="CardNo" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+          <Property Name="FpID" Type="Int32" />
+          <Property Name="PinCode" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NicNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BloodGroup" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="MarStatus" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="JoinDate" Type="DateTime" Precision="0" />
+          <Property Name="ValidDate" Type="DateTime" Precision="0" />
+          <Property Name="IssueDate" Type="DateTime" Precision="0" />
+          <Property Name="ResignDate" Type="DateTime" Precision="0" />
+          <Property Name="HomeAdd" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="ProcessAtt" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Remarks" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="CellNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FlagFP" Type="Boolean" />
+          <Property Name="FlagFace" Type="Boolean" />
+          <Property Name="FlagCard" Type="Boolean" />
+          <Property Name="SectionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DeptName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DivisionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyID" Type="Int16" />
+          <Property Name="CatID" Type="Int16" />
+          <Property Name="SecID" Type="Int16" />
+          <Property Name="ShiftID" Type="Byte" />
+          <Property Name="TypeID" Type="Byte" />
+          <Property Name="LocID" Type="Int16" />
+          <Property Name="GradeID" Type="Byte" />
+          <Property Name="DeptID" Type="Int16" />
+          <Property Name="DivID" Type="Int16" />
+          <Property Name="CrewID" Type="Int16" />
+          <Property Name="CityID" Type="Int16" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ViewEditAttendance">
           <Key>
@@ -10090,6 +10419,111 @@
                 <ScalarProperty Name="DivID" ColumnName="DivID" />
                 <ScalarProperty Name="DeptID" ColumnName="DeptID" />
                 <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewDetailAttDatas">
+            <EntityTypeMapping TypeName="TAS2013Model.ViewDetailAttData">
+              <MappingFragment StoreEntitySet="ViewDetailAttData">
+                <ScalarProperty Name="EmpDate" ColumnName="EmpDate" />
+                <ScalarProperty Name="AttDate" ColumnName="AttDate" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+                <ScalarProperty Name="DutyTime" ColumnName="DutyTime" />
+                <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+                <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+                <ScalarProperty Name="WorkMin" ColumnName="WorkMin" />
+                <ScalarProperty Name="LateIn" ColumnName="LateIn" />
+                <ScalarProperty Name="LateOut" ColumnName="LateOut" />
+                <ScalarProperty Name="EarlyOut" ColumnName="EarlyOut" />
+                <ScalarProperty Name="EarlyIn" ColumnName="EarlyIn" />
+                <ScalarProperty Name="OTMin" ColumnName="OTMin" />
+                <ScalarProperty Name="GZOTMin" ColumnName="GZOTMin" />
+                <ScalarProperty Name="StatusP" ColumnName="StatusP" />
+                <ScalarProperty Name="StatusAB" ColumnName="StatusAB" />
+                <ScalarProperty Name="StatusLI" ColumnName="StatusLI" />
+                <ScalarProperty Name="StatusEI" ColumnName="StatusEI" />
+                <ScalarProperty Name="StatusLO" ColumnName="StatusLO" />
+                <ScalarProperty Name="StatusEO" ColumnName="StatusEO" />
+                <ScalarProperty Name="StatusOT" ColumnName="StatusOT" />
+                <ScalarProperty Name="StatusGZOT" ColumnName="StatusGZOT" />
+                <ScalarProperty Name="StatusGZ" ColumnName="StatusGZ" />
+                <ScalarProperty Name="StatusDO" ColumnName="StatusDO" />
+                <ScalarProperty Name="StatusHD" ColumnName="StatusHD" />
+                <ScalarProperty Name="StatusSL" ColumnName="StatusSL" />
+                <ScalarProperty Name="StatusOD" ColumnName="StatusOD" />
+                <ScalarProperty Name="StatusHL" ColumnName="StatusHL" />
+                <ScalarProperty Name="StatusLeave" ColumnName="StatusLeave" />
+                <ScalarProperty Name="StatusMN" ColumnName="StatusMN" />
+                <ScalarProperty Name="ShifMin" ColumnName="ShifMin" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Tin0" ColumnName="Tin0" />
+                <ScalarProperty Name="Tout0" ColumnName="Tout0" />
+                <ScalarProperty Name="Tin1" ColumnName="Tin1" />
+                <ScalarProperty Name="Tout1" ColumnName="Tout1" />
+                <ScalarProperty Name="Tin2" ColumnName="Tin2" />
+                <ScalarProperty Name="Tout2" ColumnName="Tout2" />
+                <ScalarProperty Name="Tin3" ColumnName="Tin3" />
+                <ScalarProperty Name="Tout3" ColumnName="Tout3" />
+                <ScalarProperty Name="Tin4" ColumnName="Tin4" />
+                <ScalarProperty Name="Tout4" ColumnName="Tout4" />
+                <ScalarProperty Name="Tin5" ColumnName="Tin5" />
+                <ScalarProperty Name="Tout5" ColumnName="Tout5" />
+                <ScalarProperty Name="Tin6" ColumnName="Tin6" />
+                <ScalarProperty Name="Tout6" ColumnName="Tout6" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="LocName" ColumnName="LocName" />
+                <ScalarProperty Name="CrewName" ColumnName="CrewName" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="DesigID" ColumnName="DesigID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="FpID" ColumnName="FpID" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="NicNo" ColumnName="NicNo" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MarStatus" ColumnName="MarStatus" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="ValidDate" ColumnName="ValidDate" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="ResignDate" ColumnName="ResignDate" />
+                <ScalarProperty Name="HomeAdd" ColumnName="HomeAdd" />
+                <ScalarProperty Name="ProcessAtt" ColumnName="ProcessAtt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="FlagFP" ColumnName="FlagFP" />
+                <ScalarProperty Name="FlagFace" ColumnName="FlagFace" />
+                <ScalarProperty Name="FlagCard" ColumnName="FlagCard" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="SecID" ColumnName="SecID" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="GradeID" ColumnName="GradeID" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="DivID" ColumnName="DivID" />
+                <ScalarProperty Name="CrewID" ColumnName="CrewID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
