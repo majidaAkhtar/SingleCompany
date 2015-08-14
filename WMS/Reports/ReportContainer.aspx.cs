@@ -59,15 +59,15 @@ namespace WMS.Reports
                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), _dateFrom + " TO " + _dateTo);
 
                                                 break;
-                    case "leave_application":   dt1 = qb.GetValuesfromDB("select * from EmpView " + query);
-                                               _ViewList1 = dt1.ToList<EmpView>();
-                                                _TempViewList1 = new List<EmpView>();
-                                                title = "Employee Detail Report";
+                    case "leave_application": dt1 = qb.GetValuesfromDB("select * from ViewLvApplication " + query + " and (FromDate >= '" + _dateFrom + "' and ToDate <= '" + _dateTo + "' )");
+                                               List<ViewLvApplication> _ViewListLvApp = dt1.ToList<ViewLvApplication>();
+                                               List<ViewLvApplication> _TempViewListLvApp = new List<ViewLvApplication>();
+                                                title = "Leave Application Report";
                                                 if (GlobalVariables.DeploymentType == false)
-                                                    PathString = "/Reports/RDLC/EmployeeDetail.rdlc";
+                                                    PathString = "/Reports/RDLC/DRLeave.rdlc";
                                                 else
                                                     PathString = "/WMS/Reports/RDLC/EmployeeDetail.rdlc";
-                                                 LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), _dateFrom + " TO " + _dateTo);
+                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListLvApp, _ViewListLvApp), _dateFrom + " TO " + _dateTo);
 
                                                 break;
                     case "detailed_att": DataTable dt2 = qb.GetValuesfromDB("select * from ViewDetailAttData " + query + " and (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'"
@@ -356,13 +356,15 @@ namespace WMS.Reports
                                                          LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList8, _ViewList8), _dateFrom + " TO " + _dateTo);
                                                          break;
 
-                    case "emp_absent":                  _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
+                    case "emp_absent":                  
+                                                       _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
                                                          dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'"
                                                         + _dateTo + "'" + " )" + " and StatusAB = 1 ");
                                                          title = "Employee Absent";
                                                          _ViewListMonthlyDataPer = dt.ToList<ViewMonthlyDataPer>();
                                                          _TempViewListMonthlyDataPer = new List<ViewMonthlyDataPer>();
                                                          //Change the Paths
+                     
                                                          if (GlobalVariables.DeploymentType == false)
                                                              PathString = "/Reports/RDLC/MRSummary.rdlc";
                                                          else
@@ -379,44 +381,7 @@ namespace WMS.Reports
                                                          LoadReport(PathString, GYL(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1)));
                                                         // LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyDataPer, _ViewListMonthlyDataPer), _dateFrom);
                                                          break;
-                    //case "ViewAttData": DataTable dt1 = qb.GetValuesfromDB("select * from " + list[2] + " " + query + " and (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'"
-                    //                     + _dateTo + "'" + " )" + " and EmpID=1 ");
-                    //                            List<ViewAttData> _ViewList1 = dt1.ToList<ViewAttData>();
-                    //                         List<ViewAttData> _TempViewList1 = new List<ViewAttData>();
-                    //                     if (GlobalVariables.DeploymentType == false)
-                    //                              {
-                    //                         PathString = "/Reports/RDLC/Employee.rdlc";
-                    //                                 }
-                    //                       else
-                    //                           PathString = "/WMS/Reports/RDLC/Employee.rdlc";
-
-
-                    //                       LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), _dateFrom + " TO " + _dateTo);
-                               
-                        
-                        
-                    //       break;
-                    //case "ViewMonthlyData":  DataTable dt2 = qb.GetValuesfromDB("select * from " + list[2] + " " + query);
-                    //                         List<ViewMonthlyData> _ViewList2 = dt2.ToList<ViewMonthlyData>();
-                    //                         List<ViewMonthlyData> _TempViewList2 = new List<ViewMonthlyData>();
-                    //                         if (GlobalVariables.DeploymentType == false)
-                    //                                 PathString = "/Reports/RDLC/MRSheetC.rdlc";
-                    //                         else
-                    //                                 PathString = "/WMS/Reports/RDLC/MRSheetC.rdlc";
-                    //                         LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList2, _ViewList2), _dateFrom + " TO " + _dateTo);
-                               
-                    //    break;
-                    //case "ViewMonthlyDataPer": DataTable dt3 = qb.GetValuesfromDB("select * from " + list[2] + " " + query);
-                    //                          List<ViewMonthlyData> _ViewList3 = dt3.ToList<ViewMonthlyData>();
-                    //                           List<ViewMonthlyData> _TempViewList3 = new List<ViewMonthlyData>();
-                    //                           if (GlobalVariables.DeploymentType == false)
-                    //                             PathString = "/Reports/RDLC/MRSheetP.rdlc";
-                    //                          else
-                    //                             PathString = "/WMS/Reports/RDLC/MRSheetP.rdlc";
-                    //                           LoadReport(PathString, ReportsFilterImplementation(fm, _ViewList3, _TempViewList3), _dateFrom + " TO " + _dateTo);
-                        
-                    //    break;
-                
+                  
                 
                 
                 }
@@ -426,12 +391,169 @@ namespace WMS.Reports
                 
                
               
-               // LoadReport(PathString, _ViewList, _dateFrom+" TO "+_dateTo);
+               
                 
             }
         }
-        //EmpView
 
+        private List<ViewLvApplication> ReportsFilterImplementation(FiltersModel fm, List<ViewLvApplication> _TempViewList, List<ViewLvApplication> _ViewList)
+        {
+            //for company
+            if (fm.CompanyFilter.Count > 0)
+            {
+                foreach (var comp in fm.CompanyFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.CompanyID == _compID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+
+
+            //for location
+            if (fm.LocationFilter.Count > 0)
+            {
+                foreach (var loc in fm.LocationFilter)
+                {
+                    short _locID = Convert.ToInt16(loc.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.LocID == _locID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+            //for shifts
+            if (fm.ShiftFilter.Count > 0)
+            {
+                foreach (var shift in fm.ShiftFilter)
+                {
+                    short _shiftID = Convert.ToInt16(shift.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.ShiftID == _shiftID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+
+
+            _TempViewList.Clear();
+
+            //for type
+            if (fm.TypeFilter.Count > 0)
+            {
+                foreach (var type in fm.TypeFilter)
+                {
+                    short _typeID = Convert.ToInt16(type.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.TypeID == _typeID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+            //for crews
+            if (fm.CrewFilter.Count > 0)
+            {
+                foreach (var cre in fm.CrewFilter)
+                {
+                    short _crewID = Convert.ToInt16(cre.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.CrewID == _crewID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+
+
+
+
+            //for division
+            if (fm.DivisionFilter.Count > 0)
+            {
+                foreach (var div in fm.DivisionFilter)
+                {
+                    short _divID = Convert.ToInt16(div.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.DivID == _divID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+            //for department
+            if (fm.DepartmentFilter.Count > 0)
+            {
+                foreach (var dept in fm.DepartmentFilter)
+                {
+                    short _deptID = Convert.ToInt16(dept.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.DeptID == _deptID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+            //for sections
+            if (fm.SectionFilter.Count > 0)
+            {
+                foreach (var sec in fm.SectionFilter)
+                {
+                    short _secID = Convert.ToInt16(sec.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.SecID == _secID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+            //Employee
+            if (fm.EmployeeFilter.Count > 0)
+            {
+                foreach (var emp in fm.EmployeeFilter)
+                {
+                    int _empID = Convert.ToInt32(emp.ID);
+                    _TempViewList.AddRange(_ViewList.Where(aa => aa.EmpID == _empID).ToList());
+                }
+                _ViewList = _TempViewList.ToList();
+            }
+            else
+                _TempViewList = _ViewList.ToList();
+            _TempViewList.Clear();
+
+
+            return _ViewList;
+        }
+        //EmpView
+        private void LoadReport(string path, List<ViewLvApplication> _Employee, string date)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<ViewLvApplication> ie;
+            ie = _Employee.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportParameter rp = new ReportParameter("Header", _Header, false);
+            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
+            ReportViewer1.LocalReport.Refresh();
+        }
+     
         public List<EmpView> ReportsFilterImplementation(FiltersModel fm, List<EmpView> _TempViewList, List<EmpView> _ViewList)
         {
             //for company
