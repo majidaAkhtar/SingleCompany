@@ -12,10 +12,10 @@ namespace WMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewAttData
+    public partial class ViewEarlyOut
     {
-        public Nullable<int> EmpID { get; set; }
         public string EmpNo { get; set; }
+        public Nullable<int> EmpID { get; set; }
         public string EmpName { get; set; }
         public string JobTitle { get; set; }
         public string TypeName { get; set; }
@@ -31,6 +31,7 @@ namespace WMS.Models
         public string PinCode { get; set; }
         public string NicNo { get; set; }
         public string CardNo { get; set; }
+        public Nullable<System.DateTime> JoinDate { get; set; }
         public Nullable<bool> Status { get; set; }
         public string GradeName { get; set; }
         public string CompName { get; set; }
@@ -52,30 +53,25 @@ namespace WMS.Models
         public Nullable<bool> StatusAB { get; set; }
         public Nullable<bool> StatusLI { get; set; }
         public Nullable<bool> StatusLO { get; set; }
-        public Nullable<bool> StatusEI { get; set; }
         public Nullable<bool> StatusEO { get; set; }
+        public Nullable<bool> StatusEI { get; set; }
         public Nullable<bool> StatusOT { get; set; }
         public Nullable<bool> StatusGZOT { get; set; }
         public Nullable<bool> StatusGZ { get; set; }
         public Nullable<bool> StatusDO { get; set; }
-        public Nullable<bool> StatusHD { get; set; }
-        public Nullable<bool> StatusLeave { get; set; }
-        public Nullable<bool> StatusBreak { get; set; }
-        public string DivisionName { get; set; }
+        public Nullable<bool> StatusSL { get; set; }
         public string Remarks { get; set; }
-        public Nullable<short> CompanyID { get; set; }
-        public Nullable<byte> TypeID { get; set; }
-        public Nullable<short> CatID { get; set; }
+        public string DivisionName { get; set; }
         public Nullable<byte> ShiftID { get; set; }
         public Nullable<short> DeptID { get; set; }
         public Nullable<byte> GradeID { get; set; }
         public Nullable<short> CrewID { get; set; }
         public Nullable<short> LocID { get; set; }
-        public Nullable<short> DivID { get; set; }
+        public Nullable<short> CatID { get; set; }
+        public Nullable<byte> TypeID { get; set; }
+        public Nullable<short> CompanyID { get; set; }
         public Nullable<short> SecID { get; set; }
+        public Nullable<short> DivID { get; set; }
         public Nullable<int> DesigID { get; set; }
-        public Nullable<short> BreakMin { get; set; }
-        public Nullable<System.TimeSpan> SLMin { get; set; }
-        public Nullable<short> ShifMin { get; set; }
     }
 }

@@ -4,7 +4,8 @@
     $('#DeptID').empty();
     var URL = '/WMS/Emp/DepartmentList';
     //var URL = '/Emp/DepartmentList';
-    $.getJSON(URL + '/' + $('#CompanyID').val(), function (data) {
+    var convalue =  $('#CompanyID').val();
+    $.getJSON(URL + '/' + convalue, function (data) {
         var selectedItemID = document.getElementById("selectedDeptIDHidden").value;
         var items;
         $.each(data, function (i, state) {
@@ -19,8 +20,9 @@
 
         $('#SecID').empty();
        var URL = '/WMS/Emp/SectionList';
-        //var URL = '/Emp/SectionList';
-        $.getJSON(URL + '/' + $('#DeptID').val(), function (data) {
+        // var URL = '/Emp/SectionList';
+       var convalue = $('#DeptID').val() + "s" + $('#CompanyID').val();
+       $.getJSON(URL + '/' + convalue, function (data) {
             var selectedItemID = document.getElementById("selectedSectionIdHidden").value;
             var items;
             $.each(data, function (i, state) {
@@ -43,7 +45,8 @@
         $('#SecID').empty();
         var URL = '/WMS/Emp/SectionList';
         //var URL = '/Emp/SectionList';
-        $.getJSON(URL + '/' + $('#DeptID').val(), function (data) {
+        var convalue = $('#DeptID').val() + "s" + $('#CompanyID').val();
+        $.getJSON(URL + '/' +convalue, function (data) {
             var selectedItemID = document.getElementById("selectedSectionIdHidden").value;
             var items;
             $.each(data, function (i, state) {
@@ -61,8 +64,9 @@
 
     $('#CompanyID').change(function () {
         $('#DeptID').empty();
-       var URL = '/WMS/Emp/DepartmentList';
+        var URL = '/WMS/Emp/DepartmentList';
         //var URL = '/Emp/DepartmentList';
+       var convalue =  $('#CompanyID').val();
         $.getJSON(URL + '/' + $('#CompanyID').val(), function (data) {
             var items;
             $.each(data, function (i, state) {
@@ -73,7 +77,8 @@
             $('#SecID').empty();
             var URL = '/WMS/Emp/SectionList';
             //var URL = '/Emp/SectionList';
-            $.getJSON(URL + '/' + $('#DeptID').val(), function (data) {
+            var convalue = $('#DeptID').val() + "s" + $('#CompanyID').val();
+            $.getJSON(URL + '/' + convalue, function (data) {
                 var items;
                 $.each(data, function (i, state) {
                     items += "<option value='" + state.Value + "'>" + state.Text + "</option>";

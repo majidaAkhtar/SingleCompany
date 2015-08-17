@@ -536,23 +536,7 @@ namespace WMS.Reports
             return _ViewList;
         }
         //EmpView
-        private void LoadReport(string path, List<ViewLvApplication> _Employee, string date)
-        {
-            string _Header = title;
-            this.ReportViewer1.LocalReport.DisplayName = title;
-            ReportViewer1.ProcessingMode = ProcessingMode.Local;
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
-            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
-            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<ViewLvApplication> ie;
-            ie = _Employee.AsQueryable();
-            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.DataSources.Add(datasource1);
-            ReportParameter rp = new ReportParameter("Header", _Header, false);
-            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
-            ReportViewer1.LocalReport.Refresh();
-        }
+        
      
         public List<EmpView> ReportsFilterImplementation(FiltersModel fm, List<EmpView> _TempViewList, List<EmpView> _ViewList)
         {
@@ -694,25 +678,7 @@ namespace WMS.Reports
             return _ViewList;
         }
 
-        private void LoadReport(string path, List<EmpView> _Employee, string date)
-        {
-            string _Header = title;
-            this.ReportViewer1.LocalReport.DisplayName = title;
-            ReportViewer1.ProcessingMode = ProcessingMode.Local;
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
-            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
-            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<EmpView> ie;
-            ie = _Employee.AsQueryable();
-            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.DataSources.Add(datasource1);
-           ReportParameter rp = new ReportParameter("Header", _Header, false);
-            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
-            ReportViewer1.LocalReport.Refresh();
-        }
-       
-
+        
         //ViewAttData
         public List<ViewAttData> ReportsFilterImplementation(FiltersModel fm, List<ViewAttData> _TempViewList, List<ViewAttData> _ViewList)
         {
@@ -854,24 +820,7 @@ namespace WMS.Reports
             return _ViewList;
         }
 
-        private void LoadReport(string path, List<ViewAttData> _Employee, string date)
-        {
-            string _Header = title;
-            this.ReportViewer1.LocalReport.DisplayName = title;
-            ReportViewer1.ProcessingMode = ProcessingMode.Local;
-            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
-            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
-            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
-            IEnumerable<ViewAttData> ie;
-            ie = _Employee.AsQueryable();
-            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.DataSources.Add(datasource1);
-            ReportParameter rp = new ReportParameter("Date", date, false);
-            ReportParameter rp1 = new ReportParameter("Header", _Header, false);
-            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
-            ReportViewer1.LocalReport.Refresh();
-        }
+       
         //ViewAttData
         public List<ViewDetailAttData> ReportsFilterImplementation(FiltersModel fm, List<ViewDetailAttData> _TempViewList, List<ViewDetailAttData> _ViewList)
         {
@@ -1367,6 +1316,42 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.Refresh();
         }
         //
+        private void LoadReport(string path, List<EmpView> _Employee, string date)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<EmpView> ie;
+            ie = _Employee.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportParameter rp = new ReportParameter("Header", _Header, false);
+            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
+            ReportViewer1.LocalReport.Refresh();
+        }
+        private void LoadReport(string path, List<ViewAttData> _Employee, string date)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<ViewAttData> ie;
+            ie = _Employee.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportParameter rp = new ReportParameter("Date", date, false);
+            ReportParameter rp1 = new ReportParameter("Header", _Header, false);
+            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
+            ReportViewer1.LocalReport.Refresh();
+        }
+
         private void LoadReport(string path, DataTable _LvSummary,int i)
         {
             string _Header = "Monthly Sheet Contactual Employees";
@@ -1385,7 +1370,23 @@ namespace WMS.Reports
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
             ReportViewer1.LocalReport.Refresh();
         }
-        
+        private void LoadReport(string path, List<ViewLvApplication> _Employee, string date)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<ViewLvApplication> ie;
+            ie = _Employee.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportParameter rp = new ReportParameter("Header", _Header, false);
+            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
+            ReportViewer1.LocalReport.Refresh();
+        }
         private DataTable GYL(List<EmpView> _Emp)
         {
             TAS2013Entities context = new TAS2013Entities();

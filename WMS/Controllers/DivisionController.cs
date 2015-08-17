@@ -73,6 +73,7 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
             return View();
         }
 
@@ -81,7 +82,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DivisionID,DivisionName,CompID")] Division division)
+        public ActionResult Create([Bind(Include="DivisionID,DivisionName,CompanyID")] Division division)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +90,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
             return View(division);
         }
 
@@ -102,6 +103,7 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Division division = db.Divisions.Find(id);
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",division.CompanyID);
             if (division == null)
             {
                 return HttpNotFound();
@@ -115,7 +117,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include="DivisionID,DivisionName,CompID")] Division division)
+        public ActionResult Edit([Bind(Include = "DivisionID,DivisionName,CompanyID")] Division division)
         {
             if (ModelState.IsValid)
             {
@@ -123,6 +125,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
             return View(division);
         }
 

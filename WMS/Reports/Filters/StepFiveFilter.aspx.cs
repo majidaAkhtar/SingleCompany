@@ -27,6 +27,10 @@ namespace WMS.Reports.Filters
                 dateTo.Value = list[1];
                 //dateFrom.Value = "2015-08-09";
             }
+            else
+            {
+                SaveEmployeeIDs();
+            }
             if (Session["FiltersModel"] != null)
             {
                 // Check and Uncheck Items in grid view according to Session Filters Model
@@ -63,13 +67,13 @@ namespace WMS.Reports.Filters
         private void BindGridViewEmployee(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
-            List<Emp> _View = new List<Emp>();
-            List<Emp> _TempView = new List<Emp>();
+            List<EmpView> _View = new List<EmpView>();
+            List<EmpView> _TempView = new List<EmpView>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Emp " + query);
-            _View = dt.ToList<Emp>();
+            DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
+            _View = dt.ToList<EmpView>();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -77,7 +81,77 @@ namespace WMS.Reports.Filters
                     short _compID = Convert.ToInt16(comp.ID);
                     _TempView.AddRange(_View.Where(aa => aa.CompanyID == _compID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
+            }
+            if (fm.DivisionFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.DivisionFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.DivID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.DepartmentFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.DepartmentFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.DeptID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.SectionFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.SectionFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.SecID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.TypeFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.TypeFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.TypeID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.LocationFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.LocationFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.LocID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.ShiftFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.ShiftFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.ShiftID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.CrewFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.CrewFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.CrewID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
             }
             GridViewEmployee.DataSource = _View.Where(aa => aa.EmpName.Contains(search)).ToList();
             GridViewEmployee.DataBind();

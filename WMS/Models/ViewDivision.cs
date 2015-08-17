@@ -12,15 +12,11 @@ namespace WMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewSection
+    public partial class ViewDivision
     {
-        public short SectionID { get; set; }
-        public string SectionName { get; set; }
-        public Nullable<short> DeptID { get; set; }
-        public string DeptName { get; set; }
         public string DivisionName { get; set; }
-        public Nullable<short> DivID { get; set; }
+        public short DivisionID { get; set; }
         public string CompName { get; set; }
-        public Nullable<short> CompID { get; set; }
+        public short CompID { get; set; }
     }
 }

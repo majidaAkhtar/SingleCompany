@@ -21,7 +21,7 @@ namespace WMS
             // Initialize Session["FiltersModel"] -- Move to First Page
             Session["FiltersModel"] = SessionManager.Init();
             LoadSessionValues();
-            LoadSession();
+            //LoadSession();
         }
         private void LoadSession()
         {

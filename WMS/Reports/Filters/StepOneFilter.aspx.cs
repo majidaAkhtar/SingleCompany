@@ -27,8 +27,18 @@ namespace WMS.Reports.Filters
                 dateFrom.Value = list[0];
                 dateTo.Value = list[1];
             }
+            else
+            {
+                SaveCompanyIDs();
+                SaveLocationIDs();
+            }
             if (Session["FiltersModel"] != null)
             {
+                //1.Write a function that checks the checkbox state 
+                //2.Save the unchecked checkboxes to the session
+
+
+
                 // Check and Uncheck Items in grid view according to Session Filters Model
                 WMSLibrary.Filters.SetGridViewCheckState(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
                 WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
@@ -45,7 +55,7 @@ namespace WMS.Reports.Filters
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
         }
-        
+
         protected void GridViewCompany_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Save selected Company ID and Name in Session
@@ -94,7 +104,7 @@ namespace WMS.Reports.Filters
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
         }
-        
+
         protected void GridViewLocation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Save selected Company ID and Name in Session
@@ -126,7 +136,7 @@ namespace WMS.Reports.Filters
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForLocationTableSegeration(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Location " +query);
+            DataTable dt = qb.GetValuesfromDB("select * from Location " + query);
             List<Location> _View = dt.ToList<Location>();
             GridViewLocation.DataSource = _View.Where(aa => aa.LocName.Contains(search)).ToList();
             GridViewLocation.DataBind();
@@ -207,12 +217,12 @@ namespace WMS.Reports.Filters
             }
         }
 
-        
+
         #endregion
 
 
 
 
-        
+
     }
 }

@@ -12,7 +12,7 @@ namespace WMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewAttData
+    public partial class ViewOverTime
     {
         public Nullable<int> EmpID { get; set; }
         public string EmpNo { get; set; }
@@ -74,8 +74,5 @@ namespace WMS.Models
         public Nullable<short> DivID { get; set; }
         public Nullable<short> SecID { get; set; }
         public Nullable<int> DesigID { get; set; }
-        public Nullable<short> BreakMin { get; set; }
-        public Nullable<System.TimeSpan> SLMin { get; set; }
-        public Nullable<short> ShifMin { get; set; }
     }
 }

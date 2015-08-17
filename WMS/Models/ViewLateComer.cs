@@ -12,12 +12,13 @@ namespace WMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewAttData
+    public partial class ViewLateComer
     {
-        public Nullable<int> EmpID { get; set; }
+        public string CrewName { get; set; }
         public string EmpNo { get; set; }
-        public string EmpName { get; set; }
+        public Nullable<int> EmpID { get; set; }
         public string JobTitle { get; set; }
+        public string EmpName { get; set; }
         public string TypeName { get; set; }
         public string CatName { get; set; }
         public string CityName { get; set; }
@@ -26,17 +27,15 @@ namespace WMS.Models
         public string DesignationName { get; set; }
         public string ShiftName { get; set; }
         public string SectionName { get; set; }
-        public string CrewName { get; set; }
         public Nullable<int> FpID { get; set; }
         public string PinCode { get; set; }
         public string NicNo { get; set; }
         public string CardNo { get; set; }
         public Nullable<bool> Status { get; set; }
-        public string GradeName { get; set; }
-        public string CompName { get; set; }
         public string DeptName { get; set; }
-        public string EmpDate { get; set; }
+        public string CompName { get; set; }
         public Nullable<System.DateTime> AttDate { get; set; }
+        public string EmpDate { get; set; }
         public string DutyCode { get; set; }
         public Nullable<System.TimeSpan> DutyTime { get; set; }
         public Nullable<System.DateTime> TimeIn { get; set; }
@@ -58,9 +57,6 @@ namespace WMS.Models
         public Nullable<bool> StatusGZOT { get; set; }
         public Nullable<bool> StatusGZ { get; set; }
         public Nullable<bool> StatusDO { get; set; }
-        public Nullable<bool> StatusHD { get; set; }
-        public Nullable<bool> StatusLeave { get; set; }
-        public Nullable<bool> StatusBreak { get; set; }
         public string DivisionName { get; set; }
         public string Remarks { get; set; }
         public Nullable<short> CompanyID { get; set; }
@@ -74,8 +70,5 @@ namespace WMS.Models
         public Nullable<short> DivID { get; set; }
         public Nullable<short> SecID { get; set; }
         public Nullable<int> DesigID { get; set; }
-        public Nullable<short> BreakMin { get; set; }
-        public Nullable<System.TimeSpan> SLMin { get; set; }
-        public Nullable<short> ShifMin { get; set; }
     }
 }

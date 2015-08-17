@@ -18,7 +18,7 @@ namespace WMS.Reports.Filters
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
                 // Bind Grid View According to Filters
                 BindGridViewDivision("");
@@ -26,6 +26,11 @@ namespace WMS.Reports.Filters
                 List<string> list = Session["ReportSession"] as List<string>;
                 dateFrom.Value = list[0];
                 dateTo.Value = list[1];
+            }
+            else
+            {
+                SaveDivisionIDs();
+                SaveShiftIDs();
             }
             if (Session["FiltersModel"] != null)
             {
@@ -107,21 +112,21 @@ namespace WMS.Reports.Filters
         private void BindGridViewDivision(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
-            List<Division> _View = new List<Division>();
-            List<Division> _TempView = new List<Division>();
+            List<ViewDivision> _View = new List<ViewDivision>();
+            List<ViewDivision> _TempView = new List<ViewDivision>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Division " + query);
-            _View = dt.ToList<Division>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewDivision " + query);
+            _View = dt.ToList<ViewDivision>();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
                 {
                     short _compID = Convert.ToInt16(comp.ID);
-                    _TempView.AddRange(_View.Where(aa => aa.CompanyID == _compID).ToList());
+                    _TempView.AddRange(_View.Where(aa => aa.CompID == _compID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
             }
             GridViewDivision.DataSource = _View.Where(aa => aa.DivisionName.Contains(search)).ToList();
             GridViewDivision.DataBind();
@@ -152,7 +157,7 @@ namespace WMS.Reports.Filters
                     short _locID = Convert.ToInt16(loc.ID);
                     _TempView.AddRange(_View.Where(aa => aa.LocationID == _locID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
             }
             GridViewShift.DataSource = _View.Where(aa => aa.ShiftName.Contains(search)).ToList();
             GridViewShift.DataBind();

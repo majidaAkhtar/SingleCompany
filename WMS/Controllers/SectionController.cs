@@ -80,6 +80,7 @@ namespace WMS.Controllers
         public ActionResult Create()
         {
             ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
             return View();
         }
 
@@ -89,7 +90,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Create([Bind(Include = "SectionID,SectionName,DeptID")] Section section)
+        public ActionResult Create([Bind(Include = "SectionID,SectionName,DeptID,CompanyID")] Section section)
         {
             if (ModelState.IsValid)
             {
@@ -98,6 +99,7 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName", section.DeptID);
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
             return View(section);
         }
 
@@ -111,7 +113,8 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Section section = db.Sections.Find(id);
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
+            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName",section.DeptID);
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",section.CompanyID);
             if (section == null)
             {
                 return HttpNotFound();
@@ -126,7 +129,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include = "SectionID,SectionName,DeptID")] Section section)
+        public ActionResult Edit([Bind(Include = "SectionID,SectionName,DeptID,CompanyID")] Section section)
         {
             if (ModelState.IsValid)
             {
@@ -178,7 +181,7 @@ namespace WMS.Controllers
         public ActionResult DepartmentList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Departments;
+            var secs = db.Departments.Where(aa=>aa.CompanyID==Code);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),

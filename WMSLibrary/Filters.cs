@@ -17,11 +17,13 @@ namespace WMSLibrary
                 bool isChecked = ((CheckBox)gv.Rows[i].FindControl("CheckOne")).Checked;
                 if (isChecked)  // Add to filter list
                 {
+                    //int DepartmentID = (int)gv.DataKeys[i].Value;
                     int DepartmentID = int.Parse(gv.Rows[i].Cells[1].Text);
                     DepartmentIDs.Add(DepartmentID);
                 }
                 else    // Remove from filter list
                 {
+                    //int DepartmentID = (int)gv.DataKeys[i].Value;
                     int DepartmentID = int.Parse(gv.Rows[i].Cells[1].Text);
                     for (int k = 0; k < DepartmentIDs.Count; k++)
                     {
@@ -49,6 +51,7 @@ namespace WMSLibrary
                 if (isChecked)  // Add to filter list
                 {
                     string ItemID = gv.Rows[i].Cells[1].Text;
+                    //string ItemID = gv.DataKeys[i].Value.ToString();
                     string ItemName = gv.Rows[i].Cells[2].Text;
 
                     AddObjectToList(filtersModel, filterName, ItemID, ItemName);
@@ -56,8 +59,8 @@ namespace WMSLibrary
                 }
                 else    // Remove from filter list
                 {
+                    //string ItemID = gv.DataKeys[i].Value.ToString();
                     string ItemID = gv.Rows[i].Cells[1].Text;
-
                     RemoveObjectFromList(filtersModel, filterName, ItemID);
 
                 }
@@ -65,6 +68,13 @@ namespace WMSLibrary
             return filtersModel;
         }
 
+        /// <summary>
+        /// This function will remove the id of a specific deparment, company... form the session
+        /// </summary>
+        /// <param name="filtersModel"></param>
+        /// <param name="filterName"></param>
+        /// <param name="ItemID"></param>
+        /// 
         private static void RemoveObjectFromList(FiltersModel filtersModel, string filterName, string ItemID)
         {
             switch (filterName)
@@ -75,6 +85,14 @@ namespace WMSLibrary
                         if (filtersModel.CompanyFilter[k].ID == ItemID)
                             filtersModel.CompanyFilter.RemoveAt(k);
                     }
+                    break;
+                case "Division":
+                    for (int k = 0; k < filtersModel.DivisionFilter.Count; k++)
+                    {
+                        if (filtersModel.DivisionFilter[k].ID == ItemID)
+                            filtersModel.DivisionFilter.RemoveAt(k);
+                    }
+                    break;
                     break;
                 case "Department":
                     for (int k = 0; k < filtersModel.DepartmentFilter.Count; k++)
@@ -98,31 +116,31 @@ namespace WMSLibrary
                     }
                     break;
                 case "Shift":
-                    for (int k = 0; k < filtersModel.SectionFilter.Count; k++)
+                    for (int k = 0; k < filtersModel.ShiftFilter.Count; k++)
                     {
-                        if (filtersModel.SectionFilter[k].ID == ItemID)
-                            filtersModel.SectionFilter.RemoveAt(k);
+                        if (filtersModel.ShiftFilter[k].ID == ItemID)
+                            filtersModel.ShiftFilter.RemoveAt(k);
                     }
                     break;
                 case "Crew":
-                    for (int k = 0; k < filtersModel.SectionFilter.Count; k++)
+                    for (int k = 0; k < filtersModel.CrewFilter.Count; k++)
                     {
-                        if (filtersModel.SectionFilter[k].ID == ItemID)
-                            filtersModel.SectionFilter.RemoveAt(k);
+                        if (filtersModel.CrewFilter[k].ID == ItemID)
+                            filtersModel.CrewFilter.RemoveAt(k);
                     }
                     break;
                 case "Type":
-                    for (int k = 0; k < filtersModel.SectionFilter.Count; k++)
+                    for (int k = 0; k < filtersModel.TypeFilter.Count; k++)
                     {
-                        if (filtersModel.SectionFilter[k].ID == ItemID)
-                            filtersModel.SectionFilter.RemoveAt(k);
+                        if (filtersModel.TypeFilter[k].ID == ItemID)
+                            filtersModel.TypeFilter.RemoveAt(k);
                     }
                     break;
                 case "Employee":
-                    for (int k = 0; k < filtersModel.SectionFilter.Count; k++)
+                    for (int k = 0; k < filtersModel.EmployeeFilter.Count; k++)
                     {
-                        if (filtersModel.SectionFilter[k].ID == ItemID)
-                            filtersModel.SectionFilter.RemoveAt(k);
+                        if (filtersModel.EmployeeFilter[k].ID == ItemID)
+                            filtersModel.EmployeeFilter.RemoveAt(k);
                     }
                     break;
             }
@@ -217,6 +235,10 @@ namespace WMSLibrary
             {
                 for (int j = 0; j < gv.Rows.Count; j++)
                 {
+                    //if (list[i].ID == gv.DataKeys[j].Value.ToString())
+                    //{
+                    //    ((CheckBox)gv.Rows[j].FindControl("CheckOne")).Checked = true;
+                    //}
                     if (list[i].ID == gv.Rows[j].Cells[1].Text)
                     {
                         ((CheckBox)gv.Rows[j].FindControl("CheckOne")).Checked = true;

@@ -186,6 +186,8 @@
     <Content Include="Scripts\globalize.min.js" />
     <Content Include="Scripts\HR\DeptCompany.js" />
     <Content Include="Scripts\HR\DeptCompanyCreate.js" />
+    <Content Include="Scripts\HR\DivisionCompany.js" />
+    <Content Include="Scripts\HR\DivisionCompanyCreate.js" />
     <Content Include="Scripts\JavaScript1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery.maskedinput.js" />
@@ -239,6 +241,7 @@
       <DependentUpon>TASReportDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\a.pubxml" />
     <None Include="Properties\PublishProfiles\as.pubxml" />
     <None Include="Properties\PublishProfiles\WMSFatima.pubxml" />
     <Content Include="ReportingEngine.Master" />
@@ -538,6 +541,9 @@
     <Compile Include="Models\PollData.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PollDataError.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RdrDutyCode.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
@@ -613,6 +619,9 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewAbsent.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewAttData.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
@@ -631,6 +640,15 @@
     <Compile Include="Models\ViewDetailAttData.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewDivision.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewEarlyIN.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewEarlyOut.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewEditAttendance.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
@@ -641,6 +659,9 @@
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewEmpType.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewLateComer.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewLateOut.cs">
@@ -658,19 +679,34 @@
     <Compile Include="Models\ViewLvConsumed.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewMissingAtt.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewMonthlyData.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewMonthlyDataPer.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewMultipleInOut.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewOverTime.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewPollData.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewPresentEmp.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewSection.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewSLData.cs">
+      <DependentUpon>TASModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewSummary.cs">
       <DependentUpon>TASModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewUserLocation.cs">

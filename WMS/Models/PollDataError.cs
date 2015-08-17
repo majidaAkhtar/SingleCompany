@@ -12,15 +12,12 @@ namespace WMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ViewSection
+    public partial class PollDataError
     {
-        public short SectionID { get; set; }
-        public string SectionName { get; set; }
-        public Nullable<short> DeptID { get; set; }
-        public string DeptName { get; set; }
-        public string DivisionName { get; set; }
-        public Nullable<short> DivID { get; set; }
-        public string CompName { get; set; }
-        public Nullable<short> CompID { get; set; }
+        public int UnID { get; set; }
+        public Nullable<System.DateTime> EntryDate { get; set; }
+        public Nullable<System.DateTime> EntryTime { get; set; }
+        public Nullable<System.DateTime> AddedDate { get; set; }
+        public Nullable<int> DeviceRegID { get; set; }
     }
 }

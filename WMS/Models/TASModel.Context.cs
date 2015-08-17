@@ -80,6 +80,7 @@ namespace WMS.Models
         public DbSet<LvType> LvTypes { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<PollData> PollDatas { get; set; }
+        public DbSet<PollDataError> PollDataErrors { get; set; }
         public DbSet<RdrDutyCode> RdrDutyCodes { get; set; }
         public DbSet<RdrEventLog> RdrEventLogs { get; set; }
         public DbSet<Reader> Readers { get; set; }
@@ -102,26 +103,36 @@ namespace WMS.Models
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<ZTable> ZTables { get; set; }
         public DbSet<EmpView> EmpViews { get; set; }
+        public DbSet<ViewAbsent> ViewAbsents { get; set; }
         public DbSet<ViewAttData> ViewAttDatas { get; set; }
         public DbSet<ViewAuditLog> ViewAuditLogs { get; set; }
         public DbSet<ViewCard> ViewCards { get; set; }
         public DbSet<ViewCrew> ViewCrews { get; set; }
         public DbSet<ViewDepartment> ViewDepartments { get; set; }
         public DbSet<ViewDetailAttData> ViewDetailAttDatas { get; set; }
+        public DbSet<ViewDivision> ViewDivisions { get; set; }
+        public DbSet<ViewEarlyIN> ViewEarlyINs { get; set; }
+        public DbSet<ViewEarlyOut> ViewEarlyOuts { get; set; }
         public DbSet<ViewEditAttendance> ViewEditAttendances { get; set; }
         public DbSet<ViewEmergencyDetail> ViewEmergencyDetails { get; set; }
         public DbSet<ViewEmpPic> ViewEmpPics { get; set; }
         public DbSet<ViewEmpType> ViewEmpTypes { get; set; }
+        public DbSet<ViewLateComer> ViewLateComers { get; set; }
         public DbSet<ViewLateOut> ViewLateOuts { get; set; }
         public DbSet<ViewLeaveData> ViewLeaveDatas { get; set; }
         public DbSet<ViewLeaveQuota> ViewLeaveQuotas { get; set; }
         public DbSet<ViewLvApplication> ViewLvApplications { get; set; }
         public DbSet<ViewLvConsumed> ViewLvConsumeds { get; set; }
+        public DbSet<ViewMissingAtt> ViewMissingAtts { get; set; }
         public DbSet<ViewMonthlyData> ViewMonthlyDatas { get; set; }
         public DbSet<ViewMonthlyDataPer> ViewMonthlyDataPers { get; set; }
+        public DbSet<ViewMultipleInOut> ViewMultipleInOuts { get; set; }
+        public DbSet<ViewOverTime> ViewOverTimes { get; set; }
         public DbSet<ViewPollData> ViewPollDatas { get; set; }
+        public DbSet<ViewPresentEmp> ViewPresentEmps { get; set; }
         public DbSet<ViewSection> ViewSections { get; set; }
         public DbSet<ViewSLData> ViewSLDatas { get; set; }
+        public DbSet<ViewSummary> ViewSummaries { get; set; }
         public DbSet<ViewUserLocation> ViewUserLocations { get; set; }
     }
 }

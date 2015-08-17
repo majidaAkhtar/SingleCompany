@@ -480,8 +480,10 @@ namespace WMS.Controllers
 
         public ActionResult SectionList(string ID)
         {
-            short Code = Convert.ToInt16(ID);
-            var secs = db.Sections.Where(aa => aa.DeptID == Code);
+            string[] words = ID.Split('s');
+            short secID = Convert.ToInt16(words[0]);
+            short compID = Convert.ToInt16(words[1]);
+            var secs = db.Sections.Where(aa => aa.DeptID == secID && aa.CompanyID==compID);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -497,10 +499,10 @@ namespace WMS.Controllers
             string[] words = ID.Split('s');
             short CatID = Convert.ToInt16(words[0]);
             short compID = Convert.ToInt16(words[1]);
-            var secs = db.EmpTypes.Where(aa => aa.CatID == CatID && aa.CompanyID==compID);
+            var types = db.EmpTypes.Where(aa => aa.CatID == CatID && aa.CompanyID==compID);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
-                                secs.ToArray(),
+                                types.ToArray(),
                                 "TypeID",
                                 "TypeName")
                            , JsonRequestBehavior.AllowGet);
@@ -539,7 +541,7 @@ namespace WMS.Controllers
         public ActionResult DepartmentList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Departments;
+            var secs = db.Departments.Where(aa=>aa.CompanyID==Code);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),

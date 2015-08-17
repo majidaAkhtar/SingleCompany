@@ -28,6 +28,11 @@ namespace WMS.Reports.Filters
                 dateTo.Value = list[1];
                 //dateFrom.Value = "2015-08-09";
             }
+            else
+            {
+                SaveDepartmentIDs();
+                SaveTypeIDs();
+            }
             if (Session["FiltersModel"] != null)
             {
                 // Check and Uncheck Items in grid view according to Session Filters Model
@@ -89,21 +94,31 @@ namespace WMS.Reports.Filters
         private void BindGridViewDepartment(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
-            List<Department> _View = new List<Department>();
-            List<Department> _TempView = new List<Department>();
+            List<ViewDepartment> _View = new List<ViewDepartment>();
+            List<ViewDepartment> _TempView = new List<ViewDepartment>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Department " + query);
-            _View = dt.ToList<Department>();
-            if (fm.DivisionFilter.Count > 0)
+            DataTable dt = qb.GetValuesfromDB("select * from ViewDepartment " + query);
+            _View = dt.ToList<ViewDepartment>();
+            if (fm.CompanyFilter.Count > 0)
             {
-                foreach (var comp in fm.DivisionFilter)
+                foreach (var comp in fm.CompanyFilter)
                 {
                     short _compID = Convert.ToInt16(comp.ID);
-                    _TempView.AddRange(_View.Where(aa => aa.DivID == _compID).ToList());
+                    _TempView.AddRange(_View.Where(aa => aa.CompID == _compID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
+            }
+            if (fm.DivisionFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var div in fm.DivisionFilter)
+                {
+                    short _divID = Convert.ToInt16(div.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.DivID == _divID).ToList());
+                }
+                _View = _TempView.ToList();
             }
             GridViewDepartment.DataSource = _View.Where(aa => aa.DeptName.Contains(search)).ToList();
             GridViewDepartment.DataBind();
@@ -112,13 +127,13 @@ namespace WMS.Reports.Filters
         private void BindGridViewType(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
-            List<EmpType> _View = new List<EmpType>();
-            List<EmpType> _TempView = new List<EmpType>();
+            List<ViewEmpType> _View = new List<ViewEmpType>();
+            List<ViewEmpType> _TempView = new List<ViewEmpType>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanySegeration(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from EmpType " + query);
-            _View = dt.ToList<EmpType>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewEmpType " + query);
+            _View = dt.ToList<ViewEmpType>();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -126,7 +141,7 @@ namespace WMS.Reports.Filters
                     short _compID = Convert.ToInt16(comp.ID);
                     _TempView.AddRange(_View.Where(aa => aa.CompanyID == _compID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
             }
             GridViewType.DataSource = _View.Where(aa => aa.TypeName.Contains(search)).ToList();
             GridViewType.DataBind();

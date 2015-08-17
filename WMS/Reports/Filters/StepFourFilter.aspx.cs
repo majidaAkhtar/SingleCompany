@@ -28,6 +28,11 @@ namespace WMS.Reports.Filters
                 dateTo.Value = list[1];
                 //dateFrom.Value = "2015-08-09";
             }
+            else
+            {
+                SaveSectionIDs();
+                SaveCrewIDs();
+            }
             if (Session["FiltersModel"] != null)
             {
                 // Check and Uncheck Items in grid view according to Session Filters Model
@@ -89,21 +94,41 @@ namespace WMS.Reports.Filters
         private void BindGridViewSection(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
-            List<Section> _View = new List<Section>();
-            List<Section> _TempView = new List<Section>();
+            List<ViewSection> _View = new List<ViewSection>();
+            List<ViewSection> _TempView = new List<ViewSection>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Section " + query);
-            _View = dt.ToList<Section>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewSection " + query);
+            _View = dt.ToList<ViewSection>();
+            if (fm.CompanyFilter.Count > 0)
+            {
+                foreach (var comp in fm.CompanyFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.CompID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
+            if (fm.DivisionFilter.Count > 0)
+            {
+                _TempView.Clear();
+                foreach (var comp in fm.DivisionFilter)
+                {
+                    short _compID = Convert.ToInt16(comp.ID);
+                    _TempView.AddRange(_View.Where(aa => aa.DivID == _compID).ToList());
+                }
+                _View = _TempView.ToList();
+            }
             if (fm.DepartmentFilter.Count > 0)
             {
+                _TempView.Clear();
                 foreach (var comp in fm.DepartmentFilter)
                 {
                     short _compID = Convert.ToInt16(comp.ID);
                     _TempView.AddRange(_View.Where(aa => aa.DeptID == _compID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
             }
             GridViewSection.DataSource = _View.Where(aa => aa.SectionName.Contains(search)).ToList();
             GridViewSection.DataBind();
@@ -112,13 +137,13 @@ namespace WMS.Reports.Filters
         private void BindGridViewCrew(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
-            List<Crew> _View = new List<Crew>();
-            List<Crew> _TempView = new List<Crew>();
+            List<ViewCrew> _View = new List<ViewCrew>();
+            List<ViewCrew> _TempView = new List<ViewCrew>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanySegeration(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Crew " + query);
-            _View = dt.ToList<Crew>();
+            DataTable dt = qb.GetValuesfromDB("select * from ViewCrew " + query);
+            _View = dt.ToList<ViewCrew>();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -126,7 +151,7 @@ namespace WMS.Reports.Filters
                     short _compID = Convert.ToInt16(comp.ID);
                     _TempView.AddRange(_View.Where(aa => aa.CompanyID == _compID).ToList());
                 }
-                _View = _TempView;
+                _View = _TempView.ToList();
             }
             GridViewCrew.DataSource = _View.Where(aa => aa.CrewName.Contains(search)).ToList();
             GridViewCrew.DataBind();
