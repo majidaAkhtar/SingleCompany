@@ -154,9 +154,18 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult DeleteConfirmed(short id)
         {
+            
             Crew crew = db.Crews.Find(id);
-            db.Crews.Remove(crew);
-            db.SaveChanges();
+            int rostcount = db.RosterApps.Where(aa => aa.RosterCriteria == "C" && aa.CriteriaData == crew.CrewID).Count();
+            if (rostcount == 0)
+            {
+                db.Crews.Remove(crew);
+
+                db.SaveChanges();
+            
+            }
+           
+
             return RedirectToAction("Index");
         }
 

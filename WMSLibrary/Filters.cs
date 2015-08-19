@@ -93,7 +93,7 @@ namespace WMSLibrary
                             filtersModel.DivisionFilter.RemoveAt(k);
                     }
                     break;
-                    break;
+                    
                 case "Department":
                     for (int k = 0; k < filtersModel.DepartmentFilter.Count; k++)
                     {
