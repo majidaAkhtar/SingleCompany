@@ -120,7 +120,11 @@ namespace WMS.Controllers
             try
             {
                 string STimeIn = form["Inhours"].ToString();
+                if (STimeIn.Count() < 4)
+                    STimeIn = "0" + STimeIn;
                 string STimeOut = form["OutHour"].ToString();
+                if (STimeOut.Count() < 4)
+                    STimeOut = "0" + STimeOut;
                 string STimeInH = STimeIn.Substring(0, 2);
                 string STimeInM = STimeIn.Substring(2, 2);
                 string STimeOutH = STimeOut.Substring(0, 2);

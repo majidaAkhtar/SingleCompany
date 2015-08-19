@@ -245,6 +245,7 @@
     <None Include="Properties\PublishProfiles\as.pubxml" />
     <None Include="Properties\PublishProfiles\WMSFatima.pubxml" />
     <Content Include="ReportingEngine.Master" />
+    <None Include="Properties\PublishProfiles\WMSProfile1.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -313,7 +314,9 @@
     <Content Include="Scripts\site.avatar.js" />
     <Content Include="Scripts\Employee\wingSection.js" />
     <Content Include="Scripts\Employee\wingSectionCreate.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
