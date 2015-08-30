@@ -164,9 +164,9 @@ namespace WMS.Controllers
                                 }
                             }
                         }
-                  //  }
-                    return RedirectToAction("index");
-               //}
+                  //}
+                return RedirectToAction("index");
+                //}
 
 
                 //using (var context = new PrincipalContext(ContextType.Domain, "fatima-group.com", "ffl.ithelpdesk@fatima-group.com", "fatima@0202"))
