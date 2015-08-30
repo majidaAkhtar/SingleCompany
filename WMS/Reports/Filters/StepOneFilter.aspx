@@ -38,9 +38,15 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row"> 
+                            <div class="col-md-8">
                                 <h3>Choose Company or location</h3>
-                        </div>
-                        <hr />
+                                 </div>
+                            
+                               <div class="col-md-3">
+                              <asp:Button ID="Button3" runat="server" style="margin-top:18px" Text="Clear All Filters" CssClass="btn-warning" OnClick="ButtonDeleteAll_Click" />
+                                </div>
+                                 </div>
+                       
                         <div class="row">
                             <div class="col-md-6">
                                 From : <input id="dateFrom"  class="input-sm"  runat="server" type="date" />
@@ -52,7 +58,7 @@
                         <hr />
                         <div class="row">
                             <div class="filterHeader"><span class="FilterNameHeading">Companies</span>
-                                 <span style="margin-left:10px"><asp:TextBox ID="TextBoxSearch" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearch_Click" /></span></div>
+                                 <span style="margin-left:10px"><asp:TextBox ID="TextBoxSearch" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchLoc_Click" /></span></div>
                             <section>
                             <asp:GridView ID="GridViewCompany" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewCompany_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewCompany_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

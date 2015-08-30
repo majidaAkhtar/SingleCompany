@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WMS.CustomClass;
 using WMS.HelperClass;
+using System.Linq.Dynamic;
 using WMS.Models;
 using WMSLibrary;
 
@@ -116,9 +117,9 @@ namespace WMS.Reports.Filters
             List<ViewDivision> _TempView = new List<ViewDivision>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForCompanyFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from ViewDivision " + query);
-            _View = dt.ToList<ViewDivision>();
+            string query = qb.QueryForCompanyViewLinq(LoggedInUser);
+           
+            _View = da.ViewDivisions.Where(query).ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -147,9 +148,9 @@ namespace WMS.Reports.Filters
             List<Shift> _TempView = new List<Shift>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForLocationSegeration(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Shift " + query);
-            _View = dt.ToList<Shift>();
+            string query = qb.QueryForShiftForLinq(LoggedInUser);
+           // DataTable dt = qb.GetValuesfromDB("select * from Shift " + query);
+            _View = da.Shifts.Where(query).ToList();
             if (fm.LocationFilter.Count > 0)
             {
                 foreach (var loc in fm.LocationFilter)

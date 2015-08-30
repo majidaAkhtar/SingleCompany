@@ -187,7 +187,27 @@ namespace WMS.CustomClass
             return query;
         }
 
-
+        public string QueryForCompanyViewLinq(User _User)
+        {
+            string query = "";
+            switch (_User.RoleID)
+            {
+                case 1:
+                    break;
+                case 2:
+                    query = "CompID= 1 or CompID = 2 ";
+                    break;
+                case 3:
+                    query = "CompID>= 3";
+                    break;
+                case 4:
+                    query = "CompID = " + _User.CompanyID.ToString();
+                    break;
+                case 5:
+                    break;
+            }
+            return query;
+        }
 
         public string QueryForCompanyViewForLinq(User _User)
         {
@@ -242,6 +262,25 @@ namespace WMS.CustomClass
             d++;
             }
             query = query + "RegionID=" + cities.Last().RegionID;
+            return query;
+        }
+
+        internal string QueryForShiftForLinq(User LoggedInUser)
+        {
+            TAS2013Entities db = new TAS2013Entities();
+            List<UserLocation> ulocs = new List<UserLocation>();
+            List<string> _CriteriaForOrLoc = new List<string>();
+            ulocs = db.UserLocations.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
+            string query = "";
+            foreach (var uloc in ulocs)
+            {
+                _CriteriaForOrLoc.Add(" LocationID = " + uloc.LocationID + " ");
+            }
+            for (int i = 0; i < _CriteriaForOrLoc.Count - 1; i++)
+            {
+                query = query + _CriteriaForOrLoc[i] + " or ";
+            }
+            query = query + _CriteriaForOrLoc[_CriteriaForOrLoc.Count - 1];
             return query;
         }
     }

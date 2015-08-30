@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Linq.Dynamic;
 using System.Web.UI.WebControls;
 using WMS.CustomClass;
 using WMS.HelperClass;
@@ -86,15 +87,20 @@ namespace WMS.Reports.Filters
         {
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForCompanyView(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Company " + query);
-            List<Company> _View = dt.ToList<Company>();
+            string query = qb.QueryForCompanyViewLinq(LoggedInUser);
+            List<Company> _View = da.Companies.Where(query).ToList();
             GridViewCompany.DataSource = _View.Where(aa => aa.CompName.Contains(search)).ToList();
             GridViewCompany.DataBind();
         }
 
         #endregion
-
+        #region --DeleteAll Filters--
+        protected void ButtonDeleteAll_Click(object sender, EventArgs e)
+        {
+            WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+        
+        }
+        #endregion 
         #region --GridView Company--
         protected void ButtonSearchLoc_Click(object sender, EventArgs e)
         {
@@ -135,9 +141,8 @@ namespace WMS.Reports.Filters
         {
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForLocationTableSegeration(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from Location " + query);
-            List<Location> _View = dt.ToList<Location>();
+            string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
+            List<Location> _View = da.Locations.Where(query).ToList();
             GridViewLocation.DataSource = _View.Where(aa => aa.LocName.Contains(search)).ToList();
             GridViewLocation.DataBind();
         }
