@@ -170,7 +170,7 @@ namespace WMS.CustomClass
             string query = "";
             switch (_User.RoleID)
             {
-                case 1:
+                case 1: 
                     break;
                 case 2:
                     query = " where CompanyID= 1 or CompanyID = 2 ";
@@ -184,6 +184,64 @@ namespace WMS.CustomClass
                 case 5:
                     break;
             }
+            return query;
+        }
+
+
+
+        public string QueryForCompanyViewForLinq(User _User)
+        {
+            string query = "";
+            switch (_User.RoleID)
+            {
+                case 1: query = "CompanyID > 0";
+                    break;
+                case 2:
+                    query = "CompanyID= 1 or CompanyID = 2 ";
+                    break;
+                case 3:
+                    query = "CompanyID>= 3";
+                    break;
+                case 4:
+                    query = "CompanyID = " + _User.CompanyID.ToString();
+                    break;
+                case 5:
+                    break;
+            }
+            return query;
+        }
+
+        internal string QueryForLocationTableSegerationForLinq(User LoggedInUser)
+        {
+            TAS2013Entities db = new TAS2013Entities();
+            List<UserLocation> ulocs = new List<UserLocation>();
+            List<string> _CriteriaForOrLoc = new List<string>();
+            ulocs = db.UserLocations.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
+            String query = "";
+            foreach (var uloc in ulocs)
+            {
+                _CriteriaForOrLoc.Add(" LocID = " + uloc.LocationID + " ");
+            }
+            for (int i = 0; i < _CriteriaForOrLoc.Count - 1; i++)
+            {
+                query = query + _CriteriaForOrLoc[i] + " or ";
+            }
+            query = query + _CriteriaForOrLoc[_CriteriaForOrLoc.Count - 1];
+            return query;
+        }
+
+        internal string QueryForRegionFromCitiesForLinq(IEnumerable<City> cities)
+        {
+
+            String query = "";
+            int d=1;
+            foreach (var city in cities)
+            {
+              if(d <cities.Count())
+                query = query + "RegionID="+city.RegionID+" or ";
+            d++;
+            }
+            query = query + "RegionID=" + cities.Last().RegionID;
             return query;
         }
     }

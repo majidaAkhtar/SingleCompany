@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WMS.Models;
 using PagedList;
+using System.Linq.Dynamic;
 using System.Data.SqlClient;
 using System.Data.Entity.Infrastructure;
 using WMS.Controllers.Filters;
@@ -84,7 +85,11 @@ namespace WMS.Controllers
         {
             ViewBag.DayOff1 = new SelectList(db.DaysNames, "ID", "Name");
             ViewBag.DayOff2 = new SelectList(db.DaysNames, "ID", "Name");
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
+            QueryBuilder qb = new QueryBuilder();
+            User LoggedInUser = Session["LoggedUser"] as User;
+            string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
+          
+            ViewBag.LocationID = new SelectList(db.Locations.Where(query), "LocID", "LocName");
             ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
             return View();
         }
@@ -95,7 +100,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-         public ActionResult Create([Bind(Include = "ShiftID,ShiftName,StartTime,DayOff1,DayOff2,Holiday,RosterType,MonMin,TueMin,WedMin,ThuMin,FriMin,SatMin,SunMin,LateIn,EarlyIn,EarlyOut,LateOut,OverTimeMin,MinHrs,HasBreak,BreakMin,GZDays,LocationID")] Shift shift, FormCollection form)
+         public ActionResult Create([Bind(Include = "ShiftID,ShiftName,StartTime,DayOff1,DayOff2,Holiday,RosterType,MonMin,TueMin,WedMin,ThuMin,FriMin,SatMin,SunMin,LateIn,EarlyIn,EarlyOut,LateOut,OverTimeMin,MinHrs,HasBreak,BreakMin,GZDays,LocationID,OpenShift")] Shift shift, FormCollection form)
         {
             if (string.IsNullOrEmpty(shift.ShiftName))
                 ModelState.AddModelError("ShiftName", "Required");
@@ -145,8 +150,10 @@ namespace WMS.Controllers
             {
                 var aaa = form["HasBreak"];
                 User LoggedInUser = Session["LoggedUser"] as User;
-                shift.OpenShift = false;
-                shift.HasBreak = false;
+                if (shift.OpenShift == true)
+                    shift.StartTime = TimeSpan.Zero;
+                //shift.OpenShift = false;
+                //shift.HasBreak = false;
                 shift.CompanyID = LoggedInUser.CompanyID;
                 shift.GZDays = shift.Holiday;
                 db.Shifts.Add(shift);
@@ -269,7 +276,10 @@ namespace WMS.Controllers
             }
             
         }
-
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            String d = "SDFSDF";
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

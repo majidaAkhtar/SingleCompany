@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using WMS.Models;
 using PagedList;
+using System.Linq.Dynamic;
 using WMS.Controllers.Filters;
+using WMS.CustomClass;
 
 namespace WMS.Controllers
 {
@@ -34,8 +36,10 @@ namespace WMS.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-
-            var sections = db.Sections.AsQueryable();
+            User LoggedInUser = HttpContext.Session["LoggedUser"] as User;
+            QueryBuilder qb = new QueryBuilder();
+            string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
+            var sections = db.Sections.Where(query).AsQueryable();
 
             if (!String.IsNullOrEmpty(searchString))
             {

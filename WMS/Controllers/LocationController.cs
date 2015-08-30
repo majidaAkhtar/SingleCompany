@@ -10,6 +10,7 @@ using WMS.Models;
 using PagedList;
 using WMS.CustomClass;
 using WMS.Controllers.Filters;
+using System.Linq.Dynamic;
 namespace WMS.Controllers
 {
     [CustomControllerAttributes]
@@ -17,7 +18,7 @@ namespace WMS.Controllers
     {
         private TAS2013Entities db = new TAS2013Entities();
         CustomFunc myClass = new CustomFunc();
-        // GET: /Location/
+             // GET: /Location/
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             if (Session["LogedUserFullname"].ToString() != "")
@@ -38,7 +39,19 @@ namespace WMS.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var locations = db.Locations.Include(l => l.City).Include(l => l.City.Region);
+            User LoggedInUser = Session["LoggedUser"] as User;
+            QueryBuilder qb = new QueryBuilder();
+            string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
+           
+          //  var locations = qb.GetUserLocationsLinq(locations, LoggedInUser);
+          
+            var locations = db.Locations.Where(query);
+                locations = locations.Include(l => l.City).Include(l => l.City.Region);
+            // 
+           // var locations = dt.ToList<DerivedLocation>();
+         //   var locations = db.Locations.Include(l => l.City).Include(l => l.City.Region);
+           // String searchParameter = "SELECT [Extent1].[LocID] AS [LocID],[Extent1].[LocName] AS [LocName], [Extent1].[CityID] AS [CityID] FROM   [dbo].[Location] AS [Extent1] LEFT OUTER JOIN [dbo].[City] AS [Extent2] ON [Extent1].[CityID] = [Extent2].[CityID] LEFT OUTER JOIN [dbo].[Region] AS [Extent3] ON [Extent2].[RegionID] = [Extent3].[RegionID] WHERE (( CAST(CHARINDEX(UPPER(N"+searchString+"), UPPER([Extent1].[LocName])) AS int)) > 0) OR (( CAST(CHARINDEX(UPPER(N"+searchString+"), UPPER([Extent2].[CityName])) AS int)) > 0) OR (( CAST(CHARINDEX(UPPER(N" + searchString + "), UPPER([Extent3].[RegionName])) AS int)) > 0) ";
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 locations = locations.Where(s => s.LocName.ToUpper().Contains(searchString.ToUpper())
@@ -81,6 +94,8 @@ namespace WMS.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
 
         }
+
+       
 
         // GET: /Location/Details/5
           [CustomActionAttribute]

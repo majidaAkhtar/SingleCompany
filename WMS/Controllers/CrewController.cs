@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using WMS.Models;
 using PagedList;
+using System.Linq.Dynamic;
 using WMS.Controllers.Filters;
+using WMS.CustomClass;
 namespace WMS.Controllers
 {
     [CustomControllerAttributes]
@@ -32,7 +34,9 @@ namespace WMS.Controllers
 
             ViewBag.CurrentFilter = searchString;
             User LoggedInUser = Session["LoggedUser"] as User;
-            var crew = db.Crews.AsQueryable();
+            QueryBuilder qb = new QueryBuilder();
+            string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
+            var crew = db.Crews.Where(query).AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
                 crew = crew.Where(s => s.CrewName.ToUpper().Contains(searchString.ToUpper()) || s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));

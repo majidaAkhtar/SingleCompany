@@ -310,8 +310,9 @@ namespace WMS.Controllers
             }
             try
             {
+                EmpType et = db.EmpTypes.Where(aa => aa.TypeID == emp.TypeID).FirstOrDefault();
                 ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", emp.CompanyID);
-                ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName", emp.EmpType.CatID);
+                ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName", et.CatID);
                 ViewBag.CrewID = new SelectList(db.Crews, "CrewID", "CrewName", emp.CrewID);
                 ViewBag.DesigID = new SelectList(db.Designations, "DesignationID", "DesignationName", emp.DesigID);
                 ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName", emp.GradeID);

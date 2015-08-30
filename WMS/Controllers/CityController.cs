@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using WMS.Models;
 using PagedList;
 using WMS.CustomClass;
+using System.Linq.Dynamic;
 using WMS.Controllers.Filters;
 using WMS.HelperClass;
 namespace WMS.Controllers
@@ -33,12 +34,19 @@ namespace WMS.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-
-            var cities = db.Cities.AsQueryable();
-            if (!String.IsNullOrEmpty(searchString))
+            User LoggedInUser = Session["LoggedUser"] as User;
+            QueryBuilder qb = new QueryBuilder();
+            string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
+            var locations= db.Locations.Where(query).GroupBy(x => x.CityID).Select(group => group.FirstOrDefault());
+            List<City> ct = new List<City>();
+            foreach (var loc in locations)
+                ct.Add(loc.City);
+            var cities = ct.AsEnumerable<City>();
+             if (!String.IsNullOrEmpty(searchString))
             {
                 cities = cities.Where(s => s.CityName.ToUpper().Contains(searchString.ToUpper())
                      || s.CityName.ToUpper().Contains(searchString.ToUpper()));
+                
             }
 
             switch (sortOrder)

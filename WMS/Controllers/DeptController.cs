@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WMS.Models;
+using System.Linq.Dynamic;
 using PagedList;
 using WMS.Controllers.Filters;
 using WMS.HelperClass;
+using WMS.CustomClass;
 
 namespace WMS.Controllers
 {
@@ -33,8 +35,10 @@ namespace WMS.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-
-            var departments = db.Departments.AsQueryable();
+            User LoggedInUser = Session["LoggedUser"] as User;
+            QueryBuilder qb = new QueryBuilder();
+            string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
+            var departments = db.Departments.Where(query).AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
                 departments = departments.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper()));

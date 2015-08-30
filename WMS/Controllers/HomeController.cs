@@ -13,6 +13,7 @@ using WMS.Controllers.Filters;
 using WMS.HelperClass;
 using WMS.Models;
 using System.DirectoryServices;
+using System.Linq.Dynamic;
 using System.DirectoryServices.AccountManagement;
 using System.Data;
 
@@ -163,9 +164,9 @@ namespace WMS.Controllers
                                 }
                             }
                         }
-                    //}
+                  //  }
                     return RedirectToAction("index");
-             //  }
+               //}
 
 
                 //using (var context = new PrincipalContext(ContextType.Domain, "fatima-group.com", "ffl.ithelpdesk@fatima-group.com", "fatima@0202"))
