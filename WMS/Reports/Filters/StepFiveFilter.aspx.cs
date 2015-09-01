@@ -57,7 +57,25 @@ namespace WMS.Reports.Filters
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
         }
 
+        #region --DeleteAll Filters--
+        protected void ButtonDeleteAll_Click(object sender, EventArgs e)
+        {
+            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Company");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Location");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Division");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Shift");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Department");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Section");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Crew");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
+
+
+        }
+        #endregion
         private void SaveEmployeeIDs()
         {
             WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
@@ -153,7 +171,7 @@ namespace WMS.Reports.Filters
                 }
                 _View = _TempView.ToList();
             }
-            GridViewEmployee.DataSource = _View.Where(aa => aa.EmpName.Contains(search)).ToList();
+            GridViewEmployee.DataSource = _View.Where(aa => aa.EmpName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewEmployee.DataBind();
         }
 

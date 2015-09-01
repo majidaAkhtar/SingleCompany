@@ -38,8 +38,13 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row"> 
-                            <div class="col-md-4">
-                                <h3>Apply Filters</h3>
+                            <div class="col-md-8">
+                                 <div class="col-md-8">
+                                <h3>Choose a Division or Shift</h3>
+                                     </div>
+                                  <div class="col-md-3">
+                              <asp:Button ID="Button3" runat="server" style="margin-top:18px" Text="Clear All Filters" CssClass="btn-warning" OnClick="ButtonDeleteAll_Click" />
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 
@@ -132,78 +137,128 @@
                     </div>
                     <section class="col-md-4 selected-filters-wrapper">
                     <h2>Selected Filters...</h2><hr />
+                    <div class="panel-group" id="accordion">
+
+	
+
+
+                    
                     <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CompanyFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Companies</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CompanyFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CompanyFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#accordion' href='#collapseOne'>Companies</a>  <span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseOne' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CompanyFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a> "); }
+                           }
+                           { Response.Write("</div></div></div>"); }
+                       }%>
+                       
+                   </div>
+                          <div class="panel-group" id="Div1">
+
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).LocationFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).LocationFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#Div1' href='#collapseShift'>Locations</a>  <span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseShift' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).LocationFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           }
+                           { Response.Write("</div></div></div>"); }
                     }%>
-                    <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).LocationFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Locations</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).LocationFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
+                               </div>
+                       
+                        <div class="panel-group" id="Div2">
+                    <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#Div2' href='#collapseCity'>Divisions</a>  <span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseCity' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           }
+                           { Response.Write("</div></div></div>"); }
+                    }%> </div>
+                       
+                       <div class="panel-group" id="Div3">
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#Div3' href='#collapseType'>Shifts</a>  <span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseType' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           } 
+                                { Response.Write("</div></div></div>"); }
                     }%>
-                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Divisions</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DivisionFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
-                    }%>
-                        <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Shifts</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).ShiftFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
-                    }%>
+
+                       </div>
+                         <div class="panel-group" id="Div4">
                          <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DepartmentFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Departments</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DepartmentFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DepartmentFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;'  data-toggle='collapse' data-parent='#Div4' href='#collapseLocation'>Departments<span  style ='float:right;' class='badge'>" + d + "</span></a></h4></div><div id='collapseLocation' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).DepartmentFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           }
+                           { Response.Write("</div></div></div>"); }
                     }%>
+                             </div>
+                         <div class="panel-group" id="Div5">
                          <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Employee Type</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#Div5' href='#collapseWing'>Employee Type</a><span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseWing' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).TypeFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           }
+                           { Response.Write("</div></div></div>"); }
                     }%>
-                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Section</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
-                    }%>
+
+                         </div>
+
+                         <div class="panel-group" id="Div6">
                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Crew</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#Div6' href='#collapseCrew'>Crews</a><span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseCrew' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           }   { Response.Write("</div></div></div>"); }
                     }%>
-                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter.Count > 0)
-                       { 
-                     { Response.Write("<h3>Employee</h3>"); }
-                     foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter)
-                        {
-                            { Response.Write("<br>" + item.FilterName); }
-                        } 
+
+                         </div>
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#Div7' href='#collapseSection'>Sections</a><span style ='float:right;' class='badge'>" + d + "</span></h4></div><div id='collapseSection' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter)
+                           {
+                               { Response.Write("<a class='list-group-item'>" + item.FilterName + "</a>"); }
+                           }  { Response.Write("</div></div></div><div>"); }
                     }%>
+
+
                 </section>
                 </div>
                 <div class="row">

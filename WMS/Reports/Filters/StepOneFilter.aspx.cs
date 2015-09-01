@@ -89,7 +89,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
             List<Company> _View = da.Companies.Where(query).ToList();
-            GridViewCompany.DataSource = _View.Where(aa => aa.CompName.Contains(search)).ToList();
+            GridViewCompany.DataSource = _View.Where(aa => aa.CompName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewCompany.DataBind();
         }
 
@@ -97,8 +97,20 @@ namespace WMS.Reports.Filters
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
-        
+            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Division");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Shift");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Department");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Section");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Crew");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Employee");
+      
+
         }
         #endregion 
         #region --GridView Company--
@@ -143,7 +155,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
             List<Location> _View = da.Locations.Where(query).ToList();
-            GridViewLocation.DataSource = _View.Where(aa => aa.LocName.Contains(search)).ToList();
+            GridViewLocation.DataSource = _View.Where(aa => aa.LocName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewLocation.DataBind();
         }
 

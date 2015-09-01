@@ -85,6 +85,25 @@ namespace WMS.Reports.Filters
             WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Department");
             Session["FiltersModel"] = FM;
         }
+        #region --DeleteAll Filters--
+        protected void ButtonDeleteAll_Click(object sender, EventArgs e)
+        {
+            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Company");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Location");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Division");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Shift");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Department");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Section");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Crew");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Employee");
+
+
+        }
+        #endregion 
         private void SaveTypeIDs()
         {
             WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewType, Session["FiltersModel"] as FiltersModel, "Type");
@@ -120,7 +139,7 @@ namespace WMS.Reports.Filters
                 }
                 _View = _TempView.ToList();
             }
-            GridViewDepartment.DataSource = _View.Where(aa => aa.DeptName.Contains(search)).ToList();
+            GridViewDepartment.DataSource = _View.Where(aa => aa.DeptName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewDepartment.DataBind();
         }
 
@@ -143,7 +162,7 @@ namespace WMS.Reports.Filters
                 }
                 _View = _TempView.ToList();
             }
-            GridViewType.DataSource = _View.Where(aa => aa.TypeName.Contains(search)).ToList();
+            GridViewType.DataSource = _View.Where(aa => aa.TypeName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewType.DataBind();
         }
 

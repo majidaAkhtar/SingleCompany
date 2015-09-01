@@ -67,7 +67,25 @@ namespace WMS.Reports.Filters
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
         }
+        #region --DeleteAll Filters--
+        protected void ButtonDeleteAll_Click(object sender, EventArgs e)
+        {
+            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Company");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Location");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Division");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Shift");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Department");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Crew");
+            WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Employee");
+
+
+        }
+        #endregion 
         protected void GridViewCrew_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Save selected Company ID and Name in Session
@@ -130,7 +148,7 @@ namespace WMS.Reports.Filters
                 }
                 _View = _TempView.ToList();
             }
-            GridViewSection.DataSource = _View.Where(aa => aa.SectionName.Contains(search)).ToList();
+            GridViewSection.DataSource = _View.Where(aa => aa.SectionName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewSection.DataBind();
         }
 
@@ -153,7 +171,7 @@ namespace WMS.Reports.Filters
                 }
                 _View = _TempView.ToList();
             }
-            GridViewCrew.DataSource = _View.Where(aa => aa.CrewName.Contains(search)).ToList();
+            GridViewCrew.DataSource = _View.Where(aa => aa.CrewName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewCrew.DataBind();
         }
 

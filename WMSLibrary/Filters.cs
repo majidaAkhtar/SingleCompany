@@ -244,21 +244,20 @@ namespace WMSLibrary
 
         private static void SetGridViewCheckStateChild(GridView gv, FiltersModel filtersModel, List<FiltersAttributes> list)
         {
+
             if (list == null)
                 return;
-            for (int i = 0; i < list.Count; i++)
+            for(int j = 0; j < gv.Rows.Count; j++)
             {
-                for (int j = 0; j < gv.Rows.Count; j++)
+                bool chk = false;
+                for (int i = 0; i < list.Count; i++) 
                 {
-                    //if (list[i].ID == gv.DataKeys[j].Value.ToString())
-                    //{
-                    //    ((CheckBox)gv.Rows[j].FindControl("CheckOne")).Checked = true;
-                    //}
                     if (list[i].ID == gv.Rows[j].Cells[1].Text)
                     {
-                        ((CheckBox)gv.Rows[j].FindControl("CheckOne")).Checked = true;
+                        chk = true;
                     }
                 }
+                ((CheckBox)gv.Rows[j].FindControl("CheckOne")).Checked = chk;
             }
         }
 
