@@ -93,6 +93,8 @@ namespace WMS
         protected void Session_End(object sender, EventArgs e)
         {
             Session["FiltersModel"] = null;
+            Session["LogedUserID"] = null;
+            Session["LoggedUser"] = null;
         }
         //void Application_BeginRequest(object sender, EventArgs e)
         //{

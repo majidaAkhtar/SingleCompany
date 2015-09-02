@@ -50,7 +50,6 @@ namespace WMSLibrary
             filtersModel.ShiftFilter = new List<FiltersAttributes>();
             filtersModel.TypeFilter = new List<FiltersAttributes>();
             return filtersModel;
-        
         }
 
         public static FiltersModel SyncGridViewIDs(GridView gv, FiltersModel filtersModel, string filterName)
