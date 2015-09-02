@@ -192,7 +192,7 @@ namespace WMS.CustomClass
             string query = "";
             switch (_User.RoleID)
             {
-                case 1:
+                case 1: query ="CompID > 0";
                     break;
                 case 2:
                     query = "CompID= 1 or CompID = 2 ";

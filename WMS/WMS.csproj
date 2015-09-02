@@ -250,6 +250,7 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\a.pubxml" />
     <None Include="Properties\PublishProfiles\as.pubxml" />
+    <None Include="Properties\PublishProfiles\FatimaWMS.pubxml" />
     <None Include="Properties\PublishProfiles\WMSFatima.pubxml" />
     <Content Include="ReportingEngine.Master" />
     <None Include="Properties\PublishProfiles\WMSProfile1.pubxml" />
