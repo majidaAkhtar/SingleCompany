@@ -132,7 +132,9 @@ namespace WMS
 
         protected void Session_End()
         {
-            
+            Session["FiltersModel"] = null;
+            Session["LogedUserID"] = null;
+            Session["LoggedUser"] = null;
         }
     }
 }

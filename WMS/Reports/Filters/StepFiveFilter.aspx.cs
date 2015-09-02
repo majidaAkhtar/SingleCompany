@@ -60,7 +60,8 @@ namespace WMS.Reports.Filters
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Location");
@@ -78,7 +79,8 @@ namespace WMS.Reports.Filters
         #endregion
         private void SaveEmployeeIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
             Session["FiltersModel"] = FM;
         }
 

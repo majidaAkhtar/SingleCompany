@@ -82,18 +82,21 @@ namespace WMS.Reports.Filters
 
         private void SaveShiftIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewShift, Session["FiltersModel"] as FiltersModel, "Shift");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewShift, Session["FiltersModel"] as FiltersModel, "Shift");
             Session["FiltersModel"] = FM;
         }
         private void SaveDivisionIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Division");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Division");
             Session["FiltersModel"] = FM;
         }
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Location");

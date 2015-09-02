@@ -79,7 +79,9 @@ namespace WMS.Reports.Filters
 
         private void SaveCompanyIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            FiltersModel modelTemp = Session["FiltersModel"] as FiltersModel;
+            WMSLibrary.FiltersModel FM = filtersHelper.SyncGridViewIDs(GridViewCompany, modelTemp, "Company");
             Session["FiltersModel"] = FM;
         }
 
@@ -97,7 +99,8 @@ namespace WMS.Reports.Filters
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
@@ -145,7 +148,8 @@ namespace WMS.Reports.Filters
 
         private void SaveLocationIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
             Session["FiltersModel"] = FM;
         }
 

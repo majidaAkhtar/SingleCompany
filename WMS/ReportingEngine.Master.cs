@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WMS.Models;
+using WMS.Reports;
 
 namespace WMS
 {
@@ -12,7 +13,14 @@ namespace WMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //LoadSession();
+            if (HttpContext.Current.Session["LogedUserID"].ToString() != "")
+            {
+                //Deployment Type =false : Local Deployment
+                //Deployment Type =true: Server Deployment
+                GlobalVariables.DeploymentType = false;
+            }
+            else
+                Response.Redirect("~/Home");
         }
 
         private void LoadSession()
