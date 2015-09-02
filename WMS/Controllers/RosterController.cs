@@ -176,6 +176,17 @@ namespace WMS.Controllers
             RosterApp rosterApp = db.RosterApps.First(aa => aa.RotaApplD == id); 
             return View(CalculateRosterFields((int)rosterApp.RotaTypeID, (DateTime)rosterApp.DateEnded.Value.AddDays(1), (int)rosterApp.WorkMin, (TimeSpan)rosterApp.DutyTime, rosterApp.RosterCriteria, (int)rosterApp.CriteriaData, (int)rosterApp.ShiftID, (int)rosterApp.RotaApplD));
         }
+
+        public ActionResult RosterDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
+            DeleteRoster((int)id, _userID);
+            return View("Index");
+        }
         [HttpPost]
         public ActionResult Create(FormCollection form)
         {
@@ -433,6 +444,41 @@ namespace WMS.Controllers
             }
             return CriteriaValueName;
         }
+        public bool DeleteRoster(int RosterAppID, int LoggedUserID)
+        {
+            RosterApp RApp = new RosterApp();
+            //User uid = new User();
+            RApp = db.RosterApps.First(rr => rr.RotaApplD == RosterAppID);
+           try 
+	            {	        
+		            
+                        if (RApp.UserID == LoggedUserID)
+                        {
+                
+                            List<RosterDetail> RAppDetail = new List<Models.RosterDetail>();
+                            RAppDetail = db.RosterDetails.Where(aa => aa.RosterAppID == RosterAppID).ToList();
+                            foreach (var item in RAppDetail)
+                            {
+                                db.RosterDetails.Remove(item);
+                            }
+	                    }
+                }
+	            catch (Exception)
+	            {
+		
+		            throw;
+	            }
+                db.RosterApps.Remove(RApp);
+                db.SaveChanges();
+
+
+                return true;
+        }
+        //public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        //{
+        //    for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+        //        yield return day;
+        //}
 	}
 
     public class RosterApplication
@@ -492,4 +538,6 @@ namespace WMS.Controllers
         public string DutyCode { get; set; }
         public bool Changed { get; set; }
         }
+
+
 }
