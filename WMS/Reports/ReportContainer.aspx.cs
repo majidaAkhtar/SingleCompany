@@ -319,16 +319,17 @@ namespace WMS.Reports
                                                 break;
 
                     case "monthly_1-31_consolidated": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                                                      dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
+                                                      dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and Period = " + _period);
                                                          title = "Monthly Consolidated (1st to 31th)";
-                                                         _ViewListMonthlyData = dt.ToList<ViewMonthlyData>();
+                                                        List<ViewMonthlyData> VMLD =new List<ViewMonthlyData>(); 
+                                                        VMLD = dt.ToList<ViewMonthlyData>();
                                                          _TempViewListMonthlyData = new List<ViewMonthlyData>();
                                                 //Change the Paths
                                                 if (GlobalVariables.DeploymentType == false)
                                                     PathString = "/Reports/RDLC/MRDetailExcelC.rdlc";
                                                 else
                                                     PathString = "/WMS/Reports/RDLC/MRDetailExcelC.rdlc";
-                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyData, _ViewListMonthlyData), _dateFrom);
+                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyData, VMLD), _dateFrom);
                                                 break;
 
                     case "monthly_21-20_consolidated": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
