@@ -73,7 +73,7 @@ namespace WMS.Controllers
                         ViewBag.PollsDataIn = _Polls.Where(aa => aa.RdrDuty == 1);
                         ViewBag.PollsDataOut = _Polls.Where(aa => aa.RdrDuty == 5);
                         ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", _attData.EmpID);
-                        Session["NEmpNo"] = _attData.EmpNo;
+                        Session["NEmpNo"] = _attData.EmpID;
                         ViewBag.SucessMessage = "";
                         if (_attData.WorkMin != null)
                             ViewBag.WorkMin = (TimeSpan.FromMinutes((double)_attData.WorkMin));
@@ -223,12 +223,12 @@ namespace WMS.Controllers
             {
                 ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
                 ViewData["datef"] = Convert.ToDateTime(Session["EditAttendanceDate"]).ToString("yyyy-MM-dd");
-                string _EmpNo = Session["NEmpNo"].ToString();
-                if (_EmpNo != null)
+                int _EmpID = Convert.ToInt32(Session["NEmpNo"]);
+                if (Session["NEmpNo"] != null)
                 {
                     DateTime _AttDataFrom = Convert.ToDateTime(ViewData["datef"].ToString()).AddDays(1);
                     AttData _attData = new AttData();
-                    _attData = db.AttDatas.First(aa => aa.EmpNo == _EmpNo && aa.AttDate == _AttDataFrom);
+                    _attData = db.AttDatas.First(aa => aa.EmpID == _EmpID && aa.AttDate == _AttDataFrom);
                     if (_attData != null)
                     {
                         Session["EditAttendanceDate"] = Convert.ToDateTime(ViewData["datef"]).AddDays(1);
@@ -275,12 +275,12 @@ namespace WMS.Controllers
             {
                 ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
                 ViewData["datef"] = Convert.ToDateTime(Session["EditAttendanceDate"]).ToString("yyyy-MM-dd");
-                string _EmpNo = Session["NEmpNo"].ToString();
-                if (_EmpNo != null)
+                int _EmpID = Convert.ToInt32(Session["NEmpNo"]);
+                if (_EmpID != null)
                 {
                     DateTime _AttDataFrom = Convert.ToDateTime(ViewData["datef"].ToString()).AddDays(-1);
                     AttData _attData = new AttData();
-                    _attData = db.AttDatas.First(aa => aa.EmpNo == _EmpNo && aa.AttDate == _AttDataFrom);
+                    _attData = db.AttDatas.First(aa => aa.EmpID == _EmpID && aa.AttDate == _AttDataFrom);
                     if (_attData != null)
                     {
                         Session["EditAttendanceDate"] = Convert.ToDateTime(ViewData["datef"]).AddDays(-1);
