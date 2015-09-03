@@ -166,6 +166,13 @@ namespace WMS.Controllers
         public ActionResult DeleteConfirmed(short id)
         {
             Department department = db.Departments.Find(id);
+            List<Section> sections = db.Sections.Where(aa => aa.DeptID == department.DeptID).ToList();
+            foreach (var section in sections)
+            {
+                db.Sections.Remove(section);
+                db.SaveChanges();
+            
+            }
             db.Departments.Remove(department);
             db.SaveChanges();
             int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());

@@ -35,6 +35,7 @@ namespace WMS.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
+            QueryBuilder qb = new QueryBuilder();
 
             var designation = db.Designations.AsQueryable();
             if (!String.IsNullOrEmpty(searchString))

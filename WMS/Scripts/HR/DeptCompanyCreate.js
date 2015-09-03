@@ -16,7 +16,7 @@
     $('#CompanyID').change(function () {
         $('#DeptID').empty();
       var URL = '/WMS/Emp/DepartmentList';
-       // var URL = '/Emp/DepartmentList';
+        //var URL = '/Emp/DepartmentList';
         $.getJSON(URL + '/' + $('#CompanyID').val(), function (data) {
             var items;
             $.each(data, function (i, state) {

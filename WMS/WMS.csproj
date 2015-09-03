@@ -181,6 +181,7 @@
     <Content Include="Reports\ReportContainer.aspx" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\EditAttendance.js" />
+    <Content Include="Scripts\Employee\catEmpTypeCompanyCreate.js" />
     <Content Include="Scripts\Employee\companyGradeCreate.js" />
     <Content Include="Scripts\Employee\crewCompany.js" />
     <Content Include="Scripts\Employee\crewCompanyCreate.js" />

@@ -483,7 +483,7 @@ namespace WMS.Controllers
         {
             string[] words = ID.Split('s');
             short secID = Convert.ToInt16(words[0]);
-            short compID = Convert.ToInt16(words[1]);
+           
             var secs = db.Sections.Where(aa => aa.DeptID == secID);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
