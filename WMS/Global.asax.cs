@@ -19,7 +19,7 @@ namespace WMS
         protected void Session_Start(object sender, EventArgs e)
         {
             // Initialize Session["FiltersModel"] -- Move to First Page
-            Session["FiltersModel"] = SessionManager.Init();
+            Session["FiltersModel"] = new WMSLibrary.FiltersModel();
             LoadSessionValues();
             //LoadSession();
         }

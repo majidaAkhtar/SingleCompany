@@ -12,6 +12,7 @@ using WMS.CustomClass;
 using System.Linq.Dynamic;
 using WMS.Controllers.Filters;
 using WMS.HelperClass;
+
 namespace WMS.Controllers
 {
     [CustomControllerAttributes]
@@ -22,6 +23,7 @@ namespace WMS.Controllers
         // GET: /City/
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             if (searchString != null)
@@ -115,6 +117,7 @@ namespace WMS.Controllers
             {
                 db.Cities.Add(city);
                 db.SaveChanges();
+                ViewBag.JS = "toastr.success('"+city.CityName+" Successfully created');";
                 return RedirectToAction("Index");
             }
 

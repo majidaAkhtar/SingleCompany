@@ -98,7 +98,7 @@
                                  <span style="margin-left:10px"><asp:TextBox ID="tbSearch_Location" CssClass="input-field" runat="server" /> <asp:Button ID="Button2" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchLoc_Click" /></span>
                         </div>
                              <section>
-                            <asp:GridView ID="GridViewLocation" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewLocation_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewLocation_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
+                            <asp:GridView ID="GridViewLocation" runat="server" Width="350px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewLocation_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewLocation_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
@@ -114,7 +114,7 @@
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="LocID" HeaderText="ID" />
                                         <asp:BoundField DataField="LocName" HeaderText="Name" />
-                    
+                                         <asp:BoundField DataField="City.CityName" HeaderText="CityName" />    
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#EEEEEE" Font-Bold="False" ForeColor="Black" Wrap="False" />

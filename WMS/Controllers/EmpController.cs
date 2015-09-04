@@ -223,6 +223,7 @@ namespace WMS.Controllers
                 emp.EmpNo = emp.EmpNo.ToUpper();
                 empNo = emp.EmpNo;
                 db.Emps.Add(emp);
+                ViewBag.JS = "toastr.success('" + emp.EmpName + " Successfully created');";
                 db.SaveChanges();
                 int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Employee, (byte)MyEnums.Operation.Add, DateTime.Now);
@@ -382,6 +383,7 @@ namespace WMS.Controllers
                 {
                     emp.EmpNo = emp.EmpNo.ToUpper();
                     db.Entry(emp).State = EntityState.Modified;
+                    ViewBag.JS = "toastr.success('" + emp.EmpName + " data Successfully edited');";
                     db.SaveChanges();
                     int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                     HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Employee, (byte)MyEnums.Operation.Edit, DateTime.Now);
@@ -450,6 +452,7 @@ namespace WMS.Controllers
         {
             Emp emp = db.Emps.Find(id);
             db.Emps.Remove(emp);
+            ViewBag.JS = "toastr.success('" + emp.EmpName + " removed');";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

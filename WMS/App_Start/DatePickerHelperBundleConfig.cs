@@ -14,6 +14,11 @@ namespace WMS.App_Start
 
             BundleTable.Bundles.Add(new StyleBundle("~/Content/datepicker").Include(
             "~/Content/bootstrap-datepicker.css"));
+            BundleTable.Bundles.Add(new StyleBundle("~/content/toastr", "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
+                .Include("~/Content/toastr.css"));
+
+            BundleTable.Bundles.Add(new ScriptBundle("~/bundles/toastr", "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
+                            .Include("~/Scripts/toastr.js"));
 		}
 	}
 }

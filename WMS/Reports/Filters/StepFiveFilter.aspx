@@ -60,7 +60,7 @@
                             <div class="filterHeader"><span class="FilterNameHeading">Employee</span>
                                  <span style="margin-left:10px"><asp:TextBox ID="tbSearch_Employee" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchEmployee_Click" /></span></div>
                             <section>
-                            <asp:GridView ID="GridViewEmployee" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewEmployee_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewEmployee_RowDataBound" ShowFooter="True"  >
+                            <asp:GridView ID="GridViewEmployee" runat="server" Width="570px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewEmployee_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewEmployee_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
@@ -76,6 +76,7 @@
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="EmpID" HeaderText="ID" />
                                         <asp:BoundField DataField="EmpName" HeaderText="Name" />
+                                      <asp:BoundField DataField="CompName" HeaderText="Company Name" />
                     
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />

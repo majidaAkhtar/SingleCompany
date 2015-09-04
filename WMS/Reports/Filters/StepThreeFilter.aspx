@@ -100,7 +100,7 @@
                                  <span style="margin-left:10px"><asp:TextBox ID="tbSearch_Type" CssClass="input-field" runat="server" /> <asp:Button ID="Button2" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchType_Click" /></span>
                         </div>
                              <section>
-                            <asp:GridView ID="GridViewType" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewType_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewType_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
+                            <asp:GridView ID="GridViewType" runat="server" Width="350px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewType_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewType_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
@@ -116,7 +116,7 @@
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="TypeID" HeaderText="ID" />
                                         <asp:BoundField DataField="TypeName" HeaderText="Name" />
-                    
+                                        <asp:BoundField DataField="CompName" HeaderText="Company Name" />
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#EEEEEE" Font-Bold="False" ForeColor="Black" Wrap="False" />

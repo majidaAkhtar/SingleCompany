@@ -64,7 +64,7 @@
                             <div class="filterHeader"><span class="FilterNameHeading">Division</span>
                                  <span style="margin-left:10px"><asp:TextBox ID="TextBoxSearchDivision" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchDivision_Click" /></span></div>
                             <section>
-                            <asp:GridView ID="GridViewDivision" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewDivision_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewDivision_RowDataBound" ShowFooter="True"  >
+                            <asp:GridView ID="GridViewDivision" runat="server" Width="350px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewDivision_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewDivision_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
@@ -80,7 +80,7 @@
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="DivisionID" HeaderText="ID" />
                                         <asp:BoundField DataField="DivisionName" HeaderText="Name" />
-                    
+                                         <asp:BoundField DataField="CompName" HeaderText="Company" />
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#EEEEEE" Font-Bold="False" ForeColor="Black" Wrap="False" />
@@ -102,7 +102,7 @@
                                  <span style="margin-left:10px"><asp:TextBox ID="tbSearch_Shift" CssClass="input-field" runat="server" /> <asp:Button ID="Button2" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchShift_Click" /></span>
                         </div>
                              <section>
-                            <asp:GridView ID="GridViewShift" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewShift_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewShift_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
+                            <asp:GridView ID="GridViewShift" runat="server" Width="350px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewShift_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewShift_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
@@ -118,7 +118,7 @@
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="ShiftID" HeaderText="ID" />
                                         <asp:BoundField DataField="ShiftName" HeaderText="Name" />
-                    
+                                        <asp:BoundField DataField="Location.City.CityName" HeaderText="City Name" />
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#EEEEEE" Font-Bold="False" ForeColor="Black" Wrap="False" />
