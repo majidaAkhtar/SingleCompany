@@ -248,8 +248,15 @@ namespace WMS.Reports
                                                     PathString = "/Reports/RDLC/MLvConsumed.rdlc";
                                                 else
                                                     PathString = "/WMS/Reports/RDLC/MLvConsumed.rdlc";
-                                                int month = Convert.ToDateTime(_dateFrom).Month;
-                                                LoadReport(PathString,GetLV(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1) ,2),month);
+                                                int monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                                                int monthTo = Convert.ToDateTime(_dateTo).Month;
+                                                //int totalMonths = monthfrom < monthTo ? monthTo : monthfrom;
+                     for(int ul= monthfrom > monthTo ? monthTo:monthfrom;ul<= (monthfrom <monthTo ? monthTo:monthfrom)  ;ul++)
+                        {
+                            LoadReport(PathString, GetLV(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), 2), ul);
+
+                        }
+                                              
                                                // LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), _dateFrom);
                                                 break;
 
