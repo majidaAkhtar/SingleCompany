@@ -10,13 +10,14 @@ using WMS.CustomClass;
 using WMS.HelperClass;
 using WMS.Models;
 using WMSLibrary;
+using System.Web.Services;
 
 namespace WMS.Reports.Filters
 {
     public partial class StepOneFilter : System.Web.UI.Page
-    {
+    {   
         private TAS2013Entities da = new TAS2013Entities();
-
+        private static FiltersModel fml = new FiltersModel();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -55,6 +56,7 @@ namespace WMS.Reports.Filters
             BindGridView(TextBoxSearch.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
+            fml = Session["FiltersModel"] as FiltersModel;
         }
 
         protected void GridViewCompany_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -83,10 +85,11 @@ namespace WMS.Reports.Filters
             FiltersModel modelTemp = Session["FiltersModel"] as FiltersModel;
             WMSLibrary.FiltersModel FM = filtersHelper.SyncGridViewIDs(GridViewCompany, modelTemp, "Company");
             Session["FiltersModel"] = FM;
+            fml = Session["FiltersModel"] as FiltersModel;
         }
 
         private void BindGridView(string search)
-        {
+        {   
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
@@ -124,6 +127,7 @@ namespace WMS.Reports.Filters
             BindGridViewLocation(tbSearch_Location.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
+            fml = Session["FiltersModel"] as FiltersModel;
         }
 
         protected void GridViewLocation_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -148,9 +152,11 @@ namespace WMS.Reports.Filters
 
         private void SaveLocationIDs()
         {
+            Session["FiltersModel"] = fml;
             WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
             WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
             Session["FiltersModel"] = FM;
+            fml = Session["FiltersModel"] as FiltersModel;
         }
 
         private void BindGridViewLocation(string search)
@@ -181,6 +187,13 @@ namespace WMS.Reports.Filters
                 else
                     return DateTime.Parse(dateFrom.Value);
             }
+        }
+        [WebMethod]
+        public static string DeleteSingleFilter(string id, string parentid)
+        {
+            List<FiltersAttributes> fa = new List<FiltersAttributes>();
+           fml = WMSLibrary.Filters.DeleteSingleFilter(fml, id, parentid); 
+           return DateTime.Now.ToString();
         }
         public DateTime DateTo
         {

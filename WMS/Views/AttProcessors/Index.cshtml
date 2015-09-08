@@ -1,0 +1,100 @@
+@*@model IEnumerable<WMS.Models.AttProcessor>*@
+@model PagedList.IPagedList<WMS.Models.AttProcessor>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Attendance Processor";
+}
+
+<h2>Index</h2>
+<div>
+    <div>
+      <form class ="form-inline" role="form">
+          <div class="form-group"> <h2>Attendance Processor</h2> </div>
+          <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-sm btn-success" })</p></div>
+          <div class="form-group pull-right"  style="margin-top:15px">
+              @using (Html.BeginForm("Index", "AttProcessor", FormMethod.Get))
+                {<p><span style="font-weight:bold">Find: </span>  @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" } )  
+                    <input class="btn btn-sm btn-success" type="submit" value="Search" /></p>}
+          </div> 
+      </form>  
+       
+    </div>
+<div>
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover  table-condensed">
+    <tr class="table-header">
+        
+        <th>
+             @Html.ActionLink("(M)onthly/(D)aily/(S)ummary", "Index", new { sortOrder = ViewBag.TagSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("From", "Index", new { sortOrder = ViewBag.FromSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("To", "Index", new { sortOrder = ViewBag.ToSortParm })
+        </th>
+        <th>
+            Processing Completed
+        </th>
+        <th>
+            @Html.ActionLink("Processing Completed", "Index", new { sortOrder = ViewBag.WhenToSortParm })
+      
+        </th>
+         <th>
+            @Html.ActionLink("Company Name", "Index", new { sortOrder = ViewBag.CompanySortParm })
+    
+        </th>
+        <th>
+             @Html.ActionLink("Location Name", "Index", new { sortOrder = ViewBag.LocationSortParm })
+    
+        </th>
+        <th>
+              @Html.ActionLink("Category Name", "Index", new { sortOrder = ViewBag.CatSortParm })
+    
+        </th>
+<th style="width:90px">Edit|View|Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+			@item.PeriodTag
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DateFrom)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DateTo)
+        </td>
+        <td>
+			@item.ProcessingDone
+        </td>
+        <td>
+			@String.Format("{0:g}", item.WhenToProcess)
+        </td>
+          <td>
+			@item.Company.CompName
+        </td>
+        <td>
+			@item.Location.LocName
+        </td>
+        <td>
+			@item.Category.CatName
+        </td>
+ <td>
+          @Html.ActionLink(" ", "Edit", new { id=item.AttProcessorID} , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-sm btn-EditViewDelete" })
+          @Html.ActionLink(" ", "Details", new { id = item.AttProcessorID}, new { @class = "glyphicon glyphicon-list btn btn-primary btn-sm btn-EditViewDelete" }) 
+          @Html.ActionLink(" ", "Delete", new { id=item.AttProcessorID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
+          </td>
+    </tr>
+}
+
+</table>
+</div>
+</div>
+
+
+

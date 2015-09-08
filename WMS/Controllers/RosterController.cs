@@ -42,6 +42,7 @@ namespace WMS.Controllers
             List<Crew> Crews = db.Crews.ToList();
             List<Section> Sections = db.Sections.ToList();
             List<Emp> Emps = db.Emps.ToList();
+            List<Shift> shifts = db.Shifts.ToList();
             foreach(var item in rosterapps)
             {
                 RosterApplication _RosterApplication = new RosterApplication();
@@ -69,7 +70,7 @@ namespace WMS.Controllers
                 _RosterApplication.WorkMin = item.WorkMin;
                 _RosterApplication.DutyTime = item.DutyTime;
                 _RosterApplication.RosterType = item.RosterType.Name;
-                _RosterApplication.Shift = item.Shift.ShiftName;
+                _RosterApplication.Shift = shifts.First(aa=>aa.ShiftID==item.ShiftID).ShiftName;
                 _RosterApplicationsList.Add(_RosterApplication);
             }
             return View(_RosterApplicationsList);

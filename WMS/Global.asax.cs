@@ -78,6 +78,7 @@ namespace WMS
                         Session["MRSummary"] = "1";
                     if (v.MRoster == true)
                         Session["MRoster"] = "1";
+
                 }
             }
         }

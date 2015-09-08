@@ -38,7 +38,7 @@ namespace WMS.Controllers
         }
 
         TAS2013Entities db = new TAS2013Entities();
-
+        //Load Attendance Details of Selected Employee
         [HttpPost]
         public ActionResult EditAttWizardOne(FormCollection form)
         {
@@ -106,6 +106,7 @@ namespace WMS.Controllers
             }
 
         }
+        //Add New Times and Process Attendance of Particular Employee
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditAttWizardData([Bind(Include = "EmpDate,AttDate,EmpNo,EmpID,DutyCode,DutyTime,TimeIn,TimeOut,WorkMin,LateIn,LateOut,EarlyIn,EarlyOut,OTMin,GZOTMin,BreakMin,SLMin,StatusP,StatusAB,StatusLI,StatusLO,StatusEI,StatusEO,StatusOT,StatusGZOT,StatusGZ,StatusDO,StatusHD,StatusSL,StatusOD,StatusLeave,StatusMN,StatusIN,StatusBreak,ShifMin,ShfSplit,ProcessIn,Remarks,Tin0,Tout0,Tin1,Tout1,Tin2,Tout2,Tin3,Tout3,Tin4,Tout4,Tin5,Tout5,Tin6,Tout6,Tin7,Tout7,Tin8,Tout8,Tin9,Tout9,Tin10,Tout10,Tin11,Tout11,Tin12,Tout12,Tin13,Tout13,Tin14,Tout14,Tin15,Tout15")] AttData _attData, FormCollection form, string NewDutyCode)
@@ -783,5 +784,7 @@ namespace WMS.Controllers
             return check;
         }
         #endregion
+
+
     }
 }

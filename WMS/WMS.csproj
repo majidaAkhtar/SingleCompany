@@ -193,6 +193,7 @@
     <Content Include="Scripts\dx.chartjs.js" />
     <Content Include="Scripts\Employee\empTypeCategory.js" />
     <Content Include="Scripts\Employee\empTypeCategoryCreate.js" />
+    <Content Include="Scripts\Filters\DeleteSingleFilters.js" />
     <Content Include="Scripts\Filters\FilterScripts.js" />
     <Content Include="Scripts\globalize.min.js" />
     <Content Include="Scripts\HR\DeptCompany.js" />
@@ -226,25 +227,25 @@
     <Content Include="Models\TASReportDataSet.xsc">
       <DependentUpon>TASReportDataSet.xsd</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\TASModel.edmx">
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TASModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TASModel.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TASModel.edmx.diagram">
-      <DependentUpon>TASModel.edmx</DependentUpon>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TASModel.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <None Include="Models\TASReportDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -334,6 +335,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\web.config" />
+    <Content Include="Views\AttProcessors\Create.cshtml" />
+    <Content Include="Views\AttProcessors\Edit.cshtml" />
+    <Content Include="Views\AttProcessors\Delete.cshtml" />
+    <Content Include="Views\AttProcessors\Details.cshtml" />
+    <Content Include="Views\AttProcessors\Index.cshtml" />
+    <Content Include="Views\AttProcessors\_CreateOrEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -353,6 +360,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrap Html Helpers\DatePickerFor.cs" />
     <Compile Include="Bootstrap Html Helpers\HelperMethods.cs" />
+    <Compile Include="Controllers\AttProcessorsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CrewController.cs" />
@@ -414,6 +422,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AttProcess.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AttProcessor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AuditForm.cs">
@@ -564,10 +575,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TASModel.Designer.cs">
+    <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TASModel.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Option.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -731,6 +742,7 @@
     <Compile Include="Models\ViewUserLocation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WMSContext.cs" />
     <Compile Include="Models\ZTable.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

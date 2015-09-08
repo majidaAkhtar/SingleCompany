@@ -16,6 +16,7 @@ namespace WMS.Models
     {
         public Category()
         {
+            this.AttProcessors = new HashSet<AttProcessor>();
             this.EmpTypes = new HashSet<EmpType>();
         }
     
@@ -23,6 +24,7 @@ namespace WMS.Models
         public string CatName { get; set; }
         public Nullable<short> CompanyID { get; set; }
     
+        public virtual ICollection<AttProcessor> AttProcessors { get; set; }
         public virtual ICollection<EmpType> EmpTypes { get; set; }
     }
 }

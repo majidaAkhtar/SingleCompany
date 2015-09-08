@@ -1,0 +1,52 @@
+@model WMS.Models.AttProcessor
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>AttProcessor</legend>
+
+		<div class="editor-label">
+    @Html.LabelFor(model => model.PeriodTag, new { @class = "control-label col-md-2" })
+</div>
+<div class="editor-field">
+     @Html.DropDownList("PeriodTag",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+    @Html.ValidationMessageFor(model => model.PeriodTag)
+</div>
+<div class="form-group">
+                            <label class="control-label col-md-3">Company Name</label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.ValidationMessageFor(model => model.Company.CompID)
+                            </div>
+                        </div>
+<div class="form-group">
+                            <label class="control-label col-md-3">Location Name</label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("LocationID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.ValidationMessageFor(model => model.Company.CompID)
+                            </div>
+                        </div>
+<div class="form-group">
+                            <label class="control-label col-md-3">Category Name</label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("CatID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.ValidationMessageFor(model => model.Category.CatID)
+                            </div>
+                        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

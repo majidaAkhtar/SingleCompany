@@ -3,7 +3,7 @@
     ViewBag.Title = "RosterDetail";
 }
 
-<h2>RosterDetail</h2>
+<h2>Roster Details</h2>
 
 @{
     ViewBag.Title = "Index";
@@ -12,34 +12,59 @@
 <table class="table">
     <tr>
         <th>
-            Code
+            Day
         </th>
         <th>
-             Code
+             Duty Date
         </th>
         <th>
-            Code
+            Duty Code
         </th>
         <th>
-             Code
+             Duty Time
         </th>
         <th>
-            Code
+            Work Minutes
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model) 
+{
     if(item.Changed==true)
         {
-             <tr>
-                  <td  style="background-color:#7ac143">
+            if(item.DutyCode=="R")
+            {
+                <tr   style="background-color:#7ac143">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Day)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.DutyDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DutyCode)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.DutyTime)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.WorkMin)
+                    </td>
+                    <td>
+                    </td>
+               </tr>
+            }
+            else
+            {
+            <tr   style="background-color:#61CC9B">
+                  <td>
                     @Html.DisplayFor(modelItem => item.Day)
                 </td>
                  <td>
                     @Html.DisplayFor(modelItem => item.DutyDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DutyCode)
+                        @Html.DisplayFor(modelItem => item.DutyCode)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DutyTime)
@@ -50,10 +75,13 @@
                 <td>
                 </td>
             </tr>
+            }
         }
         else
         {
-            <tr>
+            if(item.DutyCode=="R")
+            {
+                <tr   style="background-color:#7ac143">
                  <td>
                     @Html.DisplayFor(modelItem => item.Day)
                 </td>
@@ -72,6 +100,29 @@
                 <td>
                 </td>
             </tr>
+            }
+            else
+            {
+            <tr>
+                <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.DutyDate)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.DutyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DutyTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkMin)
+            </td>
+            <td>
+            </td>
+        </tr>
+            }
         }
    
 }
