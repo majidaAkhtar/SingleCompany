@@ -88,7 +88,15 @@ namespace WMSLibrary
         /// <param name="filterName"></param>
         /// <param name="ItemID"></param>
         /// 
-        private void RemoveObjectFromList(FiltersModel filtersModel, string filterName, string ItemID)
+        public static FiltersModel DeleteSingleFilter(FiltersModel fml, string id,string filtername)
+        {
+             
+            RemoveObjectFromList(fml, filtername, id);
+            return fml;
+        }
+
+      
+        private static void RemoveObjectFromList(FiltersModel filtersModel, string filterName, string ItemID)
         {
             switch (filterName)
             {
@@ -259,6 +267,8 @@ namespace WMSLibrary
             }
         }
 
+
+       
     }
 
 

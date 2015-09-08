@@ -33,6 +33,7 @@ namespace WMS.Models
         public DbSet<AttMnData> AttMnDatas { get; set; }
         public DbSet<AttMnDataPer> AttMnDataPers { get; set; }
         public DbSet<AttProcess> AttProcesses { get; set; }
+        public DbSet<AttProcessor> AttProcessors { get; set; }
         public DbSet<AuditForm> AuditForms { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<AuditOperation> AuditOperations { get; set; }

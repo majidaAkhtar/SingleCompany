@@ -16,6 +16,7 @@ namespace WMS.Models
     {
         public Company()
         {
+            this.AttProcessors = new HashSet<AttProcessor>();
             this.Crews = new HashSet<Crew>();
             this.Departments = new HashSet<Department>();
             this.Designations = new HashSet<Designation>();
@@ -34,6 +35,7 @@ namespace WMS.Models
         public string TelNo { get; set; }
         public string Email { get; set; }
     
+        public virtual ICollection<AttProcessor> AttProcessors { get; set; }
         public virtual ICollection<Crew> Crews { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
         public virtual ICollection<Designation> Designations { get; set; }

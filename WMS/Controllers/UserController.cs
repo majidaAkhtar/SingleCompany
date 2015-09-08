@@ -407,7 +407,9 @@ namespace WMS.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                int count = Convert.ToInt32(Request.Form["uLocationCount"]);
+               
+                int count = 0;
+                bool successOnConversion = int.TryParse(Request.Form["uLocationCount"], out count);
                 List<Location> locs = new List<Location>();
                 List<UserLocation> userLocs = db.UserLocations.Where(aa=>aa.UserID==user.UserID).ToList();
                 locs = db.Locations.ToList();
@@ -418,6 +420,8 @@ namespace WMS.Controllers
                     db.UserLocations.Remove(ul);
                     db.SaveChanges();
                 }
+                if(successOnConversion)
+                {
                 for (int i = 1; i <= count; i++)
                 {
                     string uLocID = "uLocation" + i;
@@ -437,6 +441,7 @@ namespace WMS.Controllers
                         db.SaveChanges();
                     }   
                 }
+            }
                 //foreach (var item in userLocs)
                 //{
                 //    if (!currentLocIDs.Contains((int)item.LocationID))
