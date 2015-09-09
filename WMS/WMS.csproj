@@ -1238,7 +1238,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58158</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5641/</IISUrl>
+          <IISUrl>http://localhost:58031/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
