@@ -36,7 +36,7 @@ namespace WMS.Reports
 
                 switch (reportName)
                 {
-
+                  
                     case "department_attendance_summary": HRReportsMaker hrm = new HRReportsMaker();
                         List<AttDeptSummary> AttDept = hrm.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
                         title = "Department Attendace Summary";
@@ -264,7 +264,7 @@ namespace WMS.Reports
                                                 int monthfrom = Convert.ToDateTime(_dateFrom).Month;
                                                 int monthTo = Convert.ToDateTime(_dateTo).Month;
                                                 //int totalMonths = monthfrom < monthTo ? monthTo : monthfrom;
-
+                         
                                                 LoadReport(PathString, GetLV(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), 2), Convert.ToDateTime(_dateFrom).Month);
 
                         
@@ -338,7 +338,16 @@ namespace WMS.Reports
                                                 break;
 
                     case "monthly_1-31_consolidated": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                                                      dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and Period = " + _period);
+                          monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                           monthTo = Convert.ToDateTime(_dateTo).Month;
+                           string consolidatedMonth = "";
+                           for (int i = monthfrom; i <= monthTo; i++)
+                           {
+                               consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString()+" OR";
+                           }
+                           if (consolidatedMonth.Length > 4)
+                               consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                                                      dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and"+ consolidatedMonth);
                                                          title = "Monthly Consolidated (1st to 31th)";
                                                         List<ViewMonthlyData> VMLD =new List<ViewMonthlyData>(); 
                                                         VMLD = dt.ToList<ViewMonthlyData>();
@@ -348,11 +357,20 @@ namespace WMS.Reports
                                                     PathString = "/Reports/RDLC/MRDetailExcelC.rdlc";
                                                 else
                                                     PathString = "/WMS/Reports/RDLC/MRDetailExcelC.rdlc";
-                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyData, VMLD), _dateFrom);
+                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyData, VMLD), _dateFrom+" to "+_dateTo);
                                                 break;
 
                     case "monthly_21-20_consolidated": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                                                                   dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
+                                                consolidatedMonth = "";
+                         monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                           monthTo = Convert.ToDateTime(_dateTo).Month;
+                         for (int i = monthfrom; i <= monthTo; i++)
+                           {
+                               consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString()+" OR";
+                           }
+                           if (consolidatedMonth.Length > 4)
+                               consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                           dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and" + consolidatedMonth);
                                                          title = "Monthly Consolidated (21th to 20th)(Excel)";
                                                         _ViewListMonthlyDataPer = dt.ToList<ViewMonthlyDataPer>();
                                                         _TempViewListMonthlyDataPer = new List<ViewMonthlyDataPer>();
@@ -361,7 +379,7 @@ namespace WMS.Reports
                                                              PathString = "/Reports/RDLC/MRDetailExcelP.rdlc";
                                                           else
                                                              PathString = "/WMS/Reports/RDLC/MRDetailExcelP.rdlc";
-                                                          LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyDataPer, _ViewListMonthlyDataPer), _dateFrom);
+                                                          LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyDataPer, _ViewListMonthlyDataPer), _dateFrom+" to "+_dateTo);
                                                          break;
                     case "emp_att":                      dt = qb.GetValuesfromDB("select * from ViewAttData " + query + " and (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'"
                                                         + _dateTo + "'" + " )");
@@ -1483,8 +1501,7 @@ namespace WMS.Reports
         {
             string _Header = title;
             this.ReportViewer1.LocalReport.DisplayName = title;
-            DateTime dt = Convert.ToDateTime(date);
-            string _Date = "Month: " + dt.Date.ToString("MMMM") + " , " + dt.Year.ToString();
+               
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath(path);
             System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
@@ -1495,7 +1512,7 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
-            ReportParameter rp1 = new ReportParameter("Date", _Date, false);
+            ReportParameter rp1 = new ReportParameter("Date", date, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
             ReportViewer1.LocalReport.Refresh();
         }

@@ -190,7 +190,7 @@ namespace WMS.Controllers
             {
                 if (emp.EmpNo.Length > 15)
                     ModelState.AddModelError("EmpNo", "String length exceeds!");
-                if (db.Emps.Where(aa => aa.EmpNo.ToUpper() == emp.EmpNo.ToUpper()).Count() > 0)
+                if (db.Emps.Where(aa => aa.EmpNo.ToUpper() == emp.EmpNo.ToUpper() && aa.CompanyID == emp.CompanyID).Count() > 0 )
                     ModelState.AddModelError("EmpNo", "Emp No should be unique!");
             }
             //if (emp.FpID != null)
