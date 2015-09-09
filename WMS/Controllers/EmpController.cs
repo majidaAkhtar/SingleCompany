@@ -472,7 +472,7 @@ namespace WMS.Controllers
         public ActionResult GradeList(string ID)
         {
             int Code = Convert.ToInt32(ID);
-            var states = db.Grades.Where(aa => aa.CompID == Code);
+            var states = db.Grades.Where(aa => aa.CompID == Code).OrderBy(s=>s.GradeName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 states.ToArray(),
@@ -488,7 +488,7 @@ namespace WMS.Controllers
             string[] words = ID.Split('s');
             short secID = Convert.ToInt16(words[0]);
            
-            var secs = db.Sections.Where(aa => aa.DeptID == secID);
+            var secs = db.Sections.Where(aa => aa.DeptID == secID).OrderBy(s=>s.SectionName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -504,7 +504,7 @@ namespace WMS.Controllers
             string[] words = ID.Split('s');
             short CatID = Convert.ToInt16(words[0]);
             short compID = Convert.ToInt16(words[1]);
-            var types = db.EmpTypes.Where(aa => aa.CatID == CatID && aa.CompanyID==compID);
+            var types = db.EmpTypes.Where(aa => aa.CatID == CatID && aa.CompanyID==compID).OrderBy(s=>s.TypeName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 types.ToArray(),
@@ -518,7 +518,7 @@ namespace WMS.Controllers
         public ActionResult CategoryList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Categories.Where(aa => aa.CompanyID == Code);
+            var secs = db.Categories.Where(aa => aa.CompanyID == Code).OrderBy(s=>s.CatName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -532,7 +532,7 @@ namespace WMS.Controllers
         public ActionResult DesignationList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Designations.Where(aa => aa.CompanyID == Code);
+            var secs = db.Designations.Where(aa => aa.CompanyID == Code).OrderBy(s=>s.DesignationName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -546,7 +546,7 @@ namespace WMS.Controllers
         public ActionResult DepartmentList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Departments.Where(aa=>aa.CompanyID==Code);
+            var secs = db.Departments.Where(aa=>aa.CompanyID==Code).OrderBy(s=>s.DeptName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -560,7 +560,7 @@ namespace WMS.Controllers
         public ActionResult CrewList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Crews.Where(aa => aa.CompanyID == Code);
+            var secs = db.Crews.Where(aa => aa.CompanyID == Code).OrderBy(s=>s.CrewName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
