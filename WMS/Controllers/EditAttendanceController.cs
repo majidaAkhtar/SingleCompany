@@ -577,6 +577,51 @@ namespace WMS.Controllers
             return check;
         }
 
+        private bool AddJCDoubleDutyOnlyAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        {
+            bool check = false;
+            try
+            {
+                //Normal Duty
+                using (var context = new TAS2013Entities())
+                {
+                    AttData _attdata = context.AttDatas.FirstOrDefault(aa => aa.EmpDate == _empDate);
+                    JobCard _jcCard = context.JobCards.FirstOrDefault(aa => aa.WorkCardID == _WorkCardID);
+                    if (_attdata != null)
+                    {
+                        _attdata.DutyCode = "D";
+                        _attdata.StatusAB = false;
+                        _attdata.StatusDO = false;
+                        _attdata.StatusLeave = false;
+                        _attdata.StatusP = true;
+                        _attdata.WorkMin = _jcCard.WorkMin;
+                        _attdata.ShifMin = _jcCard.WorkMin;
+                        _attdata.Remarks = "[DD][Manual]";
+                        _attdata.TimeIn = null;
+                        _attdata.TimeOut = null;
+                        _attdata.EarlyIn = null;
+                        _attdata.EarlyOut = null;
+                        _attdata.LateIn = null;
+                        _attdata.LateOut = null;
+                        _attdata.OTMin = null;
+                        _attdata.StatusEI = null;
+                        _attdata.StatusEO = null;
+                        _attdata.StatusLI = null;
+                        _attdata.StatusLO = null;
+                        _attdata.StatusP = true;
+                    }
+                    context.SaveChanges();
+                    if (context.SaveChanges() > 0)
+                        check = true;
+                    context.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return check;
+        }
+
         private bool AddJCODDayToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
         {
 
