@@ -9,7 +9,7 @@ using WMSLibrary;
 
 namespace WMS.CustomClass
 {
-    public static class HRReportsMaker
+    public class HRReportsMaker
     {
 
       
@@ -22,7 +22,7 @@ namespace WMS.CustomClass
         /// <param name="fm"> FiltersModel </param>
         /// <param name="attDeptList">Empty List of AttDeptSummary</param>
         /// <returns>Populated List of AttDeptSummary</returns>
-public static List<AttDeptSummary> GetListForAttDepartmentsSummary(FiltersModel fm, string _dateFrom,string _dateTo)
+public  List<AttDeptSummary> GetListForAttDepartmentsSummary(FiltersModel fm, string _dateFrom,string _dateTo)
 {
     List<AttDeptSummary> attDeptList = new List<AttDeptSummary>();
     TAS2013Entities db = new TAS2013Entities();
@@ -55,21 +55,23 @@ public static List<AttDeptSummary> GetListForAttDepartmentsSummary(FiltersModel 
 
     foreach (var dept in departments)
     {
-        AttDeptSummary singleInstance = new AttDeptSummary();
+        
         DataTable dt = qb.GetValuesfromDB("select * from EmpView where DeptID=" + dept.ID);
         List<EmpView> EmView = dt.ToList<EmpView>();
-        singleInstance.Department = dept.FilterName;
-        singleInstance.TotalStrength = EmView.Count();
-        singleInstance.Total = singleInstance.TotalStrength;
-        singleInstance.Location = EmView.FirstOrDefault().LocName;
-        singleInstance.Section = EmView.FirstOrDefault().SectionName;
-        singleInstance.Company = EmView.FirstOrDefault().CompName;
+        
         //2015-01-24
        
 
 
             foreach (DateTime day in EachDay(Convert.ToDateTime(_dateFrom), Convert.ToDateTime(_dateTo)))
             {
+                AttDeptSummary singleInstance = new AttDeptSummary();
+                singleInstance.Department = dept.FilterName;
+                singleInstance.TotalStrength = EmView.Count();
+                singleInstance.Total = singleInstance.TotalStrength;
+                singleInstance.Location = EmView.FirstOrDefault().LocName;
+                singleInstance.Section = EmView.FirstOrDefault().SectionName;
+                singleInstance.Company = EmView.FirstOrDefault().CompName;
                 singleInstance.CardSwapped = 0;
                 singleInstance.Absent = 0;
                 singleInstance.OnLeave = 0;
