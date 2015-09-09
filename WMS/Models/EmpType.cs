@@ -25,7 +25,6 @@ namespace WMS.Models
         public Nullable<short> CompanyID { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual Company Company { get; set; }
         public virtual ICollection<Emp> Emps { get; set; }
     }
 }

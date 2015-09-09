@@ -155,9 +155,10 @@ namespace WMS.Controllers
             {
                 _wings = context.Divisions.ToList();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-            ViewBag.CrewID = new SelectList(db.Crews, "CrewID", "CrewName");
-            ViewBag.DesigID = new SelectList(db.Designations, "DesignationID", "DesignationName");
+             
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s => s.CrewName), "CrewID", "CrewName");
+            ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
             ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName");
             ViewBag.JobID = new SelectList(db.JobTitles, "JobID", "JobTitle1");
             ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName");
@@ -189,7 +190,7 @@ namespace WMS.Controllers
             {
                 if (emp.EmpNo.Length > 15)
                     ModelState.AddModelError("EmpNo", "String length exceeds!");
-                if (db.Emps.Where(aa => aa.EmpNo.ToUpper() == emp.EmpNo.ToUpper() && aa.CompanyID==emp.CompanyID).Count() > 0)
+                if (db.Emps.Where(aa => aa.EmpNo.ToUpper() == emp.EmpNo.ToUpper()).Count() > 0)
                     ModelState.AddModelError("EmpNo", "Emp No should be unique!");
             }
             //if (emp.FpID != null)

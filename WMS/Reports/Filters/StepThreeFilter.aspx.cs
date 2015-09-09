@@ -121,7 +121,7 @@ namespace WMS.Reports.Filters
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyView(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from ViewDepartment " + query);
+            DataTable dt = qb.GetValuesfromDB("select * from ViewDepartment " + query + " ORDER BY DeptName ASC");
             _View = dt.ToList<ViewDepartment>();
             if (fm.CompanyFilter.Count > 0)
             {
@@ -155,7 +155,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from ViewEmpType where " + query);
-            _View = dt.ToList<ViewEmpType>();
+            _View = dt.ToList<ViewEmpType>().AsQueryable().SortBy("TypeName").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)

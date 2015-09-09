@@ -141,7 +141,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
            
-            _View = da.ViewDivisions.Where(query).ToList();
+            _View = da.ViewDivisions.Where(query).AsQueryable().OrderBy("DivisionName ASC").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -172,7 +172,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForShiftForLinq(LoggedInUser);
            // DataTable dt = qb.GetValuesfromDB("select * from Shift " + query);
-            _View = da.Shifts.Where(query).ToList();
+            _View = da.Shifts.Where(query).AsQueryable().OrderBy("ShiftName ASC").ToList();
             if (fm.LocationFilter.Count > 0)
             {
                 foreach (var loc in fm.LocationFilter)

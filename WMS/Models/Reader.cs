@@ -32,7 +32,6 @@ namespace WMS.Models
         public Nullable<bool> isSafe { get; set; }
         public Nullable<bool> EmgPool { get; set; }
     
-        public virtual Company Company { get; set; }
         public virtual ICollection<EmpRdr> EmpRdrs { get; set; }
         public virtual Location Location { get; set; }
         public virtual ICollection<PollData> PollDatas { get; set; }

@@ -42,8 +42,8 @@ namespace WMS.Controllers
                 page = 1;
              else
                searchString = currentFilter;
-            
-            List<AttProcessor> attprocess = context.AttProcessors.ToList();
+
+            List<AttProcessorScheduler> attprocess = context.AttProcessorSchedulers.ToList();
             switch (sortOrder)
             {
                 case "tag_desc": attprocess = attprocess.OrderByDescending(s => s.PeriodTag).ToList();                   break;
@@ -65,24 +65,7 @@ namespace WMS.Controllers
                 case "whento":
                     attprocess = attprocess.OrderBy(s => s.WhenToProcess).ToList();
                     break;
-                case "location_desc":
-                    attprocess = attprocess.OrderByDescending(s => s.Location.LocName).ToList();
-                    break;
-                case "location":
-                    attprocess = attprocess.OrderBy(s => s.Location.LocName).ToList();
-                    break;
-                case "company_desc":
-                    attprocess = attprocess.OrderByDescending(s => s.Company.CompName).ToList();
-                    break;
-                case "company":
-                    attprocess = attprocess.OrderBy(s => s.Company.CompName).ToList();
-                    break;
-                case "cat_desc":
-                    attprocess = attprocess.OrderByDescending(s => s.Category.CatName).ToList();
-                    break;
-                case "cat":
-                    attprocess = attprocess.OrderBy(s => s.Category.CatName).ToList();
-                    break;
+               
                 default:
                     attprocess = attprocess.OrderBy(s => s.PeriodTag).ToList();
                     break;
@@ -98,7 +81,7 @@ namespace WMS.Controllers
 
         public ViewResult Details(int id)
         {
-            AttProcessor attprocessor = context.AttProcessors.Single(x => x.AttProcessorID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
             return View(attprocessor);
         }
 
@@ -130,11 +113,11 @@ namespace WMS.Controllers
         // POST: /AttProcessors/Create
 
         [HttpPost]
-        public ActionResult Create(AttProcessor attprocessor)
+        public ActionResult Create(AttProcessorScheduler attprocessor)
         {
             if (ModelState.IsValid)
             {
-                context.AttProcessors.Add(attprocessor);
+                context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -147,7 +130,7 @@ namespace WMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            AttProcessor attprocessor = context.AttProcessors.Single(x => x.AttProcessorID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
             return View(attprocessor);
         }
 
@@ -155,7 +138,7 @@ namespace WMS.Controllers
         // POST: /AttProcessors/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(AttProcessor attprocessor)
+        public ActionResult Edit(AttProcessorScheduler attprocessor)
         {
             if (ModelState.IsValid)
             {
@@ -171,7 +154,7 @@ namespace WMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            AttProcessor attprocessor = context.AttProcessors.Single(x => x.AttProcessorID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
             return View(attprocessor);
         }
 
@@ -181,8 +164,8 @@ namespace WMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            AttProcessor attprocessor = context.AttProcessors.Single(x => x.AttProcessorID == id);
-            context.AttProcessors.Remove(attprocessor);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
+            context.AttProcessorSchedulers.Remove(attprocessor);
             context.SaveChanges();
             return RedirectToAction("Index");
         }

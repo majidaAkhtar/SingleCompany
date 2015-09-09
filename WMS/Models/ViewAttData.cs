@@ -77,5 +77,11 @@ namespace WMS.Models
         public Nullable<short> BreakMin { get; set; }
         public Nullable<System.TimeSpan> SLMin { get; set; }
         public Nullable<short> ShifMin { get; set; }
+        public Nullable<bool> StatusSL { get; set; }
+        public Nullable<bool> StatusOD { get; set; }
+        public Nullable<bool> StatusHL { get; set; }
+        public Nullable<bool> StatusMN { get; set; }
+        public Nullable<bool> StatusIN { get; set; }
+        public Nullable<short> CityID { get; set; }
     }
 }

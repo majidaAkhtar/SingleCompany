@@ -70,13 +70,15 @@
                                             runat="server" type="checkbox" />
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:CheckBox style="margin-left:6px"  ID="CheckOne" runat="server" />
+                                            <asp:CheckBox style="width:5%;"  ID="CheckOne" runat="server"  ItemStyle-Width="5%"/>
                                         </ItemTemplate>
-                                        <ItemStyle Width="10%" />
-                                    </asp:TemplateField>
+                                        <ItemStyle Width="5%" />
+                                        </asp:TemplateField>
                                         <asp:BoundField DataField="EmpID" HeaderText="ID" />
+                                         <asp:BoundField DataField="EmpNo" HeaderText="P.No" />
                                         <asp:BoundField DataField="EmpName" HeaderText="Name" />
-                                      <asp:BoundField DataField="CompName" HeaderText="Company Name" />
+                                        <asp:BoundField DataField ="DeptName" HeaderText ="Department" />
+                                        <asp:BoundField DataField="CompName" HeaderText="Company Name" />
                     
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
