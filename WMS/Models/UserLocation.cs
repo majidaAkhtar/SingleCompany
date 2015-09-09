@@ -17,7 +17,5 @@ namespace WMS.Models
         public int UserLocID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<short> LocationID { get; set; }
-    
-        public virtual Location Location { get; set; }
     }
 }

@@ -276,6 +276,7 @@ namespace WMSLibrary
     {
         public string FilterName;
         public string ID;
+      
     }
 
     public class FiltersModel

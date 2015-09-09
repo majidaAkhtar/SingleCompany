@@ -47,6 +47,9 @@
                                         <li><a href="../ReportContainer.aspx?reportname=emp_record">Employee Record</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_detail_excel">Employee Detail (Only for Excel)</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=leave_application">Leave Application</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=department_attendance_summary">Department Attendance Summary</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=summarized_monthly_report">Summarized Monthly Report</a></li>
+s
                                     
                                     </ul>
                                 </li>
@@ -54,7 +57,7 @@
                                     <h5>Daily Attendance</h5>
                                     <ul>
                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Detailed Attendance</a></li>
-                                            <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Consolidated Attendance</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Consolidated Attendance</a></li>
 
                                         <li><a href="../ReportContainer.aspx?reportname=present">Present</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=absent">Absent</a></li>

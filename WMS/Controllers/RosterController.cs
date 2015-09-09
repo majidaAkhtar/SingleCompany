@@ -109,8 +109,8 @@ namespace WMS.Controllers
                     rdaS.Day = tempRotaDetails.FirstOrDefault().RosterDate.Value.ToString("dddd");
                     rdaS.DutyCode = tempRotaDetails.FirstOrDefault().DutyCode;
                     rdaS.DutyDate = tempRotaDetails.FirstOrDefault().RosterDate.Value;
-                    rdaS.DutyTime = tempRotaDetails.FirstOrDefault().DutyTime;
-                    rdaS.WorkMin = tempRotaDetails.FirstOrDefault().WorkMin;
+                    rdaS.DutyTime = (TimeSpan)tempRotaDetails.FirstOrDefault().DutyTime;
+                    rdaS.WorkMin = (short)tempRotaDetails.FirstOrDefault().WorkMin;
                 }
                 else
                 {

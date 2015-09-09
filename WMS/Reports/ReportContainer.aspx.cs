@@ -19,6 +19,7 @@ namespace WMS.Reports
         protected void Page_Load(object sender, EventArgs e)
         {
             String reportName = Request.QueryString["reportname"];
+            String type = Request.QueryString["type"];
             if (!Page.IsPostBack)
             {
                 List<string> list = Session["ReportSession"] as List<string>;
@@ -31,10 +32,22 @@ namespace WMS.Reports
                 string _dateTo = list[1];
                
                 string PathString = "";
-
+                          
 
                 switch (reportName)
                 {
+
+                    case "department_attendance_summary":
+                        List<AttDeptSummary> AttDept = HRReportsMaker.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
+                        title = "Department Attendace Summary";
+                         if (GlobalVariables.DeploymentType == false)
+                                                   PathString = "/Reports/RDLC/AttDepartmentSummary.rdlc";
+                                                               else
+                             PathString = "/WMS/Reports/RDLC/AttDepartmentSummary.rdlc";
+                                                              
+                                        LoadReport(PathString,AttDept, _dateFrom+" TO "+_dateTo);
+                               
+                        break;
                     case "emp_record":   DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
                                         List<EmpView> _ViewList = dt.ToList<EmpView>();
                                         List<EmpView> _TempViewList = new List<EmpView>();
@@ -66,7 +79,7 @@ namespace WMS.Reports
                                                 if (GlobalVariables.DeploymentType == false)
                                                     PathString = "/Reports/RDLC/DRLeave.rdlc";
                                                 else
-                                                    PathString = "/WMS/Reports/RDLC/EmployeeDetail.rdlc";
+                                                    PathString = "/WMS/Reports/RDLC/DRLeave.rdlc";
                                                 LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListLvApp, _ViewListLvApp), _dateFrom + " TO " + _dateTo);
 
                                                 break;
@@ -401,6 +414,25 @@ namespace WMS.Reports
                
                 
             }
+        }
+
+        private void LoadReport(string PathString, List<AttDeptSummary> AttDept, string date)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(PathString);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet                               (System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<AttDeptSummary> ie;
+            ie = AttDept.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportParameter rp = new ReportParameter("Date", date, false);
+            ReportParameter rp1 = new ReportParameter("title", _Header, false);
+            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
+            ReportViewer1.LocalReport.Refresh();
         }
 
         private void LoadReport(string PathString, List<ViewMultipleInOut> _Employee, string date)
@@ -1511,13 +1543,15 @@ namespace WMS.Reports
             IEnumerable<ViewAttData> ie;
             ie = _Employee.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+
+            ReportViewer1.HyperlinkTarget = "_blank";
+
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportParameter rp = new ReportParameter("Date", date, false);
             ReportParameter rp1 = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
-            ReportViewer1.LocalReport.Refresh();
-        }
+            ReportViewer1.LocalReport.Refresh();        }
 
         private void LoadReport(string path, DataTable _LvSummary,int i)
         {
@@ -1531,6 +1565,8 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", _LvSummary);
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.HyperlinkTarget = "_blank";
+
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
             ReportParameter rp1 = new ReportParameter("Date", Date, false);

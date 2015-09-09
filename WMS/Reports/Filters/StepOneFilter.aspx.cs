@@ -17,7 +17,7 @@ namespace WMS.Reports.Filters
     public partial class StepOneFilter : System.Web.UI.Page
     {   
         private TAS2013Entities da = new TAS2013Entities();
-        private static FiltersModel fml = new FiltersModel();
+        private  static FiltersModel fml = new FiltersModel();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -93,7 +93,7 @@ namespace WMS.Reports.Filters
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
-            List<Company> _View = da.Companies.Where(query).ToList();
+            List<Company> _View = da.Companies.Where(query).OrderBy(s=>s.CompName).ToList();
             GridViewCompany.DataSource = _View.Where(aa => aa.CompName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewCompany.DataBind();
         }
@@ -164,7 +164,7 @@ namespace WMS.Reports.Filters
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
-            List<Location> _View = da.Locations.Where(query).ToList();
+            List<Location> _View = da.Locations.Where(query).OrderBy(s=>s.LocName).ToList();
             GridViewLocation.DataSource = _View.Where(aa => aa.LocName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewLocation.DataBind();
         }

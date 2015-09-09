@@ -60,6 +60,10 @@ namespace WMS.Reports.Filters
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
+            List<string> list = Session["ReportSession"] as List<string>;
+            list[0] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
+            list[1] = DateTime.Today.ToString("yyyy-MM-dd");
+            Session["ReportSession"] = list;
             WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
             Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
@@ -93,7 +97,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
-            _View = dt.ToList<EmpView>();
+            _View = dt.ToList<EmpView>().AsQueryable().SortBy("EmpNo").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)

@@ -18,14 +18,14 @@ namespace WMS.Models
         {
             this.AttDatas = new HashSet<AttData>();
             this.AttDataManEdits = new HashSet<AttDataManEdit>();
-            this.AttMnDatas = new HashSet<AttMnData>();
+            this.AttMnDataPers = new HashSet<AttMnDataPer>();
             this.Cards = new HashSet<Card>();
             this.EmergencyDetails = new HashSet<EmergencyDetail>();
             this.EmpAccesses = new HashSet<EmpAccess>();
+            this.EmpPhotoes = new HashSet<EmpPhoto>();
             this.LvApplications = new HashSet<LvApplication>();
             this.LvConsumeds = new HashSet<LvConsumed>();
             this.LvShorts = new HashSet<LvShort>();
-            this.Users = new HashSet<User>();
         }
     
         public int EmpID { get; set; }
@@ -69,17 +69,16 @@ namespace WMS.Models
         public Nullable<short> ReaderID { get; set; }
         public Nullable<System.DateTime> LastEntryDateTime { get; set; }
         public Nullable<bool> IsSafe { get; set; }
+        public Nullable<short> CompID { get; set; }
         public Nullable<bool> HasOT { get; set; }
     
         public virtual ICollection<AttData> AttDatas { get; set; }
         public virtual ICollection<AttDataManEdit> AttDataManEdits { get; set; }
-        public virtual ICollection<AttMnData> AttMnDatas { get; set; }
+        public virtual ICollection<AttMnDataPer> AttMnDataPers { get; set; }
         public virtual ICollection<Card> Cards { get; set; }
-        public virtual Company Company { get; set; }
         public virtual Crew Crew { get; set; }
         public virtual Designation Designation { get; set; }
         public virtual ICollection<EmergencyDetail> EmergencyDetails { get; set; }
-        public virtual EmpPhoto EmpPhoto { get; set; }
         public virtual Grade Grade { get; set; }
         public virtual JobTitle JobTitle { get; set; }
         public virtual Location Location { get; set; }
@@ -89,10 +88,10 @@ namespace WMS.Models
         public virtual ICollection<EmpAccess> EmpAccesses { get; set; }
         public virtual EmpFace EmpFace { get; set; }
         public virtual EmpFp EmpFp { get; set; }
+        public virtual ICollection<EmpPhoto> EmpPhotoes { get; set; }
         public virtual ICollection<LvApplication> LvApplications { get; set; }
         public virtual ICollection<LvConsumed> LvConsumeds { get; set; }
         public virtual LvQuota LvQuota { get; set; }
         public virtual ICollection<LvShort> LvShorts { get; set; }
-        public virtual ICollection<User> Users { get; set; }
     }
 }

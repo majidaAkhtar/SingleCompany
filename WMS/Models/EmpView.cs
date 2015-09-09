@@ -53,7 +53,6 @@ namespace WMS.Models
         public Nullable<bool> FlagFace { get; set; }
         public Nullable<bool> FlagCard { get; set; }
         public string SectionName { get; set; }
-        public string DeptName { get; set; }
         public string DivisionName { get; set; }
         public Nullable<short> CompanyID { get; set; }
         public Nullable<short> CatID { get; set; }
@@ -62,10 +61,12 @@ namespace WMS.Models
         public Nullable<byte> TypeID { get; set; }
         public Nullable<short> LocID { get; set; }
         public Nullable<byte> GradeID { get; set; }
-        public Nullable<short> DeptID { get; set; }
-        public Nullable<short> DivID { get; set; }
         public Nullable<short> CrewID { get; set; }
         public int EmpID { get; set; }
         public Nullable<short> CityID { get; set; }
+        public Nullable<short> DeptID { get; set; }
+        public short Expr1 { get; set; }
+        public string DeptName { get; set; }
+        public Nullable<short> DivID { get; set; }
     }
 }

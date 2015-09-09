@@ -17,6 +17,6 @@ namespace WMS.Models
         // 
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<WMS.Models.WMSContext>());
 
-        public DbSet<WMS.Models.AttProcessor> AttProcessors { get; set; }
+        public DbSet<WMS.Models.AttProcessorScheduler> AttProcessors { get; set; }
     }
 }

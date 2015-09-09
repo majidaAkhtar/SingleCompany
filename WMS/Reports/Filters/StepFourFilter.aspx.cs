@@ -121,7 +121,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from ViewSection where " + query);
-            _View = dt.ToList<ViewSection>();
+            _View = dt.ToList<ViewSection>().AsQueryable().SortBy("SectionName").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -164,7 +164,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from ViewCrew " + query);
-            _View = dt.ToList<ViewCrew>();
+            _View = dt.ToList<ViewCrew>().AsQueryable().SortBy("CrewName").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
