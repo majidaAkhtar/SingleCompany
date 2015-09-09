@@ -118,7 +118,9 @@
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="ShiftID" HeaderText="ID" />
                                         <asp:BoundField DataField="ShiftName" HeaderText="Name" />
-                                        <asp:BoundField DataField="Location.City.CityName" HeaderText="City Name" />
+                                        <asp:BoundField DataField="Location.City.CityName" HeaderText="City" />
+                                        <asp:BoundField DataField="Location.LocName" HeaderText="Location" />
+
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#EEEEEE" Font-Bold="False" ForeColor="Black" Wrap="False" />
