@@ -451,6 +451,9 @@
     <Compile Include="Models\AuditOperation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BadliRecord.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Card.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -674,6 +677,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewAuditLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewBadli.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewCard.cs">
@@ -1227,6 +1233,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\RDLC\AttDepartmentSummary.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\BadliReport.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DetailedAbsent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLeaveQuota.rdlc" />
@@ -1234,11 +1241,11 @@
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MLvConsumed.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\MRDetailExcelC.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\MRDetailExcelP.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRLeaveBal.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MYLeaveSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RAuditLog.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRDetailExcelC.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRDetailExcelP.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSummaryC.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAbsent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRDetailed.rdlc" />

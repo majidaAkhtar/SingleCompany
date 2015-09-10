@@ -22,6 +22,7 @@
       [AuditOperation].[OperationName] AS [OperationName]
       FROM [dbo].[AuditOperation] AS [AuditOperation]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="BadliRecord" EntityType="TAS2013Model.Store.BadliRecord" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Card" EntityType="TAS2013Model.Store.Card" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CardType" EntityType="TAS2013Model.Store.CardType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="TAS2013Model.Store.Category" store:Type="Tables" Schema="dbo" />
@@ -345,6 +346,59 @@
       [ViewAuditLog].[Department] AS [Department], 
       [ViewAuditLog].[OperationName] AS [OperationName]
       FROM [dbo].[ViewAuditLog] AS [ViewAuditLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewBadli" EntityType="TAS2013Model.Store.ViewBadli" store:Type="Views" store:Schema="dbo" store:Name="ViewBadli">
+            <DefiningQuery>SELECT 
+      [ViewBadli].[BadliDesgID] AS [BadliDesgID], 
+      [ViewBadli].[DesignationName] AS [DesignationName], 
+      [ViewBadli].[Expr1] AS [Expr1], 
+      [ViewBadli].[EmpNo] AS [EmpNo], 
+      [ViewBadli].[DutyCode] AS [DutyCode], 
+      [ViewBadli].[DutyTime] AS [DutyTime], 
+      [ViewBadli].[TimeIn] AS [TimeIn], 
+      [ViewBadli].[TimeOut] AS [TimeOut], 
+      [ViewBadli].[WorkMin] AS [WorkMin], 
+      [ViewBadli].[LateIn] AS [LateIn], 
+      [ViewBadli].[LateOut] AS [LateOut], 
+      [ViewBadli].[EarlyIn] AS [EarlyIn], 
+      [ViewBadli].[EarlyOut] AS [EarlyOut], 
+      [ViewBadli].[OTMin] AS [OTMin], 
+      [ViewBadli].[GZOTMin] AS [GZOTMin], 
+      [ViewBadli].[BreakMin] AS [BreakMin], 
+      [ViewBadli].[SLMin] AS [SLMin], 
+      [ViewBadli].[StatusP] AS [StatusP], 
+      [ViewBadli].[StatusAB] AS [StatusAB], 
+      [ViewBadli].[BadliID] AS [BadliID], 
+      [ViewBadli].[AttDate] AS [AttDate], 
+      [ViewBadli].[EmpDateBadli] AS [EmpDateBadli], 
+      [ViewBadli].[DeptName] AS [DeptName], 
+      [ViewBadli].[DeptID] AS [DeptID], 
+      [ViewBadli].[CityID] AS [CityID], 
+      [ViewBadli].[EmpID] AS [EmpID], 
+      [ViewBadli].[CrewID] AS [CrewID], 
+      [ViewBadli].[GradeID] AS [GradeID], 
+      [ViewBadli].[LocID] AS [LocID], 
+      [ViewBadli].[TypeID] AS [TypeID], 
+      [ViewBadli].[ShiftID] AS [ShiftID], 
+      [ViewBadli].[SecID] AS [SecID], 
+      [ViewBadli].[CatID] AS [CatID], 
+      [ViewBadli].[CompanyID] AS [CompanyID], 
+      [ViewBadli].[DivisionName] AS [DivisionName], 
+      [ViewBadli].[SectionName] AS [SectionName], 
+      [ViewBadli].[EmpName] AS [EmpName], 
+      [ViewBadli].[Expr2] AS [Expr2], 
+      [ViewBadli].[ShiftName] AS [ShiftName], 
+      [ViewBadli].[CatName] AS [CatName], 
+      [ViewBadli].[TypeName] AS [TypeName], 
+      [ViewBadli].[CrewName] AS [CrewName], 
+      [ViewBadli].[LocName] AS [LocName], 
+      [ViewBadli].[RegionName] AS [RegionName], 
+      [ViewBadli].[CityName] AS [CityName], 
+      [ViewBadli].[CompName] AS [CompName], 
+      [ViewBadli].[GradeName] AS [GradeName], 
+      [ViewBadli].[Expr3] AS [Expr3], 
+      [ViewBadli].[DivID] AS [DivID]
+      FROM [dbo].[ViewBadli] AS [ViewBadli]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewCards" EntityType="TAS2013Model.Store.ViewCards" store:Type="Views" store:Schema="dbo" store:Name="ViewCards">
             <DefiningQuery>SELECT 
@@ -1787,6 +1841,14 @@
             <End Role="User" EntitySet="User" />
             <End Role="AuditLog" EntitySet="AuditLog" />
           </AssociationSet>
+          <AssociationSet Name="FK_BadliRecord_AttData" Association="TAS2013Model.Store.FK_BadliRecord_AttData">
+            <End Role="AttData" EntitySet="AttData" />
+            <End Role="BadliRecord" EntitySet="BadliRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BadliRecord_Emp" Association="TAS2013Model.Store.FK_BadliRecord_Emp">
+            <End Role="Emp" EntitySet="Emp" />
+            <End Role="BadliRecord" EntitySet="BadliRecord" />
+          </AssociationSet>
           <AssociationSet Name="FK_Card_CardType" Association="TAS2013Model.Store.FK_Card_CardType">
             <End Role="CardType" EntitySet="CardType" />
             <End Role="Card" EntitySet="Card" />
@@ -2365,6 +2427,17 @@
           <Property Name="OperationID" Type="smallint" Nullable="false" />
           <Property Name="OperationName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="BadliRecord">
+          <Key>
+            <PropertyRef Name="BadliID" />
+          </Key>
+          <Property Name="BadliID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="EmpDateBadli" Type="nvarchar" MaxLength="15" />
+          <Property Name="BadliDesgID" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="CardID" />
@@ -2731,6 +2804,9 @@
           <Property Name="TimeIn" Type="datetime" />
           <Property Name="TimeOut" Type="datetime" />
           <Property Name="WorkMin" Type="smallint" />
+          <Property Name="StartTime" Type="time" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherValue" Type="smallint" />
         </EntityType>
         <EntityType Name="JobCardEmp">
           <Key>
@@ -2739,10 +2815,9 @@
           <Property Name="EmpDate" Type="nvarchar" MaxLength="50" />
           <Property Name="JobDataID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EmpID" Type="int" Nullable="false" />
-          <Property Name="Dated" Type="datetime" />
+          <Property Name="Dated" Type="date" />
           <Property Name="SubmittedFrom" Type="int" />
           <Property Name="WrkCardID" Type="smallint" />
-          <Property Name="CompanyID" Type="smallint" />
           <Property Name="SendTo" Type="int" />
           <Property Name="Approved" Type="bit" />
           <Property Name="Rejected" Type="bit" />
@@ -2751,6 +2826,9 @@
           <Property Name="TimeIn" Type="datetime" />
           <Property Name="TimeOut" Type="datetime" />
           <Property Name="WorkMin" Type="smallint" />
+          <Property Name="StartTime" Type="time" />
+          <Property Name="OtherValue" Type="smallint" />
+          <Property Name="JCAppID" Type="int" />
         </EntityType>
         <EntityType Name="JobTitle">
           <Key>
@@ -3508,6 +3586,69 @@
           <Property Name="Status" Type="bit" />
           <Property Name="Department" Type="smallint" />
           <Property Name="OperationName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'TAS2013.dbo.ViewBadli' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewBadli">
+          <Key>
+            <PropertyRef Name="BadliID" />
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="EmpName" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="ShiftName" />
+            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="LocName" />
+          </Key>
+          <Property Name="BadliDesgID" Type="int" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Expr1" Type="int" />
+          <Property Name="EmpNo" Type="nvarchar" MaxLength="15" />
+          <Property Name="DutyCode" Type="char" MaxLength="1" />
+          <Property Name="DutyTime" Type="time" />
+          <Property Name="TimeIn" Type="datetime" />
+          <Property Name="TimeOut" Type="datetime" />
+          <Property Name="WorkMin" Type="smallint" />
+          <Property Name="LateIn" Type="smallint" />
+          <Property Name="LateOut" Type="smallint" />
+          <Property Name="EarlyIn" Type="smallint" />
+          <Property Name="EarlyOut" Type="smallint" />
+          <Property Name="OTMin" Type="smallint" />
+          <Property Name="GZOTMin" Type="smallint" />
+          <Property Name="BreakMin" Type="smallint" />
+          <Property Name="SLMin" Type="time" />
+          <Property Name="StatusP" Type="bit" />
+          <Property Name="StatusAB" Type="bit" />
+          <Property Name="BadliID" Type="int" Nullable="false" />
+          <Property Name="AttDate" Type="date" />
+          <Property Name="EmpDateBadli" Type="nvarchar" MaxLength="15" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeptID" Type="smallint" />
+          <Property Name="CityID" Type="smallint" />
+          <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="CrewID" Type="smallint" />
+          <Property Name="GradeID" Type="tinyint" />
+          <Property Name="LocID" Type="smallint" />
+          <Property Name="TypeID" Type="tinyint" />
+          <Property Name="ShiftID" Type="tinyint" />
+          <Property Name="SecID" Type="smallint" />
+          <Property Name="CatID" Type="smallint" />
+          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Expr2" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ShiftName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="CrewName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Expr3" Type="nvarchar" MaxLength="200" />
+          <Property Name="DivID" Type="smallint" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'TAS2013.dbo.ViewCards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -5176,6 +5317,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BadliRecord_AttData">
+          <End Role="AttData" Type="TAS2013Model.Store.AttData" Multiplicity="0..1" />
+          <End Role="BadliRecord" Type="TAS2013Model.Store.BadliRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttData">
+              <PropertyRef Name="EmpDate" />
+            </Principal>
+            <Dependent Role="BadliRecord">
+              <PropertyRef Name="EmpDateBadli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BadliRecord_Emp">
+          <End Role="Emp" Type="TAS2013Model.Store.Emp" Multiplicity="0..1" />
+          <End Role="BadliRecord" Type="TAS2013Model.Store.BadliRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emp">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="BadliRecord">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Card_CardType">
           <End Role="CardType" Type="TAS2013Model.Store.CardType" Multiplicity="0..1" />
           <End Role="Card" Type="TAS2013Model.Store.Card" Multiplicity="*" />
@@ -5855,6 +6020,7 @@
           <EntitySet Name="AuditForms" EntityType="TAS2013Model.AuditForm" />
           <EntitySet Name="AuditLogs" EntityType="TAS2013Model.AuditLog" />
           <EntitySet Name="AuditOperations" EntityType="TAS2013Model.AuditOperation" />
+          <EntitySet Name="BadliRecords" EntityType="TAS2013Model.BadliRecord" />
           <EntitySet Name="Cards" EntityType="TAS2013Model.Card" />
           <EntitySet Name="CardTypes" EntityType="TAS2013Model.CardType" />
           <EntitySet Name="Categories" EntityType="TAS2013Model.Category" />
@@ -5926,6 +6092,7 @@
           <EntitySet Name="ViewAbsents" EntityType="TAS2013Model.ViewAbsent" />
           <EntitySet Name="ViewAttDatas" EntityType="TAS2013Model.ViewAttData" />
           <EntitySet Name="ViewAuditLogs" EntityType="TAS2013Model.ViewAuditLog" />
+          <EntitySet Name="ViewBadlis" EntityType="TAS2013Model.ViewBadli" />
           <EntitySet Name="ViewCards" EntityType="TAS2013Model.ViewCard" />
           <EntitySet Name="ViewCrews" EntityType="TAS2013Model.ViewCrew" />
           <EntitySet Name="ViewDepartments" EntityType="TAS2013Model.ViewDepartment" />
@@ -5957,6 +6124,10 @@
             <End Role="Emp" EntitySet="Emps" />
             <End Role="AttData" EntitySet="AttDatas" />
           </AssociationSet>
+          <AssociationSet Name="FK_BadliRecord_AttData" Association="TAS2013Model.FK_BadliRecord_AttData">
+            <End Role="AttData" EntitySet="AttDatas" />
+            <End Role="BadliRecord" EntitySet="BadliRecords" />
+          </AssociationSet>
           <AssociationSet Name="FK_AttDataManEdit_Emp" Association="TAS2013Model.FK_AttDataManEdit_Emp">
             <End Role="Emp" EntitySet="Emps" />
             <End Role="AttDataManEdit" EntitySet="AttDataManEdits" />
@@ -5976,6 +6147,10 @@
           <AssociationSet Name="FK_AuditLog_User" Association="TAS2013Model.FK_AuditLog_User">
             <End Role="User" EntitySet="Users" />
             <End Role="AuditLog" EntitySet="AuditLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BadliRecord_Emp" Association="TAS2013Model.FK_BadliRecord_Emp">
+            <End Role="Emp" EntitySet="Emps" />
+            <End Role="BadliRecord" EntitySet="BadliRecords" />
           </AssociationSet>
           <AssociationSet Name="FK_Card_CardType" Association="TAS2013Model.FK_Card_CardType">
             <End Role="CardType" EntitySet="CardTypes" />
@@ -6277,6 +6452,7 @@
           <Property Name="Tout15" Type="DateTime" Precision="3" />
           <Property Name="CompanyID" Type="Int16" />
           <NavigationProperty Name="Emp" Relationship="TAS2013Model.FK_AttData_Emp" FromRole="AttData" ToRole="Emp" />
+          <NavigationProperty Name="BadliRecords" Relationship="TAS2013Model.FK_BadliRecord_AttData" FromRole="AttData" ToRole="BadliRecord" />
         </EntityType>
         <EntityType Name="AttDataManEdit">
           <Key>
@@ -6559,6 +6735,19 @@
           <Property Name="OperationID" Type="Int16" Nullable="false" />
           <Property Name="OperationName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
         </EntityType>
+        <EntityType Name="BadliRecord">
+          <Key>
+            <PropertyRef Name="BadliID" />
+          </Key>
+          <Property Name="BadliID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="EmpDateBadli" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="BadliDesgID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="AttData" Relationship="TAS2013Model.FK_BadliRecord_AttData" FromRole="BadliRecord" ToRole="AttData" />
+          <NavigationProperty Name="Emp" Relationship="TAS2013Model.FK_BadliRecord_Emp" FromRole="BadliRecord" ToRole="Emp" />
+        </EntityType>
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="CardID" />
@@ -6828,6 +7017,7 @@
           <NavigationProperty Name="AttDatas" Relationship="TAS2013Model.FK_AttData_Emp" FromRole="Emp" ToRole="AttData" />
           <NavigationProperty Name="AttDataManEdits" Relationship="TAS2013Model.FK_AttDataManEdit_Emp" FromRole="Emp" ToRole="AttDataManEdit" />
           <NavigationProperty Name="AttMnDataPers" Relationship="TAS2013Model.FK_AttMnDataPer_Emp" FromRole="Emp" ToRole="AttMnDataPer" />
+          <NavigationProperty Name="BadliRecords" Relationship="TAS2013Model.FK_BadliRecord_Emp" FromRole="Emp" ToRole="BadliRecord" />
           <NavigationProperty Name="Cards" Relationship="TAS2013Model.FK_Card_Emp" FromRole="Emp" ToRole="Card" />
           <NavigationProperty Name="Crew" Relationship="TAS2013Model.FK_Emp_Crew" FromRole="Emp" ToRole="Crew" />
           <NavigationProperty Name="Designation" Relationship="TAS2013Model.FK_Emp_Designation1" FromRole="Emp" ToRole="Designation" />
@@ -6985,6 +7175,9 @@
           <Property Name="TimeIn" Type="DateTime" Precision="3" />
           <Property Name="TimeOut" Type="DateTime" Precision="3" />
           <Property Name="WorkMin" Type="Int16" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="Remarks" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OtherValue" Type="Int16" />
         </EntityType>
         <EntityType Name="JobCardEmp">
           <Key>
@@ -6993,10 +7186,9 @@
           <Property Name="EmpDate" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="JobDataID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="EmpID" Type="Int32" Nullable="false" />
-          <Property Name="Dated" Type="DateTime" Precision="3" />
+          <Property Name="Dated" Type="DateTime" Precision="0" />
           <Property Name="SubmittedFrom" Type="Int32" />
           <Property Name="WrkCardID" Type="Int16" />
-          <Property Name="CompanyID" Type="Int16" />
           <Property Name="SendTo" Type="Int32" />
           <Property Name="Approved" Type="Boolean" />
           <Property Name="Rejected" Type="Boolean" />
@@ -7005,6 +7197,9 @@
           <Property Name="TimeIn" Type="DateTime" Precision="3" />
           <Property Name="TimeOut" Type="DateTime" Precision="3" />
           <Property Name="WorkMin" Type="Int16" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="OtherValue" Type="Int16" />
+          <Property Name="JCAppID" Type="Int32" />
         </EntityType>
         <EntityType Name="JobTitle">
           <Key>
@@ -7788,6 +7983,66 @@
           <Property Name="Status" Type="Boolean" />
           <Property Name="Department" Type="Int16" />
           <Property Name="OperationName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ViewBadli">
+          <Key>
+            <PropertyRef Name="BadliID" />
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="EmpName" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="ShiftName" />
+            <PropertyRef Name="TypeName" />
+            <PropertyRef Name="LocName" />
+          </Key>
+          <Property Name="BadliDesgID" Type="Int32" />
+          <Property Name="DesignationName" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Expr1" Type="Int32" />
+          <Property Name="EmpNo" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="DutyCode" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="DutyTime" Type="Time" Precision="7" />
+          <Property Name="TimeIn" Type="DateTime" Precision="3" />
+          <Property Name="TimeOut" Type="DateTime" Precision="3" />
+          <Property Name="WorkMin" Type="Int16" />
+          <Property Name="LateIn" Type="Int16" />
+          <Property Name="LateOut" Type="Int16" />
+          <Property Name="EarlyIn" Type="Int16" />
+          <Property Name="EarlyOut" Type="Int16" />
+          <Property Name="OTMin" Type="Int16" />
+          <Property Name="GZOTMin" Type="Int16" />
+          <Property Name="BreakMin" Type="Int16" />
+          <Property Name="SLMin" Type="Time" Precision="7" />
+          <Property Name="StatusP" Type="Boolean" />
+          <Property Name="StatusAB" Type="Boolean" />
+          <Property Name="BadliID" Type="Int32" Nullable="false" />
+          <Property Name="AttDate" Type="DateTime" Precision="0" />
+          <Property Name="EmpDateBadli" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="DeptName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DeptID" Type="Int16" />
+          <Property Name="CityID" Type="Int16" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="CrewID" Type="Int16" />
+          <Property Name="GradeID" Type="Byte" />
+          <Property Name="LocID" Type="Int16" />
+          <Property Name="TypeID" Type="Byte" />
+          <Property Name="ShiftID" Type="Byte" />
+          <Property Name="SecID" Type="Int16" />
+          <Property Name="CatID" Type="Int16" />
+          <Property Name="CompanyID" Type="Int16" />
+          <Property Name="DivisionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SectionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Expr2" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ShiftName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CatName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="CrewName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LocName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="RegionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CompName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GradeName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Expr3" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="DivID" Type="Int16" />
         </EntityType>
         <EntityType Name="ViewCard">
           <Key>
@@ -9315,6 +9570,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BadliRecord_AttData">
+          <End Role="AttData" Type="TAS2013Model.AttData" Multiplicity="0..1" />
+          <End Role="BadliRecord" Type="TAS2013Model.BadliRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttData">
+              <PropertyRef Name="EmpDate" />
+            </Principal>
+            <Dependent Role="BadliRecord">
+              <PropertyRef Name="EmpDateBadli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AttDataManEdit_Emp">
           <End Role="Emp" Type="TAS2013Model.Emp" Multiplicity="0..1" />
           <End Role="AttDataManEdit" Type="TAS2013Model.AttDataManEdit" Multiplicity="*" />
@@ -9372,6 +9639,18 @@
             </Principal>
             <Dependent Role="AuditLog">
               <PropertyRef Name="AuditUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BadliRecord_Emp">
+          <End Role="Emp" Type="TAS2013Model.Emp" Multiplicity="0..1" />
+          <End Role="BadliRecord" Type="TAS2013Model.BadliRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emp">
+              <PropertyRef Name="EmpID" />
+            </Principal>
+            <Dependent Role="BadliRecord">
+              <PropertyRef Name="EmpID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -10374,6 +10653,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BadliRecords">
+            <EntityTypeMapping TypeName="TAS2013Model.BadliRecord">
+              <MappingFragment StoreEntitySet="BadliRecord">
+                <ScalarProperty Name="BadliID" ColumnName="BadliID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmpDateBadli" ColumnName="EmpDateBadli" />
+                <ScalarProperty Name="BadliDesgID" ColumnName="BadliDesgID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="TAS2013Model.Card">
               <MappingFragment StoreEntitySet="Card">
@@ -10769,6 +11060,9 @@
                 <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
                 <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
                 <ScalarProperty Name="WorkMin" ColumnName="WorkMin" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="OtherValue" ColumnName="OtherValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -10781,7 +11075,6 @@
                 <ScalarProperty Name="Dated" ColumnName="Dated" />
                 <ScalarProperty Name="SubmittedFrom" ColumnName="SubmittedFrom" />
                 <ScalarProperty Name="WrkCardID" ColumnName="WrkCardID" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="SendTo" ColumnName="SendTo" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Rejected" ColumnName="Rejected" />
@@ -10790,6 +11083,9 @@
                 <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
                 <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
                 <ScalarProperty Name="WorkMin" ColumnName="WorkMin" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="OtherValue" ColumnName="OtherValue" />
+                <ScalarProperty Name="JCAppID" ColumnName="JCAppID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -11544,6 +11840,61 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="OperationName" ColumnName="OperationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewBadlis">
+            <EntityTypeMapping TypeName="TAS2013Model.ViewBadli">
+              <MappingFragment StoreEntitySet="ViewBadli">
+                <ScalarProperty Name="BadliDesgID" ColumnName="BadliDesgID" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+                <ScalarProperty Name="DutyTime" ColumnName="DutyTime" />
+                <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+                <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+                <ScalarProperty Name="WorkMin" ColumnName="WorkMin" />
+                <ScalarProperty Name="LateIn" ColumnName="LateIn" />
+                <ScalarProperty Name="LateOut" ColumnName="LateOut" />
+                <ScalarProperty Name="EarlyIn" ColumnName="EarlyIn" />
+                <ScalarProperty Name="EarlyOut" ColumnName="EarlyOut" />
+                <ScalarProperty Name="OTMin" ColumnName="OTMin" />
+                <ScalarProperty Name="GZOTMin" ColumnName="GZOTMin" />
+                <ScalarProperty Name="BreakMin" ColumnName="BreakMin" />
+                <ScalarProperty Name="SLMin" ColumnName="SLMin" />
+                <ScalarProperty Name="StatusP" ColumnName="StatusP" />
+                <ScalarProperty Name="StatusAB" ColumnName="StatusAB" />
+                <ScalarProperty Name="BadliID" ColumnName="BadliID" />
+                <ScalarProperty Name="AttDate" ColumnName="AttDate" />
+                <ScalarProperty Name="EmpDateBadli" ColumnName="EmpDateBadli" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="CrewID" ColumnName="CrewID" />
+                <ScalarProperty Name="GradeID" ColumnName="GradeID" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="SecID" ColumnName="SecID" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="CrewName" ColumnName="CrewName" />
+                <ScalarProperty Name="LocName" ColumnName="LocName" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="DivID" ColumnName="DivID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

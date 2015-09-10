@@ -49,21 +49,14 @@
                                         <li><a href="../ReportContainer.aspx?reportname=leave_application">Leave Application</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=department_attendance_summary">Department Attendance Summary</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=summarized_monthly_report">Summarized Monthly Report</a></li>
-<<<<<<< HEAD
-
-                                    
-=======
-                                 
->>>>>>> 9b3f69a89aaf8a0d8af55a43233c2ed71f9587e5
                                     </ul>
                                 </li>
                                 <li>
-                                    <h5>Daily Attendance</h5>
+                                    <h5>Daily</h5>
                                     <ul>
-                                        <li><a href="../ReportContainer.aspx?reportname=detailed_att">Detailed Attendance</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Detailed Attendance</a></li>
                                          <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Consolidated Attendance</a></li>
-
-                                        <li><a href="../ReportContainer.aspx?reportname=present">Present</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=present">Present</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=absent">Absent</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=lv_application">Leave Application</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=short_lv">Short Leave</a></li>
@@ -74,6 +67,8 @@
                                         <li><a href="../ReportContainer.aspx?reportname=overtime">Overtime</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=missing_attendance">Missing Attendance</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=multiple_in_out">Multiple In/Out</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=badli_report">Multiple In/Out</a></li>
+
                                     </ul>
                                 </li>
                                 <li>

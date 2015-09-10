@@ -75,7 +75,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -391,14 +390,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox1">
+                    <Textbox Name="date2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!date.Value</Value>
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -412,7 +411,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <rd:DefaultName>date2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -434,6 +433,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>7</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -1059,7 +1059,6 @@
               <SortExpressions>
                 <SortExpression>
                   <Value>=Fields!date.Value</Value>
-                  <Direction>Descending</Direction>
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
@@ -1134,7 +1133,7 @@
     <Height>1.79167in</Height>
     <Style />
   </Body>
-  <Width>9.57037in</Width>
+  <Width>9.88704in</Width>
   <Page>
     <PageHeader>
       <Height>0.5875in</Height>
