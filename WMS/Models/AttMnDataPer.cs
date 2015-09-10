@@ -97,5 +97,7 @@ namespace WMS.Models
         public Nullable<short> OT29 { get; set; }
         public Nullable<short> OT30 { get; set; }
         public Nullable<short> OT31 { get; set; }
+    
+        public virtual Emp Emp { get; set; }
     }
 }

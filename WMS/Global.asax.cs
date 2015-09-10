@@ -19,7 +19,7 @@ namespace WMS
         protected void Session_Start(object sender, EventArgs e)
         {
             // Initialize Session["FiltersModel"] -- Move to First Page
-            Session["FiltersModel"] = SessionManager.Init();
+            Session["FiltersModel"] = new WMSLibrary.FiltersModel();
             LoadSessionValues();
             //LoadSession();
         }
@@ -78,6 +78,7 @@ namespace WMS
                         Session["MRSummary"] = "1";
                     if (v.MRoster == true)
                         Session["MRoster"] = "1";
+
                 }
             }
         }
@@ -93,6 +94,8 @@ namespace WMS
         protected void Session_End(object sender, EventArgs e)
         {
             Session["FiltersModel"] = null;
+            Session["LogedUserID"] = null;
+            Session["LoggedUser"] = null;
         }
         //void Application_BeginRequest(object sender, EventArgs e)
         //{
@@ -130,7 +133,9 @@ namespace WMS
 
         protected void Session_End()
         {
-            
+            Session["FiltersModel"] = null;
+            Session["LogedUserID"] = null;
+            Session["LoggedUser"] = null;
         }
     }
 }

@@ -12,6 +12,7 @@ using WMS.CustomClass;
 using System.Linq.Dynamic;
 using WMS.Controllers.Filters;
 using WMS.HelperClass;
+
 namespace WMS.Controllers
 {
     [CustomControllerAttributes]
@@ -22,6 +23,7 @@ namespace WMS.Controllers
         // GET: /City/
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             if (searchString != null)
@@ -85,7 +87,7 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName");
+            ViewBag.RegionID = new SelectList(db.Regions.OrderBy(s=>s.RegionName), "RegionID", "RegionName");
             return View();
         }
 
@@ -115,10 +117,11 @@ namespace WMS.Controllers
             {
                 db.Cities.Add(city);
                 db.SaveChanges();
+                ViewBag.JS = "toastr.success('"+city.CityName+" Successfully created');";
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName", city.RegionID);
+            ViewBag.RegionID = new SelectList(db.Regions.OrderBy(s=>s.RegionName), "RegionID", "RegionName", city.RegionID);
             return View(city);
         }
         private bool CheckDuplicate(string _Name)
@@ -144,7 +147,7 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName", city.RegionID);
+            ViewBag.RegionID = new SelectList(db.Regions.OrderBy(s=>s.RegionName), "RegionID", "RegionName", city.RegionID);
             return View(city);
         }
 
@@ -173,7 +176,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RegionID = new SelectList(db.Regions, "RegionID", "RegionName", city.RegionID);
+            ViewBag.RegionID = new SelectList(db.Regions.OrderBy(s=>s.RegionName), "RegionID", "RegionName", city.RegionID);
             return View(city);
         }
 

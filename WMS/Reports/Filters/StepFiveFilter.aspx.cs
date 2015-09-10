@@ -60,7 +60,14 @@ namespace WMS.Reports.Filters
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            List<string> list = Session["ReportSession"] as List<string>;
+            list[0] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
+            list[1] = DateTime.Today.ToString("yyyy-MM-dd");
+            dateFrom.Value = list[0];
+            dateTo.Value = list[1];
+            Session["ReportSession"] = list;
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Location");
@@ -78,7 +85,8 @@ namespace WMS.Reports.Filters
         #endregion
         private void SaveEmployeeIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
             Session["FiltersModel"] = FM;
         }
 
@@ -91,7 +99,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyFilters(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
-            _View = dt.ToList<EmpView>();
+            _View = dt.ToList<EmpView>().AsQueryable().SortBy("EmpNo").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)

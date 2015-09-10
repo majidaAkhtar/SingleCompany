@@ -22,7 +22,7 @@ namespace WMS.Controllers
         public ActionResult Index()
         {
             User LoggedInUser = Session["LoggedUser"] as User;
-            var lvshorts = db.LvShorts.Where(aa=>aa.CompanyID == LoggedInUser.CompanyID).ToList();
+            var lvshorts = db.LvShorts.Where(aa=>aa.CompanyID == LoggedInUser.CompanyID).OrderBy(s=>s.CreatedDate).ToList();
             return View(lvshorts);
         }
 
@@ -76,7 +76,7 @@ namespace WMS.Controllers
             else
             {
                 string _EmpNo = Request.Form["EmpNo"].ToString();
-                List<Emp> _emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo).ToList();
+                List<Emp> _emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo).OrderBy(s=>s.EmpNo).ToList();
                 if (_emp.Count == 0)
                 {
                     ModelState.AddModelError("EmpNo", "Emp No not exist");

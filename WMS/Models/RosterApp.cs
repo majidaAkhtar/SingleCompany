@@ -14,11 +14,6 @@ namespace WMS.Models
     
     public partial class RosterApp
     {
-        public RosterApp()
-        {
-            this.RosterDetails = new HashSet<RosterDetail>();
-        }
-    
         public int RotaApplD { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateStarted { get; set; }
@@ -31,9 +26,9 @@ namespace WMS.Models
         public Nullable<short> WorkMin { get; set; }
         public Nullable<System.TimeSpan> DutyTime { get; set; }
         public Nullable<byte> ShiftID { get; set; }
+        public Nullable<short> CompanyID { get; set; }
     
         public virtual RosterType RosterType { get; set; }
         public virtual Shift Shift { get; set; }
-        public virtual ICollection<RosterDetail> RosterDetails { get; set; }
     }
 }

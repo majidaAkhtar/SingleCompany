@@ -17,7 +17,7 @@ namespace WMS.Controllers
         // GET: /JobCardEmpR/
         public ActionResult Index()
         {
-            return View(db.JobCardEmps.ToList());
+            return View(db.JobCardEmps.OrderBy(s=>s.DateCreated).ToList());
         }
 
         // GET: /JobCardEmpR/Details/5

@@ -82,18 +82,27 @@ namespace WMS.Reports.Filters
 
         private void SaveShiftIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewShift, Session["FiltersModel"] as FiltersModel, "Shift");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewShift, Session["FiltersModel"] as FiltersModel, "Shift");
             Session["FiltersModel"] = FM;
         }
         private void SaveDivisionIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Division");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Division");
             Session["FiltersModel"] = FM;
         }
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            List<string> list = Session["ReportSession"] as List<string>;
+            list[0] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
+            list[1] = DateTime.Today.ToString("yyyy-MM-dd");
+            dateFrom.Value = list[0];
+            dateTo.Value = list[1];
+            Session["ReportSession"] = list;
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDivision, Session["FiltersModel"] as FiltersModel, "Location");
@@ -138,7 +147,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
            
-            _View = da.ViewDivisions.Where(query).ToList();
+            _View = da.ViewDivisions.Where(query).AsQueryable().OrderBy("DivisionName ASC").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -169,7 +178,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForShiftForLinq(LoggedInUser);
            // DataTable dt = qb.GetValuesfromDB("select * from Shift " + query);
-            _View = da.Shifts.Where(query).ToList();
+            _View = da.Shifts.Where(query).AsQueryable().OrderBy("ShiftName ASC").ToList();
             if (fm.LocationFilter.Count > 0)
             {
                 foreach (var loc in fm.LocationFilter)

@@ -70,7 +70,14 @@ namespace WMS.Reports.Filters
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            List<string> list = Session["ReportSession"] as List<string>;
+            list[0] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
+            list[1] = DateTime.Today.ToString("yyyy-MM-dd");
+            Session["ReportSession"] = list;
+            dateFrom.Value = list[0];
+            dateTo.Value = list[1];
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Location");
@@ -100,12 +107,14 @@ namespace WMS.Reports.Filters
 
         private void SaveSectionIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
             Session["FiltersModel"] = FM;
         }
         private void SaveCrewIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewCrew, Session["FiltersModel"] as FiltersModel, "Crew");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewCrew, Session["FiltersModel"] as FiltersModel, "Crew");
             Session["FiltersModel"] = FM;
         }
 
@@ -118,7 +127,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from ViewSection where " + query);
-            _View = dt.ToList<ViewSection>();
+            _View = dt.ToList<ViewSection>().AsQueryable().SortBy("SectionName").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)
@@ -159,9 +168,9 @@ namespace WMS.Reports.Filters
             List<ViewCrew> _TempView = new List<ViewCrew>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForCompanySegeration(LoggedInUser);
+            string query = qb.QueryForCompanyFilters(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from ViewCrew " + query);
-            _View = dt.ToList<ViewCrew>();
+            _View = dt.ToList<ViewCrew>().AsQueryable().SortBy("CrewName").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)

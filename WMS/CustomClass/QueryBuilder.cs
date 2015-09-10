@@ -41,7 +41,7 @@ namespace WMS.CustomClass
            // }
             TAS2013Entities db=  new TAS2013Entities();
             List<UserLocation> ulocs = new List<UserLocation>();
-            ulocs = db.UserLocations.Where(aa => aa.UserID == _user.UserID).ToList();
+           ulocs = db.UserLocations.Where(aa => aa.UserID == _user.UserID).ToList();
             foreach (var uloc in ulocs)
             {
                 _CriteriaForOrLoc.Add(" LocID = " + uloc.LocationID + " ");
@@ -84,6 +84,7 @@ namespace WMS.CustomClass
             {
                 subQueryLoc = subQueryLoc + _CriteriaForOrLoc[i] + " or ";
             }
+            if(_CriteriaForOrLoc.Count !=0)
             subQueryLoc = " and  ( " + subQueryLoc + _CriteriaForOrLoc[_CriteriaForOrLoc.Count-1] + " ) ";
             //query = query + " ) and (";
             //query = query + _Criteria[_Criteria.Count-1];
@@ -192,7 +193,7 @@ namespace WMS.CustomClass
             string query = "";
             switch (_User.RoleID)
             {
-                case 1:
+                case 1: query ="CompID > 0";
                     break;
                 case 2:
                     query = "CompID= 1 or CompID = 2 ";
@@ -246,7 +247,10 @@ namespace WMS.CustomClass
             {
                 query = query + _CriteriaForOrLoc[i] + " or ";
             }
-            query = query + _CriteriaForOrLoc[_CriteriaForOrLoc.Count - 1];
+            if (_CriteriaForOrLoc.Count != 0)
+                query = query + _CriteriaForOrLoc[_CriteriaForOrLoc.Count - 1];
+            else
+                query = "LocID > 0";
             return query;
         }
 

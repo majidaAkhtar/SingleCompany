@@ -10,7 +10,7 @@ namespace WMSLibrary
     public class Filters
     {
 
-        public static List<int> SyncDepartmentIDs(GridView gv, List<int> DepartmentIDs)
+        public List<int> SyncDepartmentIDs(GridView gv, List<int> DepartmentIDs)
         {
             for (int i = 0; i < gv.Rows.Count; i++)
             {
@@ -36,7 +36,7 @@ namespace WMSLibrary
             }
             return DepartmentIDs;
         }
-        public static FiltersModel DeleteAllFilters(FiltersModel filtersModel)
+        public FiltersModel DeleteAllFilters(FiltersModel filtersModel)
         {
             filtersModel.CityFilter = new List<FiltersAttributes>();
             filtersModel.CompanyFilter = new List<FiltersAttributes>();
@@ -50,10 +50,9 @@ namespace WMSLibrary
             filtersModel.ShiftFilter = new List<FiltersAttributes>();
             filtersModel.TypeFilter = new List<FiltersAttributes>();
             return filtersModel;
-        
         }
 
-        public static FiltersModel SyncGridViewIDs(GridView gv, FiltersModel filtersModel, string filterName)
+        public FiltersModel SyncGridViewIDs(GridView gv, FiltersModel filtersModel, string filterName)
         {
 
             if (filtersModel == null)
@@ -82,7 +81,6 @@ namespace WMSLibrary
             }
             return filtersModel;
         }
-
         /// <summary>
         /// This function will remove the id of a specific deparment, company... form the session
         /// </summary>
@@ -90,6 +88,14 @@ namespace WMSLibrary
         /// <param name="filterName"></param>
         /// <param name="ItemID"></param>
         /// 
+        public static FiltersModel DeleteSingleFilter(FiltersModel fml, string id,string filtername)
+        {
+             
+            RemoveObjectFromList(fml, filtername, id);
+            return fml;
+        }
+
+      
         private static void RemoveObjectFromList(FiltersModel filtersModel, string filterName, string ItemID)
         {
             switch (filterName)
@@ -161,7 +167,7 @@ namespace WMSLibrary
             }
         }
 
-        private static void AddObjectToList(FiltersModel filtersModel, string filterName, string ItemID, string ItemName)
+        private void AddObjectToList(FiltersModel filtersModel, string filterName, string ItemID, string ItemName)
         {
             switch (filterName)
             {
@@ -261,6 +267,8 @@ namespace WMSLibrary
             }
         }
 
+
+       
     }
 
 
@@ -268,6 +276,7 @@ namespace WMSLibrary
     {
         public string FilterName;
         public string ID;
+      
     }
 
     public class FiltersModel

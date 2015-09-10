@@ -82,8 +82,8 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -114,8 +114,8 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s => s.CatName), "CatID", "CatName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName");
             return View(emptype);
         }
         private bool CheckDuplicate(string _Name)
@@ -141,8 +141,8 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName", emptype.CatID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",emptype.CompanyID);
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s => s.CatName), "CatID", "CatName", emptype.CatID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName", emptype.CompanyID);
             return View(emptype);
         }
 
@@ -171,8 +171,8 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName", emptype.CatID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",emptype.CompanyID);
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName", emptype.CatID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",emptype.CompanyID);
             return View(emptype);
         }
 

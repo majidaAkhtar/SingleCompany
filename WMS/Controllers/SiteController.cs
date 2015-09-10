@@ -89,7 +89,7 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName");
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName");
             return View();
         }
 
@@ -118,7 +118,7 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName", site.CityID);
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName", site.CityID);
             return View(site);
         }
         private bool CheckDuplicate(string _Name)
@@ -144,7 +144,7 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName", site.CityID);
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName", site.CityID);
             return View(site);
         }
 
@@ -169,7 +169,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName", site.CityID);
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName", site.CityID);
             return View(site);
         }
 

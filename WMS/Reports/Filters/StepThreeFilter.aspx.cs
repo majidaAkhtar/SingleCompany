@@ -82,13 +82,21 @@ namespace WMS.Reports.Filters
 
         private void SaveDepartmentIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Department");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Department");
             Session["FiltersModel"] = FM;
         }
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
-            Session["FiltersModel"] = WMSLibrary.Filters.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
+            List<string> list = Session["ReportSession"] as List<string>;
+            list[0] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
+            list[1] = DateTime.Today.ToString("yyyy-MM-dd");
+            dateFrom.Value = list[0];
+            dateTo.Value = list[1];
+            Session["ReportSession"] = list;
+            WMSLibrary.Filters filtersHelper = new WMSLibrary.Filters();
+            Session["FiltersModel"] = filtersHelper.DeleteAllFilters(Session["FiltersModel"] as FiltersModel);
 
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Company");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Location");
@@ -106,7 +114,8 @@ namespace WMS.Reports.Filters
         #endregion 
         private void SaveTypeIDs()
         {
-            WMSLibrary.FiltersModel FM = WMSLibrary.Filters.SyncGridViewIDs(GridViewType, Session["FiltersModel"] as FiltersModel, "Type");
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewType, Session["FiltersModel"] as FiltersModel, "Type");
             Session["FiltersModel"] = FM;
         }
 
@@ -118,7 +127,7 @@ namespace WMS.Reports.Filters
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyView(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from ViewDepartment " + query);
+            DataTable dt = qb.GetValuesfromDB("select * from ViewDepartment " + query + " ORDER BY DeptName ASC");
             _View = dt.ToList<ViewDepartment>();
             if (fm.CompanyFilter.Count > 0)
             {
@@ -152,7 +161,7 @@ namespace WMS.Reports.Filters
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from ViewEmpType where " + query);
-            _View = dt.ToList<ViewEmpType>();
+            _View = dt.ToList<ViewEmpType>().AsQueryable().SortBy("TypeName").ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)

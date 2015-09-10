@@ -83,14 +83,14 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.DayOff1 = new SelectList(db.DaysNames, "ID", "Name");
-            ViewBag.DayOff2 = new SelectList(db.DaysNames, "ID", "Name");
+            ViewBag.DayOff1 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name");
+            ViewBag.DayOff2 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name");
             QueryBuilder qb = new QueryBuilder();
             User LoggedInUser = Session["LoggedUser"] as User;
             string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
           
-            ViewBag.LocationID = new SelectList(db.Locations.Where(query), "LocID", "LocName");
-            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
+            ViewBag.LocationID = new SelectList(db.Locations.Where(query).OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name");
             return View();
         }
 
@@ -163,10 +163,10 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
                 
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
-            ViewBag.DayOff1 = new SelectList(db.DaysNames, "ID", "Name", shift.DayOff1);
-            ViewBag.DayOff2 = new SelectList(db.DaysNames, "ID", "Name", shift.DayOff2);
-            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name", shift.RosterType);
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.DayOff1 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name", shift.DayOff1);
+            ViewBag.DayOff2 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name", shift.DayOff2);
+            ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name", shift.RosterType);
             return View(shift);
         }
 
@@ -183,10 +183,10 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName",shift.LocationID);
-            ViewBag.DayOff1 = new SelectList(db.DaysNames, "ID", "Name", shift.DayOff1);
-            ViewBag.DayOff2 = new SelectList(db.DaysNames, "ID", "Name", shift.DayOff2);
-            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name", shift.RosterType);
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName",shift.LocationID);
+            ViewBag.DayOff1 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name", shift.DayOff1);
+            ViewBag.DayOff2 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name", shift.DayOff2);
+            ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name", shift.RosterType);
             return View(shift);
         }
 
@@ -231,9 +231,9 @@ namespace WMS.Controllers
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Shift, (byte)MyEnums.Operation.Edit, DateTime.Now);
                 return RedirectToAction("Index");
             }
-            ViewBag.DayOff1 = new SelectList(db.DaysNames, "ID", "Name", shift.DayOff1);
-            ViewBag.DayOff2 = new SelectList(db.DaysNames, "ID", "Name", shift.DayOff2);
-            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name", shift.RosterType);
+            ViewBag.DayOff1 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name", shift.DayOff1);
+            ViewBag.DayOff2 = new SelectList(db.DaysNames.OrderBy(s=>s.Name), "ID", "Name", shift.DayOff2);
+            ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name", shift.RosterType);
             return View(shift);
         }
 

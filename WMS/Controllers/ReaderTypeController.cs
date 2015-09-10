@@ -79,7 +79,7 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.VendorID = new SelectList(db.ReaderVendors, "VendorID", "VendorName");
+            ViewBag.VendorID = new SelectList(db.ReaderVendors.OrderBy(s=>s.VendorName), "VendorID", "VendorName");
             return View();
         }
 
@@ -109,7 +109,7 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.VendorID = new SelectList(db.ReaderVendors, "VendorID", "VendorName", readertype.VendorID);
+            ViewBag.VendorID = new SelectList(db.ReaderVendors.OrderBy(s=>s.VendorName), "VendorID", "VendorName", readertype.VendorID);
             return View(readertype);
         }
 
@@ -127,7 +127,7 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.VendorID = new SelectList(db.ReaderVendors, "VendorID", "VendorName", readertype.VendorID);
+            ViewBag.VendorID = new SelectList(db.ReaderVendors.OrderBy(s=>s.VendorName), "VendorID", "VendorName", readertype.VendorID);
             return View(readertype);
         }
 
@@ -156,7 +156,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.VendorID = new SelectList(db.ReaderVendors, "VendorID", "VendorName", readertype.VendorID);
+            ViewBag.VendorID = new SelectList(db.ReaderVendors.OrderBy(s=>s.VendorName), "VendorID", "VendorName", readertype.VendorID);
             return View(readertype);
         }
 

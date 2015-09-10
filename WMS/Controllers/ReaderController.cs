@@ -131,10 +131,10 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName");
-            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes, "RdrDutyID", "RdrDutyName");
-            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes, "RdrTypeID", "RdrTypeName");
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName");
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -185,10 +185,10 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName", reader.LocID);
-            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes, "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
-            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes, "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", reader.CompanyID);
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
+            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", reader.CompanyID);
             return View(reader);
         }
         // GET: /Reader/Edit/5
@@ -204,10 +204,10 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName", reader.LocID);
-            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes, "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
-            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes, "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", reader.CompanyID);
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
+            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", reader.CompanyID);
             return View(reader);
         }
 
@@ -254,10 +254,10 @@ namespace WMS.Controllers
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Reader, (byte)MyEnums.Operation.Edit, DateTime.Now);
                 return RedirectToAction("Index");
             }
-            ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName", reader.LocID);
-            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes, "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
-            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes, "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", reader.CompanyID);
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
+            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", reader.CompanyID);
             return View(reader);
         }
 
