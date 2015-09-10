@@ -77,7 +77,7 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -97,7 +97,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(crew);
         }
 
@@ -114,7 +114,7 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(crew);
         }
 
@@ -132,7 +132,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(crew);
         }
 

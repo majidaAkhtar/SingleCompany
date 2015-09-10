@@ -117,8 +117,8 @@ namespace WMS.Controllers
           [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.SiteID = new SelectList(db.Sites, "SiteID", "SiteName");
-            ViewBag.CityID= new SelectList(db.Cities, "CityID", "CityName");
+            ViewBag.SiteID = new SelectList(db.Sites.OrderBy(s=>s.SiteName), "SiteID", "SiteName");
+            ViewBag.CityID= new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName");
             return View();
         }
 
@@ -149,7 +149,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName");
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName");
             //ViewBag.SiteID = new SelectList(db.Sites, "SiteID", "SiteName", location.SiteID);
             return View(location);
         }
@@ -163,7 +163,7 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Location location = db.Locations.Find(id);
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName");
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName");
             if (location == null)
             {
                 return HttpNotFound();
@@ -199,7 +199,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName");
+            ViewBag.CityID = new SelectList(db.Cities.OrderBy(s=>s.CityName), "CityID", "CityName");
             //ViewBag.SiteID = new SelectList(db.Sites, "SiteID", "SiteName", location.SiteID);
             return View(location);
         }

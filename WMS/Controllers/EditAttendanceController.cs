@@ -45,11 +45,11 @@ namespace WMS.Controllers
         {
             try
             {
-                ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
-                ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-                ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-                ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-                ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+                ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
+                ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+                ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
                 ViewData["datef"] = Convert.ToDateTime(Request.Form["DateFrom"].ToString()).ToString("yyyy-MM-dd");
                 //ViewData["datef"] = Request.Form["DateFrom"].ToString();
                 if (Request.Form["EmpNo"].ToString() != "" && Request.Form["DateFrom"].ToString() != "")
@@ -73,7 +73,7 @@ namespace WMS.Controllers
                         _Polls = db.PollDatas.Where(aa => aa.EmpDate == _EmpDate).OrderBy(a => a.EntTime).ToList();
                         ViewBag.PollsDataIn = _Polls.Where(aa => aa.RdrDuty == 1);
                         ViewBag.PollsDataOut = _Polls.Where(aa => aa.RdrDuty == 5);
-                        ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", _attData.EmpID);
+                        ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpName), "EmpID", "EmpNo", _attData.EmpID);
                         Session["NEmpNo"] = _attData.EmpID;
                         ViewBag.SucessMessage = "";
                         if (_attData.WorkMin != null)
@@ -114,10 +114,10 @@ namespace WMS.Controllers
         {
              User LoggedInUser = Session["LoggedUser"] as User;
             string _EmpDate = _attData.EmpDate;
-            ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
-            ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-            ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-            ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+            ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
+            ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+            ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+            ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
             ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
             try
             {
@@ -216,14 +216,14 @@ namespace WMS.Controllers
 
         private void MarkAttendanceEditedData(AttData _atData)
         {
-            ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
+            ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
         }
 
         public ActionResult NextEntry(FormCollection form)
         {
             try
             {
-                ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
+                ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
                 ViewData["datef"] = Convert.ToDateTime(Session["EditAttendanceDate"]).ToString("yyyy-MM-dd");
                 int _EmpID = Convert.ToInt32(Session["NEmpNo"]);
                 if (Session["NEmpNo"] != null)
@@ -234,7 +234,7 @@ namespace WMS.Controllers
                     if (_attData != null)
                     {
                         Session["EditAttendanceDate"] = Convert.ToDateTime(ViewData["datef"]).AddDays(1);
-                        ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", _attData.EmpID);
+                        ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpName), "EmpID", "EmpNo", _attData.EmpID);
                         List<PollData> _Polls = new List<PollData>();
                         string _EmpDate = _attData.EmpID.ToString() + _AttDataFrom.Date.ToString("yyMMdd");
                         _Polls = db.PollDatas.Where(aa => aa.EmpDate == _EmpDate).OrderBy(a => a.EntTime).ToList();
@@ -275,7 +275,7 @@ namespace WMS.Controllers
         {
             try
             {
-                ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
+                ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
                 ViewData["datef"] = Convert.ToDateTime(Session["EditAttendanceDate"]).ToString("yyyy-MM-dd");
                 int _EmpID = Convert.ToInt32(Session["NEmpNo"]);
                 if (_EmpID != null)
@@ -286,7 +286,7 @@ namespace WMS.Controllers
                     if (_attData != null)
                     {
                         Session["EditAttendanceDate"] = Convert.ToDateTime(ViewData["datef"]).AddDays(-1);
-                        ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", _attData.EmpID);
+                        ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpName), "EmpID", "EmpNo", _attData.EmpID);
                         ViewBag.SucessMessage = "";
                         List<PollData> _Polls = new List<PollData>();
                         string _EmpDate = _attData.EmpID.ToString() + _AttDataFrom.Date.ToString("yyMMdd");
@@ -403,10 +403,10 @@ namespace WMS.Controllers
                 }
                 //Add Job Card to JobCardData and Mark Legends in Attendance Data if attendance Created
                 Session["EditAttendanceDate"] = DateTime.Today.Date.ToString("yyyy-MM-dd");
-                ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
-                ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-                ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-                ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+                ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
+                ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+                ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
                 ViewBag.CMessage = "Job Card Created sucessfully";
                 ViewData["datef"] = Session["EditAttendanceDate"].ToString();
                 ViewData["JobDateFrom"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
@@ -420,10 +420,10 @@ namespace WMS.Controllers
                 //ViewData["datef"] = HttpContext.Session["EditAttendanceDate"].ToString();
                 ViewData["JobDateFrom"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
                 ViewData["JobDateTo"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
-                ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
-                ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-                ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-                ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+                ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
+                ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+                ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
                 ViewBag.CMessage = "An Error occured while creating Job Card of" + Request.Form["JobCardType"].ToString();
                 ViewBag.DesignationID = new SelectList(db.Designations.Where(aa => aa.CompanyID == LoggedInUser.CompanyID), "DesignationID", "DesignationName");
                 return View("Index");

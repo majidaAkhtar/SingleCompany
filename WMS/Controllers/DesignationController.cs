@@ -81,7 +81,7 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -118,7 +118,7 @@ namespace WMS.Controllers
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Designation, (byte)MyEnums.Operation.Add, DateTime.Now);
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",designation.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",designation.CompanyID);
             return View(designation);
         }
         // Check Duplicate
@@ -137,7 +137,7 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Edit(int? id)
         {
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,7 +158,7 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Edit([Bind(Include = "DesignationID,DesignationName,CompanyID")] Designation designation)
         {
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", designation.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", designation.CompanyID);
             if (string.IsNullOrEmpty(designation.DesignationName))
                 ModelState.AddModelError("DesignationName", "This field is required!");
             if (designation.DesignationName != null)

@@ -19,7 +19,7 @@ namespace WMS.Controllers
         // GET: /Category/
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(db.Categories.OrderBy(s=>s.CatName).ToList());
         }
 
         // GET: /Category/Details/5

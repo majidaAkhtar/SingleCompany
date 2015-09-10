@@ -159,17 +159,17 @@ namespace WMS.Controllers
             ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s => s.CrewName), "CrewID", "CrewName");
             ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
-            ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName");
-            ViewBag.JobID = new SelectList(db.JobTitles, "JobID", "JobTitle1");
-            ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName");
-            ViewBag.SecID = new SelectList(db.Sections, "SectionID", "SectionName");
-            ViewBag.ShiftID = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-            ViewBag.TypeID = new SelectList(db.EmpTypes, "TypeID", "TypeName");
-            ViewBag.EmpID = new SelectList(db.EmpFaces, "EmpID", "Face1");
-            ViewBag.EmpID = new SelectList(db.EmpFps, "EmpID", "Fp1");
-            ViewBag.EmpID = new SelectList(db.LvQuotas, "EmpID", "EmpID");
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
+            ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
+            ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
+            ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
+            ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
+            ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+            ViewBag.EmpID = new SelectList(db.LvQuotas.OrderBy(s=>s.CompanyID), "EmpID", "EmpID");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
             return View();
         }
 
@@ -190,7 +190,7 @@ namespace WMS.Controllers
             {
                 if (emp.EmpNo.Length > 15)
                     ModelState.AddModelError("EmpNo", "String length exceeds!");
-                if (db.Emps.Where(aa => aa.EmpNo.ToUpper() == emp.EmpNo.ToUpper()).Count() > 0)
+                if (db.Emps.Where(aa => aa.EmpNo.ToUpper() == emp.EmpNo.ToUpper() && aa.CompanyID == emp.CompanyID).Count() > 0 )
                     ModelState.AddModelError("EmpNo", "Emp No should be unique!");
             }
             //if (emp.FpID != null)
@@ -257,22 +257,22 @@ namespace WMS.Controllers
             using (TAS2013Entities context = new TAS2013Entities())
             {
                 _wings = context.Divisions.ToList();
-            ViewBag.Wing = new SelectList(_wings, "WingID", "WingName");
+            ViewBag.Wing = new SelectList(_wings.OrderBy(s=>s.DivisionName), "WingID", "WingName");
             User LoggedInUser = Session["LoggedUser"] as User;
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-            ViewBag.CrewID = new SelectList(db.Crews, "CrewID", "CrewName");
-            ViewBag.DesigID = new SelectList(db.Designations, "DesignationID", "DesignationName");
-            ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName");
-            ViewBag.JobID = new SelectList(db.JobTitles, "JobID", "JobTitle1");
-            ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName");
-            ViewBag.SecID = new SelectList(db.Sections, "SectionID", "SectionName");
-            ViewBag.ShiftID = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-            ViewBag.TypeID = new SelectList(db.EmpTypes, "TypeID", "TypeName");
-            ViewBag.EmpID = new SelectList(db.EmpFaces, "EmpID", "Face1");
-            ViewBag.EmpID = new SelectList(db.EmpFps, "EmpID", "Fp1");
-            ViewBag.EmpID = new SelectList(db.LvQuotas, "EmpID", "EmpID");
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+            ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
+            ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
+            ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
+            ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
+            ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
+            ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+            ViewBag.EmpID = new SelectList(db.LvQuotas.OrderBy(s=>s.CompanyID), "EmpID", "EmpID");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
             }
             return View(emp);
             //if (ModelState.IsValid)
@@ -313,20 +313,20 @@ namespace WMS.Controllers
             try
             {
                 EmpType et = db.EmpTypes.Where(aa => aa.TypeID == emp.TypeID).FirstOrDefault();
-                ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", emp.CompanyID);
-                ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName", et.CatID);
-                ViewBag.CrewID = new SelectList(db.Crews, "CrewID", "CrewName", emp.CrewID);
-                ViewBag.DesigID = new SelectList(db.Designations, "DesignationID", "DesignationName", emp.DesigID);
-                ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName", emp.GradeID);
-                ViewBag.JobID = new SelectList(db.JobTitles, "JobID", "JobTitle1", emp.JobID);
-                ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName", emp.LocID);
-                ViewBag.SecID = new SelectList(db.Sections, "SectionID", "SectionName", emp.SecID);
-                ViewBag.ShiftID = new SelectList(db.Shifts, "ShiftID", "ShiftName", emp.ShiftID);
-                ViewBag.TypeID = new SelectList(db.EmpTypes, "TypeID", "TypeName", emp.TypeID);
-                ViewBag.EmpID = new SelectList(db.EmpFaces, "EmpID", "Face1");
-                ViewBag.EmpID = new SelectList(db.EmpFps, "EmpID", "Fp1");
-                ViewBag.EmpID = new SelectList(db.LvQuotas, "EmpID", "EmpID");
-                ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName", emp.Section.DeptID);
+                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", emp.CompanyID);
+                ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName", et.CatID);
+                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName", emp.CrewID);
+                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName", emp.DesigID);
+                ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName", emp.GradeID);
+                ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1", emp.JobID);
+                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", emp.LocID);
+                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName", emp.SecID);
+                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName", emp.ShiftID);
+                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName", emp.TypeID);
+                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
+                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+                ViewBag.EmpID = new SelectList(db.LvQuotas.OrderBy(s=>s.CompanyID), "EmpID", "EmpID");
+                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName", emp.Section.DeptID);
             }
              catch(Exception ex)
             {
@@ -391,40 +391,40 @@ namespace WMS.Controllers
                     return RedirectToAction("Index");
                 }
                 User LoggedInUser = Session["LoggedUser"] as User;
-                ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-                ViewBag.CrewID = new SelectList(db.Crews, "CrewID", "CrewName");
-                ViewBag.DesigID = new SelectList(db.Designations, "DesignationID", "DesignationName");
-                ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName");
-                ViewBag.JobID = new SelectList(db.JobTitles, "JobID", "JobTitle1");
-                ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName");
-                ViewBag.SecID = new SelectList(db.Sections, "SectionID", "SectionName");
-                ViewBag.ShiftID = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-                ViewBag.TypeID = new SelectList(db.EmpTypes, "TypeID", "TypeName");
-                ViewBag.EmpID = new SelectList(db.EmpFaces, "EmpID", "Face1");
-                ViewBag.EmpID = new SelectList(db.EmpFps, "EmpID", "Fp1");
-                ViewBag.EmpID = new SelectList(db.LvQuotas, "EmpID", "EmpID");
-                ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
-                ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
+                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
+                ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
+                ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
+                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
+                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
+                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
+                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+                ViewBag.EmpID = new SelectList(db.LvQuotas.OrderBy(s=>s.CompanyID), "EmpID", "EmpID");
+                ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
                 return View(emp);
             }
             catch (Exception ex)
             {
                 ViewBag.Message = ex.InnerException.ToString();
                 User LoggedInUser = Session["LoggedUser"] as User;
-                ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-                ViewBag.CrewID = new SelectList(db.Crews, "CrewID", "CrewName");
-                ViewBag.DesigID = new SelectList(db.Designations, "DesignationID", "DesignationName");
-                ViewBag.GradeID = new SelectList(db.Grades, "GradeID", "GradeName");
-                ViewBag.JobID = new SelectList(db.JobTitles, "JobID", "JobTitle1");
-                ViewBag.LocID = new SelectList(db.Locations, "LocID", "LocName");
-                ViewBag.SecID = new SelectList(db.Sections, "SectionID", "SectionName");
-                ViewBag.ShiftID = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-                ViewBag.TypeID = new SelectList(db.EmpTypes, "TypeID", "TypeName");
-                ViewBag.EmpID = new SelectList(db.EmpFaces, "EmpID", "Face1");
-                ViewBag.EmpID = new SelectList(db.EmpFps, "EmpID", "Fp1");
-                ViewBag.EmpID = new SelectList(db.LvQuotas, "EmpID", "EmpID");
-                ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
-                ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
+                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
+                ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
+                ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
+                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
+                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
+                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
+                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+                ViewBag.EmpID = new SelectList(db.LvQuotas.OrderBy(s=>s.CompanyID), "EmpID", "EmpID");
+                ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
                 return View(emp);
             }
         }
@@ -472,7 +472,7 @@ namespace WMS.Controllers
         public ActionResult GradeList(string ID)
         {
             int Code = Convert.ToInt32(ID);
-            var states = db.Grades.Where(aa => aa.CompID == Code);
+            var states = db.Grades.Where(aa => aa.CompID == Code).OrderBy(s=>s.GradeName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 states.ToArray(),
@@ -488,7 +488,7 @@ namespace WMS.Controllers
             string[] words = ID.Split('s');
             short secID = Convert.ToInt16(words[0]);
            
-            var secs = db.Sections.Where(aa => aa.DeptID == secID);
+            var secs = db.Sections.Where(aa => aa.DeptID == secID).OrderBy(s=>s.SectionName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -504,7 +504,7 @@ namespace WMS.Controllers
             string[] words = ID.Split('s');
             short CatID = Convert.ToInt16(words[0]);
             short compID = Convert.ToInt16(words[1]);
-            var types = db.EmpTypes.Where(aa => aa.CatID == CatID && aa.CompanyID==compID);
+            var types = db.EmpTypes.Where(aa => aa.CatID == CatID && aa.CompanyID==compID).OrderBy(s=>s.TypeName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 types.ToArray(),
@@ -518,7 +518,7 @@ namespace WMS.Controllers
         public ActionResult CategoryList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Categories.Where(aa => aa.CompanyID == Code);
+            var secs = db.Categories.Where(aa => aa.CompanyID == Code).OrderBy(s=>s.CatName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -532,7 +532,7 @@ namespace WMS.Controllers
         public ActionResult DesignationList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Designations.Where(aa => aa.CompanyID == Code);
+            var secs = db.Designations.Where(aa => aa.CompanyID == Code).OrderBy(s=>s.DesignationName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -546,7 +546,7 @@ namespace WMS.Controllers
         public ActionResult DepartmentList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Departments.Where(aa=>aa.CompanyID==Code);
+            var secs = db.Departments.Where(aa=>aa.CompanyID==Code).OrderBy(s=>s.DeptName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
@@ -560,7 +560,7 @@ namespace WMS.Controllers
         public ActionResult CrewList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Crews.Where(aa => aa.CompanyID == Code);
+            var secs = db.Crews.Where(aa => aa.CompanyID == Code).OrderBy(s=>s.CrewName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),

@@ -60,17 +60,18 @@
                             <div class="filterHeader"><span class="FilterNameHeading">Employee</span>
                                  <span style="margin-left:10px"><asp:TextBox ID="tbSearch_Employee" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchEmployee_Click" /></span></div>
                             <section>
-                            <asp:GridView ID="GridViewEmployee" runat="server" Width="570px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewEmployee_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewEmployee_RowDataBound" ShowFooter="True"  >
+                            <asp:GridView ID="GridViewEmployee" runat="server" Width="600px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewEmployee_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewEmployee_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
+                                        <HeaderStyle Width="4px" />
                                         <HeaderTemplate>
                                             <%--<asp:CheckBox ID="CheckAll" runat="server" />--%>
                                             <input style="margin-left:6px" id="chkAll" onclick="javascript: SelectAllCheckboxes(this, 'GridViewEmployee');" 
                                             runat="server" type="checkbox" />
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:CheckBox style="width:5%;"  ID="CheckOne" runat="server"  ItemStyle-Width="5%"/>
+                                            <asp:CheckBox style="width:5%;"  ID="CheckOne" runat="server" />
                                         </ItemTemplate>
                                         <ItemStyle Width="5%" />
                                         </asp:TemplateField>
