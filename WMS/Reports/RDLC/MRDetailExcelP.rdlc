@@ -654,6 +654,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2318,6 +2319,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>31</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -6144,6 +6146,10 @@
                   </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
+<<<<<<< HEAD
+                      <KeepWithGroup>After</KeepWithGroup>
+                      <RepeatOnNewPage>true</RepeatOnNewPage>
+=======
                       <TablixHeader>
                         <Size>0.03125in</Size>
                         <CellContents>
@@ -6192,9 +6198,11 @@
                       <TablixMembers>
                         <TablixMember />
                       </TablixMembers>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                     </TablixMember>
                   </TablixMembers>
                   <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Period">
@@ -6250,7 +6258,6 @@
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
-                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>

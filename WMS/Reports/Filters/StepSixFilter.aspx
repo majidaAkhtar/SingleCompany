@@ -49,8 +49,12 @@
                                         <li><a href="../ReportContainer.aspx?reportname=leave_application">Leave Application</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=department_attendance_summary">Department Attendance Summary</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=summarized_monthly_report">Summarized Monthly Report</a></li>
+<<<<<<< HEAD
 
                                     
+=======
+                                 
+>>>>>>> 9b3f69a89aaf8a0d8af55a43233c2ed71f9587e5
                                     </ul>
                                 </li>
                                 <li>
