@@ -35,8 +35,18 @@ namespace WMS.Reports
                           
 
                 switch (reportName)
-                {
-                  
+                {  //please modify the first case 
+                    case "summarized_monthly_report":
+                        List<TASReportDataSet.SummarizedMonthlyReportDataTable> AttDeptdummy = new List<TASReportDataSet.SummarizedMonthlyReportDataTable>().ToList();
+                        title = "Department Attendace Summary";
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/SummarizedMonthlyReport.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/SummarizedMonthlyReport.rdlc";
+
+                        LoadReport(PathString, AttDeptdummy, _dateFrom + " TO " + _dateTo);
+
+                        break;
                     case "department_attendance_summary": HRReportsMaker hrm = new HRReportsMaker();
                         List<AttDeptSummary> AttDept = hrm.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
                         title = "Department Attendace Summary";
@@ -349,15 +359,14 @@ namespace WMS.Reports
                                consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
                                                       dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and"+ consolidatedMonth);
                                                          title = "Monthly Consolidated (1st to 31th)";
-                                                        List<ViewMonthlyData> VMLD =new List<ViewMonthlyData>(); 
-                                                        VMLD = dt.ToList<ViewMonthlyData>();
-                                                         _TempViewListMonthlyData = new List<ViewMonthlyData>();
+                                                         _ViewListMonthlyData = dt.ToList<ViewMonthlyData>();
+                                                        _TempViewListMonthlyData = new List<ViewMonthlyData>();
                                                 //Change the Paths
                                                 if (GlobalVariables.DeploymentType == false)
                                                     PathString = "/Reports/RDLC/MRDetailExcelC.rdlc";
                                                 else
                                                     PathString = "/WMS/Reports/RDLC/MRDetailExcelC.rdlc";
-                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyData, VMLD), _dateFrom+" to "+_dateTo);
+                                                LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyData, _ViewListMonthlyData), _dateFrom + " to " + _dateTo);
                                                 break;
 
                     case "monthly_21-20_consolidated": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
@@ -432,6 +441,23 @@ namespace WMS.Reports
                
                 
             }
+        }
+
+        private void LoadReport(string PathString, List<TASReportDataSet.SummarizedMonthlyReportDataTable> VMLD, string p)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(PathString);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<TASReportDataSet.SummarizedMonthlyReportDataTable> ie;
+            ie = VMLD.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+           this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] {});
+            ReportViewer1.LocalReport.Refresh();
         }
 
         private void LoadReport(string PathString, List<AttDeptSummary> AttDept, string date)

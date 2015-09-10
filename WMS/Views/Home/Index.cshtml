@@ -13,12 +13,7 @@
     //this  is for create form tag
     @Html.AntiForgeryToken()          // this is for prevent CSRF attack
     @Html.ValidationSummary(true)
-    if (@ViewBag.Message != null)
-    {
-        <div style="border:1px solid red">
-            @ViewBag.Message
-        </div>
-    }
+    
      <div class="form-horizontal">
             @Html.ValidationSummary(true)
 
@@ -40,6 +35,7 @@
                     @Html.ValidationMessageFor(a=>a.Password)
                 </div>
             </div>
+
          <div class="form-group">
                 <div class="control-label col-md-2" style="font-weight:bold">
                     
@@ -48,7 +44,7 @@
                     <div class="col-lg-2 col-xs-5 "><input type="submit" value="Login" /></div>
                 </div>
             </div>
-         
+         <p class="ErorrMessage">@ViewBag.Message</p>
      </div>
 }
 </div>

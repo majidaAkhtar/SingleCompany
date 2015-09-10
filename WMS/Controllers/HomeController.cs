@@ -49,9 +49,26 @@ namespace WMS.Controllers
             //    }
             //    _TempAttData = _TempAttData.OrderBy(aa => aa.NewTimeIn).ToList();
             //}
-
+            
+            int LoginCount = 0;
+            bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+            if (successOnConversion==true)
+            {
+                 if(3-LoginCount >0)
+                 {
+                     if(3-LoginCount ==1)
+                     ViewBag.Message = "Invalid Username or Password you have one more try";
+                     else
+                         ViewBag.Message = "Invalid Username or Password you have " + (3 - LoginCount) + " more tries";
+                
+                 }
+                 else
+              ViewBag.Message = "Unauthorized access detected. A log has been generated";
+                
+            }
             
 
+            
             try
             {
                 if (Session["LogedUserID"] == null)
@@ -162,9 +179,25 @@ namespace WMS.Controllers
                                     HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
                                     return RedirectToAction("AfterLogin");
                                 }
+                                else
+                                { 
+                                 int LoginCount = 0;
+                    bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                    if (successOnConversion == true)
+                    {
+                        LoginCount++;
+                        Session["LoginCount"] = LoginCount + "";
+                    }
+                    else
+                    {
+                        Session["LoginCount"] = "1";
+                    }
+                                
+                                
+                                }
                             }
                         }
-           //    }
+             //  }
                 return RedirectToAction("index");
                //}
 
@@ -234,6 +267,7 @@ namespace WMS.Controllers
                 Session["MREmployee"] = null;
                 Session["MRDetail"] = null;
                 Session["MRSummary"] = null;
+                Session["FiltersModel"] = new WMSLibrary.FiltersModel();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

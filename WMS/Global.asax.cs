@@ -20,6 +20,7 @@ namespace WMS
         {
             // Initialize Session["FiltersModel"] -- Move to First Page
             Session["FiltersModel"] = new WMSLibrary.FiltersModel();
+            Session["LoginCount"] = null;
             LoadSessionValues();
             //LoadSession();
         }

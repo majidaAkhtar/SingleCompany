@@ -1811,6 +1811,10 @@
             <End Role="Company" EntitySet="Company" />
             <End Role="Department" EntitySet="Department" />
           </AssociationSet>
+          <AssociationSet Name="FK_Department_Division" Association="TAS2013Model.Store.FK_Department_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
           <AssociationSet Name="FK_Designation_Company" Association="TAS2013Model.Store.FK_Designation_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Designation" EntitySet="Designation" />
@@ -1955,8 +1959,12 @@
             <End Role="Shift" EntitySet="Shift" />
             <End Role="RosterApp" EntitySet="RosterApp" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_Company" Association="TAS2013Model.Store.FK_Section_Company">
+          <AssociationSet Name="FK_Section_Company1" Association="TAS2013Model.Store.FK_Section_Company1">
             <End Role="Company" EntitySet="Company" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_Department" Association="TAS2013Model.Store.FK_Section_Department">
+            <End Role="Department" EntitySet="Department" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
           <AssociationSet Name="FK_Shift_DaysName" Association="TAS2013Model.Store.FK_Shift_DaysName">
@@ -5240,6 +5248,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Department_Division">
+          <End Role="Division" Type="TAS2013Model.Store.Division" Multiplicity="0..1" />
+          <End Role="Department" Type="TAS2013Model.Store.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="DivID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Designation_Company">
           <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
           <End Role="Designation" Type="TAS2013Model.Store.Designation" Multiplicity="*" />
@@ -5672,7 +5692,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_Company">
+        <Association Name="FK_Section_Company1">
           <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
           <End Role="Section" Type="TAS2013Model.Store.Section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -5681,6 +5701,18 @@
             </Principal>
             <Dependent Role="Section">
               <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_Department">
+          <End Role="Department" Type="TAS2013Model.Store.Department" Multiplicity="0..1" />
+          <End Role="Section" Type="TAS2013Model.Store.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="DeptID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5997,7 +6029,7 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="Grade" EntitySet="Grades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_Company" Association="TAS2013Model.FK_Section_Company">
+          <AssociationSet Name="FK_Section_Company1" Association="TAS2013Model.FK_Section_Company1">
             <End Role="Company" EntitySet="Companies" />
             <End Role="Section" EntitySet="Sections" />
           </AssociationSet>
@@ -6012,6 +6044,14 @@
           <AssociationSet Name="FK_Shift_DaysName1" Association="TAS2013Model.FK_Shift_DaysName1">
             <End Role="DaysName" EntitySet="DaysNames" />
             <End Role="Shift" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Division" Association="TAS2013Model.FK_Department_Division">
+            <End Role="Division" EntitySet="Divisions" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Section_Department" Association="TAS2013Model.FK_Section_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Section" EntitySet="Sections" />
           </AssociationSet>
           <AssociationSet Name="FK_Emp_Designation1" Association="TAS2013Model.FK_Emp_Designation1">
             <End Role="Designation" EntitySet="Designations" />
@@ -6581,7 +6621,7 @@
           <NavigationProperty Name="Divisions" Relationship="TAS2013Model.FK_Division_Company" FromRole="Company" ToRole="Division" />
           <NavigationProperty Name="EmpTypes" Relationship="TAS2013Model.FK_EmpType_Company" FromRole="Company" ToRole="EmpType" />
           <NavigationProperty Name="Grades" Relationship="TAS2013Model.FK_Grade_Company" FromRole="Company" ToRole="Grade" />
-          <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Company" FromRole="Company" ToRole="Section" />
+          <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Company1" FromRole="Company" ToRole="Section" />
         </EntityType>
         <EntityType Name="Crew">
           <Key>
@@ -6647,6 +6687,8 @@
           <Property Name="DivID" Type="Int16" />
           <Property Name="CompanyID" Type="Int16" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Department_Company" FromRole="Department" ToRole="Company" />
+          <NavigationProperty Name="Division" Relationship="TAS2013Model.FK_Department_Division" FromRole="Department" ToRole="Division" />
+          <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Department" FromRole="Department" ToRole="Section" />
         </EntityType>
         <EntityType Name="Designation">
           <Key>
@@ -6666,6 +6708,7 @@
           <Property Name="DivisionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CompanyID" Type="Int16" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Division_Company" FromRole="Division" ToRole="Company" />
+          <NavigationProperty Name="Departments" Relationship="TAS2013Model.FK_Department_Division" FromRole="Division" ToRole="Department" />
         </EntityType>
         <EntityType Name="DOJJ">
           <Key>
@@ -7328,7 +7371,8 @@
           <Property Name="SectionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="DeptID" Type="Int16" />
           <Property Name="CompanyID" Type="Int16" />
-          <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Section_Company" FromRole="Section" ToRole="Company" />
+          <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Section_Company1" FromRole="Section" ToRole="Company" />
+          <NavigationProperty Name="Department" Relationship="TAS2013Model.FK_Section_Department" FromRole="Section" ToRole="Department" />
           <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_Section" FromRole="Section" ToRole="Emp" />
         </EntityType>
         <EntityType Name="ServiceLog">
@@ -9487,7 +9531,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_Company">
+        <Association Name="FK_Section_Company1">
           <End Role="Company" Type="TAS2013Model.Company" Multiplicity="0..1" />
           <End Role="Section" Type="TAS2013Model.Section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -9532,6 +9576,30 @@
             </Principal>
             <Dependent Role="Shift">
               <PropertyRef Name="DayOff2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Division">
+          <End Role="Division" Type="TAS2013Model.Division" Multiplicity="0..1" />
+          <End Role="Department" Type="TAS2013Model.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="DivID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Section_Department">
+          <End Role="Department" Type="TAS2013Model.Department" Multiplicity="0..1" />
+          <End Role="Section" Type="TAS2013Model.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="DeptID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
