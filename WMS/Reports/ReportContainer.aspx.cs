@@ -430,7 +430,7 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportParameter rp = new ReportParameter("Date", date, false);
-            ReportParameter rp1 = new ReportParameter("title", _Header, false);
+            ReportParameter rp1 = new ReportParameter("Title", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
             ReportViewer1.LocalReport.Refresh();
         }

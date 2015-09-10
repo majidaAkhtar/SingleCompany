@@ -60,7 +60,7 @@
                             <div class="filterHeader"><span class="FilterNameHeading">Companies</span>
                                  <span style="margin-left:10px"><asp:TextBox ID="TextBoxSearch" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearch_Click" /></span></div>
                             <section>
-                            <asp:GridView ID="GridViewCompany" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewCompany_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewCompany_RowDataBound" ShowFooter="True"  >
+                            <asp:GridView ID="GridViewCompany" runat="server" Width="300px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid" AllowPaging="True" AllowSorting="True"       GridLines="None"                                         OnPageIndexChanging="GridViewCompany_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewCompany_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
@@ -74,6 +74,7 @@
                                             <asp:CheckBox style="margin-left:6px"  ID="CheckOne" runat="server" />
                                         </ItemTemplate>
                                         <ItemStyle Width="10%" />
+                                        
                                     </asp:TemplateField>
                                         <asp:BoundField DataField="CompID" HeaderText="ID" />
                                         <asp:BoundField DataField="CompName" HeaderText="Name" />
