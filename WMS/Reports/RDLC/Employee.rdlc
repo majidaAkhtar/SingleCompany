@@ -343,7 +343,21 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Address</Value>
+                              <Value>Company</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -751,14 +765,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="HomeAdd">
+                    <Textbox Name="CompName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!HomeAdd.Value</Value>
+                              <Value>=Fields!CompName.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -769,7 +783,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>HomeAdd</rd:DefaultName>
+                      <rd:DefaultName>CompName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>

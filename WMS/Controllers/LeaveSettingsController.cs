@@ -16,10 +16,10 @@ namespace WMS.Controllers
         TAS2013Entities db = new TAS2013Entities();
         public ActionResult Index()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-            ViewBag.CompanyIDEmp = new SelectList(db.Companies, "CompID", "CompName");
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
             
             return View();
         }
@@ -63,10 +63,10 @@ namespace WMS.Controllers
                 ViewBag.CMessage = "Employee No "+Request.Form["EmpNo"].ToString()+" not found";
                 
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
-            ViewBag.CompanyIDEmp = new SelectList(db.Companies, "CompID", "CompName");
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
             return View("Index");
         }
         //

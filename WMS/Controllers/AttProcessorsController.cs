@@ -101,11 +101,11 @@ namespace WMS.Controllers
     new SelectListItem { Selected = false, Text = "Summary", Value = "S"},
 
 }, "Value" , "Text",1);
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(query), "CompID", "CompName");
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(query).OrderBy(s=>s.CompName), "CompID", "CompName");
             query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
-            ViewBag.LocationID = new SelectList(db.Locations.Where(query), "LocID", "LocName");
+            ViewBag.LocationID = new SelectList(db.Locations.Where(query).OrderBy(s=>s.LocName), "LocID", "LocName");
             
-            ViewBag.CatID = new SelectList(db.Categories, "CatID", "CatName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
              return View();
         } 
 

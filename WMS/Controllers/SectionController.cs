@@ -83,8 +83,8 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -102,8 +102,8 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName", section.DeptID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName", section.DeptID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(section);
         }
 
@@ -117,8 +117,8 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Section section = db.Sections.Find(id);
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName",section.DeptID);
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",section.CompanyID);
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName",section.DeptID);
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",section.CompanyID);
             if (section == null)
             {
                 return HttpNotFound();
@@ -141,7 +141,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName", section.DeptID);
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName", section.DeptID);
             return View(section);
         }
 

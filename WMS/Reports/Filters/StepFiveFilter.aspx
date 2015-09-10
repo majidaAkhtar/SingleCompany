@@ -64,13 +64,14 @@
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField>
+                                        <HeaderStyle Width="4px" />
                                         <HeaderTemplate>
                                             <%--<asp:CheckBox ID="CheckAll" runat="server" />--%>
                                             <input style="margin-left:6px" id="chkAll" onclick="javascript: SelectAllCheckboxes(this, 'GridViewEmployee');" 
                                             runat="server" type="checkbox" />
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:CheckBox style="width:5%;"  ID="CheckOne" runat="server"  ItemStyle-Width="5%"/>
+                                            <asp:CheckBox style="width:5%;"  ID="CheckOne" runat="server" />
                                         </ItemTemplate>
                                         <ItemStyle Width="5%" />
                                         </asp:TemplateField>

@@ -16,10 +16,10 @@ namespace WMS.Controllers
         private TAS2013Entities db = new TAS2013Entities();
         public ActionResult Index()
         {
-            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
-            ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-            ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-            ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+            ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name");
+            ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+            ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+            ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
             return View();
             //return View();
         }
@@ -240,10 +240,10 @@ namespace WMS.Controllers
             }
             else
             {
-                ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
-                ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-                ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-                ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+                ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name");
+                ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+                ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
                 return View("Index");
             }
         }
@@ -274,10 +274,10 @@ namespace WMS.Controllers
             CreateRosterEntries(_selectedShift, criteria, criteriaValue, startDate, noOfDays, rosters, _RotaAppID);
 
 
-            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
-            ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-            ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
-            ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+            ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name");
+            ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
+            ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
+            ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
             return View("Index");
         }
 
