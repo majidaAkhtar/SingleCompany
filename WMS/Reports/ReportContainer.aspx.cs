@@ -37,8 +37,8 @@ namespace WMS.Reports
                 switch (reportName)
                 {
 
-                    case "department_attendance_summary":
-                        List<AttDeptSummary> AttDept = HRReportsMaker.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
+                    case "department_attendance_summary": HRReportsMaker hrm = new HRReportsMaker();
+                        List<AttDeptSummary> AttDept = hrm.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
                         title = "Department Attendace Summary";
                          if (GlobalVariables.DeploymentType == false)
                                                    PathString = "/Reports/RDLC/AttDepartmentSummary.rdlc";

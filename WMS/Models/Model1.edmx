@@ -1883,6 +1883,10 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="EmpType" EntitySet="EmpType" />
           </AssociationSet>
+          <AssociationSet Name="FK_EmpType_Company" Association="TAS2013Model.Store.FK_EmpType_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="EmpType" EntitySet="EmpType" />
+          </AssociationSet>
           <AssociationSet Name="FK_Grade_Company" Association="TAS2013Model.Store.FK_Grade_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Grade" EntitySet="Grade" />
@@ -5452,6 +5456,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EmpType_Company">
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="EmpType" Type="TAS2013Model.Store.EmpType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="EmpType">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Grade_Company">
           <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
           <End Role="Grade" Type="TAS2013Model.Store.Grade" Multiplicity="*" />
@@ -5972,6 +5988,10 @@
           <AssociationSet Name="FK_Division_Company" Association="TAS2013Model.FK_Division_Company">
             <End Role="Company" EntitySet="Companies" />
             <End Role="Division" EntitySet="Divisions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpType_Company" Association="TAS2013Model.FK_EmpType_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="EmpType" EntitySet="EmpTypes" />
           </AssociationSet>
           <AssociationSet Name="FK_Grade_Company" Association="TAS2013Model.FK_Grade_Company">
             <End Role="Company" EntitySet="Companies" />
@@ -6559,6 +6579,7 @@
           <NavigationProperty Name="Departments" Relationship="TAS2013Model.FK_Department_Company" FromRole="Company" ToRole="Department" />
           <NavigationProperty Name="Designations" Relationship="TAS2013Model.FK_Designation_Company" FromRole="Company" ToRole="Designation" />
           <NavigationProperty Name="Divisions" Relationship="TAS2013Model.FK_Division_Company" FromRole="Company" ToRole="Division" />
+          <NavigationProperty Name="EmpTypes" Relationship="TAS2013Model.FK_EmpType_Company" FromRole="Company" ToRole="EmpType" />
           <NavigationProperty Name="Grades" Relationship="TAS2013Model.FK_Grade_Company" FromRole="Company" ToRole="Grade" />
           <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Company" FromRole="Company" ToRole="Section" />
         </EntityType>
@@ -6858,6 +6879,7 @@
           <Property Name="CatID" Type="Int16" />
           <Property Name="CompanyID" Type="Int16" />
           <NavigationProperty Name="Category" Relationship="TAS2013Model.FK_EmpType_Category" FromRole="EmpType" ToRole="Category" />
+          <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_EmpType_Company" FromRole="EmpType" ToRole="Company" />
           <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_TypeID" FromRole="EmpType" ToRole="Emp" />
         </EntityType>
         <EntityType Name="Grade">
@@ -9437,6 +9459,18 @@
               <PropertyRef Name="CompID" />
             </Principal>
             <Dependent Role="Division">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpType_Company">
+          <End Role="Company" Type="TAS2013Model.Company" Multiplicity="0..1" />
+          <End Role="EmpType" Type="TAS2013Model.EmpType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="EmpType">
               <PropertyRef Name="CompanyID" />
             </Dependent>
           </ReferentialConstraint>

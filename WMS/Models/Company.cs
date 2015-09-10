@@ -20,6 +20,7 @@ namespace WMS.Models
             this.Departments = new HashSet<Department>();
             this.Designations = new HashSet<Designation>();
             this.Divisions = new HashSet<Division>();
+            this.EmpTypes = new HashSet<EmpType>();
             this.Grades = new HashSet<Grade>();
             this.Sections = new HashSet<Section>();
         }
@@ -34,6 +35,7 @@ namespace WMS.Models
         public virtual ICollection<Department> Departments { get; set; }
         public virtual ICollection<Designation> Designations { get; set; }
         public virtual ICollection<Division> Divisions { get; set; }
+        public virtual ICollection<EmpType> EmpTypes { get; set; }
         public virtual ICollection<Grade> Grades { get; set; }
         public virtual ICollection<Section> Sections { get; set; }
     }
