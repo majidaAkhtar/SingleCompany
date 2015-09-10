@@ -4,170 +4,173 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba6c74202fc94e9e8f7efa83b8b4348e" Name="Diagram1">
-        <EntityTypeShape EntityType="TAS2013Model.AccessEmp" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttCode" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttData" Width="1.5" PointX="7.5" PointY="27.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttDataManEdit" Width="1.5" PointX="10.5" PointY="50.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttMnData" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttMnDataPer" Width="1.5" PointX="7.5" PointY="43.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttProcess" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AttProcessorScheduler" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AuditForm" Width="1.5" PointX="4.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AuditLog" Width="1.5" PointX="10.5" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.AuditOperation" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Card" Width="1.5" PointX="13.5" PointY="50.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.CardType" Width="1.5" PointX="11.25" PointY="43.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Category" Width="1.5" PointX="0.75" PointY="42" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.City" Width="1.5" PointX="0.75" PointY="62.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Company" Width="1.5" PointX="0.75" PointY="51.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Crew" Width="1.5" PointX="3" PointY="44.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.DailySummary" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.DaysName" Width="1.5" PointX="0.75" PointY="69.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Department" Width="1.5" PointX="3" PointY="47.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Designation" Width="1.5" PointX="3" PointY="50.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Division" Width="1.5" PointX="3" PointY="53.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.DOJJ" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.DownloadTime" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.DutyCode" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.DutyTime" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Emergency" Width="1.5" PointX="8.25" PointY="62" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmergencyAuto" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmergencyDetail" Width="1.5" PointX="10.5" PointY="46.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Emp" Width="1.5" PointX="5.25" PointY="46" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpAccess" Width="1.5" PointX="7.5" PointY="69.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpFace" Width="1.5" PointX="7.5" PointY="72" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpFp" Width="1.5" PointX="7.5" PointY="74.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpPhoto" Width="1.5" PointX="7.5" PointY="77.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpPresence" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpRdr" Width="1.5" PointX="7.5" PointY="104.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpType" Width="1.5" PointX="3" PointY="41.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Grade" Width="1.5" PointX="3" PointY="55.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Holiday" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ImportLeave" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.JobCard" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.JobCardApp" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.JobCardEmp" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.JobTitle" Width="1.5" PointX="3" PointY="38.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Location" Width="1.5" PointX="3" PointY="62.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.LvApplication" Width="1.5" PointX="10.5" PointY="56.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.LvConsumed" Width="1.5" PointX="7.5" PointY="86.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.LvData" Width="1.5" PointX="12.75" PointY="56.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.LvQuota" Width="1.5" PointX="7.5" PointY="92" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.LvShort" Width="1.5" PointX="7.5" PointY="99" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.LvType" Width="1.5" PointX="8.25" PointY="80.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Option" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.PollData" Width="1.5" PointX="7.5" PointY="106.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.RdrDutyCode" Width="1.5" PointX="3" PointY="79.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.RdrEventLog" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Reader" Width="1.5" PointX="5.25" PointY="61.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ReaderType" Width="1.5" PointX="3" PointY="81.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ReaderVendor" Width="1.5" PointX="0.75" PointY="81.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Reason" Width="1.5" PointX="11.25" PointY="62.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Region" Width="1.5" PointX="1.5" PointY="65.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Roster" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.RosterApp" Width="1.5" PointX="5.25" PointY="70" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.RosterDetail" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.RosterType" Width="1.5" PointX="0.75" PointY="72.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.SampleTable" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Section" Width="1.5" PointX="3" PointY="58.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ServiceLog" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.setDateTime" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Shift" Width="1.5" PointX="3" PointY="68.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.Site" Width="1.5" PointX="3" PointY="76.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.sysdiagram" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.User" Width="1.5" PointX="8.25" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.UserLocation" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.UserModule" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.UserRole" Width="1.5" PointX="6" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ZTable" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmergencyView" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.EmpView" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.TestView" Width="1.5" PointX="12.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewAbsent" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewAttData" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewAuditLog" Width="1.5" PointX="2.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewCard" Width="1.5" PointX="18.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewCrew" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewDepartment" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewDetailAttData" Width="1.5" PointX="20.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewDivision" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewEarlyIN" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewEarlyOut" Width="1.5" PointX="22.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewEditAttendance" Width="1.5" PointX="2.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewEmergencyDetail" Width="1.5" PointX="4.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewEmpPic" Width="1.5" PointX="10.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewEmpType" Width="1.5" PointX="12.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewLateComer" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewLateOut" Width="1.5" PointX="24.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewLeaveData" Width="1.5" PointX="14.75" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewLeaveQuota" Width="1.5" PointX="16.75" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewLvApplication" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewLvConsumed" Width="1.5" PointX="10.75" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewMissingAtt" Width="1.5" PointX="26.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewMonthlyData" Width="1.5" PointX="26.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewMonthlyDataPer" Width="1.5" PointX="18.75" PointY="27.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewMultipleInOut" Width="1.5" PointX="28.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewOverTime" Width="1.5" PointX="28.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewPollData" Width="1.5" PointX="30.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewPresentEmp" Width="1.5" PointX="30.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewSection" Width="1.5" PointX="30.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewSLData" Width="1.5" PointX="30.75" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAS2013Model.ViewSummary" Width="1.5" PointX="20.75" PointY="31.75" IsExpanded="true" />
-        <AssociationConnector Association="TAS2013Model.FK_AttData_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_AttDataManEdit_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_AttDataManEdit_User" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_AttMnDataPer_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_AttProcessorScheduler_AttProcessorScheduler" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_AuditLog_User" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Card_CardType" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Card_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Card_Reason" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmpType_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_City_Region" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Location_City" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Site_City" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Crew_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Department_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Designation_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Division_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Grade_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Section_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_Crew" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Shift_DaysName" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Shift_DaysName1" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_Designation1" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmergencyDetail_Emergency" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmergencyDetails_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_Grade" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_JobTitle" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_Section" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_Shift" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Emp_TypeID" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmpAccess_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmpFace_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmpFp_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmpPhoto_Emp1" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvApplication_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvConsumed_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvQuota_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvShort_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_EmpRdr_Reader" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Reader_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Shift_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvApplication_User" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvApplications_LvType" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvData_LvApplications" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_LvData_LvCode" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Reader_RdrID" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Reader_RdrDutyCode" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Reader_ReaderType1" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_ReaderType_ReaderVendor" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_RosterApp_RosterType" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_RosterApp_Shift" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_Shift_RosterType" ManuallyRouted="false" />
-        <AssociationConnector Association="TAS2013Model.FK_User_UserRole1" ManuallyRouted="false" />
+      <Diagram DiagramId="ba6c74202fc94e9e8f7efa83b8b4348e" Name="Diagram1" ZoomLevel="48">
+        <EntityTypeShape EntityType="TAS2013Model.AccessEmp" Width="1.5" PointX="4.2790136338579527" PointY="14.824387423146696" />
+        <EntityTypeShape EntityType="TAS2013Model.AttCode" Width="1.5" PointX="6.99960626242664" PointY="3.2259977474929755" />
+        <EntityTypeShape EntityType="TAS2013Model.AttData" Width="1.5" PointX="1.538590221450939" PointY="4.0142216105080308" />
+        <EntityTypeShape EntityType="TAS2013Model.AttDataManEdit" Width="1.5" PointX="5.0592674040511563" PointY="3.7994861173441103" />
+        <EntityTypeShape EntityType="TAS2013Model.AttMnData" Width="1.5" PointX="2.5026280761242976" PointY="6.2071574508245835" />
+        <EntityTypeShape EntityType="TAS2013Model.AttMnDataPer" Width="1.5" PointX="11.522907586546106" PointY="17.151053600549258" />
+        <EntityTypeShape EntityType="TAS2013Model.AttProcess" Width="1.5" PointX="10.134490006665928" PointY="12.419679602803512" />
+        <EntityTypeShape EntityType="TAS2013Model.AttProcessorScheduler" Width="1.5" PointX="3.7521556819566317" PointY="0.15339736647596461" />
+        <EntityTypeShape EntityType="TAS2013Model.AuditForm" Width="1.5" PointX="7.2016744852073842" PointY="21.061561489972082" />
+        <EntityTypeShape EntityType="TAS2013Model.AuditLog" Width="1.5" PointX="3.08003545882182" PointY="8.0790096857021609" />
+        <EntityTypeShape EntityType="TAS2013Model.AuditOperation" Width="1.5" PointX="7.9724975079169953" PointY="8.6546352396973578" />
+        <EntityTypeShape EntityType="TAS2013Model.Card" Width="1.5" PointX="4.0913963653572818" PointY="20.295026013765032" />
+        <EntityTypeShape EntityType="TAS2013Model.CardType" Width="1.5" PointX="8.5888970906794526" PointY="3.4317974762207815" />
+        <EntityTypeShape EntityType="TAS2013Model.Category" Width="1.5" PointX="8.1795395017506269" PointY="9.6339644685545771" />
+        <EntityTypeShape EntityType="TAS2013Model.City" Width="1.5" PointX="2.9196956972217629" PointY="22.211449082107958" />
+        <EntityTypeShape EntityType="TAS2013Model.Company" Width="1.5" PointX="9.2759116595964457" PointY="0.52015180910013237" />
+        <EntityTypeShape EntityType="TAS2013Model.Crew" Width="1.5" PointX="9.0388614298025427" PointY="19.146822401856454" />
+        <EntityTypeShape EntityType="TAS2013Model.DailySummary" Width="1.5" PointX="4.0842082407717628" PointY="16.518077276888338" />
+        <EntityTypeShape EntityType="TAS2013Model.DaysName" Width="1.5" PointX="10.041248251703218" PointY="16.03826928885573" />
+        <EntityTypeShape EntityType="TAS2013Model.Department" Width="1.5" PointX="9.011845365637841" PointY="21.616679529480951" />
+        <EntityTypeShape EntityType="TAS2013Model.Designation" Width="1.5" PointX="8.0733574349774777" PointY="30.216019853118816" />
+        <EntityTypeShape EntityType="TAS2013Model.Division" Width="1.5" PointX="4.0823776163544405" PointY="12.111209010757138" />
+        <EntityTypeShape EntityType="TAS2013Model.DOJJ" Width="1.5" PointX="4.6338368787587791" PointY="5.6616602566380338" />
+        <EntityTypeShape EntityType="TAS2013Model.DownloadTime" Width="1.5" PointX="11.777005277470224" PointY="0.51579827094254938" />
+        <EntityTypeShape EntityType="TAS2013Model.DutyCode" Width="1.5" PointX="10.107878263158668" PointY="6.5033553869013465" />
+        <EntityTypeShape EntityType="TAS2013Model.DutyTime" Width="1.5" PointX="11.234130793825784" PointY="11.650158798159174" />
+        <EntityTypeShape EntityType="TAS2013Model.Emergency" Width="1.5" PointX="11.817728429947852" PointY="24.737709548667869" />
+        <EntityTypeShape EntityType="TAS2013Model.EmergencyAuto" Width="1.5" PointX="7.7810138407074909" PointY="2.7560677839238514" />
+        <EntityTypeShape EntityType="TAS2013Model.EmergencyDetail" Width="1.5" PointX="1.4677489183227293" PointY="30.370590686039343" />
+        <EntityTypeShape EntityType="TAS2013Model.Emp" Width="1.5" PointX="4.6208520646304141" PointY="0.67110978098172214" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpAccess" Width="1.5" PointX="5.3257936021898846" PointY="3.85741527558184" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpFace" Width="1.5" PointX="10.505111596782278" PointY="16.462225787556836" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpFp" Width="1.5" PointX="5.0517723844627724" PointY="30.207601755022818" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpPhoto" Width="1.5" PointX="9.3927836704034284" PointY="7.878484282586018" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpPresence" Width="1.5" PointX="0.57317161027955432" PointY="25.487671208329346" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpRdr" Width="1.5" PointX="2.0162757607252688" PointY="3.1661960050306264" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpType" Width="1.5" PointX="10.88624019310169" PointY="18.596748360710567" />
+        <EntityTypeShape EntityType="TAS2013Model.Grade" Width="1.5" PointX="6.9562711971608326" PointY="23.043973501326505" />
+        <EntityTypeShape EntityType="TAS2013Model.Holiday" Width="1.5" PointX="11.163110598532068" PointY="30.79918129686228" />
+        <EntityTypeShape EntityType="TAS2013Model.ImportLeave" Width="1.5" PointX="2.9767978764031073" PointY="17.242065318507173" />
+        <EntityTypeShape EntityType="TAS2013Model.JobCard" Width="1.5" PointX="1.5099187761125705" PointY="21.296307067059125" />
+        <EntityTypeShape EntityType="TAS2013Model.JobCardApp" Width="1.5" PointX="5.5048584125492992" PointY="1.2824998056900221" />
+        <EntityTypeShape EntityType="TAS2013Model.JobCardEmp" Width="1.5" PointX="9.0951626119647" PointY="13.085605627431351" />
+        <EntityTypeShape EntityType="TAS2013Model.JobTitle" Width="1.5" PointX="0.37732849846469635" PointY="31.365920930805579" />
+        <EntityTypeShape EntityType="TAS2013Model.Location" Width="1.5" PointX="11.399044559988679" PointY="8.1351541914675174" />
+        <EntityTypeShape EntityType="TAS2013Model.LvApplication" Width="1.5" PointX="4.7265300605103979" PointY="28.406071318502573" />
+        <EntityTypeShape EntityType="TAS2013Model.LvConsumed" Width="1.5" PointX="1.3934989186904854" PointY="23.36047786071919" />
+        <EntityTypeShape EntityType="TAS2013Model.LvData" Width="1.5" PointX="2.7804612213654729" PointY="17.671537884358102" />
+        <EntityTypeShape EntityType="TAS2013Model.LvQuota" Width="1.5" PointX="0.825895848137278" PointY="26.424114522721673" />
+        <EntityTypeShape EntityType="TAS2013Model.LvShort" Width="1.5" PointX="11.489930994571154" PointY="14.149296588333927" />
+        <EntityTypeShape EntityType="TAS2013Model.LvType" Width="1.5" PointX="4.7303389258358344" PointY="23.526863124001242" />
+        <EntityTypeShape EntityType="TAS2013Model.Option" Width="1.5" PointX="11.620252741323903" PointY="1.4666708267604331" />
+        <EntityTypeShape EntityType="TAS2013Model.PollData" Width="1.5" PointX="0.422482509362736" PointY="26.791486111838132" />
+        <EntityTypeShape EntityType="TAS2013Model.RdrDutyCode" Width="1.5" PointX="5.4825693562080016" PointY="12.917194119150375" />
+        <EntityTypeShape EntityType="TAS2013Model.RdrEventLog" Width="1.5" PointX="2.3203698835896187" PointY="29.70539674056014" />
+        <EntityTypeShape EntityType="TAS2013Model.Reader" Width="1.5" PointX="1.8704148204393754" PointY="5.1148158186649981" />
+        <EntityTypeShape EntityType="TAS2013Model.ReaderType" Width="1.5" PointX="8.4121736308616466" PointY="27.080206853840597" />
+        <EntityTypeShape EntityType="TAS2013Model.ReaderVendor" Width="1.5" PointX="10.741747391755576" PointY="24.905809205447234" />
+        <EntityTypeShape EntityType="TAS2013Model.Reason" Width="1.5" PointX="7.9416723157938911" PointY="26.73113111906272" />
+        <EntityTypeShape EntityType="TAS2013Model.Region" Width="1.5" PointX="9.0781720583691126" PointY="0.38578739780270838" />
+        <EntityTypeShape EntityType="TAS2013Model.Roster" Width="1.5" PointX="10.950522159668861" PointY="25.68150219027023" />
+        <EntityTypeShape EntityType="TAS2013Model.RosterApp" Width="1.5" PointX="3.5553870459810772" PointY="25.393303435944627" />
+        <EntityTypeShape EntityType="TAS2013Model.RosterDetail" Width="1.5" PointX="4.8313466426131066" PointY="8.97066404343148" />
+        <EntityTypeShape EntityType="TAS2013Model.RosterType" Width="1.5" PointX="11.793824583195999" PointY="5.6694959875519837" />
+        <EntityTypeShape EntityType="TAS2013Model.SampleTable" Width="1.5" PointX="4.19331941390099" PointY="0.87851864140411773" />
+        <EntityTypeShape EntityType="TAS2013Model.Section" Width="1.5" PointX="7.8155942148601607" PointY="3.3441804066971783" />
+        <EntityTypeShape EntityType="TAS2013Model.ServiceLog" Width="1.5" PointX="0.059761991752200753" PointY="25.78883108207436" />
+        <EntityTypeShape EntityType="TAS2013Model.setDateTime" Width="1.5" PointX="1.7354355686043554" PointY="12.499586945632281" />
+        <EntityTypeShape EntityType="TAS2013Model.Shift" Width="1.5" PointX="8.36586240882327" PointY="13.212951606704365" />
+        <EntityTypeShape EntityType="TAS2013Model.Site" Width="1.5" PointX="0.058454917771022269" PointY="29.462280853401069" />
+        <EntityTypeShape EntityType="TAS2013Model.sysdiagram" Width="1.5" PointX="11.424532754078756" PointY="20.089015210088814" />
+        <EntityTypeShape EntityType="TAS2013Model.User" Width="1.5" PointX="9.4418504654624726" PointY="0.69205541940967341" />
+        <EntityTypeShape EntityType="TAS2013Model.UserLocation" Width="1.5" PointX="1.1802680013609437" PointY="7.489264342696063" />
+        <EntityTypeShape EntityType="TAS2013Model.UserModule" Width="1.5" PointX="2.2401031135768177" PointY="8.6357902626673653" />
+        <EntityTypeShape EntityType="TAS2013Model.UserRole" Width="1.5" PointX="10.018431806014121" PointY="14.50875405152736" />
+        <EntityTypeShape EntityType="TAS2013Model.ZTable" Width="1.5" PointX="10.685154390840397" PointY="7.4712578093033555" />
+        <EntityTypeShape EntityType="TAS2013Model.EmergencyView" Width="1.5" PointX="0.83087088765151362" PointY="30.25402858772037" />
+        <EntityTypeShape EntityType="TAS2013Model.EmpView" Width="1.5" PointX="6.3554640609563631" PointY="18.932734945291994" />
+        <EntityTypeShape EntityType="TAS2013Model.TestView" Width="1.5" PointX="5.267186625519388" PointY="5.5940372075857772" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewAbsent" Width="1.5" PointX="7.7186549174220556" PointY="24.155955981535815" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewAttData" Width="1.5" PointX="10.2529827087433" PointY="8.9506889623360184" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewAuditLog" Width="1.5" PointX="0.650628380780401" PointY="5.3091343815015319" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewCard" Width="1.5" PointX="3.3239295628498908" PointY="1.6435924478078225" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewCrew" Width="1.5" PointX="1.8582939402471732" PointY="28.643631933556698" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewDepartment" Width="1.5" PointX="8.4196420015858671" PointY="16.14507276571592" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewDetailAttData" Width="1.5" PointX="0.97381604321944337" PointY="7.9648412354126767" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewDivision" Width="1.5" PointX="9.9657192518774966" PointY="26.746177968916566" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewEarlyIN" Width="1.5" PointX="0.72013752009726018" PointY="9.1123772156948117" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewEarlyOut" Width="1.5" PointX="0.18871285588886258" PointY="8.7889767032065329" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewEditAttendance" Width="1.5" PointX="8.3422207871182934" PointY="5.3943267042722214" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewEmergencyDetail" Width="1.5" PointX="1.1238959027099871" PointY="22.8144086258553" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewEmpPic" Width="1.5" PointX="4.1076291893178736" PointY="28.673431052208613" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewEmpType" Width="1.5" PointX="1.6442900996861467" PointY="13.370326763657074" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewLateComer" Width="1.5" PointX="0.42319676485992819" PointY="1.9053367236188319" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewLateOut" Width="1.5" PointX="3.3153475948215219" PointY="17.695093237652952" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewLeaveData" Width="1.5" PointX="11.420158479092716" PointY="16.714929215942941" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewLeaveQuota" Width="1.5" PointX="9.2362019350920814" PointY="7.9999237991869094" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewLvApplication" Width="1.5" PointX="0.79537261128210113" PointY="21.514731715207329" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewLvConsumed" Width="1.5" PointX="6.8827523230029044" PointY="19.869133526398397" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewMissingAtt" Width="1.5" PointX="8.9355912194287352" PointY="1.5037888891546936" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewMonthlyData" Width="1.5" PointX="0.95018018826385031" PointY="9.3299763693148154" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewMonthlyDataPer" Width="1.5" PointX="6.8187793469143934" PointY="10.570745383655067" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewMultipleInOut" Width="1.5" PointX="4.4669667261033164" PointY="20.528903806828382" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewOverTime" Width="1.5" PointX="4.8360024266112607" PointY="7.469477731487471" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewPollData" Width="1.5" PointX="10.625123200297878" PointY="7.8355269468554889" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewPresentEmp" Width="1.5" PointX="6.9110627485956364" PointY="5.2568542981785047" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewSection" Width="1.5" PointX="5.7555431657263743" PointY="15.188753075519927" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewSLData" Width="1.5" PointX="7.9345875903659433" PointY="4.5268785974601649" />
+        <EntityTypeShape EntityType="TAS2013Model.ViewSummary" Width="1.5" PointX="11.248879171558134" PointY="5.06157796320579" />
+        <AssociationConnector Association="TAS2013Model.FK_AttData_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_AttDataManEdit_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_AttDataManEdit_User" />
+        <AssociationConnector Association="TAS2013Model.FK_AttMnDataPer_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_AttProcessorScheduler_AttProcessorScheduler" />
+        <AssociationConnector Association="TAS2013Model.FK_AuditLog_User" />
+        <AssociationConnector Association="TAS2013Model.FK_Card_CardType" />
+        <AssociationConnector Association="TAS2013Model.FK_Card_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_Card_Reason" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpType_Category" />
+        <AssociationConnector Association="TAS2013Model.FK_City_Region" />
+        <AssociationConnector Association="TAS2013Model.FK_Location_City" />
+        <AssociationConnector Association="TAS2013Model.FK_Site_City" />
+        <AssociationConnector Association="TAS2013Model.FK_Crew_Company" />
+        <AssociationConnector Association="TAS2013Model.FK_Department_Company" />
+        <AssociationConnector Association="TAS2013Model.FK_Designation_Company" />
+        <AssociationConnector Association="TAS2013Model.FK_Division_Company" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpType_Company" />
+        <AssociationConnector Association="TAS2013Model.FK_Grade_Company" />
+        <AssociationConnector Association="TAS2013Model.FK_Section_Company1" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_Crew" />
+        <AssociationConnector Association="TAS2013Model.FK_Shift_DaysName" />
+        <AssociationConnector Association="TAS2013Model.FK_Shift_DaysName1" />
+        <AssociationConnector Association="TAS2013Model.FK_Department_Division" />
+        <AssociationConnector Association="TAS2013Model.FK_Section_Department" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_Designation1" />
+        <AssociationConnector Association="TAS2013Model.FK_EmergencyDetail_Emergency" />
+        <AssociationConnector Association="TAS2013Model.FK_EmergencyDetails_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_Grade" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_JobTitle" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_Location" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_Section" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_Shift" />
+        <AssociationConnector Association="TAS2013Model.FK_Emp_TypeID" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpAccess_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpFace_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpFp_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpPhoto_Emp1" />
+        <AssociationConnector Association="TAS2013Model.FK_LvApplication_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_LvConsumed_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_LvQuota_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_LvShort_Emp" />
+        <AssociationConnector Association="TAS2013Model.FK_EmpRdr_Reader" />
+        <AssociationConnector Association="TAS2013Model.FK_Reader_Location" />
+        <AssociationConnector Association="TAS2013Model.FK_Shift_Location" />
+        <AssociationConnector Association="TAS2013Model.FK_LvApplication_User" />
+        <AssociationConnector Association="TAS2013Model.FK_LvApplications_LvType" />
+        <AssociationConnector Association="TAS2013Model.FK_LvData_LvApplications" />
+        <AssociationConnector Association="TAS2013Model.FK_LvData_LvCode" />
+        <AssociationConnector Association="TAS2013Model.FK_Reader_RdrID" />
+        <AssociationConnector Association="TAS2013Model.FK_Reader_RdrDutyCode" />
+        <AssociationConnector Association="TAS2013Model.FK_Reader_ReaderType1" />
+        <AssociationConnector Association="TAS2013Model.FK_ReaderType_ReaderVendor" />
+        <AssociationConnector Association="TAS2013Model.FK_RosterApp_RosterType" />
+        <AssociationConnector Association="TAS2013Model.FK_RosterApp_Shift" />
+        <AssociationConnector Association="TAS2013Model.FK_Shift_RosterType" />
+        <AssociationConnector Association="TAS2013Model.FK_User_UserRole1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

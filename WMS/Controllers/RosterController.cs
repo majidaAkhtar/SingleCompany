@@ -187,6 +187,10 @@ namespace WMS.Controllers
 
         public ActionResult RosterDelete(int? id)
         {
+            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
+            ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
+            ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
+            ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -457,28 +461,25 @@ namespace WMS.Controllers
             RosterApp RApp = new RosterApp();
             //User uid = new User();
             RApp = db.RosterApps.First(rr => rr.RotaApplD == RosterAppID);
-           try 
-	            {	        
-		            
-                        if (RApp.UserID == LoggedUserID)
-                        {
-                
-                            List<RosterDetail> RAppDetail = new List<Models.RosterDetail>();
-                            RAppDetail = db.RosterDetails.Where(aa => aa.RosterAppID == RosterAppID).ToList();
-                            foreach (var item in RAppDetail)
-                            {
-                                db.RosterDetails.Remove(item);
-                            }
-	                    }
+            if (RApp.UserID == LoggedUserID)
+            {
+                try
+                {
+                    List<RosterDetail> RAppDetail = new List<Models.RosterDetail>();
+                    RAppDetail = db.RosterDetails.Where(aa => aa.RosterAppID == RosterAppID).ToList();
+                    foreach (var item in RAppDetail)
+                    {
+                        db.RosterDetails.Remove(item);
+                    }
                 }
-	            catch (Exception)
-	            {
-		
-		            throw;
-	            }
+                catch (Exception)
+                {
+
+                    throw;
+                }
                 db.RosterApps.Remove(RApp);
                 db.SaveChanges();
-
+            }
 
                 return true;
         }

@@ -14,6 +14,8 @@ $(document).ready(function () {
     $("#Option2").hide();
     $("#Option3").hide();
     $("#Option4").show();
+    $("#doubleDutyDiv").hide();
+    $("#BadliDiv").hide();
     $("input[name$='cars']").click(function () {
         var test = $(this).val();
         if (test == "shift") {
@@ -43,8 +45,16 @@ $(document).ready(function () {
     });
     $('#JobCardType').change(function () {
         var test = $(this).val();
+        $("#doubleDutyDiv").hide();
+        $("#BadliDiv").hide();
         if (test == '5') {
             $("#TimeIn").show();
+        }
+        if (test == '8') {
+            $("#doubleDutyDiv").show();
+        }
+        if (test == '9') {
+            $("#BadliDiv").show();
         }
     });
 });

@@ -264,18 +264,16 @@ namespace WMS.Reports
                                                 int monthfrom = Convert.ToDateTime(_dateFrom).Month;
                                                 int monthTo = Convert.ToDateTime(_dateTo).Month;
                                                 //int totalMonths = monthfrom < monthTo ? monthTo : monthfrom;
-<<<<<<< HEAD
                      for(int ul= monthfrom > monthTo ? monthTo:monthfrom;ul<= (monthfrom <monthTo ? monthTo:monthfrom)  ;ul++)
                         {
                             LoadReport(PathString, GetLV(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), 2), ul);
 
                         }
-=======
+
 
                                                 LoadReport(PathString, GetLV(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), 2), Convert.ToDateTime(_dateFrom).Month);
 
-                        
->>>>>>> 06d0af50f3f282a2a331351da7981eff6bbf685e
+
                                               
                                                // LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList1, _ViewList1), _dateFrom);
                                                 break;

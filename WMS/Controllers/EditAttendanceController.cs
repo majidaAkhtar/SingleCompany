@@ -33,6 +33,7 @@ namespace WMS.Controllers
             ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",LoggedInUser.CompanyID);
             ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
             ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
+            ViewBag.DesignationID = new SelectList(db.Designations.Where(aa=>aa.CompanyID==LoggedInUser.CompanyID), "DesignationID", "DesignationName");
             ViewBag.Message = "";
             return View();
         }
@@ -341,57 +342,65 @@ namespace WMS.Controllers
                 JobCardApp jobCardApp = new JobCardApp();
                 jobCardApp.CardType = _WorkCardID;
                 jobCardApp.DateCreated = DateTime.Now;
+                jobCardApp.UserID = LoggedInUser.UserID;
                 jobCardApp.DateStarted = Convert.ToDateTime(Request.Form["JobDateFrom"]);
                 jobCardApp.DateEnded = Convert.ToDateTime(Request.Form["JobDateTo"]);
+                // For Double Duty Only
+                    if(jobCardApp.CardType==8)
+                        jobCardApp.WorkMin = Convert.ToInt16(Request.Form["DDWorkMins"].ToString());
+                    if (jobCardApp.CardType == 9)
+                        jobCardApp.OtherValue = Convert.ToInt16(Request.Form["DesignationID"].ToString());
                 jobCardApp.Status = false;
-                switch (Request.Form["cars"].ToString())
+                if (!ValidateJobCard((DateTime)jobCardApp.DateStarted,(short)jobCardApp.CardType))
                 {
-                    case "shift":
-                        jobCardApp.CriteriaData = Convert.ToInt32(Request.Form["ShiftList"].ToString());
-                        jobCardApp.JobCardCriteria = "S";
-                        db.JobCardApps.Add(jobCardApp);
-                        if (db.SaveChanges() > 0)
-                        {
-                            AddJobCardAppToJobCardData();
-                        }
-                        break;
-                    case "crew":
-                        jobCardApp.CriteriaData = Convert.ToInt32(Request.Form["CrewList"].ToString());
-                        jobCardApp.JobCardCriteria = "C";
-                        db.JobCardApps.Add(jobCardApp);
-                        if (db.SaveChanges() > 0)
-                        {
-                            AddJobCardAppToJobCardData();
-                        }
-                        break;
-                    case "section":
-                        jobCardApp.CriteriaData = Convert.ToInt32(Request.Form["SectionList"].ToString());
-                        jobCardApp.JobCardCriteria = "T";
-                        db.JobCardApps.Add(jobCardApp);
-                        if (db.SaveChanges() > 0)
-                        {
-                            AddJobCardAppToJobCardData();
-                        }
-                        break;
-                    case "employee":
-                        if (Request.Form["cars"].ToString() == "employee")
-                        {
-                            _EmpNo = Request.Form["JobEmpNo"];
-                            _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID == CompID).ToList();
-                            if (_Emp.Count > 0)
+                    switch (Request.Form["cars"].ToString())
+                    {
+                        case "shift":
+                            jobCardApp.CriteriaData = Convert.ToInt32(Request.Form["ShiftList"].ToString());
+                            jobCardApp.JobCardCriteria = "S";
+                            db.JobCardApps.Add(jobCardApp);
+                            if (db.SaveChanges() > 0)
                             {
-                                jobCardApp.CriteriaData = _Emp.FirstOrDefault().EmpID;
-                                jobCardApp.JobCardCriteria = "E";
-                                db.JobCardApps.Add(jobCardApp);
-                                if (db.SaveChanges() > 0)
+                                AddJobCardAppToJobCardData();
+                            }
+                            break;
+                        case "crew":
+                            jobCardApp.CriteriaData = Convert.ToInt32(Request.Form["CrewList"].ToString());
+                            jobCardApp.JobCardCriteria = "C";
+                            db.JobCardApps.Add(jobCardApp);
+                            if (db.SaveChanges() > 0)
+                            {
+                                AddJobCardAppToJobCardData();
+                            }
+                            break;
+                        case "section":
+                            jobCardApp.CriteriaData = Convert.ToInt32(Request.Form["SectionList"].ToString());
+                            jobCardApp.JobCardCriteria = "T";
+                            db.JobCardApps.Add(jobCardApp);
+                            if (db.SaveChanges() > 0)
+                            {
+                                AddJobCardAppToJobCardData();
+                            }
+                            break;
+                        case "employee":
+                            if (Request.Form["cars"].ToString() == "employee")
+                            {
+                                _EmpNo = Request.Form["JobEmpNo"];
+                                _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID == CompID).ToList();
+                                if (_Emp.Count > 0)
                                 {
-                                    AddJobCardAppToJobCardData();
+                                    jobCardApp.CriteriaData = _Emp.FirstOrDefault().EmpID;
+                                    jobCardApp.JobCardCriteria = "E";
+                                    db.JobCardApps.Add(jobCardApp);
+                                    if (db.SaveChanges() > 0)
+                                    {
+                                        AddJobCardAppToJobCardData();
+                                    }
                                 }
                             }
-                        }
-                        break;
+                            break;
+                    }
                 }
-
                 //Add Job Card to JobCardData and Mark Legends in Attendance Data if attendance Created
                 Session["EditAttendanceDate"] = DateTime.Today.Date.ToString("yyyy-MM-dd");
                 ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
@@ -403,6 +412,7 @@ namespace WMS.Controllers
                 ViewData["JobDateFrom"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
                 ViewData["JobDateTo"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
                 ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
+                ViewBag.DesignationID = new SelectList(db.Designations.Where(aa => aa.CompanyID == LoggedInUser.CompanyID), "DesignationID", "DesignationName");
                     return View("Index");
             }
             catch (Exception)
@@ -415,9 +425,24 @@ namespace WMS.Controllers
                 ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
                 ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
                 ViewBag.CMessage = "An Error occured while creating Job Card of" + Request.Form["JobCardType"].ToString();
+                ViewBag.DesignationID = new SelectList(db.Designations.Where(aa => aa.CompanyID == LoggedInUser.CompanyID), "DesignationID", "DesignationName");
                 return View("Index");
             }
         }
+
+        private bool ValidateJobCard(DateTime dateStart, short CardType)
+        {
+            bool check = false;
+            using (var ctx = new TAS2013Entities())
+            {
+                List<JobCardApp> jcApp = new List<JobCardApp>();
+                if (ctx.JobCardApps.Where(aa => aa.DateStarted == dateStart && aa.CardType == CardType).Count() > 0)
+                    check = true;
+                ctx.Dispose();
+            }
+            return check;
+        }
+
         //Add Job Card To Job Card Data
         private void AddJobCardAppToJobCardData()
         {
@@ -425,7 +450,6 @@ namespace WMS.Controllers
             {
                 List<JobCardApp> _jobCardApp = new List<JobCardApp>();
                 _jobCardApp = ctx.JobCardApps.Where(aa => aa.Status == false).ToList();
-                User LoggedInUser = Session["LoggedUser"] as User;
                 List<Emp> _Emp = new List<Emp>();
                 foreach (var jcApp in _jobCardApp)
                 {
@@ -434,15 +458,15 @@ namespace WMS.Controllers
                     {
                         case "S":
                             short _shiftID = Convert.ToByte(jcApp.CriteriaData);
-                            _Emp = ctx.Emps.Where(aa => aa.ShiftID == _shiftID && aa.CompanyID == LoggedInUser.CompanyID).ToList();
+                            _Emp = ctx.Emps.Where(aa => aa.ShiftID == _shiftID).ToList();
                             break;
                         case "C":
                             short _crewID = Convert.ToByte(jcApp.CriteriaData);
-                            _Emp = ctx.Emps.Where(aa => aa.CrewID == _crewID && aa.CompanyID == LoggedInUser.CompanyID).ToList();
+                            _Emp = ctx.Emps.Where(aa => aa.CrewID == _crewID).ToList();
                             break;
                         case "T":
                             short _secID = Convert.ToByte(jcApp.CriteriaData);
-                            _Emp = ctx.Emps.Where(aa => aa.SecID == _secID && aa.CompanyID == LoggedInUser.CompanyID).ToList();
+                            _Emp = ctx.Emps.Where(aa => aa.SecID == _secID).ToList();
                             break;
                         case "E":
                             int _EmpID = (int)jcApp.CriteriaData;
@@ -451,7 +475,7 @@ namespace WMS.Controllers
                     }
                     foreach (var selectedEmp in _Emp)
                     {
-                        AddJobCardData(selectedEmp, (short)jcApp.CardType, jcApp.DateStarted.Value, jcApp.DateEnded.Value);
+                        AddJobCardData(selectedEmp, jcApp);
                     }
                 }
                 ctx.SaveChanges();
@@ -459,46 +483,41 @@ namespace WMS.Controllers
             }
         }
 
-        private void AddJobCardData(Emp _selEmp, short _WorkCardID, DateTime _dateStart, DateTime _dateEnd)
+        private void AddJobCardData(Emp _selEmp, JobCardApp jcApp)
         {
             int _empID = _selEmp.EmpID;
             string _empDate = "";
-            int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
-            short _CompID = Convert.ToInt16(Session["UserCompany"].ToString());
-            DateTime _CreatedDate = DateTime.Now;
-            DateTime _Date = _dateStart;
-            while (_Date <= _dateEnd)
+            int _userID = (int)jcApp.UserID;
+            DateTime _Date = (DateTime)jcApp.DateStarted;
+            while (_Date <= jcApp.DateEnded)
             {
                 _empDate = _selEmp.EmpID + _Date.ToString("yyMMdd");
-                AddJobCardDataToDatabase(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID, _CreatedDate);
+                AddJobCardDataToDatabase(_empDate, _empID, _Date, _userID,jcApp);
                 if (db.AttProcesses.Where(aa => aa.ProcessDate == _Date).Count()>0)
                 {
-                    switch (_WorkCardID)
+                    switch (jcApp.CardType)
                     {
                         case 1://Day Off
-                            AddJCDayOffToAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
+                            AddJCDayOffToAttData(_empDate, _empID, _Date, _userID, (short)jcApp.CardType);
                             break;
                         case 2://GZ Holiday
-                            AddJCGZDayToAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
+                            AddJCGZDayToAttData(_empDate, _empID, _Date, _userID, (short)jcApp.CardType);
                             break;
                         case 3://Absent
-                            AddJCAbsentToAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
+                            AddJCAbsentToAttData(_empDate, _empID, _Date, _userID, (short)jcApp.CardType);
                             break;
                         case 4://official Duty
-                            AddJCODDayToAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
+                            AddJCODDayToAttData(_empDate, _empID, _Date, _userID, (short)jcApp.CardType);
                             break;
-                        case 5://Normal Day 565
-                            AddJCNorrmalDayAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
+                        case 8:// Double Duty
+                            AddDoubleDutyAttData(_empDate, _empID, _Date, _userID, jcApp);
                             break;
-                        case 6://Normal Day 540
-                            AddJCNorrmalDayAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
+                        case 9:// Badli Duty
+                            AddBadliAttData(_empDate, _empID, _Date, _userID, jcApp);
                             break;
-                        case 7://Normal Day 480
-                            AddJCNorrmalDayAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
-                            break;
-                        case 8://Late In Margin
-                            AddLateInMarginAttData(_empDate, _empID, _Date, _userID, _WorkCardID, _CompID);
-                            break;
+                        //case 10:// Late In Margin
+                        //    AddLateInMarginAttData(_empDate, _empID, _Date, _userID, (short)jcApp.CardType);
+                        //    break;
                     }
                 }
                 _Date = _Date.AddDays(1);
@@ -506,7 +525,7 @@ namespace WMS.Controllers
             HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.EditAttendance, (byte)MyEnums.Operation.Edit, DateTime.Now);
         }
 
-        private bool AddJobCardDataToDatabase(string _empDate, int _empID, DateTime _currentDate, int _userID, short _WorkCardID, short _CompID, DateTime dateTime)
+        private bool AddJobCardDataToDatabase(string _empDate, int _empID, DateTime _currentDate, int _userID,JobCardApp jcApp)
         {
             bool check = false;
             try
@@ -516,9 +535,11 @@ namespace WMS.Controllers
                 _jobCardEmp.EmpID = _empID;
                 _jobCardEmp.Dated = _currentDate;
                 _jobCardEmp.SubmittedFrom = _userID;
-                _jobCardEmp.WrkCardID = _WorkCardID;
-                _jobCardEmp.CompanyID = _CompID;
-                _jobCardEmp.DateCreated = dateTime;
+                _jobCardEmp.WrkCardID = jcApp.CardType;
+                _jobCardEmp.DateCreated = DateTime.Now;
+                _jobCardEmp.WorkMin = jcApp.WorkMin;
+                _jobCardEmp.JCAppID = jcApp.JobCardID;
+                _jobCardEmp.OtherValue = jcApp.OtherValue;
                 db.JobCardEmps.Add(_jobCardEmp);
                 if (db.SaveChanges() > 0)
                 {
@@ -533,7 +554,7 @@ namespace WMS.Controllers
         }
 
         #region --Job Cards - AttData --- 
-        private bool AddJCNorrmalDayAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        private bool AddJCNorrmalDayAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID)
         {
             bool check = false;
             try{
@@ -577,7 +598,7 @@ namespace WMS.Controllers
             return check;
         }
 
-        private bool AddJCDoubleDutyOnlyAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        private bool AddDoubleDutyAttData(string _empDate, int _empID, DateTime _Date, int _userID, JobCardApp jcApp)
         {
             bool check = false;
             try
@@ -586,7 +607,7 @@ namespace WMS.Controllers
                 using (var context = new TAS2013Entities())
                 {
                     AttData _attdata = context.AttDatas.FirstOrDefault(aa => aa.EmpDate == _empDate);
-                    JobCard _jcCard = context.JobCards.FirstOrDefault(aa => aa.WorkCardID == _WorkCardID);
+                    JobCard _jcCard = context.JobCards.FirstOrDefault(aa => aa.WorkCardID == jcApp.CardType);
                     if (_attdata != null)
                     {
                         _attdata.DutyCode = "D";
@@ -595,8 +616,8 @@ namespace WMS.Controllers
                         _attdata.StatusLeave = false;
                         _attdata.StatusP = true;
                         _attdata.WorkMin = _jcCard.WorkMin;
-                        _attdata.ShifMin = _jcCard.WorkMin;
-                        _attdata.Remarks = "[DD][Manual]";
+                        _attdata.Remarks = _attdata.Remarks+"[DD][Manual]";
+                        _attdata.StatusMN = true;
                         _attdata.TimeIn = null;
                         _attdata.TimeOut = null;
                         _attdata.EarlyIn = null;
@@ -622,7 +643,37 @@ namespace WMS.Controllers
             return check;
         }
 
-        private bool AddJCODDayToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        private bool AddBadliAttData(string _empDate, int _empID, DateTime _Date, int _userID, JobCardApp jcApp)
+        {
+            bool check = false;
+            try
+            {
+                //Normal Duty
+                using (var context = new TAS2013Entities())
+                {
+                    AttData _attdata = context.AttDatas.FirstOrDefault(aa => aa.EmpDate == _empDate);
+                    JobCard _jcCard = context.JobCards.FirstOrDefault(aa => aa.WorkCardID == jcApp.CardType);
+                    if (_attdata != null)
+                    {
+                        _attdata.DutyCode = "D";
+                        _attdata.StatusAB = false;
+                        _attdata.StatusLeave = false;
+                        _attdata.StatusP = true;
+                        _attdata.Remarks = _attdata.Remarks+ "[Badli][Manual]";
+                        _attdata.StatusMN = true;
+                    }
+                    context.SaveChanges();
+                    if (context.SaveChanges() > 0)
+                        check = true;
+                    context.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return check;
+        }
+        private bool AddJCODDayToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID)
         {
 
             bool check = false;
@@ -640,7 +691,7 @@ namespace WMS.Controllers
                         _attdata.StatusLeave = false;
                         _attdata.StatusP = true;
                         _attdata.WorkMin = _attdata.ShifMin;
-                        _attdata.Remarks = "[Official Duty][Manual]";
+                        _attdata.Remarks = _attdata.Remarks+"[Official Duty][Manual]";
                         _attdata.TimeIn = null;
                         _attdata.TimeOut = null;
                         _attdata.WorkMin = null;
@@ -669,7 +720,7 @@ namespace WMS.Controllers
             return check;
         }
 
-        private bool AddJCAbsentToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        private bool AddJCAbsentToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID)
         {
             bool check = false;
             try{
@@ -711,7 +762,7 @@ namespace WMS.Controllers
             return check;
         }
 
-        private bool AddJCGZDayToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        private bool AddJCGZDayToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID)
         {
             bool check = false;
             try{
@@ -754,7 +805,7 @@ namespace WMS.Controllers
             return check;
         }
 
-        private bool AddJCDayOffToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        private bool AddJCDayOffToAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID)
         {
             bool check = false;
             try
@@ -796,8 +847,8 @@ namespace WMS.Controllers
             }
             return check;
         }
-
-        private bool AddLateInMarginAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID, short _CompID)
+        
+        private bool AddLateInMarginAttData(string _empDate, int _empID, DateTime _Date, int _userID, short _WorkCardID)
         {
             bool check = false;
             try
@@ -828,6 +879,7 @@ namespace WMS.Controllers
             }
             return check;
         }
+
         #endregion
 
 

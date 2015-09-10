@@ -20,7 +20,6 @@ namespace WMS.Models
         public Nullable<System.DateTime> Dated { get; set; }
         public Nullable<int> SubmittedFrom { get; set; }
         public Nullable<short> WrkCardID { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<int> SendTo { get; set; }
         public Nullable<bool> Approved { get; set; }
         public Nullable<bool> Rejected { get; set; }
@@ -29,5 +28,8 @@ namespace WMS.Models
         public Nullable<System.DateTime> TimeIn { get; set; }
         public Nullable<System.DateTime> TimeOut { get; set; }
         public Nullable<short> WorkMin { get; set; }
+        public Nullable<System.TimeSpan> StartTime { get; set; }
+        public Nullable<short> OtherValue { get; set; }
+        public Nullable<int> JCAppID { get; set; }
     }
 }
