@@ -513,6 +513,7 @@ namespace WMS.Controllers
                             AddDoubleDutyAttData(_empDate, _empID, _Date, _userID, jcApp);
                             break;
                         case 9:// Badli Duty
+                            AddBadliTableData(_empID,_empDate,_Date,(short)jcApp.OtherValue,jcApp.Remarks);
                             AddBadliAttData(_empDate, _empID, _Date, _userID, jcApp);
                             break;
                         //case 10:// Late In Margin
@@ -523,6 +524,25 @@ namespace WMS.Controllers
                 _Date = _Date.AddDays(1);
             }
             HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.EditAttendance, (byte)MyEnums.Operation.Edit, DateTime.Now);
+        }
+
+        private void AddBadliTableData(int _empID, string _empDate, DateTime _Date, short desigID, string remarks)
+        {
+            try
+            {
+                BadliRecord br = new BadliRecord();
+                br.EmpID = _empID;
+                br.EmpDateBadli = _empDate;
+                br.BadliDesgID = desigID;
+                br.Remarks = remarks;
+                br.Date = _Date;
+                db.BadliRecords.Add(br);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         private bool AddJobCardDataToDatabase(string _empDate, int _empID, DateTime _currentDate, int _userID,JobCardApp jcApp)
