@@ -11,7 +11,7 @@ using WMS.Models;
 namespace WMS.Controllers
 {
     [CustomControllerAttributes]
-    public class EditAttendanceController : ControllerSelectList
+    public class EditAttendanceController : Controller
     {
         //
         // GET: /EditAttendance/
