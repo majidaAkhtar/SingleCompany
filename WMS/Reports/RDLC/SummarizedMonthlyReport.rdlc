@@ -9,7 +9,11 @@
               <Width>0.42859in</Width>
             </TablixColumn>
             <TablixColumn>
+<<<<<<< HEAD
               <Width>0.63182in</Width>
+=======
+              <Width>0.42349in</Width>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
             </TablixColumn>
             <TablixColumn>
               <Width>0.40625in</Width>
@@ -42,7 +46,11 @@
               <Width>0.79167in</Width>
             </TablixColumn>
             <TablixColumn>
+<<<<<<< HEAD
               <Width>1.12084in</Width>
+=======
+              <Width>0.97917in</Width>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
             </TablixColumn>
             <TablixColumn>
               <Width>0.47917in</Width>
@@ -93,7 +101,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+<<<<<<< HEAD
                     <rd:Selected>true</rd:Selected>
+=======
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1088,14 +1099,22 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="SrNo">
+=======
+                    <Textbox Name="Textbox50">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!SrNo.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1107,7 +1126,11 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>SrNo</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox50</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1130,14 +1153,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="PNo">
+=======
+                    <Textbox Name="EmpNo1">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!PNo.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1147,7 +1178,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>PNo</rd:DefaultName>
+=======
+                      <rd:DefaultName>EmpNo1</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1167,14 +1202,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Name">
+=======
+                    <Textbox Name="Textbox3">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Name.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1184,7 +1227,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Name</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1204,14 +1251,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Designation">
+=======
+                    <Textbox Name="Textbox4">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Designation.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1221,7 +1276,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Designation</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1241,14 +1300,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="DOJ">
+=======
+                    <Textbox Name="DeptName">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!DOJ.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1258,7 +1325,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>DOJ</rd:DefaultName>
+=======
+                      <rd:DefaultName>DeptName</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1278,14 +1349,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Present">
+=======
+                    <Textbox Name="SectionName">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Present.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1295,7 +1374,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Present</rd:DefaultName>
+=======
+                      <rd:DefaultName>SectionName</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1315,14 +1398,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="CrewWeekRest">
+=======
+                    <Textbox Name="Remarks1">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!CrewWeekRest.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1332,7 +1423,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>CrewWeekRest</rd:DefaultName>
+=======
+                      <rd:DefaultName>Remarks1</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1355,14 +1450,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Causal">
+=======
+                    <Textbox Name="Textbox20">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Causal.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1372,7 +1475,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Causal</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox20</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1395,14 +1502,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Sick">
+=======
+                    <Textbox Name="Textbox23">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Sick.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1412,7 +1527,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Sick</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox23</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1435,14 +1554,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="SickLeave">
+=======
+                    <Textbox Name="Textbox26">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!SickLeave.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1452,7 +1579,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>SickLeave</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox26</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1475,14 +1606,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Offical">
+=======
+                    <Textbox Name="Textbox29">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Offical.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1492,7 +1631,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Offical</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox29</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1515,14 +1658,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Sunday">
+=======
+                    <Textbox Name="Textbox33">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Sunday.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1532,7 +1683,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Sunday</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox33</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1555,14 +1710,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="PayLeave">
+=======
+                    <Textbox Name="Textbox37">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!PayLeave.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1572,7 +1735,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>PayLeave</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox37</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1595,14 +1762,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Absent">
+=======
+                    <Textbox Name="Textbox40">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Absent.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1612,7 +1787,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Absent</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox40</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1635,14 +1814,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="TotalEarned">
+=======
+                    <Textbox Name="Textbox46">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!TotalEarned.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1652,7 +1839,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>TotalEarned</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox46</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1675,14 +1866,22 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+<<<<<<< HEAD
                     <Textbox Name="Remarks">
+=======
+                    <Textbox Name="Textbox49">
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+<<<<<<< HEAD
                               <Value>=Fields!Remarks.Value</Value>
+=======
+                              <Value />
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                               <Style>
                                 <FontFamily>arial</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1692,7 +1891,11 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
+<<<<<<< HEAD
                       <rd:DefaultName>Remarks</rd:DefaultName>
+=======
+                      <rd:DefaultName>Textbox49</rd:DefaultName>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1789,6 +1992,7 @@
                 </CellContents>
               </TablixHeader>
               <TablixMembers>
+<<<<<<< HEAD
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
                   <RepeatOnNewPage>true</RepeatOnNewPage>
@@ -1796,16 +2000,28 @@
               </TablixMembers>
               <KeepWithGroup>After</KeepWithGroup>
               <RepeatOnNewPage>true</RepeatOnNewPage>
+=======
+                <TablixMember />
+              </TablixMembers>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
             </TablixMember>
             <TablixMember>
               <Group Name="Group1">
                 <GroupExpressions>
+<<<<<<< HEAD
                   <GroupExpression>=Fields!CrewWeekRest.Value</GroupExpression>
+=======
+                  <GroupExpression>=Fields!AttDate.Value</GroupExpression>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
+<<<<<<< HEAD
                   <Value>=Fields!SrNo.Value</Value>
+=======
+                  <Value>=Fields!AttDate.Value</Value>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
                   <Direction>Descending</Direction>
                 </SortExpression>
               </SortExpressions>
@@ -1869,7 +2085,11 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.64236in</Top>
         <Height>0.71528in</Height>
+<<<<<<< HEAD
         <Width>10.79538in</Width>
+=======
+        <Width>10.44537in</Width>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
         <Style>
           <Border>
             <Style>None</Style>
@@ -1880,7 +2100,11 @@
     <Height>3.71875in</Height>
     <Style />
   </Body>
+<<<<<<< HEAD
   <Width>10.79538in</Width>
+=======
+  <Width>10.44537in</Width>
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
@@ -1889,6 +2113,7 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+<<<<<<< HEAD
   <DataSources>
     <DataSource Name="TASReportDataSet">
       <ConnectionProperties>
@@ -1988,6 +2213,8 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+=======
+>>>>>>> 937b294760d4624996238638632c2aaadaa0bf29
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>919ef03f-b298-4fe8-9993-4ade71e53a92</rd:ReportID>
 </Report>
