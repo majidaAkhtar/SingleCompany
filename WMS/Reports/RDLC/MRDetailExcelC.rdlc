@@ -199,6 +199,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -7003,6 +7004,8 @@ iif((Fields!L31.Value = ""), "","-"+Fields!L31.Value)</Value>
               <TablixMembers>
                 <TablixMember />
               </TablixMembers>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
             </TablixMember>
             <TablixMember>
               <Group Name="CompName">
@@ -7056,13 +7059,17 @@ iif((Fields!L31.Value = ""), "","-"+Fields!L31.Value)</Value>
               </TablixHeader>
               <TablixMembers>
                 <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details" />
                   <TablixMembers>
-                    <TablixMember />
-                    <TablixMember />
+                    <TablixMember>
+                      <RepeatOnNewPage>true</RepeatOnNewPage>
+                    </TablixMember>
+                    <TablixMember>
+                      <RepeatOnNewPage>true</RepeatOnNewPage>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>

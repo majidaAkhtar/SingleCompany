@@ -877,7 +877,56 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember />
+            <TablixMember>
+              <TablixHeader>
+                <Size>1in</Size>
+                <CellContents>
+                  <Textbox Name="Textbox1">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Comp Name</Value>
+                            <Style>
+                              <FontSize>9pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox1</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <TopBorder>
+                        <Color>Black</Color>
+                      </TopBorder>
+                      <LeftBorder>
+                        <Color>Black</Color>
+                      </LeftBorder>
+                      <VerticalAlign>Middle</VerticalAlign>
+                      <PaddingLeft>1pt</PaddingLeft>
+                      <PaddingRight>1pt</PaddingRight>
+                      <PaddingTop>1pt</PaddingTop>
+                      <PaddingBottom>1pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </TablixMember>
             <TablixMember>
               <TablixMembers>
                 <TablixMember>
@@ -885,16 +934,75 @@
                     <TablixMember>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="Details" />
+                          <Group Name="CompName">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!CompName.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
                           <SortExpressions>
                             <SortExpression>
-                              <Value>=Fields!EmpName.Value</Value>
+                              <Value>=Fields!CompName.Value</Value>
                             </SortExpression>
                           </SortExpressions>
+                          <TablixHeader>
+                            <Size>1in</Size>
+                            <CellContents>
+                              <Textbox Name="CompName1">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>=Fields!CompName.Value</Value>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>CompName1</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Color>LightGrey</Color>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BottomBorder>
+                                    <Color>LightGrey</Color>
+                                  </BottomBorder>
+                                  <LeftBorder>
+                                    <Color>Black</Color>
+                                  </LeftBorder>
+                                  <RightBorder>
+                                    <Color>LightGrey</Color>
+                                  </RightBorder>
+                                  <VerticalAlign>Middle</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
                           <TablixMembers>
                             <TablixMember>
-                              <RepeatOnNewPage>true</RepeatOnNewPage>
-                              <KeepTogether>true</KeepTogether>
+                              <Group Name="Details" />
+                              <SortExpressions>
+                                <SortExpression>
+                                  <Value>=Fields!EmpNo.Value</Value>
+                                </SortExpression>
+                              </SortExpressions>
+                              <TablixMembers>
+                                <TablixMember>
+                                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                                  <KeepTogether>true</KeepTogether>
+                                </TablixMember>
+                              </TablixMembers>
                             </TablixMember>
                           </TablixMembers>
                         </TablixMember>
@@ -906,16 +1014,17 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
         <DataSetName>DataSet1</DataSetName>
         <SortExpressions>
           <SortExpression>
-            <Value>=Fields!EmpName.Value</Value>
+            <Value>=Fields!EmpNo.Value</Value>
           </SortExpression>
         </SortExpressions>
         <Top>0.02084in</Top>
         <Left>0.075in</Left>
         <Height>0.45833in</Height>
-        <Width>10.39108in</Width>
+        <Width>11.39108in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -926,7 +1035,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.54648in</Width>
+  <Width>11.46608in</Width>
   <Page>
     <PageHeader>
       <Height>0.375in</Height>

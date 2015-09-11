@@ -1255,6 +1255,7 @@
     <EmbeddedResource Include="Reports\RDLC\MRSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\REditAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RLeaveQuota.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\SummarizedMonthlyReport.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WMSLibrary\WMSLibrary.csproj">
