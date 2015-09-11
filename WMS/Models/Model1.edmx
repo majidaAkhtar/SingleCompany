@@ -397,7 +397,8 @@
       [ViewBadli].[CompName] AS [CompName], 
       [ViewBadli].[GradeName] AS [GradeName], 
       [ViewBadli].[Expr3] AS [Expr3], 
-      [ViewBadli].[DivID] AS [DivID]
+      [ViewBadli].[DivID] AS [DivID], 
+      [ViewBadli].[Remarks] AS [Remarks]
       FROM [dbo].[ViewBadli] AS [ViewBadli]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewCards" EntityType="TAS2013Model.Store.ViewCards" store:Type="Views" store:Schema="dbo" store:Name="ViewCards">
@@ -3649,6 +3650,7 @@
           <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
           <Property Name="Expr3" Type="nvarchar" MaxLength="200" />
           <Property Name="DivID" Type="smallint" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'TAS2013.dbo.ViewCards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -8043,6 +8045,7 @@
           <Property Name="GradeName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Expr3" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="DivID" Type="Int16" />
+          <Property Name="Remarks" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="ViewCard">
           <Key>
@@ -11895,6 +11898,7 @@
                 <ScalarProperty Name="GradeName" ColumnName="GradeName" />
                 <ScalarProperty Name="Expr3" ColumnName="Expr3" />
                 <ScalarProperty Name="DivID" ColumnName="DivID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -114,92 +114,107 @@ namespace WMS.Controllers
         {
             try
             {
-                //using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "fatima-group.com"))
-                //{
-                //  //validate the credentials
-                // //bool isValid = pc.ValidateCredentials("ffl.ithelpdesk", "fatima@0202");
-                //  bool isValid = pc.ValidateCredentials(u.UserName, u.Password);
-                //if (isValid)
-                // {
-                        if (ModelState.IsValid) // this is check validity
-                        {
-                            using (TAS2013Entities dc = new TAS2013Entities())
-                            {
-                                var v = dc.Users.Where(a => a.UserName.Equals(u.UserName) && a.Status == true).FirstOrDefault();
-                                if (v != null)
-                                {
-                                    Session["MDevice"] = "0";
-                                    Session["MHR"] = "0";
-                                    Session["MDevice"] = "0";
-                                    Session["MLeave"] = "0";
-                                    Session["MEditAtt"] = "0";
-                                    Session["MUser"] = "0";
-                                    Session["LogedUserFullname"] = "";
-                                    Session["UserCompany"] = "";
-                                    Session["MRDailyAtt"] = "0";
-                                    Session["MRLeave"] = "0";
-                                    Session["MRMonthly"] = "0";
-                                    Session["MRAudit"] = "0";
-                                    Session["MRManualEditAtt"] = "0";
-                                    Session["MREmployee"] = "0";
-                                    Session["MRDetail"] = "0";
-                                    Session["MRSummary"] = "0";
-                                    Session["LogedUserID"] = v.UserID.ToString();
-                                    Session["LogedUserFullname"] = v.UserName;
-                                    Session["LoggedUser"] = v;
-                                    Session["UserCompany"] = v.CompanyID.ToString();
-                                    if (v.MHR == true)
-                                        Session["MHR"] = "1";
-                                    if (v.MDevice == true)
-                                        Session["MDevice"] = "1";
-                                    if (v.MLeave == true)
-                                        Session["MLeave"] = "1";
-                                    if (v.MEditAtt == true)
-                                        Session["MEditAtt"] = "1";
-                                    if (v.MUser == true)
-                                        Session["MUser"] = "1";
-                                    if (v.MRDailyAtt == true)
-                                        Session["MRDailyAtt"] = "1";
-                                    if (v.MRLeave == true)
-                                        Session["MRLeave"] = "1";
-                                    if (v.MRMonthly == true)
-                                        Session["MRMonthly"] = "1";
-                                    if (v.MRAudit == true)
-                                        Session["MRAudit"] = "1";
-                                    if (v.MRManualEditAtt == true)
-                                        Session["MRManualEditAtt"] = "1";
-                                    if (v.MREmployee == true)
-                                        Session["MREmployee"] = "1";
-                                    if (v.MRDetail == true)
-                                        Session["MRDetail"] = "1";
-                                    if (v.MRSummary == true)
-                                        Session["MRSummary"] = "1";
-                                    if (v.MRoster == true)
-                                        Session["MRoster"] = "1";
-                                    HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
-                                    return RedirectToAction("AfterLogin");
-                                }
-                                else
-                                { 
-                                 int LoginCount = 0;
-                    bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
-                    if (successOnConversion == true)
-                    {
-                        LoginCount++;
-                        Session["LoginCount"] = LoginCount + "";
-                    }
-                    else
-                    {
-                        Session["LoginCount"] = "1";
-                    }
-                                
-                                
-                                }
-                            }
-                        }
-             //  }
+                using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "fatima-group.com"))
+                {
+                  //validate the credentials
+                 //bool isValid = pc.ValidateCredentials("ffl.ithelpdesk", "fatima@0202");
+                  bool isValid = pc.ValidateCredentials(u.UserName, u.Password);
+                  if (isValid)
+                  {
+                      if (ModelState.IsValid) // this is check validity
+                      {
+                          using (TAS2013Entities dc = new TAS2013Entities())
+                          {
+                              var v = dc.Users.Where(a => a.UserName.Equals(u.UserName) && a.Status == true).FirstOrDefault();
+                              if (v != null)
+                              {
+                                  Session["MDevice"] = "0";
+                                  Session["MHR"] = "0";
+                                  Session["MDevice"] = "0";
+                                  Session["MLeave"] = "0";
+                                  Session["MEditAtt"] = "0";
+                                  Session["MUser"] = "0";
+                                  Session["LogedUserFullname"] = "";
+                                  Session["UserCompany"] = "";
+                                  Session["MRDailyAtt"] = "0";
+                                  Session["MRLeave"] = "0";
+                                  Session["MRMonthly"] = "0";
+                                  Session["MRAudit"] = "0";
+                                  Session["MRManualEditAtt"] = "0";
+                                  Session["MREmployee"] = "0";
+                                  Session["MRDetail"] = "0";
+                                  Session["MRSummary"] = "0";
+                                  Session["LogedUserID"] = v.UserID.ToString();
+                                  Session["LogedUserFullname"] = v.UserName;
+                                  Session["LoggedUser"] = v;
+                                  Session["UserCompany"] = v.CompanyID.ToString();
+                                  if (v.MHR == true)
+                                      Session["MHR"] = "1";
+                                  if (v.MDevice == true)
+                                      Session["MDevice"] = "1";
+                                  if (v.MLeave == true)
+                                      Session["MLeave"] = "1";
+                                  if (v.MEditAtt == true)
+                                      Session["MEditAtt"] = "1";
+                                  if (v.MUser == true)
+                                      Session["MUser"] = "1";
+                                  if (v.MRDailyAtt == true)
+                                      Session["MRDailyAtt"] = "1";
+                                  if (v.MRLeave == true)
+                                      Session["MRLeave"] = "1";
+                                  if (v.MRMonthly == true)
+                                      Session["MRMonthly"] = "1";
+                                  if (v.MRAudit == true)
+                                      Session["MRAudit"] = "1";
+                                  if (v.MRManualEditAtt == true)
+                                      Session["MRManualEditAtt"] = "1";
+                                  if (v.MREmployee == true)
+                                      Session["MREmployee"] = "1";
+                                  if (v.MRDetail == true)
+                                      Session["MRDetail"] = "1";
+                                  if (v.MRSummary == true)
+                                      Session["MRSummary"] = "1";
+                                  if (v.MRoster == true)
+                                      Session["MRoster"] = "1";
+                                  HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
+                                  return RedirectToAction("AfterLogin");
+                              }
+                              else
+                              {
+                                  int LoginCount = 0;
+                                  bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                                  if (successOnConversion == true)
+                                  {
+                                      LoginCount++;
+                                      Session["LoginCount"] = LoginCount + "";
+                                  }
+                                  else
+                                  {
+                                      Session["LoginCount"] = "1";
+                                  }
+
+
+                              }
+                          }
+                      }
+                  }
+                  else
+                  {
+                      int LoginCount = 0;
+                      bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                      if (successOnConversion == true)
+                      {
+                          LoginCount++;
+                          Session["LoginCount"] = LoginCount + "";
+                      }
+                      else
+                      {
+                          Session["LoginCount"] = "1";
+                      }
+                  
+                  }
                 return RedirectToAction("index");
-               //}
+               }
 
 
                 //using (var context = new PrincipalContext(ContextType.Domain, "fatima-group.com", "ffl.ithelpdesk@fatima-group.com", "fatima@0202"))
@@ -268,6 +283,7 @@ namespace WMS.Controllers
                 Session["MRDetail"] = null;
                 Session["MRSummary"] = null;
                 Session["FiltersModel"] = new WMSLibrary.FiltersModel();
+                Session["LoginCount"] = null;
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

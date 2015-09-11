@@ -38,7 +38,7 @@ namespace WMS.Reports
                 {
 
                     case "badli_report":
-                        DataTable badlidt = qb.GetValuesfromDB("select * from ViewBadli and (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'"+ _dateTo + "'" + " )");
+                        DataTable badlidt = qb.GetValuesfromDB("select * from ViewBadli where (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'"+ _dateTo + "'" + " )");
                         List<ViewBadli> _BadliList = badlidt.ToList<ViewBadli>();
                         List<ViewBadli> _TempBadliList = new List<ViewBadli>();
                         title = "Badli Report";
