@@ -260,20 +260,24 @@ namespace WMS.Controllers
         public ActionResult DeleteConfirmed(byte id)
         {
             Shift shift = db.Shifts.Find(id);
-            try
-            {
-                db.Shifts.Remove(shift);
-                db.SaveChanges();
-                int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
-                HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Shift, (byte)MyEnums.Operation.Delete, DateTime.Now);
-                return RedirectToAction("Index");
-                
-            }
-            catch (Exception ez)
-            {
-                ViewBag.ShiftException= "This shift cannot be deleted.";
-                return View(shift);
-            }
+           
+                try
+                {
+                    if (db.RosterApps.Where(aa => aa.ShiftID == shift.ShiftID).Count() == 0)
+                    {
+                        db.Shifts.Remove(shift);
+                        db.SaveChanges();
+                        int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
+                        HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Shift, (byte)MyEnums.Operation.Delete, DateTime.Now);
+                    }
+                    return RedirectToAction("Index");
+
+                }
+                catch (Exception ez)
+                {
+                    ViewBag.ShiftException = "This shift cannot be deleted.";
+                    return View(shift);
+                }
             
         }
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)

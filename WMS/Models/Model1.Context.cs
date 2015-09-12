@@ -36,6 +36,7 @@ namespace WMS.Models
         public DbSet<AuditForm> AuditForms { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<AuditOperation> AuditOperations { get; set; }
+        public DbSet<BadliRecord> BadliRecords { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<CardType> CardTypes { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -107,6 +108,7 @@ namespace WMS.Models
         public DbSet<ViewAbsent> ViewAbsents { get; set; }
         public DbSet<ViewAttData> ViewAttDatas { get; set; }
         public DbSet<ViewAuditLog> ViewAuditLogs { get; set; }
+        public DbSet<ViewBadli> ViewBadlis { get; set; }
         public DbSet<ViewCard> ViewCards { get; set; }
         public DbSet<ViewCrew> ViewCrews { get; set; }
         public DbSet<ViewDepartment> ViewDepartments { get; set; }
