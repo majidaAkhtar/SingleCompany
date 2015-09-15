@@ -1245,7 +1245,8 @@ namespace WMS.Reports
             }
             else
             {
-                Company comp = ctx.Companies.Where(aa => aa.CompID == Int32.Parse(fm.CompanyFilter.First().ID)).FirstOrDefault();
+                int id =Int32.Parse(fm.CompanyFilter.First().ID);
+                Company comp = ctx.Companies.Where(aa => aa.CompID == id).FirstOrDefault();
             companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == comp.ImageID).First()); }
             return companyimage;
 
