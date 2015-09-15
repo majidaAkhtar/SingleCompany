@@ -3820,7 +3820,7 @@
   <Width>11.04936in</Width>
   <Page>
     <PageHeader>
-      <Height>0.68833in</Height>
+      <Height>0.74042in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -3833,7 +3833,7 @@
                 <TextRun>
                   <Value>=Parameters!Header.Value</Value>
                   <Style>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -3842,9 +3842,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.38625in</Top>
-          <Left>2.25906in</Left>
-          <Height>0.25in</Height>
+          <Top>0.16875in</Top>
+          <Left>0.15625in</Left>
+          <Height>0.31667in</Height>
           <Width>3.86317in</Width>
           <Style>
             <Border>
@@ -3871,13 +3871,13 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Right</TextAlign>
+                <TextAlign>Left</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.38625in</Top>
-          <Left>8.53894in</Left>
+          <Top>0.44792in</Top>
+          <Left>0.15625in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
           <ZIndex>1</ZIndex>
@@ -3896,10 +3896,10 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.11542in</Top>
-          <Left>0.30208in</Left>
-          <Height>0.52083in</Height>
-          <Width>1.79791in</Width>
+          <Top>0.16875in</Top>
+          <Left>9.28894in</Left>
+          <Height>0.54167in</Height>
+          <Width>1.625in</Width>
           <ZIndex>2</ZIndex>
           <ToolTip>image</ToolTip>
           <Style>

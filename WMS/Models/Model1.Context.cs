@@ -42,6 +42,7 @@ namespace WMS.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyImage> CompanyImages { get; set; }
         public DbSet<Crew> Crews { get; set; }
         public DbSet<DailySummary> DailySummaries { get; set; }
         public DbSet<DaysName> DaysNames { get; set; }
@@ -79,6 +80,7 @@ namespace WMS.Models
         public DbSet<LvType> LvTypes { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<PollData> PollDatas { get; set; }
+        public DbSet<PollDataError> PollDataErrors { get; set; }
         public DbSet<RdrDutyCode> RdrDutyCodes { get; set; }
         public DbSet<RdrEventLog> RdrEventLogs { get; set; }
         public DbSet<Reader> Readers { get; set; }
