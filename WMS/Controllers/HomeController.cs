@@ -198,7 +198,7 @@ namespace WMS.Controllers
                           }
                       }
                   //}
-                  //else
+                 //else
                   //{
                   //    int LoginCount = 0;
                   //    bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
@@ -214,7 +214,9 @@ namespace WMS.Controllers
                   
                   //}
                 return RedirectToAction("index");
-           //    }
+
+               //}
+
 
 
                 //using (var context = new PrincipalContext(ContextType.Domain, "fatima-group.com", "ffl.ithelpdesk@fatima-group.com", "fatima@0202"))
