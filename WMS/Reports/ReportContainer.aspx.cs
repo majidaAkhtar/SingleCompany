@@ -31,7 +31,7 @@ namespace WMS.Reports
                 string query = qb.MakeCustomizeQuery(LoggedInUser);
                 _dateFrom = list[0];
                 string _dateTo = list[1];
-
+                companyimage = GetCompanyImages(fm);
                 string PathString = "";
 
 
@@ -1235,16 +1235,18 @@ namespace WMS.Reports
             return _ViewList;
         }
 
-        public List<EmpPhoto> GetCompanyImages(List<ViewDetailAttData> list, FiltersModel fm)
+        public List<EmpPhoto> GetCompanyImages(FiltersModel fm)
         {
             TAS2013Entities ctx = new TAS2013Entities();
             companyimage = new List<EmpPhoto>();
             if (fm.CompanyFilter.Count > 1)
             {
-                companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == 4777).First());
+                companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == 4792).First());
             }
             else
-            { companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == Int32.Parse(fm.CompanyFilter.First().ID)).First()); }
+            {
+                Company comp = ctx.Companies.Where(aa => aa.CompID == Int32.Parse(fm.CompanyFilter.First().ID)).FirstOrDefault();
+            companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == comp.ImageID).First()); }
             return companyimage;
 
         }
@@ -1252,7 +1254,7 @@ namespace WMS.Reports
         //ViewAttData
         public List<ViewDetailAttData> ReportsFilterImplementation(FiltersModel fm, List<ViewDetailAttData> _TempViewList, List<ViewDetailAttData> _ViewList)
         {
-            GetCompanyImages(_ViewList, fm);
+           
             //for company
             if (fm.CompanyFilter.Count > 0)
             {
