@@ -77,7 +77,6 @@ namespace WMS.Reports.Filters
             {
                 e.Row.Cells[0].Text = "Page " + (GridViewCompany.PageIndex + 1) + " of " + GridViewCompany.PageCount;
             }
-            e.Row.Cells[2].Visible = false;
         }
 
         private void SaveCompanyIDs()

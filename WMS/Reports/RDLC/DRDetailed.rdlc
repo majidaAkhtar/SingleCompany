@@ -3817,10 +3817,10 @@
     <Height>2.27584in</Height>
     <Style />
   </Body>
-  <Width>11.88269in</Width>
+  <Width>11.04936in</Width>
   <Page>
     <PageHeader>
-      <Height>0.855in</Height>
+      <Height>0.68833in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -3842,10 +3842,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.06542in</Top>
-          <Left>0.06875in</Left>
+          <Top>0.38625in</Top>
+          <Left>2.25906in</Left>
           <Height>0.25in</Height>
-          <Width>5.69792in</Width>
+          <Width>3.86317in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -3870,12 +3870,14 @@
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.35986in</Top>
-          <Left>0.06875in</Left>
+          <Top>0.38625in</Top>
+          <Left>8.53894in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
           <ZIndex>1</ZIndex>
@@ -3893,15 +3895,16 @@
           <Source>Database</Source>
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
-          <Sizing>Fit</Sizing>
-          <Top>0.355in</Top>
-          <Left>2.44028in</Left>
-          <Height>0.5in</Height>
-          <Width>1.68333in</Width>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.11542in</Top>
+          <Left>0.30208in</Left>
+          <Height>0.52083in</Height>
+          <Width>1.79791in</Width>
           <ZIndex>2</ZIndex>
           <ToolTip>image</ToolTip>
           <Style>
             <Border>
+              <Color>White</Color>
               <Style>Solid</Style>
             </Border>
           </Style>
