@@ -1241,7 +1241,7 @@ namespace WMS.Reports
             companyimage = new List<EmpPhoto>();
             if (fm.CompanyFilter.Count > 1)
             {
-                companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == 4792).First());
+                companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == 4785).First());
             }
             else
             {
