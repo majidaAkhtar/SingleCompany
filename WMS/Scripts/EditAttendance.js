@@ -42,6 +42,13 @@ $(document).ready(function () {
             $("div.desc").hide();
             $("#Option6").show();
         }
+        var test = $('#JobCardType').val();
+        if (test == '8') {
+            $("#doubleDutyDiv").show();
+        }
+        if (test == '9') {
+            $("#BadliDiv").show();
+        }
     });
     $('#JobCardType').change(function () {
         var test = $(this).val();
@@ -56,5 +63,32 @@ $(document).ready(function () {
         if (test == '9') {
             $("#BadliDiv").show();
         }
+    });
+
+    $('#DesignationID').empty();
+    // var URL = '/WMS/Emp/DesignationList';
+    var URL = '/EditAttendance/CompanyIDJobCardList';
+    $.getJSON(URL + '/' + $('#CompanyIDJobCard').val(), function (data) {
+        var items;
+        $.each(data, function (i, state) {
+                items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+            // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
+        });
+        $('#DesignationID').html(items);
+    });
+
+
+    $('#CompanyIDJobCard').change(function () {
+        $('#DesignationID').empty();
+        //var URL = '/WMS/Emp/DesignationList';
+        var URL = '/EditAttendance/CompanyIDJobCardList';
+        $.getJSON(URL + '/' + $('#CompanyIDJobCard').val(), function (data) {
+            var items;
+            $.each(data, function (i, state) {
+                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+                // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
+            });
+            $('#DesignationID').html(items);
+        });
     });
 });
