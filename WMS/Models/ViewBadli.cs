@@ -63,5 +63,6 @@ namespace WMS.Models
         public string GradeName { get; set; }
         public string Expr3 { get; set; }
         public Nullable<short> DivID { get; set; }
+        public string Remarks { get; set; }
     }
 }

@@ -28,6 +28,7 @@
           <EntitySet Name="Category" EntityType="TAS2013Model.Store.Category" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="City" EntityType="TAS2013Model.Store.City" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Company" EntityType="TAS2013Model.Store.Company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CompanyImages" EntityType="TAS2013Model.Store.CompanyImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Crew" EntityType="TAS2013Model.Store.Crew" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DailySummary" EntityType="TAS2013Model.Store.DailySummary" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DaysName" EntityType="TAS2013Model.Store.DaysName" store:Type="Tables" Schema="dbo" />
@@ -65,6 +66,7 @@
           <EntitySet Name="LvType" EntityType="TAS2013Model.Store.LvType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Option" EntityType="TAS2013Model.Store.Option" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PollData" EntityType="TAS2013Model.Store.PollData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PollDataError" EntityType="TAS2013Model.Store.PollDataError" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RdrDutyCode" EntityType="TAS2013Model.Store.RdrDutyCode" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RdrEventLog" EntityType="TAS2013Model.Store.RdrEventLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Reader" EntityType="TAS2013Model.Store.Reader" store:Type="Tables" Schema="dbo" />
@@ -397,7 +399,8 @@
       [ViewBadli].[CompName] AS [CompName], 
       [ViewBadli].[GradeName] AS [GradeName], 
       [ViewBadli].[Expr3] AS [Expr3], 
-      [ViewBadli].[DivID] AS [DivID]
+      [ViewBadli].[DivID] AS [DivID], 
+      [ViewBadli].[Remarks] AS [Remarks]
       FROM [dbo].[ViewBadli] AS [ViewBadli]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewCards" EntityType="TAS2013Model.Store.ViewCards" store:Type="Views" store:Schema="dbo" store:Name="ViewCards">
@@ -2486,6 +2489,15 @@
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="TelNo" Type="nvarchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" MaxLength="20" />
+          <Property Name="ImageID" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanyImages">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="CompanyImage" Type="image" />
+          <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Crew">
           <Key>
@@ -2530,6 +2542,11 @@
           <Property Name="AExpectedMins" Type="smallint" />
           <Property Name="AActualMins" Type="smallint" />
           <Property Name="ALossMins" Type="smallint" />
+          <Property Name="Criteria" Type="nvarchar" MaxLength="50" />
+          <Property Name="CriteriaValue" Type="smallint" />
+          <Property Name="CriteriaName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AverageTimeIn" Type="time" />
+          <Property Name="AverageTimeOut" Type="time" />
         </EntityType>
         <EntityType Name="DaysName">
           <Key>
@@ -3013,6 +3030,16 @@
           <Property Name="Split" Type="bit" />
           <Property Name="CompanyID" Type="smallint" />
           <Property Name="AddedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="PollDataError">
+          <Key>
+            <PropertyRef Name="PollErrorID" />
+          </Key>
+          <Property Name="PollErrorID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceRegID" Type="int" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="EntryTime" Type="datetime" />
+          <Property Name="AddedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="RdrDutyCode">
           <Key>
@@ -3649,6 +3676,7 @@
           <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
           <Property Name="Expr3" Type="nvarchar" MaxLength="200" />
           <Property Name="DivID" Type="smallint" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'TAS2013.dbo.ViewCards' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -6026,6 +6054,7 @@
           <EntitySet Name="Categories" EntityType="TAS2013Model.Category" />
           <EntitySet Name="Cities" EntityType="TAS2013Model.City" />
           <EntitySet Name="Companies" EntityType="TAS2013Model.Company" />
+          <EntitySet Name="CompanyImages" EntityType="TAS2013Model.CompanyImage" />
           <EntitySet Name="Crews" EntityType="TAS2013Model.Crew" />
           <EntitySet Name="DailySummaries" EntityType="TAS2013Model.DailySummary" />
           <EntitySet Name="DaysNames" EntityType="TAS2013Model.DaysName" />
@@ -6063,6 +6092,7 @@
           <EntitySet Name="LvTypes" EntityType="TAS2013Model.LvType" />
           <EntitySet Name="Options" EntityType="TAS2013Model.Option" />
           <EntitySet Name="PollDatas" EntityType="TAS2013Model.PollData" />
+          <EntitySet Name="PollDataErrors" EntityType="TAS2013Model.PollDataError" />
           <EntitySet Name="RdrDutyCodes" EntityType="TAS2013Model.RdrDutyCode" />
           <EntitySet Name="RdrEventLogs" EntityType="TAS2013Model.RdrEventLog" />
           <EntitySet Name="Readers" EntityType="TAS2013Model.Reader" />
@@ -6804,6 +6834,7 @@
           <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="TelNo" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ImageID" Type="Int32" />
           <NavigationProperty Name="Crews" Relationship="TAS2013Model.FK_Crew_Company" FromRole="Company" ToRole="Crew" />
           <NavigationProperty Name="Departments" Relationship="TAS2013Model.FK_Department_Company" FromRole="Company" ToRole="Department" />
           <NavigationProperty Name="Designations" Relationship="TAS2013Model.FK_Designation_Company" FromRole="Company" ToRole="Designation" />
@@ -6811,6 +6842,14 @@
           <NavigationProperty Name="EmpTypes" Relationship="TAS2013Model.FK_EmpType_Company" FromRole="Company" ToRole="EmpType" />
           <NavigationProperty Name="Grades" Relationship="TAS2013Model.FK_Grade_Company" FromRole="Company" ToRole="Grade" />
           <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Company1" FromRole="Company" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="CompanyImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int16" />
+          <Property Name="CompanyImage1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Crew">
           <Key>
@@ -6857,6 +6896,11 @@
           <Property Name="AExpectedMins" Type="Int16" />
           <Property Name="AActualMins" Type="Int16" />
           <Property Name="ALossMins" Type="Int16" />
+          <Property Name="Criteria" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CriteriaValue" Type="Int16" />
+          <Property Name="CriteriaName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AverageTimeIn" Type="Time" Precision="7" />
+          <Property Name="AverageTimeOut" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="DaysName">
           <Key>
@@ -7401,6 +7445,16 @@
           <Property Name="CompanyID" Type="Int16" />
           <Property Name="AddedDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Reader" Relationship="TAS2013Model.FK_Reader_RdrID" FromRole="PollData" ToRole="Reader" />
+        </EntityType>
+        <EntityType Name="PollDataError">
+          <Key>
+            <PropertyRef Name="PollErrorID" />
+          </Key>
+          <Property Name="PollErrorID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceRegID" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="EntryTime" Type="DateTime" Precision="3" />
+          <Property Name="AddedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RdrDutyCode">
           <Key>
@@ -8043,6 +8097,7 @@
           <Property Name="GradeName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Expr3" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="DivID" Type="Int16" />
+          <Property Name="Remarks" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="ViewCard">
           <Key>
@@ -10716,6 +10771,16 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="TelNo" ColumnName="TelNo" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyImages">
+            <EntityTypeMapping TypeName="TAS2013Model.CompanyImage">
+              <MappingFragment StoreEntitySet="CompanyImages">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyImage1" ColumnName="CompanyImage" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -10762,6 +10827,11 @@
                 <ScalarProperty Name="AExpectedMins" ColumnName="AExpectedMins" />
                 <ScalarProperty Name="AActualMins" ColumnName="AActualMins" />
                 <ScalarProperty Name="ALossMins" ColumnName="ALossMins" />
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
+                <ScalarProperty Name="CriteriaValue" ColumnName="CriteriaValue" />
+                <ScalarProperty Name="CriteriaName" ColumnName="CriteriaName" />
+                <ScalarProperty Name="AverageTimeIn" ColumnName="AverageTimeIn" />
+                <ScalarProperty Name="AverageTimeOut" ColumnName="AverageTimeOut" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -11279,6 +11349,17 @@
                 <ScalarProperty Name="Process" ColumnName="Process" />
                 <ScalarProperty Name="Split" ColumnName="Split" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollDataErrors">
+            <EntityTypeMapping TypeName="TAS2013Model.PollDataError">
+              <MappingFragment StoreEntitySet="PollDataError">
+                <ScalarProperty Name="PollErrorID" ColumnName="PollErrorID" />
+                <ScalarProperty Name="DeviceRegID" ColumnName="DeviceRegID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
                 <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -11895,6 +11976,7 @@
                 <ScalarProperty Name="GradeName" ColumnName="GradeName" />
                 <ScalarProperty Name="Expr3" ColumnName="Expr3" />
                 <ScalarProperty Name="DivID" ColumnName="DivID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

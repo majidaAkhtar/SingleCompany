@@ -67,7 +67,7 @@
                                         <li><a href="../ReportContainer.aspx?reportname=overtime">Overtime</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=missing_attendance">Missing Attendance</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=multiple_in_out">Multiple In/Out</a></li>
-                                        <li><a href="../ReportContainer.aspx?reportname=badli_report">Multiple In/Out</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=badli_report">Badli Report</a></li>
 
                                     </ul>
                                 </li>
