@@ -52,7 +52,7 @@ namespace WMS.Reports.Filters
 
             //change page index
             GridViewEmployee.PageIndex = e.NewPageIndex;
-            BindGridViewEmployee("");
+            BindGridViewEmployee(tbSearch_Employee.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
         }
@@ -179,7 +179,7 @@ namespace WMS.Reports.Filters
                 }
                 _View = _TempView.ToList();
             }
-            GridViewEmployee.DataSource = _View.Where(aa => aa.EmpName.ToUpper().Contains(search.ToUpper())).ToList();
+            GridViewEmployee.DataSource = _View.Where(aa => aa.EmpName.ToUpper().Contains(search.ToUpper()) ||aa.EmpNo.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewEmployee.DataBind();
         }
 

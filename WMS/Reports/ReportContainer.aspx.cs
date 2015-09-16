@@ -33,11 +33,8 @@ namespace WMS.Reports
                 string _dateTo = list[1];
                 companyimage = GetCompanyImages(fm);
                 string PathString = "";
-
-
                 switch (reportName)
                 {
-
                     case "badli_report":
                         DataTable badlidt = qb.GetValuesfromDB("select * from ViewBadli where (AttDate >= " + "'" + _dateFrom + "'" + " and AttDate <= " + "'" + _dateTo + "'" + " )");
                         List<ViewBadli> _BadliList = badlidt.ToList<ViewBadli>();
@@ -1795,7 +1792,7 @@ namespace WMS.Reports
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
             ReportViewer1.LocalReport.Refresh();
         }
-        //
+        ///
         private void LoadReport(string path, List<EmpView> _Employee, string date)
         {
             string _Header = title;
@@ -1808,12 +1805,13 @@ namespace WMS.Reports
             ie = _Employee.AsQueryable();
             IEnumerable<EmpPhoto> companyImage;
             companyImage = companyimage.AsQueryable();
+            ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.EnableExternalImages = true;
 
             ReportViewer1.HyperlinkTarget = "_blank";
+
+
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Header", _Header, false);

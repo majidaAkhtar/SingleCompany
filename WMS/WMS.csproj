@@ -1246,6 +1246,7 @@
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MLvConsumed.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRDetailExcelC.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRDetailExcelP.rdlc" />
@@ -1264,7 +1265,6 @@
     <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRPresent.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSheetC.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSheetP.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSummary.rdlc" />
