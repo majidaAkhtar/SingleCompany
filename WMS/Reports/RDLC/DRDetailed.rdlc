@@ -1795,6 +1795,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -2460,6 +2461,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -3281,6 +3283,7 @@
                 </TablixMember>
               </TablixMembers>
               <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
             </TablixMember>
             <TablixMember>
               <Group Name="CompName">
@@ -3842,7 +3845,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.16875in</Top>
+          <Top>0.04375in</Top>
           <Left>0.15625in</Left>
           <Height>0.31667in</Height>
           <Width>3.86317in</Width>
@@ -3896,8 +3899,8 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.16875in</Top>
-          <Left>9.28894in</Left>
+          <Top>0.12931in</Top>
+          <Left>9.25769in</Left>
           <Height>0.54167in</Height>
           <Width>1.625in</Width>
           <ZIndex>2</ZIndex>
