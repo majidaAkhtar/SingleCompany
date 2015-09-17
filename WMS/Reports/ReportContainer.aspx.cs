@@ -75,7 +75,7 @@ namespace WMS.Reports
                     case "emp_record": DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
                         List<EmpView> _ViewList = dt.ToList<EmpView>();
                         List<EmpView> _TempViewList = new List<EmpView>();
-                        title = "Employee Report";
+                        title = "Employee Record Report";
                         if (GlobalVariables.DeploymentType == false)
                             PathString = "/Reports/RDLC/Employee.rdlc";
                         else
@@ -124,7 +124,7 @@ namespace WMS.Reports
                                                      + _dateTo + "'" + " )");
                         List<ViewAttData> _ViewList3 = dt3.ToList<ViewAttData>();
                         List<ViewAttData> _TempViewList3 = new List<ViewAttData>();
-                        title = "Consolidated Attendence";
+                        title = "Consolidated Attendence Report";
                         if (GlobalVariables.DeploymentType == false)
                             PathString = "/Reports/RDLC/DRAttendance.rdlc";
                         else
@@ -253,7 +253,7 @@ namespace WMS.Reports
 
                         _ViewList8 = dt.ToList<ViewAttData>();
                         _TempViewList8 = new List<ViewAttData>();
-                        title = "Missing Attendence";
+                        title = "Missing Attendence Report";
                         if (GlobalVariables.DeploymentType == false)
                             PathString = "/Reports/RDLC/DRMissingAtt.rdlc";
                         else
@@ -466,11 +466,17 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<ViewBadli> ie;
             ie = list.AsQueryable();
-            ReportDataSource datasource1 = new ReportDataSource("DataSet2", ie);
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Date", p, false);
             ReportParameter rp1 = new ReportParameter("Header", _Header, false);
-            ReportViewer1.LocalReport.DataSources.Clear();
-            ReportViewer1.LocalReport.DataSources.Add(datasource1);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp1, rp });
             ReportViewer1.LocalReport.Refresh();
         }
@@ -625,9 +631,15 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<TASReportDataSet.SummarizedMonthlyReportDataTable> ie;
             ie = VMLD.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { });
             ReportViewer1.LocalReport.Refresh();
         }
@@ -642,9 +654,15 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<AttDeptSummary> ie;
             ie = AttDept.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Date", date, false);
             ReportParameter rp1 = new ReportParameter("Title", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
@@ -661,9 +679,15 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<ViewMultipleInOut> ie;
             ie = _Employee.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Date", date, false);
             ReportParameter rp1 = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
@@ -952,7 +976,6 @@ namespace WMS.Reports
         }
         //EmpView
 
-
         public List<EmpView> ReportsFilterImplementation(FiltersModel fm, List<EmpView> _TempViewList, List<EmpView> _ViewList)
         {
             //for company
@@ -1092,7 +1115,6 @@ namespace WMS.Reports
 
             return _ViewList;
         }
-
 
         //ViewAttData
         public List<ViewAttData> ReportsFilterImplementation(FiltersModel fm, List<ViewAttData> _TempViewList, List<ViewAttData> _ViewList)
@@ -1572,9 +1594,15 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<ViewMonthlyData> ie;
             ie = _Employee.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Date", date, false);
             ReportParameter rp1 = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
@@ -1732,9 +1760,15 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<ViewMonthlyDataPer> ie;
             ie = _Employee.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
             ReportParameter rp1 = new ReportParameter("Date", date, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
@@ -1749,8 +1783,14 @@ namespace WMS.Reports
             System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", _LvSummary);
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
             ReportViewer1.LocalReport.Refresh();
@@ -1766,9 +1806,16 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<EmpView> ie;
             ie = _Employee.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
+
+            ReportViewer1.HyperlinkTarget = "_blank";
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
             ReportViewer1.LocalReport.Refresh();
@@ -1783,12 +1830,17 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<ViewAttData> ie;
             ie = _Employee.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
+            ReportViewer1.LocalReport.DataSources.Clear();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
 
             ReportViewer1.HyperlinkTarget = "_blank";
 
-            ReportViewer1.LocalReport.DataSources.Clear();
+            
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Date", date, false);
             ReportParameter rp1 = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
@@ -1808,8 +1860,14 @@ namespace WMS.Reports
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", _LvSummary);
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.HyperlinkTarget = "_blank";
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
 
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
             ReportParameter rp1 = new ReportParameter("Date", Date, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1 });
@@ -1825,9 +1883,15 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
             IEnumerable<ViewLvApplication> ie;
             ie = _Employee.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
             ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Header", _Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
             ReportViewer1.LocalReport.Refresh();
