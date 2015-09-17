@@ -63,7 +63,7 @@ namespace WMS.Reports.Filters
 
             //change page index
             GridViewDepartment.PageIndex = e.NewPageIndex;
-            BindGridViewDepartment("");
+            BindGridViewDepartment(tbSearch_Department.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewDepartment, Session["FiltersModel"] as FiltersModel, "Department");
         }
@@ -75,7 +75,7 @@ namespace WMS.Reports.Filters
 
             //change page index
             GridViewType.PageIndex = e.NewPageIndex;
-            BindGridViewType("");
+            BindGridViewType(tbSearch_Type.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewType, Session["FiltersModel"] as FiltersModel, "Type");
         }

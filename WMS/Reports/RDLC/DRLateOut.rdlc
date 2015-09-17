@@ -1500,8 +1500,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.0625in</Top>
-          <Left>0.05969in</Left>
+          <Top>0.07931in</Top>
+          <Left>0.13934in</Left>
           <Height>0.25in</Height>
           <Width>5.90625in</Width>
           <Style>
@@ -1532,8 +1532,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.35694in</Top>
-          <Left>0.05969in</Left>
+          <Top>0.37375in</Top>
+          <Left>0.13934in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
           <ZIndex>1</ZIndex>

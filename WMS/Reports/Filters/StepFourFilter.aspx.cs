@@ -63,7 +63,7 @@ namespace WMS.Reports.Filters
 
             //change page index
             GridViewSection.PageIndex = e.NewPageIndex;
-            BindGridViewSection("");
+            BindGridViewSection(tbSearch_Section.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
         }

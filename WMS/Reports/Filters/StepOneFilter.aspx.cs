@@ -66,7 +66,7 @@ namespace WMS.Reports.Filters
 
             //change page index
             GridViewCompany.PageIndex = e.NewPageIndex;
-            BindGridView("");
+            BindGridView(TextBoxSearch.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewCompany, Session["FiltersModel"] as FiltersModel, "Company");
         }
@@ -125,7 +125,7 @@ namespace WMS.Reports.Filters
 
         }
         #endregion 
-        #region --GridView Company--
+        #region --GridView Location--
         protected void ButtonSearchLoc_Click(object sender, EventArgs e)
         {
             // Save selected Company ID and Name in Session
@@ -143,7 +143,7 @@ namespace WMS.Reports.Filters
 
             //change page index
             GridViewLocation.PageIndex = e.NewPageIndex;
-            BindGridViewLocation("");
+            BindGridViewLocation(tbSearch_Location.Text.Trim());
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Location");
         }
