@@ -54,6 +54,7 @@
                             <TextRun>
                               <Value>Date</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -86,6 +87,7 @@
                             <TextRun>
                               <Value>Emp No</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -118,6 +120,7 @@
                             <TextRun>
                               <Value>Name</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -150,6 +153,7 @@
                             <TextRun>
                               <Value>Section</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -182,6 +186,7 @@
                             <TextRun>
                               <Value>Department</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -214,6 +219,7 @@
                             <TextRun>
                               <Value>Designation</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -246,6 +252,7 @@
                             <TextRun>
                               <Value>Badli</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -278,6 +285,7 @@
                             <TextRun>
                               <Value EvaluationMode="Constant">Time In</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -310,6 +318,7 @@
                             <TextRun>
                               <Value>Time Out </Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -342,6 +351,7 @@
                             <TextRun>
                               <Value>Work Min</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -374,6 +384,7 @@
                             <TextRun>
                               <Value>Remarks</Value>
                               <Style>
+                                <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -410,7 +421,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!AttDate.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -432,21 +445,23 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EmpNo">
+                    <Textbox Name="Expr2">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!EmpNo.Value</Value>
-                              <Style />
+                              <Value>=Fields!Expr2.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EmpNo</rd:DefaultName>
+                      <rd:DefaultName>Expr2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -470,7 +485,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!EmpName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -500,7 +517,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!SectionName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -530,7 +549,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!DeptName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -560,7 +581,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!DesignationName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -590,7 +613,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!EmpDateBadli.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -620,7 +645,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!TimeIn.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -650,7 +677,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!TimeOut.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -680,7 +709,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!WorkMin.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -702,21 +733,23 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="BadliDesgID">
+                    <Textbox Name="Expr3">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!BadliDesgID.Value</Value>
-                              <Style />
+                              <Value>=Fields!Expr3.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>BadliDesgID</rd:DefaultName>
+                      <rd:DefaultName>Expr3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -756,6 +789,11 @@
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Expr2.Value</Value>
+                </SortExpression>
+              </SortExpressions>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -774,7 +812,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>7.71875in</Width>
+  <Width>7.64583in</Width>
   <Page>
     <PageHeader>
       <Height>0.64583in</Height>
@@ -799,7 +837,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.03472in</Top>
+          <Top>0.10972in</Top>
           <Left>0.03916in</Left>
           <Height>0.25in</Height>
           <Width>5.47917in</Width>
@@ -831,7 +869,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.34028in</Top>
+          <Top>0.37778in</Top>
           <Left>0.03916in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
@@ -851,7 +889,7 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.03472in</Top>
+          <Top>0.04722in</Top>
           <Left>6.03749in</Left>
           <Height>0.58333in</Height>
           <Width>1.5625in</Width>
@@ -977,14 +1015,6 @@
         </Field>
         <Field Name="DesignationName">
           <DataField>DesignationName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Expr1">
-          <DataField>Expr1</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="EmpNo">
-          <DataField>EmpNo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DutyCode">
@@ -1167,10 +1197,14 @@
           <DataField>DivID</DataField>
           <rd:TypeName>System.Int16</rd:TypeName>
         </Field>
+        <Field Name="Remarks">
+          <DataField>Remarks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>TAS2013DataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\WMS Fatima\WMS\WMS\TAS2013DataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>TASReportDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\Projects\CNS\Working Projects\Fatima Group\WMS App\WMS\WMS\Models\TASReportDataSet.xsd</rd:SchemaPath>
         <rd:TableName>ViewBadli</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

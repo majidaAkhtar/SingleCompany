@@ -1475,7 +1475,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>9.2331in</Width>
+  <Width>9.14977in</Width>
   <Page>
     <PageHeader>
       <Height>0.74875in</Height>
@@ -1500,8 +1500,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.0625in</Top>
-          <Left>0.05969in</Left>
+          <Top>0.20431in</Top>
+          <Left>0.13934in</Left>
           <Height>0.25in</Height>
           <Width>5.90625in</Width>
           <Style>
@@ -1532,8 +1532,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.35694in</Top>
-          <Left>0.05969in</Left>
+          <Top>0.47375in</Top>
+          <Left>0.13934in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
           <ZIndex>1</ZIndex>
@@ -1552,7 +1552,7 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.0625in</Top>
+          <Top>0.1625in</Top>
           <Left>7.77149in</Left>
           <Height>0.56125in</Height>
           <Width>1.33333in</Width>

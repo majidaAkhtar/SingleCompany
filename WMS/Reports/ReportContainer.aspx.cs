@@ -33,6 +33,7 @@ namespace WMS.Reports
                 string _dateTo = list[1];
                 companyimage = GetCompanyImages(fm);
                 string PathString = "";
+                string consolidatedMonth = "";
                 switch (reportName)
                 {
                     case "badli_report":
@@ -81,7 +82,29 @@ namespace WMS.Reports
                         LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList, _ViewList), _dateFrom + " TO " + _dateTo);
 
                         break;
+                    case "emp_record_active": dt = qb.GetValuesfromDB("select * from EmpView " + query+ " and Status=1 ");
+                        _ViewList = dt.ToList<EmpView>();
+                        _TempViewList = new List<EmpView>();
+                        title = "Active Employees Record Report";
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/Employee.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/Employee.rdlc";
 
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList, _ViewList), _dateFrom + " TO " + _dateTo);
+
+                        break;
+                    case "emp_record_inactive": dt = qb.GetValuesfromDB("select * from EmpView " + query + " and Status=0 ");
+                        _ViewList = dt.ToList<EmpView>();
+                        _TempViewList = new List<EmpView>();
+                        title = "Inactive Employees Record Report";
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/Employee.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/Employee.rdlc";
+
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewList, _ViewList), _dateFrom + " TO " + _dateTo);
+                        break;
                     case "emp_detail_excel": DataTable dt1 = qb.GetValuesfromDB("select * from EmpView " + query);
                         List<EmpView> _ViewList1 = dt1.ToList<EmpView>();
                         List<EmpView> _TempViewList1 = new List<EmpView>();
@@ -295,8 +318,17 @@ namespace WMS.Reports
                         break;
 
                     case "monthly_21-20": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
-                        title = "Monthly Sheet for Permanent Employees(21st to 20th)";
+                        monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                        monthTo = Convert.ToDateTime(_dateTo).Month;
+                        for (int i = monthfrom; i <= monthTo; i++)
+                        {
+                            consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString() + " OR";
+                        }
+                        if (consolidatedMonth.Length > 4)
+                            consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and" + consolidatedMonth);
+                        //dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
+                        title = "Monthly Sheet (21st to 20th)";
                         List<ViewMonthlyDataPer> _ViewListMonthlyDataPer = dt.ToList<ViewMonthlyDataPer>();
                         List<ViewMonthlyDataPer> _TempViewListMonthlyDataPer = new List<ViewMonthlyDataPer>();
                         //Change the Paths
@@ -309,8 +341,17 @@ namespace WMS.Reports
 
 
                     case "monthly_1-31": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                        dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and Period = " + _period);
-                        title = "Monthly Sheet for Permanent Employees(1st to 31st)";
+                        monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                        monthTo = Convert.ToDateTime(_dateTo).Month;
+                        for (int i = monthfrom; i <= monthTo; i++)
+                        {
+                            consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString() + " OR";
+                        }
+                        if (consolidatedMonth.Length > 4)
+                            consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                        dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and" + consolidatedMonth);
+                        //dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and Period = " + _period);
+                        title = "Monthly Sheet (1st to 31st)";
                         List<ViewMonthlyData> _ViewListMonthlyData = dt.ToList<ViewMonthlyData>();
                         List<ViewMonthlyData> _TempViewListMonthlyData = new List<ViewMonthlyData>();
                         //Change the Paths
@@ -322,8 +363,17 @@ namespace WMS.Reports
                         break;
 
                     case "monthlysummary_21-20": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
-                        title = "Monthly Summary for Permanent Employees(21st to 20th)";
+                        monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                        monthTo = Convert.ToDateTime(_dateTo).Month;
+                        for (int i = monthfrom; i <= monthTo; i++)
+                        {
+                            consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString() + " OR";
+                        }
+                        if (consolidatedMonth.Length > 4)
+                            consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and" + consolidatedMonth);
+                        //dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
+                        title = "Monthly Summary Report (21st to 20th)";
                         _ViewListMonthlyDataPer = dt.ToList<ViewMonthlyDataPer>();
                         _TempViewListMonthlyDataPer = new List<ViewMonthlyDataPer>();
                         //Change the Paths
@@ -334,8 +384,17 @@ namespace WMS.Reports
                         LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyDataPer, _ViewListMonthlyDataPer), _dateFrom);
                         break;
                     case "monthlysummary_1-31": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
-                        title = "Monthly Summary for Permanent Employees(1st to 31st)";
+                        monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                        monthTo = Convert.ToDateTime(_dateTo).Month;
+                        for (int i = monthfrom; i <= monthTo; i++)
+                        {
+                            consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString() + " OR";
+                        }
+                        if (consolidatedMonth.Length > 4)
+                            consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                        dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and" + consolidatedMonth);
+                        //dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
+                        title = "Monthly Summary (1st to 31st)";
                         _ViewListMonthlyData = dt.ToList<ViewMonthlyData>();
                         _TempViewListMonthlyData = new List<ViewMonthlyData>();
                         //Change the Paths
@@ -347,8 +406,17 @@ namespace WMS.Reports
                         break;
 
                     case "monthly_21-20_excel": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
-                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
-                        title = "Monthly Sheet for Permanent Employees(21st to 20th)";
+                         monthfrom = Convert.ToDateTime(_dateFrom).Month;
+                        monthTo = Convert.ToDateTime(_dateTo).Month;
+                        for (int i = monthfrom; i <= monthTo; i++)
+                        {
+                            consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString() + " OR";
+                        }
+                        if (consolidatedMonth.Length > 4)
+                            consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
+                        dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and" + consolidatedMonth);
+                        //dt = qb.GetValuesfromDB("select * from ViewMonthlyDataPer " + query + " and Period = " + _period);
+                        title = "Monthly Sheet (21st to 20th)";
                         _ViewListMonthlyDataPer = dt.ToList<ViewMonthlyDataPer>();
                         _TempViewListMonthlyDataPer = new List<ViewMonthlyDataPer>();
                         //Change the Paths
@@ -362,7 +430,7 @@ namespace WMS.Reports
                     case "monthly_1-31_consolidated": _period = Convert.ToDateTime(_dateFrom).Month.ToString() + Convert.ToDateTime(_dateFrom).Year.ToString();
                         monthfrom = Convert.ToDateTime(_dateFrom).Month;
                         monthTo = Convert.ToDateTime(_dateTo).Month;
-                        string consolidatedMonth = "";
+                        
                         for (int i = monthfrom; i <= monthTo; i++)
                         {
                             consolidatedMonth = consolidatedMonth + "  Period =" + i + Convert.ToDateTime(_dateFrom).Year.ToString() + " OR";
@@ -370,7 +438,7 @@ namespace WMS.Reports
                         if (consolidatedMonth.Length > 4)
                             consolidatedMonth = consolidatedMonth.Substring(0, consolidatedMonth.Length - 3);
                         dt = qb.GetValuesfromDB("select * from ViewMonthlyData " + query + " and" + consolidatedMonth);
-                        title = "Monthly Consolidated (1st to 31th)";
+                        title = "Monthly Consolidated Attendance Sheet (1st to 31th)";
                         _ViewListMonthlyData = dt.ToList<ViewMonthlyData>();
                         _TempViewListMonthlyData = new List<ViewMonthlyData>();
                         //Change the Paths
@@ -1595,7 +1663,7 @@ namespace WMS.Reports
             companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
-
+            date = "";
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);

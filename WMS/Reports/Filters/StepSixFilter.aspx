@@ -45,6 +45,8 @@
                                     <h5>HR Reports</h5>
                                     <ul>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_record">Employee Record</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=emp_record_active">Active Employees Record</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=emp_record_inactive">Inactive Employees Record</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_detail_excel">Employee Detail (Only for Excel)</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=leave_application">Leave Application</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=department_attendance_summary">Department Attendance Summary</a></li>

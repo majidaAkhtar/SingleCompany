@@ -1795,7 +1795,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -2461,7 +2460,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -3791,6 +3789,11 @@
                             </TablixMember>
                             <TablixMember>
                               <Group Name="Details" />
+                              <SortExpressions>
+                                <SortExpression>
+                                  <Value>=Fields!EmpNo.Value</Value>
+                                </SortExpression>
+                              </SortExpressions>
                               <TablixMembers>
                                 <TablixMember />
                                 <TablixMember />
@@ -3820,7 +3823,7 @@
     <Height>2.27584in</Height>
     <Style />
   </Body>
-  <Width>11.04936in</Width>
+  <Width>10.95561in</Width>
   <Page>
     <PageHeader>
       <Height>0.74042in</Height>
@@ -3845,10 +3848,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.04375in</Top>
+          <Top>0.14375in</Top>
           <Left>0.15625in</Left>
           <Height>0.31667in</Height>
-          <Width>3.86317in</Width>
+          <Width>4.76942in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -3879,7 +3882,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.44792in</Top>
+          <Top>0.47292in</Top>
           <Left>0.15625in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
@@ -3899,16 +3902,14 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.12931in</Top>
-          <Left>9.25769in</Left>
-          <Height>0.54167in</Height>
-          <Width>1.625in</Width>
+          <Top>0.22792in</Top>
+          <Left>9.49727in</Left>
+          <Height>0.5in</Height>
+          <Width>1.38542in</Width>
           <ZIndex>2</ZIndex>
-          <ToolTip>image</ToolTip>
           <Style>
             <Border>
-              <Color>White</Color>
-              <Style>Solid</Style>
+              <Style>None</Style>
             </Border>
           </Style>
         </Image>

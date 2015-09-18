@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.42744in</Width>
+              <Width>0.38577in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8988in</Width>
+              <Width>0.7113in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.35901in</Width>
@@ -18,13 +18,13 @@
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.61817in</Width>
+              <Width>1.48275in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.375in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.59152in</Width>
+              <Width>1.44569in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.34907in</Width>
@@ -877,7 +877,7 @@
                           <Group Name="Details" />
                           <SortExpressions>
                             <SortExpression>
-                              <Value>=Fields!EmpName.Value</Value>
+                              <Value>=Fields!EmpNo.Value</Value>
                             </SortExpression>
                           </SortExpressions>
                           <TablixMembers>
@@ -901,10 +901,10 @@
             <Value>=Fields!EmpName.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>0.02084in</Top>
+        <Top>0.04584in</Top>
         <Left>0.075in</Left>
         <Height>0.45833in</Height>
-        <Width>10.39108in</Width>
+        <Width>9.88066in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -915,10 +915,10 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.54648in</Width>
+  <Width>9.99733in</Width>
   <Page>
     <PageHeader>
-      <Height>0.71875in</Height>
+      <Height>0.7618in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -942,7 +942,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox31</rd:DefaultName>
-          <Top>0.34444in</Top>
+          <Top>0.46944in</Top>
           <Left>0.075in</Left>
           <Height>0.29236in</Height>
           <Width>5.46044in</Width>
@@ -961,10 +961,10 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.08194in</Top>
-          <Left>9.04941in</Left>
-          <Height>0.55486in</Height>
-          <Width>1.41667in</Width>
+          <Top>0.2493in</Top>
+          <Left>8.72649in</Left>
+          <Height>0.5in</Height>
+          <Width>1.22917in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1037,8 +1037,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
-          <Top>0.0691in</Top>
-          <Left>9.12425in</Left>
+          <Left>8.61383in</Left>
           <Height>0.225in</Height>
           <Width>1.34183in</Width>
           <ZIndex>1</ZIndex>
@@ -1059,10 +1058,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>11in</PageWidth>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

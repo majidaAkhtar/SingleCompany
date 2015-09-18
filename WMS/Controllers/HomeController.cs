@@ -211,11 +211,11 @@ namespace WMS.Controllers
                   //    {
                   //        Session["LoginCount"] = "1";
                   //    }
-                  
-                  //}
-                return RedirectToAction("index");
 
-               //}
+                  //}
+                  return RedirectToAction("index");
+
+                //}
 
 
 

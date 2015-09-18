@@ -16,8 +16,6 @@ namespace WMS.Models
     {
         public Nullable<int> BadliDesgID { get; set; }
         public string DesignationName { get; set; }
-        public Nullable<int> Expr1 { get; set; }
-        public string EmpNo { get; set; }
         public string DutyCode { get; set; }
         public Nullable<System.TimeSpan> DutyTime { get; set; }
         public Nullable<System.DateTime> TimeIn { get; set; }
