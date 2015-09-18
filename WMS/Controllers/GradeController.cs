@@ -94,7 +94,7 @@ namespace WMS.Controllers
             }
             if (grade.Company.CompName == null)
             {
-                ModelState.AddModelError("CompanyID", "This CompanyID is not existing");
+                ModelState.AddModelError("ComID", "This CompanyID is not existing");
             }
             ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",grade.Company.CompName);
             return View(grade);
@@ -123,7 +123,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-          public ActionResult Edit([Bind(Include = "GradeID,GradeName,CompanyID")] Grade grade)
+          public ActionResult Edit([Bind(Include = "GradeID,GradeName,CompID")] Grade grade)
         {
             if (ModelState.IsValid)
             {
