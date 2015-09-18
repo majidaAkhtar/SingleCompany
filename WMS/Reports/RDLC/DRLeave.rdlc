@@ -1137,10 +1137,10 @@
     <Height>1.58333in</Height>
     <Style />
   </Body>
-  <Width>9.02906in</Width>
+  <Width>8.96656in</Width>
   <Page>
     <PageHeader>
-      <Height>0.74875in</Height>
+      <Height>0.80431in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1162,43 +1162,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.0625in</Top>
-          <Left>0.05625in</Left>
+          <Top>0.525in</Top>
+          <Left>0.05in</Left>
           <Height>0.25in</Height>
           <Width>5.47638in</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox92">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Parameters!Date.Value</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <Color>DimGray</Color>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.33542in</Top>
-          <Left>0.05625in</Left>
-          <Height>0.25in</Height>
-          <Width>2.34375in</Width>
-          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1214,11 +1181,11 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.0625in</Top>
+          <Top>0.29375in</Top>
           <Left>7.3935in</Left>
-          <Height>0.61681in</Height>
+          <Height>0.49181in</Height>
           <Width>1.51056in</Width>
-          <ZIndex>2</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

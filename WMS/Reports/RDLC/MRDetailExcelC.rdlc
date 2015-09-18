@@ -8154,10 +8154,10 @@ iif((Fields!L31.Value = ""), "","-"+Fields!L31.Value)</Value>
         <Height>2in</Height>
         <Style />
       </Body>
-      <Width>20.75in</Width>
+      <Width>20.08333in</Width>
       <Page>
         <PageHeader>
-          <Height>0.67236in</Height>
+          <Height>0.6793in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -8179,7 +8179,7 @@ iif((Fields!L31.Value = ""), "","-"+Fields!L31.Value)</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox90</rd:DefaultName>
-              <Top>0.2493in</Top>
+              <Top>0.4118in</Top>
               <Left>0.11416in</Left>
               <Height>0.25in</Height>
               <Width>5.47917in</Width>
@@ -8198,7 +8198,7 @@ iif((Fields!L31.Value = ""), "","-"+Fields!L31.Value)</Value>
               <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
               <MIMEType>image/jpeg</MIMEType>
               <Sizing>FitProportional</Sizing>
-              <Top>0.06944in</Top>
+              <Top>0.10694in</Top>
               <Left>18.49125in</Left>
               <Height>0.54736in</Height>
               <Width>1.54in</Width>
