@@ -353,8 +353,6 @@
             <DefiningQuery>SELECT 
       [ViewBadli].[BadliDesgID] AS [BadliDesgID], 
       [ViewBadli].[DesignationName] AS [DesignationName], 
-      [ViewBadli].[Expr1] AS [Expr1], 
-      [ViewBadli].[EmpNo] AS [EmpNo], 
       [ViewBadli].[DutyCode] AS [DutyCode], 
       [ViewBadli].[DutyTime] AS [DutyTime], 
       [ViewBadli].[TimeIn] AS [TimeIn], 
@@ -3637,8 +3635,6 @@
           </Key>
           <Property Name="BadliDesgID" Type="int" />
           <Property Name="DesignationName" Type="nvarchar" MaxLength="200" />
-          <Property Name="Expr1" Type="int" />
-          <Property Name="EmpNo" Type="nvarchar" MaxLength="15" />
           <Property Name="DutyCode" Type="char" MaxLength="1" />
           <Property Name="DutyTime" Type="time" />
           <Property Name="TimeIn" Type="datetime" />
@@ -8065,8 +8061,6 @@
           </Key>
           <Property Type="Int32" Name="BadliDesgID" />
           <Property Type="String" Name="DesignationName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Expr1" />
-          <Property Type="String" Name="EmpNo" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DutyCode" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="Time" Name="DutyTime" Precision="7" />
           <Property Type="DateTime" Name="TimeIn" Precision="3" />
@@ -11996,8 +11990,6 @@
                 <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
                 <ScalarProperty Name="DutyTime" ColumnName="DutyTime" />
                 <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
-                <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
-                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
                 <ScalarProperty Name="BadliDesgID" ColumnName="BadliDesgID" />
               </MappingFragment>
