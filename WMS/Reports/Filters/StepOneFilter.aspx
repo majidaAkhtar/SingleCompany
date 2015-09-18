@@ -8,7 +8,7 @@
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <section class="container" style="margin-left:0;margin-right:0;">
+    <section class="container" style="margin-left:0;margin-right:0;" >
         <div class="col-sm-3 col-md-3 col-lg-3" >
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
@@ -281,7 +281,31 @@
                 </div>
         </div>
     </section>
+
+    <asp:scriptmanager id="ScriptManager1" runat="server" enablepagemethods="true" />
+
+   <%-- <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            window.addEventListener('beforeunload', clearSession);
+
+        });
+
+        function clearSession() {
+            PageMethods.ClearSession();
+            //$.ajax({
+            //    type: "POST",
+
+            //    url: "StepOneFilter.aspx/ClearSession",
+            //});
+
+        }
+
+        
+    </script>--%>
    <script src="../../Scripts/Filters/DeleteSingleFilters.js"></script>
+    <%--<script src="../../Scripts/Filters/ClearSessionOnPageClose.js" />--%>
 
 </asp:Content>
 

@@ -15,7 +15,7 @@
     <script src="Scripts/jquery-2.1.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </head>
-<body>
+<body onunload="HandleClose()">
     <header>
         <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">

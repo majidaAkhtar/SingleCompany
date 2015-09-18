@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Services;
 using WMS.CustomClass;
 using WMS.Models;
 
@@ -142,4 +143,7 @@ namespace WMS
             Session["LoggedUser"] = null;
         }
     }
+
+
+
 }
