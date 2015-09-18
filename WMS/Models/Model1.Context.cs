@@ -36,11 +36,13 @@ namespace WMS.Models
         public DbSet<AuditForm> AuditForms { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<AuditOperation> AuditOperations { get; set; }
+        public DbSet<BadliRecord> BadliRecords { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<CardType> CardTypes { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyImage> CompanyImages { get; set; }
         public DbSet<Crew> Crews { get; set; }
         public DbSet<DailySummary> DailySummaries { get; set; }
         public DbSet<DaysName> DaysNames { get; set; }
@@ -78,6 +80,7 @@ namespace WMS.Models
         public DbSet<LvType> LvTypes { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<PollData> PollDatas { get; set; }
+        public DbSet<PollDataError> PollDataErrors { get; set; }
         public DbSet<RdrDutyCode> RdrDutyCodes { get; set; }
         public DbSet<RdrEventLog> RdrEventLogs { get; set; }
         public DbSet<Reader> Readers { get; set; }
@@ -107,6 +110,7 @@ namespace WMS.Models
         public DbSet<ViewAbsent> ViewAbsents { get; set; }
         public DbSet<ViewAttData> ViewAttDatas { get; set; }
         public DbSet<ViewAuditLog> ViewAuditLogs { get; set; }
+        public DbSet<ViewBadli> ViewBadlis { get; set; }
         public DbSet<ViewCard> ViewCards { get; set; }
         public DbSet<ViewCrew> ViewCrews { get; set; }
         public DbSet<ViewDepartment> ViewDepartments { get; set; }

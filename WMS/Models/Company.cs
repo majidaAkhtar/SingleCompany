@@ -30,6 +30,7 @@ namespace WMS.Models
         public string Address { get; set; }
         public string TelNo { get; set; }
         public string Email { get; set; }
+        public Nullable<int> ImageID { get; set; }
     
         public virtual ICollection<Crew> Crews { get; set; }
         public virtual ICollection<Department> Departments { get; set; }

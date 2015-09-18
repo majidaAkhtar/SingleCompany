@@ -45,5 +45,10 @@ namespace WMS.Models
         public Nullable<short> AExpectedMins { get; set; }
         public Nullable<short> AActualMins { get; set; }
         public Nullable<short> ALossMins { get; set; }
+        public string Criteria { get; set; }
+        public Nullable<short> CriteriaValue { get; set; }
+        public string CriteriaName { get; set; }
+        public Nullable<System.TimeSpan> AverageTimeIn { get; set; }
+        public Nullable<System.TimeSpan> AverageTimeOut { get; set; }
     }
 }

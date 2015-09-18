@@ -145,6 +145,24 @@ namespace WMS.CustomClass
             query = query + _CriteriaForOrLoc[_CriteriaForOrLoc.Count - 1];
             return query;
         }
+        public string QueryForLocationFilters(User _user)
+        {
+            TAS2013Entities db = new TAS2013Entities();
+            List<UserLocation> ulocs = new List<UserLocation>();
+            List<string> _CriteriaForOrLoc = new List<string>();
+            ulocs = db.UserLocations.Where(aa => aa.UserID == _user.UserID).ToList();
+            string query = "";
+            foreach (var uloc in ulocs)
+            {
+                _CriteriaForOrLoc.Add(" LocID = " + uloc.LocationID + " ");
+            }
+            for (int i = 0; i < _CriteriaForOrLoc.Count - 1; i++)
+            {
+                query = query + _CriteriaForOrLoc[i] + " or ";
+            }
+            query = query + _CriteriaForOrLoc[_CriteriaForOrLoc.Count - 1];
+            return query;
+        }
         public string QueryForCompanyView(User _User)
         {
             string query = "";

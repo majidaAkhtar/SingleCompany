@@ -100,10 +100,10 @@
                 </div>
                 <div class="row" style="margin-left:10%; margin-bottom:3%">
                     <div class="col-md-6">
-                        <label>Job Card</label>
+                        <label>Company</label>
                     </div>
                     <div class="col-md-6">
-                         @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                         @Html.DropDownList("CompanyIDJobCard",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
                     </div>
                 </div>
                  <div id="Option1" class="desc">
@@ -143,6 +143,27 @@
                             </div>
                             <div class="col-md-6">
                                 <input id="JobEmpNo" name="JobEmpNo" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+@*Double Duty Work Time Input Control*@
+                    <div id="doubleDutyDiv">
+                        <div class="row" style="margin-left:10%; margin-bottom:3%">
+                            <div class="col-md-6">
+                                <label>Work Mins</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input id="DDWorkMins" name="DDWorkMins" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="BadliDiv" class="desc" style="display: none;">
+                        <div class="row" style="margin-left:10%; margin-bottom:3%">
+                            <div class="col-md-6">
+                                <label>Designation</label>
+                            </div>
+                            <div class="col-md-6">
+                                    @Html.DropDownList("DesignationID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
                             </div>
                         </div>
                     </div>

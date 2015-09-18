@@ -6,6 +6,7 @@ using System.Web;
 using WMS.Models;
 using WMS.Reports;
 using WMSLibrary;
+using System.Linq.Dynamic;
 
 namespace WMS.CustomClass
 {
@@ -75,15 +76,29 @@ public  List<AttDeptSummary> GetListForAttDepartmentsSummary(FiltersModel fm, st
                 singleInstance.CardSwapped = 0;
                 singleInstance.Absent = 0;
                 singleInstance.OnLeave = 0;
-                foreach (var emp in EmView)
-                {
-                singleInstance.CardSwapped = singleInstance.CardSwapped + db.AttDatas.Where(aa => aa.TimeIn != null && aa.AttDate == day && aa.EmpID == emp.EmpID).Count();
-                singleInstance.Absent = singleInstance.Absent+ db.AttDatas.Where(aa => aa.StatusAB == true && aa.AttDate == day && aa.EmpID == emp.EmpID).Count();
-                singleInstance.OnLeave = singleInstance.OnLeave + db.AttDatas.Where(aa => (aa.StatusHL == true || aa.StatusLeave == true || aa.StatusSL == true) && aa.AttDate == day && aa.EmpID == emp.EmpID).Count();
+                string dynamicQueryForEmps = GetDynamicQueryForEmps(EmView);
+                string queryForCardSwapped = "select * from AttData where (TimeIn is not null AND AttDate = '" + day + "') AND ";
+                string queryForAbsent = "select * from AttData where (StatusAB = 1 AND AttDate = '" + day + "') AND ";
+                string queryOnLeave = "select * from AttData where (StatusHL = 1 OR StatusLeave =1  AND StatusSL=1 AND AttDate = '" + day + "') AND ";
+
+               
+                queryForCardSwapped = queryForCardSwapped + dynamicQueryForEmps;
+                
+                singleInstance.CardSwapped = qb.GetValuesfromDB(queryForCardSwapped).ToList<AttData>().Count();
+                queryForAbsent = queryForAbsent + dynamicQueryForEmps;
+                singleInstance.Absent = qb.GetValuesfromDB(queryForAbsent).ToList<AttData>().Count(); queryOnLeave = queryOnLeave + dynamicQueryForEmps;
+                singleInstance.OnLeave = qb.GetValuesfromDB(queryOnLeave).ToList<AttData>().Count();
+
+                //foreach (var emp in EmView)
+                //{
+                   
+                //s= singleInstance.CardSwapped + db.AttDatas.Where(aa => aa.TimeIn != null && aa.AttDate == day && aa.EmpID == emp.EmpID).Count();
+                //singleInstance.Absent = singleInstance.Absent+ db.AttDatas.Where(aa => aa.StatusAB == true && aa.AttDate == day && aa.EmpID == emp.EmpID).Count();
+                //singleInstance.OnLeave = singleInstance.OnLeave + db.AttDatas.Where(aa => (aa.StatusHL == true || aa.StatusLeave == true || aa.StatusSL == true) && aa.AttDate == day && aa.EmpID == emp.EmpID).Count();
 
 
                
-                }
+                //}
                 singleInstance.date = day;
                 attDeptList.Add(singleInstance);
             }
@@ -98,6 +113,18 @@ public  List<AttDeptSummary> GetListForAttDepartmentsSummary(FiltersModel fm, st
 
     }
     return attDeptList;
+}
+
+private string GetDynamicQueryForEmps(List<EmpView> EmView)
+{
+    string query = "(";
+    foreach (var emp in EmView)
+            query = query + "EmpID=" + emp.EmpID + " or ";
+    if (query.Length > 4)
+        query = query.Substring(0, query.Length - 4);
+    query = query + ")";
+    return query;
+    
 }
 
 

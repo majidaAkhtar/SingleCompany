@@ -14,10 +14,10 @@ namespace WMS.Models
     
     public partial class PollDataError
     {
-        public int UnID { get; set; }
+        public int PollErrorID { get; set; }
+        public Nullable<int> DeviceRegID { get; set; }
         public Nullable<System.DateTime> EntryDate { get; set; }
         public Nullable<System.DateTime> EntryTime { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
-        public Nullable<int> DeviceRegID { get; set; }
     }
 }

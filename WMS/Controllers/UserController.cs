@@ -54,10 +54,10 @@ namespace WMS.Controllers
             //    string Time = Request.Form["StudentList[" + i.ToString() + "].Date"].ToString();
             //}
 
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
-            ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpNo), "EmpID", "EmpNo");
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
-            ViewBag.RoleID = new SelectList(db.UserRoles.OrderBy(s=>s.RoleName), "RoleID", "RoleName");
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
+            ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo");
+            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName");
             return View();
         }
 
@@ -260,10 +260,10 @@ namespace WMS.Controllers
                     }
                 }
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", user.CompanyID);
-            ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpNo), "EmpID", "EmpNo", user.EmpID);
-            ViewBag.RoleID = new SelectList(db.UserRoles.OrderBy(s=>s.RoleName), "RoleID", "RoleName", user.RoleID);
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", user.LocationID);
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", user.CompanyID);
+            ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", user.EmpID);
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.RoleID);
+            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName", user.LocationID);
             return View(user);
         }
 
@@ -294,10 +294,10 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", user.CompanyID);
-            ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpNo), "EmpID", "EmpNo", user.EmpID);
-            ViewBag.RoleID = new SelectList(db.UserRoles.OrderBy(s=>s.RoleName), "RoleID", "RoleName", user.RoleID);
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", user.LocationID);
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", user.CompanyID);
+            ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", user.EmpID);
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.RoleID);
+            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName", user.LocationID);
             return View(user);
         }
 
@@ -407,9 +407,7 @@ namespace WMS.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-               
-                int count = 0;
-                bool successOnConversion = int.TryParse(Request.Form["uLocationCount"], out count);
+                int count = Convert.ToInt32(Request.Form["uLocationCount"]);
                 List<Location> locs = new List<Location>();
                 List<UserLocation> userLocs = db.UserLocations.Where(aa=>aa.UserID==user.UserID).ToList();
                 locs = db.Locations.ToList();
@@ -420,8 +418,6 @@ namespace WMS.Controllers
                     db.UserLocations.Remove(ul);
                     db.SaveChanges();
                 }
-                if(successOnConversion)
-                {
                 for (int i = 1; i <= count; i++)
                 {
                     string uLocID = "uLocation" + i;
@@ -441,7 +437,6 @@ namespace WMS.Controllers
                         db.SaveChanges();
                     }   
                 }
-            }
                 //foreach (var item in userLocs)
                 //{
                 //    if (!currentLocIDs.Contains((int)item.LocationID))
@@ -453,10 +448,10 @@ namespace WMS.Controllers
 
             }
 
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", user.CompanyID);
-            ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpNo), "EmpID", "EmpNo", user.EmpID);
-            ViewBag.RoleID = new SelectList(db.UserRoles.OrderBy(s=>s.RoleName), "RoleID", "RoleName", user.RoleID);
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", user.LocationID);
+            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", user.CompanyID);
+            ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", user.EmpID);
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.RoleID);
+            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName", user.LocationID);
             return View(user);
         }
 

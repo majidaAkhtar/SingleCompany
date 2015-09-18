@@ -24,6 +24,7 @@ namespace WMS.Controllers
             //return View();
         }
 
+        //
         public ActionResult RosterAppIndex(FormCollection form)
         {
             User LoggedInUser = Session["LoggedUser"] as User;
@@ -42,35 +43,42 @@ namespace WMS.Controllers
             List<Crew> Crews = db.Crews.ToList();
             List<Section> Sections = db.Sections.ToList();
             List<Emp> Emps = db.Emps.ToList();
+            List<Shift> shifts = db.Shifts.ToList();
             foreach(var item in rosterapps)
             {
-                RosterApplication _RosterApplication = new RosterApplication();
-                _RosterApplication.RotaApplD = item.RotaApplD;
-                _RosterApplication.DateStarted = item.DateStarted;
-                _RosterApplication.DateEnded = item.DateEnded;
-                _RosterApplication.RosterCriteria = item.RosterCriteria;
-                switch(item.RosterCriteria)
+                try
                 {
-                case "S":
-                    _RosterApplication.CriteriaData = item.Shift.ShiftName;
-                    break;
-                case "C":
-                    short CrewID = (short)item.CriteriaData;
-                    _RosterApplication.CriteriaData = Crews.Where(aa=>aa.CrewID==CrewID).FirstOrDefault().CrewName;
-                    break;
-                case "T":
-                        short SecID = (short)item.CriteriaData;
-                    _RosterApplication.CriteriaData = Sections.Where(aa=>aa.SectionID==SecID).FirstOrDefault().SectionName;
-                    break;
-                case "E":
-                    _RosterApplication.CriteriaData = Emps.Where(aa=>aa.EmpID==item.CriteriaData).FirstOrDefault().EmpName;
-                    break;
+                    RosterApplication _RosterApplication = new RosterApplication();
+                    _RosterApplication.RotaApplD = item.RotaApplD;
+                    _RosterApplication.DateStarted = item.DateStarted;
+                    _RosterApplication.DateEnded = item.DateEnded;
+                    _RosterApplication.RosterCriteria = item.RosterCriteria;
+                    switch (item.RosterCriteria)
+                    {
+                        case "S":
+                            _RosterApplication.CriteriaData = item.Shift.ShiftName;
+                            break;
+                        case "C":
+                            short CrewID = (short)item.CriteriaData;
+                            _RosterApplication.CriteriaData = Crews.Where(aa => aa.CrewID == CrewID).FirstOrDefault().CrewName;
+                            break;
+                        case "T":
+                            short SecID = (short)item.CriteriaData;
+                            _RosterApplication.CriteriaData = Sections.Where(aa => aa.SectionID == SecID).FirstOrDefault().SectionName;
+                            break;
+                        case "E":
+                            _RosterApplication.CriteriaData = Emps.Where(aa => aa.EmpID == item.CriteriaData).FirstOrDefault().EmpName;
+                            break;
+                    }
+                    _RosterApplication.WorkMin = item.WorkMin;
+                    _RosterApplication.DutyTime = item.DutyTime;
+                    _RosterApplication.RosterType = item.RosterType.Name;
+                    _RosterApplication.Shift = shifts.First(aa => aa.ShiftID == item.ShiftID).ShiftName;
+                    _RosterApplicationsList.Add(_RosterApplication);
                 }
-                _RosterApplication.WorkMin = item.WorkMin;
-                _RosterApplication.DutyTime = item.DutyTime;
-                _RosterApplication.RosterType = item.RosterType.Name;
-                _RosterApplication.Shift = item.Shift.ShiftName;
-                _RosterApplicationsList.Add(_RosterApplication);
+                catch (Exception ex)
+                {
+                }
             }
             return View(_RosterApplicationsList);
         }
@@ -179,6 +187,10 @@ namespace WMS.Controllers
 
         public ActionResult RosterDelete(int? id)
         {
+            ViewBag.RosterType = new SelectList(db.RosterTypes, "ID", "Name");
+            ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
+            ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
+            ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -449,28 +461,25 @@ namespace WMS.Controllers
             RosterApp RApp = new RosterApp();
             //User uid = new User();
             RApp = db.RosterApps.First(rr => rr.RotaApplD == RosterAppID);
-           try 
-	            {	        
-		            
-                        if (RApp.UserID == LoggedUserID)
-                        {
-                
-                            List<RosterDetail> RAppDetail = new List<Models.RosterDetail>();
-                            RAppDetail = db.RosterDetails.Where(aa => aa.RosterAppID == RosterAppID).ToList();
-                            foreach (var item in RAppDetail)
-                            {
-                                db.RosterDetails.Remove(item);
-                            }
-	                    }
+            if (RApp.UserID == LoggedUserID)
+            {
+                try
+                {
+                    List<RosterDetail> RAppDetail = new List<Models.RosterDetail>();
+                    RAppDetail = db.RosterDetails.Where(aa => aa.RosterAppID == RosterAppID).ToList();
+                    foreach (var item in RAppDetail)
+                    {
+                        db.RosterDetails.Remove(item);
+                    }
                 }
-	            catch (Exception)
-	            {
-		
-		            throw;
-	            }
+                catch (Exception)
+                {
+
+                    throw;
+                }
                 db.RosterApps.Remove(RApp);
                 db.SaveChanges();
-
+            }
 
                 return true;
         }

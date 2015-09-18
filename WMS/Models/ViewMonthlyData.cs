@@ -165,5 +165,7 @@ namespace WMS.Models
         public Nullable<short> SecID { get; set; }
         public Nullable<short> DivID { get; set; }
         public Nullable<int> DesigID { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     }
 }

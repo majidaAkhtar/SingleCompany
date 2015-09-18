@@ -215,6 +215,8 @@ font-family:Ubuntu;
 
 .ErorrMessage {
     color:red;
+    font-size:small !important;
+    font-family:Ubuntu;
 }
 .Logout-button
 {

@@ -20,6 +20,7 @@ namespace WMS
         {
             // Initialize Session["FiltersModel"] -- Move to First Page
             Session["FiltersModel"] = new WMSLibrary.FiltersModel();
+            Session["LoginCount"] = null;
             LoadSessionValues();
             //LoadSession();
         }
@@ -82,6 +83,7 @@ namespace WMS
                 }
             }
         }
+
         private void LoadSessionValues()
         {
             Session["ReportSession"] = new List<string>();
@@ -91,12 +93,14 @@ namespace WMS
             list.Add("EmpView");
             Session["ReportSession"] = list;
         }
+
         protected void Session_End(object sender, EventArgs e)
         {
             Session["FiltersModel"] = null;
             Session["LogedUserID"] = null;
             Session["LoggedUser"] = null;
         }
+
         //void Application_BeginRequest(object sender, EventArgs e)
         //{
         //    if (Request == null || Request.Cookies == null)
