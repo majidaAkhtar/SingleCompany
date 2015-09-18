@@ -2,6 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <style type="text/css">
+      .hiddencol
+  {
+    display: none;
+  }
+         </style>
     <section class="container" style="margin-left:0;margin-right:0;">
         <div class="col-sm-3 col-md-3 col-lg-3" >
             <!-- Sidebar -->
@@ -65,6 +71,7 @@
                             <asp:GridView ID="GridViewDepartment" runat="server" Width="450px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewDepartment_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewDepartment_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
+                                       <asp:BoundField DataField="DeptID" HeaderText="ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                     <asp:TemplateField>
                                         <HeaderTemplate>
                                             <%--<asp:CheckBox ID="CheckAll" runat="server" />--%>
@@ -76,7 +83,7 @@
                                         </ItemTemplate>
                                         <ItemStyle Width="10%" />
                                     </asp:TemplateField>
-                                        <asp:BoundField DataField="DeptID" HeaderText="ID" />
+                                     
                                         <asp:BoundField DataField="DeptName" HeaderText="Name" />
                                          <asp:BoundField DataField="CompName" HeaderText="CompanyName" />
                                 </Columns>
@@ -103,6 +110,7 @@
                             <asp:GridView ID="GridViewType" runat="server" Width="450px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewType_PageIndexChanging" BorderColor="#0094FF" BorderStyle="None" OnRowDataBound="GridViewType_RowDataBound" ShowFooter="True" BorderWidth="1px"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
+                                    <asp:BoundField DataField="TypeID" HeaderText="ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />
                                     <asp:TemplateField>
                                         <HeaderTemplate>
                                             <%--<asp:CheckBox ID="CheckAll" runat="server" />--%>
@@ -114,7 +122,7 @@
                                         </ItemTemplate>
                                         <ItemStyle Width="10%" />
                                     </asp:TemplateField>
-                                        <asp:BoundField DataField="TypeID" HeaderText="ID" />
+                                       
                                         <asp:BoundField DataField="TypeName" HeaderText="Name" />
                                         <asp:BoundField DataField="CompName" HeaderText="Company Name" />
                                 </Columns>
