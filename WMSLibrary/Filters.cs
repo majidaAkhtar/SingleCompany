@@ -18,13 +18,13 @@ namespace WMSLibrary
                 if (isChecked)  // Add to filter list
                 {
                     //int DepartmentID = (int)gv.DataKeys[i].Value;
-                    int DepartmentID = int.Parse(gv.Rows[i].Cells[1].Text);
+                    int DepartmentID = int.Parse(gv.Rows[i].Cells[0].Text);
                     DepartmentIDs.Add(DepartmentID);
                 }
                 else    // Remove from filter list
                 {
                     //int DepartmentID = (int)gv.DataKeys[i].Value;
-                    int DepartmentID = int.Parse(gv.Rows[i].Cells[1].Text);
+                    int DepartmentID = int.Parse(gv.Rows[i].Cells[0].Text);
                     for (int k = 0; k < DepartmentIDs.Count; k++)
                     {
                         if (DepartmentIDs[k] == DepartmentID)
@@ -64,7 +64,7 @@ namespace WMSLibrary
                 bool isChecked = ((CheckBox)gv.Rows[i].FindControl("CheckOne")).Checked;
                 if (isChecked)  // Add to filter list
                 {
-                    string ItemID = gv.Rows[i].Cells[1].Text;
+                    string ItemID = gv.Rows[i].Cells[0].Text;
                     //string ItemID = gv.DataKeys[i].Value.ToString();
                     string ItemName = gv.Rows[i].Cells[2].Text;
 
@@ -74,7 +74,7 @@ namespace WMSLibrary
                 else    // Remove from filter list
                 {
                     //string ItemID = gv.DataKeys[i].Value.ToString();
-                    string ItemID = gv.Rows[i].Cells[1].Text;
+                    string ItemID = gv.Rows[i].Cells[0].Text;
                     RemoveObjectFromList(filtersModel, filterName, ItemID);
 
                 }
@@ -258,7 +258,7 @@ namespace WMSLibrary
                 bool chk = false;
                 for (int i = 0; i < list.Count; i++) 
                 {
-                    if (list[i].ID == gv.Rows[j].Cells[1].Text)
+                    if (list[i].ID == gv.Rows[j].Cells[0].Text)
                     {
                         chk = true;
                     }
