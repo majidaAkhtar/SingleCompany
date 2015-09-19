@@ -1242,6 +1242,7 @@
     <EmbeddedResource Include="Reports\RDLC\BadliReport.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DetailedAbsent.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLeaveQuota.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
@@ -1260,7 +1261,6 @@
     <EmbeddedResource Include="Reports\RDLC\DREarlyOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLateIn.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLateOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRMissingAtt.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />

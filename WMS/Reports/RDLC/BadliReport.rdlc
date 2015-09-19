@@ -6,37 +6,37 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.47917in</Width>
+              <Width>0.81251in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.64583in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.52083in</Width>
+              <Width>1.19791in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.67542in</Width>
+              <Width>1.11292in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.875in</Width>
+              <Width>1.16667in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.90625in</Width>
+              <Width>1.0729in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.57292in</Width>
+              <Width>1.13542in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.78125in</Width>
+              <Width>0.65625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.77083in</Width>
+              <Width>0.625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.70833in</Width>
+              <Width>0.97916in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -56,10 +56,13 @@
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Format>dd-MMM-yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox93</rd:DefaultName>
@@ -250,7 +253,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Badli</Value>
+                              <Value>Badli Designation</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -423,10 +426,13 @@
                               <Value>=Fields!AttDate.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>dd-MMM-yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>AttDate</rd:DefaultName>
@@ -605,14 +611,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="EmpDateBadli">
+                    <Textbox Name="Expr31">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!EmpDateBadli.Value</Value>
+                              <Value>=Fields!Expr3.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -621,7 +627,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>EmpDateBadli</rd:DefaultName>
+                      <rd:DefaultName>Expr31</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -714,7 +720,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>WorkMin</rd:DefaultName>
@@ -733,14 +741,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Expr3">
+                    <Textbox Name="Remarks">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Expr3.Value</Value>
+                              <Value>=Fields!Remarks.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -749,7 +757,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Expr3</rd:DefaultName>
+                      <rd:DefaultName>Remarks</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -801,7 +809,7 @@
         <Top>0.06944in</Top>
         <Left>0.03916in</Left>
         <Height>0.5in</Height>
-        <Width>7.56083in</Width>
+        <Width>10.02957in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -809,13 +817,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>1in</Height>
     <Style />
   </Body>
-  <Width>7.64583in</Width>
+  <Width>10.15207in</Width>
   <Page>
     <PageHeader>
-      <Height>0.64583in</Height>
+      <Height>0.65277in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -837,7 +845,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.10972in</Top>
+          <Top>0.11666in</Top>
           <Left>0.03916in</Left>
           <Height>0.25in</Height>
           <Width>5.47917in</Width>
@@ -869,7 +877,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.37778in</Top>
+          <Top>0.38472in</Top>
           <Left>0.03916in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
@@ -889,8 +897,8 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.04722in</Top>
-          <Left>6.03749in</Left>
+          <Top>0.05in</Top>
+          <Left>8.4729in</Left>
           <Height>0.58333in</Height>
           <Width>1.5625in</Width>
           <ZIndex>2</ZIndex>
@@ -964,8 +972,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.06944in</Top>
-          <Left>6.74582in</Left>
+          <Top>0.01389in</Top>
+          <Left>9.18123in</Left>
           <Height>0.25in</Height>
           <Width>0.85417in</Width>
           <ZIndex>1</ZIndex>
@@ -986,10 +994,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>11in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
