@@ -9,7 +9,7 @@
               <Width>0.40625in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.75in</Width>
+              <Width>0.8125in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.40278in</Width>
@@ -1551,14 +1551,18 @@
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!EmpNo.Value</Value>
+                </SortExpression>
+              </SortExpressions>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.05556in</Top>
         <Left>0.06666in</Left>
         <Height>0.5in</Height>
-        <Width>24.94446in</Width>
+        <Width>25.00696in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1569,7 +1573,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>25.07362in</Width>
+  <Width>25.13612in</Width>
   <Page>
     <PageHeader>
       <Height>0.72917in</Height>
@@ -1594,7 +1598,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>0.35639in</Top>
+          <Top>0.44389in</Top>
           <Left>0.06666in</Left>
           <Height>0.26167in</Height>
           <Width>4.34722in</Width>
@@ -1613,10 +1617,10 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.14653in</Top>
-          <Left>23.59445in</Left>
-          <Height>0.55486in</Height>
-          <Width>1.41667in</Width>
+          <Top>0.21125in</Top>
+          <Left>23.82167in</Left>
+          <Height>0.5in</Height>
+          <Width>1.25195in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1688,8 +1692,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox40</rd:DefaultName>
-          <Top>0.02778in</Top>
-          <Left>18.23681in</Left>
+          <Top>0.01389in</Top>
+          <Left>24.07362in</Left>
           <Height>0.27778in</Height>
           <Width>1in</Width>
           <ZIndex>1</ZIndex>

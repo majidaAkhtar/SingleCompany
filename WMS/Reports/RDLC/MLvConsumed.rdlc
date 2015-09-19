@@ -1801,10 +1801,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.06334in</Top>
+          <Top>0.16334in</Top>
           <Left>0.06542in</Left>
           <Height>0.25in</Height>
-          <Width>6.85417in</Width>
+          <Width>6.58125in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1832,7 +1832,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>0.33208in</Top>
+          <Top>0.41958in</Top>
           <Left>0.06542in</Left>
           <Height>0.25in</Height>
           <Width>4.04167in</Width>
@@ -1852,7 +1852,7 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.08208in</Top>
+          <Top>0.16958in</Top>
           <Left>11.52165in</Left>
           <Height>0.5in</Height>
           <Width>1.32292in</Width>

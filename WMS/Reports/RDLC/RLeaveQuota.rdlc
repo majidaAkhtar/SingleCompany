@@ -334,7 +334,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -623,7 +622,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>6.93747in</Width>
+  <Width>6.8333in</Width>
   <Page>
     <PageHeader>
       <Height>0.76958in</Height>
@@ -648,7 +647,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.05417in</Top>
+          <Top>0.22917in</Top>
           <Left>0.05625in</Left>
           <Height>0.25in</Height>
           <Width>5.17709in</Width>
@@ -680,7 +679,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.32813in</Top>
+          <Top>0.50313in</Top>
           <Left>0.075in</Left>
           <Height>0.25in</Height>
           <Width>2.34375in</Width>
@@ -700,7 +699,7 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.09201in</Top>
+          <Top>0.12951in</Top>
           <Left>5.64458in</Left>
           <Height>0.62201in</Height>
           <Width>1.12831in</Width>
