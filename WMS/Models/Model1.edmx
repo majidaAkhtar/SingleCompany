@@ -2510,8 +2510,8 @@
             <PropertyRef Name="CrewID" />
           </Key>
           <Property Name="CrewID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CrewName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="CrewName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CompanyID" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="DailySummary">
           <Key>
@@ -2566,25 +2566,25 @@
             <PropertyRef Name="DeptID" />
           </Key>
           <Property Name="DeptID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="DeptName" Type="nvarchar" MaxLength="100" />
-          <Property Name="DivID" Type="smallint" />
-          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="DeptName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="DivID" Type="smallint" Nullable="false" />
+          <Property Name="CompanyID" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="DesignationID" />
           </Key>
           <Property Name="DesignationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="DesignationName" Type="nvarchar" MaxLength="200" />
-          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="DesignationName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="CompanyID" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Division">
           <Key>
             <PropertyRef Name="DivisionID" />
           </Key>
           <Property Name="DivisionID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="DivisionName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CompanyID" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="DOJJ">
           <Key>
@@ -2664,7 +2664,7 @@
           <Property Name="ShiftID" Type="tinyint" />
           <Property Name="LocID" Type="smallint" />
           <Property Name="TypeID" Type="tinyint" />
-          <Property Name="GradeID" Type="tinyint" />
+          <Property Name="GradeID" Type="smallint" />
           <Property Name="SecID" Type="smallint" />
           <Property Name="CardNo" Type="char" MaxLength="10" />
           <Property Name="FpID" Type="int" />
@@ -2773,9 +2773,9 @@
           <Key>
             <PropertyRef Name="GradeID" />
           </Key>
-          <Property Name="GradeID" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
-          <Property Name="CompID" Type="smallint" />
+          <Property Name="GradeID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GradeName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="CompID" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Holiday">
           <Key>
@@ -3196,9 +3196,9 @@
             <PropertyRef Name="SectionID" />
           </Key>
           <Property Name="SectionID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SectionName" Type="nvarchar" MaxLength="50" />
-          <Property Name="DeptID" Type="smallint" />
-          <Property Name="CompanyID" Type="smallint" />
+          <Property Name="SectionName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DeptID" Type="smallint" Nullable="false" />
+          <Property Name="CompanyID" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="ServiceLog">
           <Key>
@@ -5426,7 +5426,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Crew_Company">
-          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="1" />
           <End Role="Crew" Type="TAS2013Model.Store.Crew" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -5438,7 +5438,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Department_Company">
-          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="1" />
           <End Role="Department" Type="TAS2013Model.Store.Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -5450,7 +5450,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Department_Division">
-          <End Role="Division" Type="TAS2013Model.Store.Division" Multiplicity="0..1" />
+          <End Role="Division" Type="TAS2013Model.Store.Division" Multiplicity="1" />
           <End Role="Department" Type="TAS2013Model.Store.Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Division">
@@ -5462,7 +5462,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Designation_Company">
-          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="1" />
           <End Role="Designation" Type="TAS2013Model.Store.Designation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -5474,7 +5474,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Division_Company">
-          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="1" />
           <End Role="Division" Type="TAS2013Model.Store.Division" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -5690,7 +5690,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grade_Company">
-          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="1" />
           <End Role="Grade" Type="TAS2013Model.Store.Grade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -5894,7 +5894,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Company1">
-          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="1" />
           <End Role="Section" Type="TAS2013Model.Store.Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -5906,7 +5906,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Department">
-          <End Role="Department" Type="TAS2013Model.Store.Department" Multiplicity="0..1" />
+          <End Role="Department" Type="TAS2013Model.Store.Department" Multiplicity="1" />
           <End Role="Section" Type="TAS2013Model.Store.Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
@@ -6867,8 +6867,8 @@
             <PropertyRef Name="CrewID" />
           </Key>
           <Property Type="Int16" Name="CrewID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="CrewName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="CompanyID" />
+          <Property Type="String" Name="CrewName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="CompanyID" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Crew_Company" FromRole="Crew" ToRole="Company" />
           <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_Crew" FromRole="Crew" ToRole="Emp" />
         </EntityType>
@@ -6927,9 +6927,9 @@
             <PropertyRef Name="DeptID" />
           </Key>
           <Property Type="Int16" Name="DeptID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="DeptName" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="DivID" />
-          <Property Type="Int16" Name="CompanyID" />
+          <Property Type="String" Name="DeptName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="DivID" Nullable="false" />
+          <Property Type="Int16" Name="CompanyID" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Department_Company" FromRole="Department" ToRole="Company" />
           <NavigationProperty Name="Division" Relationship="TAS2013Model.FK_Department_Division" FromRole="Department" ToRole="Division" />
           <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Department" FromRole="Department" ToRole="Section" />
@@ -6939,8 +6939,8 @@
             <PropertyRef Name="DesignationID" />
           </Key>
           <Property Type="Int32" Name="DesignationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="DesignationName" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="CompanyID" />
+          <Property Type="String" Name="DesignationName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="CompanyID" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Designation_Company" FromRole="Designation" ToRole="Company" />
           <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_Designation1" FromRole="Designation" ToRole="Emp" />
         </EntityType>
@@ -6949,8 +6949,8 @@
             <PropertyRef Name="DivisionID" />
           </Key>
           <Property Type="Int16" Name="DivisionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="DivisionName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="CompanyID" />
+          <Property Type="String" Name="DivisionName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="CompanyID" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Division_Company" FromRole="Division" ToRole="Company" />
           <NavigationProperty Name="Departments" Relationship="TAS2013Model.FK_Department_Division" FromRole="Division" ToRole="Department" />
         </EntityType>
@@ -7035,7 +7035,7 @@
           <Property Type="Byte" Name="ShiftID" />
           <Property Type="Int16" Name="LocID" />
           <Property Type="Byte" Name="TypeID" />
-          <Property Type="Byte" Name="GradeID" />
+          <Property Type="Int16" Name="GradeID" />
           <Property Type="Int16" Name="SecID" />
           <Property Type="String" Name="CardNo" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Type="Int32" Name="FpID" />
@@ -7174,9 +7174,9 @@
           <Key>
             <PropertyRef Name="GradeID" />
           </Key>
-          <Property Type="Byte" Name="GradeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="GradeName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="CompID" />
+          <Property Type="Int16" Name="GradeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GradeName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="CompID" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Grade_Company" FromRole="Grade" ToRole="Company" />
           <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_Grade" FromRole="Grade" ToRole="Emp" />
         </EntityType>
@@ -7628,9 +7628,9 @@
             <PropertyRef Name="SectionID" />
           </Key>
           <Property Type="Int16" Name="SectionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="SectionName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="DeptID" />
-          <Property Type="Int16" Name="CompanyID" />
+          <Property Type="String" Name="SectionName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="DeptID" Nullable="false" />
+          <Property Type="Int16" Name="CompanyID" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Section_Company1" FromRole="Section" ToRole="Company" />
           <NavigationProperty Name="Department" Relationship="TAS2013Model.FK_Section_Department" FromRole="Section" ToRole="Department" />
           <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_Section" FromRole="Section" ToRole="Emp" />
@@ -9807,7 +9807,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Crew_Company">
-          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="1" />
           <End Type="TAS2013Model.Crew" Role="Crew" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -9819,7 +9819,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Department_Company">
-          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="1" />
           <End Type="TAS2013Model.Department" Role="Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -9831,7 +9831,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Designation_Company">
-          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="1" />
           <End Type="TAS2013Model.Designation" Role="Designation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -9843,7 +9843,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Division_Company">
-          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="1" />
           <End Type="TAS2013Model.Division" Role="Division" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -9867,7 +9867,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grade_Company">
-          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="1" />
           <End Type="TAS2013Model.Grade" Role="Grade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -9879,7 +9879,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Company1">
-          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Company" Role="Company" Multiplicity="1" />
           <End Type="TAS2013Model.Section" Role="Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Company">
@@ -9927,7 +9927,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Department_Division">
-          <End Type="TAS2013Model.Division" Role="Division" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Division" Role="Division" Multiplicity="1" />
           <End Type="TAS2013Model.Department" Role="Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Division">
@@ -9939,7 +9939,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Department">
-          <End Type="TAS2013Model.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="TAS2013Model.Department" Role="Department" Multiplicity="1" />
           <End Type="TAS2013Model.Section" Role="Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">

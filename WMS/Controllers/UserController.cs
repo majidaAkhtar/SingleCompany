@@ -418,6 +418,7 @@ namespace WMS.Controllers
                     db.UserLocations.Remove(ul);
                     db.SaveChanges();
                 }
+                userLocs = new List<UserLocation>();
                 for (int i = 1; i <= count; i++)
                 {
                     string uLocID = "uLocation" + i;
@@ -434,6 +435,7 @@ namespace WMS.Controllers
                         uloc.UserID = user.UserID;
                         uloc.LocationID = (short)locID;
                         db.UserLocations.Add(uloc);
+                        userLocs.Add(uloc);
                         db.SaveChanges();
                     }   
                 }

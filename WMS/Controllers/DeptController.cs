@@ -41,7 +41,9 @@ namespace WMS.Controllers
             var departments = db.Departments.Where(query).AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
-                departments = departments.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper()));
+                departments = departments.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper())
+                    ||s.Division.DivisionName.ToUpper().Contains(searchString.ToUpper())
+                    ||s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -91,6 +93,14 @@ namespace WMS.Controllers
         [CustomActionAttribute]
            public ActionResult Create([Bind(Include = "DeptID,DeptName,DivID,CompanyID")] Department department)
         {
+            if (db.Departments.Where(aa => aa.DeptName == department.DeptName&& aa.CompanyID == department.CompanyID).Count() > 0)
+                ModelState.AddModelError("DeptName", "Department Name is must be unique");
+            if (department.CompanyID == null)
+                ModelState.AddModelError("DeptName", "Please selct a Company");
+            if (department.DeptName == "")
+                ModelState.AddModelError("DeptName", "Please enter Department Name");
+            if (department.DivID ==null)
+                ModelState.AddModelError("DivID", "Please select Division");
             if (ModelState.IsValid)
             {
                 db.Departments.Add(department);
@@ -131,6 +141,12 @@ namespace WMS.Controllers
         [CustomActionAttribute]
            public ActionResult Edit([Bind(Include = "DeptID,DeptName,DivID,CompanyID")] Department department)
         {
+            if (department.CompanyID == null)
+                ModelState.AddModelError("DeptName", "Please selct a Company");
+            if (department.DeptName == "")
+                ModelState.AddModelError("DeptName", "Please enter Department Name");
+            if (department.DivID == null)
+                ModelState.AddModelError("DivID", "Please select Division");
             if (ModelState.IsValid)
             {
                 db.Entry(department).State = EntityState.Modified;

@@ -24,10 +24,10 @@
                      //iterate through rows
                      //rows would be accessed using the "row" variable assigned in the for loop
                      for (var j = 0, col; col = row.cells[j]; j++) {
-                         if (j % 3 == 0) {
+                         if ((j+2) % 3 == 0) {
                              var td = row.cells[j].getElementsByTagName('input');
                              for (var y = 0; y < td.length; y++) {
-                                 if (row.cells[j + 1].innerHTML == itself.id) {
+                                 if (row.cells[j -1].innerHTML == itself.id) {
                                      td[y].checked = false;
                                      itself.parentNode.remove();
                                  }

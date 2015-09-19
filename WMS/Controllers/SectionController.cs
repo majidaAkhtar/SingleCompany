@@ -43,7 +43,9 @@ namespace WMS.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                sections = sections.Where(s => s.SectionName.ToUpper().Contains(searchString.ToUpper()));
+                sections = sections.Where(s => s.SectionName.ToUpper().Contains(searchString.ToUpper())
+                    || s.Department.DeptName.ToUpper().Contains(searchString.ToUpper())
+                    || s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -96,6 +98,14 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create([Bind(Include = "SectionID,SectionName,DeptID,CompanyID")] Section section)
         {
+            if (db.Sections.Where(aa => aa.SectionName == section.SectionName && aa.CompanyID == section.CompanyID).Count() > 0)
+                ModelState.AddModelError("SectionName", "Department Name is must be unique");
+            if (section.CompanyID == null)
+                ModelState.AddModelError("CompanyID", "Please selct a Company");
+            if (section.SectionName == "")
+                ModelState.AddModelError("SectionName", "Please enter Section Name");
+            if (section.DeptID == null)
+                ModelState.AddModelError("DeptID", "Please select Department");
             if (ModelState.IsValid)
             {
                 db.Sections.Add(section);
@@ -135,6 +145,12 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Edit([Bind(Include = "SectionID,SectionName,DeptID,CompanyID")] Section section)
         {
+            if (section.CompanyID == null)
+                ModelState.AddModelError("CompanyID", "Please selct a Company");
+            if (section.SectionName == "")
+                ModelState.AddModelError("SectionName", "Please enter Section Name");
+            if (section.DeptID == null)
+                ModelState.AddModelError("DeptID", "Please select Department");
             if (ModelState.IsValid)
             {
                 db.Entry(section).State = EntityState.Modified;

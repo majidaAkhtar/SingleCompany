@@ -21,8 +21,8 @@ namespace WMS.Models
     
         public short DeptID { get; set; }
         public string DeptName { get; set; }
-        public Nullable<short> DivID { get; set; }
-        public Nullable<short> CompanyID { get; set; }
+        public short DivID { get; set; }
+        public short CompanyID { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual Division Division { get; set; }
