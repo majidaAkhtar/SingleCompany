@@ -203,6 +203,7 @@
     <Content Include="Reports\MSummary.aspx" />
     <Content Include="Reports\MSummaryC.aspx" />
     <Content Include="Reports\ReportContainer.aspx" />
+    <Content Include="Reports\SummaryReports.aspx" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\EditAttendance.js" />
     <Content Include="Scripts\Employee\catEmpTypeCompanyCreate.js" />
@@ -1078,6 +1079,13 @@
     <Compile Include="Reports\ReportHome.aspx.designer.cs">
       <DependentUpon>ReportHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\SummaryReports.aspx.cs">
+      <DependentUpon>SummaryReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\SummaryReports.aspx.designer.cs">
+      <DependentUpon>SummaryReports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1246,6 +1254,9 @@
     <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLeaveQuota.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSConsolidated.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSEmpStrength.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSWorkSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
