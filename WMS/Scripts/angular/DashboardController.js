@@ -2,7 +2,24 @@
     //for popluating the Date input with the current date
     var today = new Date();
     $scope.DateFrom = today;
+    
     //array with the criteria names
+    $scope.selectedRow = 0;  // initialize our variable to null
+    $scope.setClickedRow = function (index) {  //function that sets the value of selectedRow to current index
+        $scope.selectedRow = index;
+        switch (index)
+        {
+            case 0: ReRenderGraphInfo($scope.GraphData);
+                break;
+            case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
+            case 2: break;
+
+        }
+        console.log($scope.selectedRow);
+    }
+    $scope.names = [
+        'Daily Attendance','Daily In/Out Times','Daily Expected Mins'
+    ];
     $scope.Criteria = {
         repeatSelect: null,
         availableOptions: [
@@ -24,11 +41,13 @@
     //by making a SUmmaryDataCriteria in the frontend
     $scope.RenderGraph = function () {
 
-        console.log($scope.Value.repeatSelect);
+       
         $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
-        console.log($scope.finalCriteriaForDB);
+        
         $http({ method: 'POST', url: '/Home/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
    then(function (response) {
+       $scope.GraphData = response.data;
+       console.log($scope.GraphData);
        ReRenderGraphInfo(response.data);
        
    }, function (response) {
@@ -38,12 +57,58 @@
 
 
     };
-
+    var ReRenderGraphInfoExpectedTime = function (graphdata)
+    {
+        $scope.highchartsNG.series = [{
+            name: "Attendence",
+            colorByPoint: true,
+            data: [{
+                name: "Absent Employees",
+                y: graphdata.AbsentEmps
+            }, {
+                name: "Present Employees",
+                y: graphdata.PresentEmps,
+                sliced: true,
+                selected: true
+            }, {
+                name: "On Leave",
+                y: graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps
+            }, {
+                name: "Day Off",
+                y: graphdata.DayOffEmps
+            }]
+        }];
+        $scope.highchartsNG.loading = false;
+    }
+    var ReRenderGraphInfoInOutTime = function (graphdata)
+    {
+    
+        $scope.highchartsNG.series = [{
+            name: "Attendence",
+            colorByPoint: true,
+            data: [{
+                name: "Early In Employees",
+                y: graphdata.EIEmps
+            }, {
+                name: "Early Out Employees",
+                y: graphdata.EOEmps,
+                sliced: true,
+                selected: true
+            }, {
+                name: "Late In Employees",
+                y: graphdata.LIEmps
+            }, {
+                name: "Late Out Employees",
+                y: graphdata.LOEmps
+            }]
+        }];
+        $scope.highchartsNG.loading = false;
+    }
     //This function takes the values given back by the database after selecting everything
     //in the front end like criteria, date, value
     var ReRenderGraphInfo = function (graphdata)
     {
-        console.log(graphdata.AbsentEmps);
+        
         $scope.highchartsNG.series = [{
             name: "Attendence",
             colorByPoint: true,
