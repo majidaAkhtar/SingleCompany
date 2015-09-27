@@ -80,7 +80,7 @@ namespace WMS.Controllers
            [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.DivID = new SelectList(db.Divisions.OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName");
+            ViewBag.DivID = new SelectList(db.Divisions.OrderBy(s=>s.DivisionName) , "DivisionID", "DivisionName");
             ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
