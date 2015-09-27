@@ -17,12 +17,24 @@
 }
 </div>
   <div ng-controller="DashboardController">
-        <input ng-model="highchartsNG.title.text">
-        <button ng-click="addSeries()">Add Series</button>
-        <button ng-click="addPoints()">Add Points to Random Series</button>
-        <button ng-click="removeRandomSeries()">Remove Random Series</button>
-        <button ng-click="swapChartType()">Line/Bar</button>
+        <form name="myForm">
+    <label for="repeatSelect"> Criteria: </label>
+    <select name="repeatSelect" id="repeatSelect" ng-model="Criteria.repeatSelect" placeholder="Criteria...">
+      <option ng-repeat="option in Criteria.availableOptions" value="{{option.id}}">{{option.name}}</option>
+    </select>
+  </form>
+<form name="myForm">
+    <label for="ValueSelect"> Value: </label>
+    <select name="ValueSelect" id="ValueSelect" ng-model="Value.repeatSelect">
+      <option ng-repeat="option in Value.availableOptions" value="{{option.Value}}">{{option.Text}}</option>
+    </select>
+  </form>
+                            <div class="col-md-6">
+                                Date : <input id="dateFrom" ng-model="DateFrom"  class="input-sm"  type="date" />
+<button ng-click="RenderGraph()">Fetch Summary</button>
+                            </div>
         <highchart id="chart1" config="highchartsNG"></highchart>
+
     </div>
 <div class="row">
     <div class="col-md-4">
