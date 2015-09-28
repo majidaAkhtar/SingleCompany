@@ -12,10 +12,10 @@
             case 0: ReRenderGraphInfo($scope.GraphData);
                 break;
             case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
-            case 2: break;
+            case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); break;
 
         }
-        console.log($scope.selectedRow);
+       
     }
     $scope.names = [
         'Daily Attendance','Daily In/Out Times','Daily Expected Mins'
@@ -48,7 +48,14 @@
    then(function (response) {
        $scope.GraphData = response.data;
        console.log($scope.GraphData);
-       ReRenderGraphInfo(response.data);
+       switch ($scope.selectedRow) {
+           case 0: ReRenderGraphInfo($scope.GraphData);
+               break;
+           case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
+           case 2: ReRenderGraphInfoExpectedTime($scope.GraphData);break;
+
+       }
+       
        
    }, function (response) {
        // called asynchronously if an error occurs
@@ -76,6 +83,27 @@
             }, {
                 name: "Day Off",
                 y: graphdata.DayOffEmps
+            }]
+        }];
+        $scope.highchartsNG.loading = false;
+    }
+
+    var ReRenderGraphInfoExpectedTime = function (graphdata)
+    {
+        $scope.highchartsNG.series = [{
+            name: "Minutes",
+            colorByPoint: true,
+            data: [{
+                name: "Expected Work Minutes",
+                y: graphdata.ExpectedWorkMins
+            }, {
+                name: "Actual Work Minutes",
+                y: graphdata.ActualWorkMins,
+                sliced: true,
+                selected: true
+            }, {
+                name: "Loss Work Minutes",
+                y: graphdata.LossWorkMins
             }]
         }];
         $scope.highchartsNG.loading = false;
@@ -170,7 +198,7 @@
             }
         },
         series: [{
-            name: "Attendence",
+            name: "Employees",
             colorByPoint: true,
             data: [{
                 name: "Absent Employees",
