@@ -90,6 +90,7 @@
 
     var ReRenderGraphInfoExpectedTime = function (graphdata)
     {
+        $scope.highchartsNG.subtitle = (graphdata.ExpectedWorkMins / graphdata.ActualWorkMins) * 100 + "% minutes were utilized";
         $scope.highchartsNG.series = [{
             name: "Minutes",
             colorByPoint: true,
