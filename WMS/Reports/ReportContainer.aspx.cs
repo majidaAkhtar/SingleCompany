@@ -21,8 +21,6 @@ namespace WMS.Reports
         {
             String reportName = Request.QueryString["reportname"];
             String type = Request.QueryString["type"];
-            List<DailySummary> ViewDS = new List<DailySummary>();
-            List<DailySummary> TempDS = new List<DailySummary>();
             if (!Page.IsPostBack)
             {
                 List<string> list = Session["ReportSession"] as List<string>;
@@ -511,15 +509,152 @@ namespace WMS.Reports
                         /////////////////////////////////////////////////////////////   
                         /////////////////Summary Reports////////////////////////////
                         ///////////////////////////////////////////////////////////
-                    case "company_consolidated": dt = qb.GetValuesfromDB("select * from DailySummary " + " where " + " (Date >= " + "'" + _dateFrom + "'" + " and Date <= " + "'"
-                                                     + _dateTo + "'" + " )");
-                        ViewDS = dt.ToList<DailySummary>();
-                        TempDS = new List<DailySummary>();
+                    case "company_consolidated":
                         if (GlobalVariables.DeploymentType == false)
                             PathString = "/Reports/RDLC/DSConsolidated.rdlc";
                         else
                             PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
-                        LoadReport(PathString, ReportsFilterImplementation(fm, TempDS, ViewDS,"C"), _dateFrom + " TO " + _dateTo);
+                        LoadReport(PathString, ReportsFilterImplementation(fm,_dateFrom,_dateTo,"C"), _dateFrom + " TO " + _dateTo,"Company Consolidated Summary");
+                        break;
+                    case "company_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "C"), _dateFrom + " TO " + _dateTo, "Company Strength Summary");
+                        break;
+                    case "company_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "C"), _dateFrom + " TO " + _dateTo, "Company Work Times Summary");
+                        break;
+                    case "location_consolidated":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "L"), _dateFrom + " TO " + _dateTo, "Location Consolidated Summary");
+                        break;
+                    case "location_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "L"), _dateFrom + " TO " + _dateTo, "Location Strength Summary");
+                        break;
+                    case "location_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "L"), _dateFrom + " TO " + _dateTo, "Location Work Times Summary");
+                        break;
+                    case "shift_consolidated":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "S"), _dateFrom + " TO " + _dateTo, "Shift Consolidated Summary");
+                        break;
+                    case "shift_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "S"), _dateFrom + " TO " + _dateTo, "Shift Strength Summary");
+                        break;
+                    case "shift_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "S"), _dateFrom + " TO " + _dateTo, "Shift Work Times Summary");
+                        break;
+                    case "category_consolidated":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "A"), _dateFrom + " TO " + _dateTo, "Category Consolidated Summary");
+                        break;
+                    case "category_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "A"), _dateFrom + " TO " + _dateTo, "Category Strength Summary");
+                        break;
+                    case "category_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "A"), _dateFrom + " TO " + _dateTo, "Category Work Times Summary");
+                        break;
+                    case "type_consolidated":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "T"), _dateFrom + " TO " + _dateTo, "Employee Type Consolidated Summary");
+                        break;
+                    case "type_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "T"), _dateFrom + " TO " + _dateTo, "Employee Type Strength Summary");
+                        break;
+                    case "type_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "T"), _dateFrom + " TO " + _dateTo, "Employee Type Work Times Summary");
+                        break;
+                    case "dept_consolidated":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "D"), _dateFrom + " TO " + _dateTo, "Department Consolidated Summary");
+                        break;
+                    case "dept_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "D"), _dateFrom + " TO " + _dateTo, "Department Strength Summary");
+                        break;
+                    case "dept_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "D"), _dateFrom + " TO " + _dateTo, "Department Work Times Summary");
+                        break;
+                    case "section_consolidated":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "E"), _dateFrom + " TO " + _dateTo, "Section Consolidated Summary");
+                        break;
+                    case "section_strength":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSEmpStrength.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSEmpStrength.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "E"), _dateFrom + " TO " + _dateTo, "Section Strength Summary");
+                        break;
+                    case "section_worktimes":
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSWorkSummary.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSWorkSummary.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "E"), _dateFrom + " TO " + _dateTo, "Section Work Times Summary");
                         break;
 
 
@@ -535,9 +670,8 @@ namespace WMS.Reports
             }
         }
 
-        private void LoadReport(string PathString, List<DailySummary> list, string p)
+        private void LoadReport(string PathString, List<DailySummary> list, string p,string Header)
         {
-            string _Header = title;
             this.ReportViewer1.LocalReport.DisplayName = title;
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath(PathString);
@@ -549,23 +683,29 @@ namespace WMS.Reports
             companyImage = companyimage.AsQueryable();
             ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
             ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
-
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportViewer1.LocalReport.DataSources.Add(datasource2);
             ReportParameter rp = new ReportParameter("Date", p, false);
-            ReportParameter rp1 = new ReportParameter("Header", _Header, false);
+            ReportParameter rp1 = new ReportParameter("Header", Header, false);
             this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp1, rp });
             ReportViewer1.LocalReport.Refresh();
         }
 
-        private List<DailySummary> ReportsFilterImplementation(FiltersModel fm, List<DailySummary> TempDS, List<DailySummary> ViewDS,string Criteria)
+        private List<DailySummary> ReportsFilterImplementation(FiltersModel fm,string dateFrom,string dateTo, string Criteria)
         {
+            List<DailySummary> ViewDS = new List<DailySummary>();
+            List<DailySummary> TempDS = new List<DailySummary>();
+            QueryBuilder qb = new QueryBuilder();
+            DataTable dt = new DataTable();
             switch (Criteria)
             {
                 case "C":
                     //for company
+                    dt = qb.GetValuesfromDB("select * from DailySummary " + " where Criteria = '"+Criteria + "' and (Date >= " + "'" + dateFrom + "'" + " and Date <= " + "'"
+                                                     + dateTo + "'" + " )");
+                    ViewDS = dt.ToList<DailySummary>();
                     if (fm.CompanyFilter.Count > 0)
                     {
                         foreach (var comp in fm.CompanyFilter)
@@ -580,6 +720,9 @@ namespace WMS.Reports
                     TempDS.Clear();
                     break;
                 case "L":
+                    dt = qb.GetValuesfromDB("select * from DailySummary " + " where Criteria = '"+Criteria + "' and (Date >= " + "'" + dateFrom + "'" + " and Date <= " + "'"
+                                                     + dateTo + "'" + " )");
+                    ViewDS = dt.ToList<DailySummary>();
                     if (fm.LocationFilter.Count > 0)
                     {
                         foreach (var loc in fm.LocationFilter)
@@ -594,6 +737,9 @@ namespace WMS.Reports
                     TempDS.Clear();
                     break;
                 case "D": 
+                    dt = qb.GetValuesfromDB("select * from DailySummary " + " where Criteria = '"+Criteria + "' and (Date >= " + "'" + dateFrom + "'" + " and Date <= " + "'"
+                                                     + dateTo + "'" + " )");
+                    ViewDS = dt.ToList<DailySummary>();
                     if (fm.DepartmentFilter.Count > 0)
                     {
                         foreach (var dept in fm.DepartmentFilter)
@@ -608,6 +754,9 @@ namespace WMS.Reports
                     TempDS.Clear();
                     break;
                 case "E": 
+                    dt = qb.GetValuesfromDB("select * from DailySummary " + " where Criteria = '"+Criteria + "' and (Date >= " + "'" + dateFrom + "'" + " and Date <= " + "'"
+                                                     + dateTo + "'" + " )");
+                    ViewDS = dt.ToList<DailySummary>();
                     if (fm.SectionFilter.Count > 0)
                     {
                         foreach (var sec in fm.SectionFilter)
@@ -623,6 +772,9 @@ namespace WMS.Reports
                     break;
 
                 case "S": 
+                    dt = qb.GetValuesfromDB("select * from DailySummary " + " where Criteria = '"+Criteria + "' and (Date >= " + "'" + dateFrom + "'" + " and Date <= " + "'"
+                                                     + dateTo + "'" + " )");
+                    ViewDS = dt.ToList<DailySummary>();
                     if (fm.ShiftFilter.Count > 0)
                     {
                         foreach (var shift in fm.ShiftFilter)
@@ -637,6 +789,9 @@ namespace WMS.Reports
                     TempDS.Clear();
                     break;
                 case "T": 
+                    dt = qb.GetValuesfromDB("select * from DailySummary " + " where Criteria = '"+Criteria + "' and (Date >= " + "'" + dateFrom + "'" + " and Date <= " + "'"
+                                                     + dateTo + "'" + " )");
+                    ViewDS = dt.ToList<DailySummary>();
                     if (fm.TypeFilter.Count > 0)
                     {
                         foreach (var type in fm.TypeFilter)
@@ -665,7 +820,7 @@ namespace WMS.Reports
                 //    TempDS.Clear();
                 //    break;
             }
-            return TempDS;
+            return ViewDS;
         }
 
         private void LoadReport(string PathString, List<ViewBadli> list, string p)

@@ -52,54 +52,54 @@
                                 <li>
                                     <h5>Location Summary</h5>
                                     <ul>
-                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Location Consolidated</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Location Strength</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=present">Location Work Times</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=location_consolidated">Location Consolidated</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=location_strength">Location Strength</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=location_worktimes">Location Work Times</a></li>
 
                                     </ul>
                                 </li>
                                 <li>
                                     <h5>Shift Summary</h5>
                                     <ul>
-                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Shift Consolidated</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Shift Strength</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=present">Shift Work Times</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=shift_consolidated">Shift Consolidated</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=shift_strength">Shift Strength</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=shift_worktimes">Shift Work Times</a></li>
 
                                     </ul>
                                 </li>
                                 <li>
                                     <h5>Category Summary</h5>
                                     <ul>
-                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Category Consolidated</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Category Strength</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=present">Category Work Times</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=category_consolidated">Category Consolidated</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=category_strength">Category Strength</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=category_worktimes">Category Work Times</a></li>
 
                                     </ul>
                                 </li>
                                 <li>
                                     <h5>Employee Type Summary</h5>
                                     <ul>
-                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Employee Type Consolidated</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Employee Type Strength</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=present">Employee Type Work Times</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=type_consolidated">Employee Type Consolidated</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=type_strength">Employee Type Strength</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=type_worktimes">Employee Type Work Times</a></li>
 
                                     </ul>
                                 </li>
                                 <li>
                                     <h5>Department Summary</h5>
                                     <ul>
-                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Department Consolidated</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Department Strength</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=present">Department Work Times</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=dept_consolidated">Department Consolidated</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=dept_strength">Department Strength</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=dept_worktimes">Department Work Times</a></li>
 
                                     </ul>
                                 </li>
                                 <li>
                                     <h5>Section Summary</h5>
                                     <ul>
-                                         <li><a href="../ReportContainer.aspx?reportname=detailed_att">Section Consolidated</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=consolidated_att">Section Strength</a></li>
-                                         <li><a href="../ReportContainer.aspx?reportname=present">Section Work Times</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=section_consolidated">Section Consolidated</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=section_strength">Section Strength</a></li>
+                                         <li><a href="../ReportContainer.aspx?reportname=section_worktimes">Section Work Times</a></li>
 
                                     </ul>
                                 </li>

@@ -64,7 +64,7 @@
 
 
     };
-    var ReRenderGraphInfoExpectedTime = function (graphdata)
+    var ReRenderGraphInfo = function (graphdata)
     {
         $scope.highchartsNG.series = [{
             name: "Attendence",
@@ -167,8 +167,6 @@
      //values which are stored in the daily summary
     $scope.$watch('Criteria', function () {
         var GraphClass = { Criteria: $scope.Criteria.repeatSelect };
-        
-       
         $http({ method: 'POST', url: '/Home/GetCriteriaNames', data: JSON.stringify(GraphClass) }).
    then(function (response) {
        $scope.Value.availableOptions = response.data;
