@@ -62,6 +62,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox20</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -107,6 +108,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -149,6 +151,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -188,6 +191,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox24</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -230,6 +234,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -272,6 +277,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -314,6 +320,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -356,6 +363,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox21</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -398,6 +406,7 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox23</rd:DefaultName>
+                      <RepeatWith>Tablix1</RepeatWith>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -882,10 +891,12 @@
                           </SortExpressions>
                           <TablixMembers>
                             <TablixMember>
+                              <KeepWithGroup>Before</KeepWithGroup>
                               <RepeatOnNewPage>true</RepeatOnNewPage>
                               <KeepTogether>true</KeepTogether>
                             </TablixMember>
                           </TablixMembers>
+                          <KeepTogether>true</KeepTogether>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>
@@ -895,6 +906,8 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <FixedRowHeaders>true</FixedRowHeaders>
         <DataSetName>DataSet1</DataSetName>
         <SortExpressions>
           <SortExpression>
@@ -915,7 +928,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.54648in</Width>
+  <Width>10.51523in</Width>
   <Page>
     <PageHeader>
       <Height>0.71875in</Height>
@@ -962,9 +975,9 @@
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
           <Top>0.08194in</Top>
-          <Left>9.04941in</Left>
+          <Left>9.32024in</Left>
           <Height>0.55486in</Height>
-          <Width>1.41667in</Width>
+          <Width>1.04167in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1059,10 +1072,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>8.27in</PageHeight>
+    <PageWidth>11.69in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
