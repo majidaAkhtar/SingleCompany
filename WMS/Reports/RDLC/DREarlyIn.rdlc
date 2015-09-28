@@ -1422,6 +1422,11 @@
                     </TablixMember>
                     <TablixMember>
                       <Group Name="Details1" />
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!EmpNo.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
                       <TablixMembers>
                         <TablixMember />
                       </TablixMembers>
@@ -1447,7 +1452,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>8.76373in</Width>
+  <Width>8.65956in</Width>
   <Page>
     <PageHeader>
       <Height>0.77499in</Height>
@@ -1472,7 +1477,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
-          <Top>0.2507in</Top>
+          <Top>0.2132in</Top>
           <Left>0.05625in</Left>
           <Height>0.25in</Height>
           <Width>5.47638in</Width>
@@ -1524,8 +1529,8 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.06861in</Top>
-          <Left>7.20101in</Left>
+          <Top>0.18111in</Top>
+          <Left>7.19776in</Left>
           <Height>0.58138in</Height>
           <Width>1.40625in</Width>
           <ZIndex>2</ZIndex>

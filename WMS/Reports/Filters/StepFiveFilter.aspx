@@ -2,6 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+             <style type="text/css">
+      .hiddencol
+  {
+    display: none;
+  }
+         </style>
     <section class="container" style="margin-left:0;margin-right:0;">
         <div class="col-sm-3 col-md-3 col-lg-3" >
             <!-- Sidebar -->
@@ -63,6 +69,7 @@
                             <asp:GridView ID="GridViewEmployee" runat="server" Width="600px" AutoGenerateColumns="False" PagerStyle-CssClass="pgr" CssClass="Grid"                              GridLines="None" AllowPaging="True" AllowSorting="True"                                                OnPageIndexChanging="GridViewEmployee_PageIndexChanging" ForeColor="Black" OnRowDataBound="GridViewEmployee_RowDataBound" ShowFooter="True"  >
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
+                                    <asp:BoundField DataField="EmpID" HeaderText="ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol"/> 
                                     <asp:TemplateField>
                                       
                                         <HeaderTemplate>
@@ -75,7 +82,7 @@
                                         </ItemTemplate>
                                         <ItemStyle Width="10%" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="EmpID" HeaderText="ID" />
+                                        
                                          <asp:BoundField DataField="EmpNo" HeaderText="P.No" />
                                         <asp:BoundField DataField="EmpName" HeaderText="Name" />
                                         <asp:BoundField DataField ="DeptName" HeaderText ="Department" />

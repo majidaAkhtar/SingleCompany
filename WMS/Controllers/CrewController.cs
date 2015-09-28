@@ -90,7 +90,11 @@ namespace WMS.Controllers
         public ActionResult Create([Bind(Include = "CrewID,CrewName,CompanyID")] Crew crew)
         {
             if (db.Crews.Where(aa => aa.CrewName == crew.CrewName && aa.CompanyID==crew.CompanyID).Count() > 0)
-                ModelState.AddModelError("CrewName", "Crew Name is Duplicate");
+                ModelState.AddModelError("CrewName", "Crew Name is must be unique");
+            if(crew.CompanyID==null)
+                ModelState.AddModelError("CrewName", "Please selct a Company");
+            if (crew.CrewName == "")
+                ModelState.AddModelError("CrewName", "Please enter Crew Name");
             if (ModelState.IsValid)
             {
                 db.Crews.Add(crew);
@@ -126,6 +130,10 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Edit([Bind(Include = "CrewID,CrewName,CompanyID")] Crew crew)
         {
+            if (crew.CompanyID == null)
+                ModelState.AddModelError("CrewName", "Please selct a Company");
+            if (crew.CrewName == "")
+                ModelState.AddModelError("CrewName", "Please enter Crew Name");
             if (ModelState.IsValid)
             {
                 db.Entry(crew).State = EntityState.Modified;
@@ -145,11 +153,13 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Crew crew = db.Crews.Find(id);
+            
             if (crew == null)
             {
                 return HttpNotFound();
             }
-            return View(crew);
+                return View(crew);
+
         }
 
         // POST: /Crew/Delete/5

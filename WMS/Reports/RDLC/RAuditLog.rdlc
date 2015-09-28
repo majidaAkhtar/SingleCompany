@@ -536,7 +536,7 @@
     <Height>1.125in</Height>
     <Style />
   </Body>
-  <Width>6.095in</Width>
+  <Width>6.04292in</Width>
   <Page>
     <PageHeader>
       <Height>0.60292in</Height>
@@ -561,7 +561,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.04389in</Top>
+          <Top>0.05639in</Top>
           <Left>0.0625in</Left>
           <Height>0.25in</Height>
           <Width>4.19791in</Width>
@@ -593,7 +593,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.32444in</Top>
+          <Top>0.33694in</Top>
           <Left>0.0625in</Left>
           <Height>0.25in</Height>
           <Width>3.97916in</Width>
@@ -613,7 +613,7 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.06125in</Top>
+          <Top>0.08625in</Top>
           <Left>4.58334in</Left>
           <Height>0.5in</Height>
           <Width>1.40625in</Width>

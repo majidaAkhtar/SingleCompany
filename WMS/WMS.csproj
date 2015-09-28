@@ -203,7 +203,13 @@
     <Content Include="Reports\MSummary.aspx" />
     <Content Include="Reports\MSummaryC.aspx" />
     <Content Include="Reports\ReportContainer.aspx" />
+    <Content Include="Reports\SummaryReports.aspx" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular\DashboardController.js" />
+    <Content Include="Scripts\angular\highcharts-ng.js" />
+    <Content Include="Scripts\angular\MainController.js" />
+    <Content Include="Scripts\angular\UserController.js" />
+    <Content Include="Scripts\angular\UserEditController.js" />
     <Content Include="Scripts\EditAttendance.js" />
     <Content Include="Scripts\Employee\catEmpTypeCompanyCreate.js" />
     <Content Include="Scripts\Employee\companyGradeCreate.js" />
@@ -214,9 +220,11 @@
     <Content Include="Scripts\dx.chartjs.js" />
     <Content Include="Scripts\Employee\empTypeCategory.js" />
     <Content Include="Scripts\Employee\empTypeCategoryCreate.js" />
+    <Content Include="Scripts\Filters\ClearSessionOnPageClose.js" />
     <Content Include="Scripts\Filters\DeleteSingleFilters.js" />
     <Content Include="Scripts\Filters\FilterScripts.js" />
     <Content Include="Scripts\globalize.min.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\HR\DeptCompany.js" />
     <Content Include="Scripts\HR\DeptCompanyCreate.js" />
     <Content Include="Scripts\HR\DivisionCompany.js" />
@@ -418,6 +426,7 @@
     <Compile Include="CustomClass\CustomFunc.cs" />
     <Compile Include="CustomClass\DatatableToList.cs" />
     <Compile Include="HelperClass\AttDeptSummary.cs" />
+    <Compile Include="HelperClass\GraphClass.cs" />
     <Compile Include="Models\AccessEmp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1077,6 +1086,13 @@
     <Compile Include="Reports\ReportHome.aspx.designer.cs">
       <DependentUpon>ReportHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\SummaryReports.aspx.cs">
+      <DependentUpon>SummaryReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\SummaryReports.aspx.designer.cs">
+      <DependentUpon>SummaryReports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1242,8 +1258,12 @@
     <EmbeddedResource Include="Reports\RDLC\BadliReport.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DetailedAbsent.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLeaveQuota.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSConsolidated.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSEmpStrength.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSWorkSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
@@ -1260,7 +1280,6 @@
     <EmbeddedResource Include="Reports\RDLC\DREarlyOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLateIn.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLateOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRMissingAtt.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />

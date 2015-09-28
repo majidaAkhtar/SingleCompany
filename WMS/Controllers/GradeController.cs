@@ -56,7 +56,7 @@ namespace WMS.Controllers
 
         // GET: /Grade/Details/5
           [CustomActionAttribute]
-        public ActionResult Details(byte? id)
+        public ActionResult Details(short? id)
         {
             if (id == null)
             {
@@ -86,23 +86,26 @@ namespace WMS.Controllers
         [CustomActionAttribute]
           public ActionResult Create([Bind(Include = "GradeID,GradeName,CompID")] Grade grade)
         {
+            if (grade.CompID == null)
+            {
+                ModelState.AddModelError("CompID", "This CompanyID is not existing");
+            }
+            if(db.Grades.Where(aa=>aa.GradeName==grade.GradeName && aa.CompID==grade.CompID ).Count()>0)
+                ModelState.AddModelError("GradeName", "Grade Name must be unique");
             if (ModelState.IsValid)
             {
                 db.Grades.Add(grade);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            if (grade.Company.CompName == null)
-            {
-                ModelState.AddModelError("CompanyID", "This CompanyID is not existing");
-            }
-            ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",grade.Company.CompName);
+            
+            ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(grade);
         }
 
         // GET: /Grade/Edit/5
           [CustomActionAttribute]
-        public ActionResult Edit(byte? id)
+        public ActionResult Edit(short? id)
         {
             if (id == null)
             {
@@ -123,7 +126,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-          public ActionResult Edit([Bind(Include = "GradeID,GradeName,CompanyID")] Grade grade)
+          public ActionResult Edit([Bind(Include = "GradeID,GradeName,CompID")] Grade grade)
         {
             if (ModelState.IsValid)
             {
@@ -137,7 +140,7 @@ namespace WMS.Controllers
 
         // GET: /Grade/Delete/5
           [CustomActionAttribute]
-        public ActionResult Delete(byte? id)
+        public ActionResult Delete(short? id)
         {
             if (id == null)
             {
@@ -155,7 +158,7 @@ namespace WMS.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult DeleteConfirmed(byte id)
+          public ActionResult DeleteConfirmed(short id)
         {
             Grade grade = db.Grades.Find(id);
             db.Grades.Remove(grade);

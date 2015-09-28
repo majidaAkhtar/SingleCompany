@@ -38,7 +38,7 @@ namespace WMS.Models
         public Nullable<byte> ShiftID { get; set; }
         public Nullable<short> LocID { get; set; }
         public Nullable<byte> TypeID { get; set; }
-        public Nullable<byte> GradeID { get; set; }
+        public Nullable<short> GradeID { get; set; }
         public Nullable<short> SecID { get; set; }
         public string CardNo { get; set; }
         public Nullable<int> FpID { get; set; }

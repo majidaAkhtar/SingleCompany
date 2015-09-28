@@ -293,7 +293,37 @@ namespace WMS.Controllers
                 return View("Index");
             }
         }
+        [HttpPost]
+        public ActionResult GetGraphValues(string CriteriaValue)
+        {
 
+            using (TAS2013Entities dc = new TAS2013Entities())
+            {
+                DailySummary ds = dc.DailySummaries.Where(aa => aa.SummaryDateCriteria == CriteriaValue).FirstOrDefault();
+                return Json(ds, JsonRequestBehavior.AllowGet);
+
+            }
+          
+
+
+
+        }
+        [HttpPost]
+        public ActionResult GetCriteriaNames(string Criteria)
+        {
+            using (TAS2013Entities dc = new TAS2013Entities())
+            {
+                var getSummaries = dc.DailySummaries.Where(aa => aa.Criteria == Criteria).Select(aa => new {aa.CriteriaValue, aa.CriteriaName}).Distinct().ToList();
+                return Json(new SelectList(
+                              getSummaries.ToArray(),
+                              "CriteriaValue",
+                              "CriteriaName")
+                         , JsonRequestBehavior.AllowGet);
+            }
+            
+          
+           
+        }
         private string SerializeObject(object myObject)
         {
             var stream = new MemoryStream();

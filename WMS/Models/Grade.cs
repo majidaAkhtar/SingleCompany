@@ -19,9 +19,9 @@ namespace WMS.Models
             this.Emps = new HashSet<Emp>();
         }
     
-        public byte GradeID { get; set; }
+        public short GradeID { get; set; }
         public string GradeName { get; set; }
-        public Nullable<short> CompID { get; set; }
+        public short CompID { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual ICollection<Emp> Emps { get; set; }

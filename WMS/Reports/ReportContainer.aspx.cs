@@ -1332,10 +1332,17 @@ namespace WMS.Reports
             }
             else
             {
-
-                int id =Int32.Parse(fm.CompanyFilter.First().ID);
-                Company comp = ctx.Companies.Where(aa => aa.CompID == id).FirstOrDefault();
-            companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == comp.ImageID).First()); }
+                if (fm.CompanyFilter.Count > 0)
+                {
+                    int id = Int32.Parse(fm.CompanyFilter.First().ID);
+                    Company comp = ctx.Companies.Where(aa => aa.CompID == id).FirstOrDefault();
+                    companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == comp.ImageID).First());
+                }
+                else
+                {
+                    companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == 4785).First());
+                }
+            }
 
             return companyimage;
 

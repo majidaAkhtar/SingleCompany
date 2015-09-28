@@ -40,7 +40,8 @@ namespace WMS.Controllers
             var designation = db.Designations.AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
-                designation = designation.Where(s => s.DesignationName.ToUpper().Contains(searchString.ToUpper()));
+                designation = designation.Where(s => s.DesignationName.ToUpper().Contains(searchString.ToUpper())
+                    ||s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -93,6 +94,10 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create([Bind(Include = "DesignationID,DesignationName,CompanyID")] Designation designation)
         {
+            if (db.Designations.Where(aa => aa.DesignationName == designation.DesignationName && aa.CompanyID == designation.CompanyID).Count() > 0)
+                ModelState.AddModelError("DesignationName", "Department Name is must be unique");
+            if (designation.CompanyID == null)
+                ModelState.AddModelError("CompanyID", "Please selct a Company");
             if (string.IsNullOrEmpty(designation.DesignationName))
                 ModelState.AddModelError("DesignationName", "This field is required!");
             if (designation.DesignationName != null)
@@ -137,12 +142,13 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Edit(int? id)
         {
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Designation designation = db.Designations.Find(id);
+             ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",designation.CompanyID);
             if (designation == null)
             {
                 return HttpNotFound();

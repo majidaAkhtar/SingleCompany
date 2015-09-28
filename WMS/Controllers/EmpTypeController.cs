@@ -38,7 +38,8 @@ namespace WMS.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 emptype = emptype.Where(s => s.TypeName.ToUpper().Contains(searchString.ToUpper())
-                    || s.Category.CatName.ToUpper().Contains(searchString.ToUpper()));
+                    || s.Category.CatName.ToUpper().Contains(searchString.ToUpper())
+                    || s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -95,8 +96,14 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create([Bind(Include = "TypeID,TypeName,CatID,CompanyID")] EmpType emptype)
         {
+            if (emptype.CompanyID == null)
+                ModelState.AddModelError("CompanyID", "Please selct a Company");
+            if (emptype.CatID == null)
+                ModelState.AddModelError("CatID", "Please select Category");
             if (string.IsNullOrEmpty(emptype.TypeName))
                 ModelState.AddModelError("TypeName", "This field is required!");
+            if (db.EmpTypes.Where(aa => aa.TypeName == emptype.TypeName && aa.CompanyID == emptype.CompanyID && aa.CatID== emptype.CatID).Count() > 0)
+                ModelState.AddModelError("TypeName", "Type Name must be unique");
             if (emptype.TypeName != null)
             {
                 if (emptype.TypeName.Length > 50)
@@ -105,8 +112,6 @@ namespace WMS.Controllers
                 {
                     ModelState.AddModelError("TypeName", "This field only contain Alphabets");
                 }
-                if (CheckDuplicate(emptype.TypeName))
-                    ModelState.AddModelError("TypeName", "This Type already exist in record, Please select an unique name");
             }
             if (ModelState.IsValid)
             {

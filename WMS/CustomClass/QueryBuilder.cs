@@ -209,7 +209,7 @@ namespace WMS.CustomClass
         public string QueryForCompanyViewLinq(User _User)
         {
             string query = "";
-            switch (_User.RoleID)
+           switch (_User.RoleID)
             {
                 case 1: query ="CompID > 0";
                     break;
