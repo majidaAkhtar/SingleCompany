@@ -65,7 +65,7 @@
 
 
     };
-  
+
 
     var ReRenderGraphInfoExpectedTime = function (graphdata)
     {
