@@ -48,6 +48,7 @@
 </div>
     <div class="row">
 <div class="col-md-2">
+<div class="row">
 <table class="table table-bordered"> 
  <tr>Visual Display</tr>
   <tr ng-repeat="x in names" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
@@ -55,6 +56,9 @@
    
   </tr>
 </table>
+</div>
+<div class="row"><button ng-click="GetBestCriteria()">Evaluation for the past 20 days</button></div>
+
 </div>
       <div class="col-md-10"> <highchart id="chart1" config="highchartsNG"></highchart>
 </div> </div>

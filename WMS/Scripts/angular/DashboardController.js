@@ -7,6 +7,7 @@
     $scope.selectedRow = 0;  // initialize our variable to null
     $scope.setClickedRow = function (index) {  //function that sets the value of selectedRow to current index
         $scope.selectedRow = index;
+        ChangeToPieGraph();
         switch (index)
         {
             case 0: ReRenderGraphInfo($scope.GraphData);
@@ -47,7 +48,7 @@
         $http({ method: 'POST', url: '/Home/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
    then(function (response) {
        $scope.GraphData = response.data;
-       console.log($scope.GraphData);
+       ChangeToPieGraph();
        switch ($scope.selectedRow) {
            case 0: ReRenderGraphInfo($scope.GraphData);
                break;
@@ -64,33 +65,13 @@
 
 
     };
-    var ReRenderGraphInfoExpectedTime = function (graphdata)
-    {
-        $scope.highchartsNG.series = [{
-            name: "Attendence",
-            colorByPoint: true,
-            data: [{
-                name: "Absent Employees",
-                y: graphdata.AbsentEmps
-            }, {
-                name: "Present Employees",
-                y: graphdata.PresentEmps,
-                sliced: true,
-                selected: true
-            }, {
-                name: "On Leave",
-                y: graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps
-            }, {
-                name: "Day Off",
-                y: graphdata.DayOffEmps
-            }]
-        }];
-        $scope.highchartsNG.loading = false;
-    }
+  
 
     var ReRenderGraphInfoExpectedTime = function (graphdata)
     {
-        $scope.highchartsNG.subtitle = (graphdata.ExpectedWorkMins / graphdata.ActualWorkMins) * 100 + "% minutes were utilized";
+        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
+       
         $scope.highchartsNG.series = [{
             name: "Minutes",
             colorByPoint: true,
@@ -111,7 +92,9 @@
     }
     var ReRenderGraphInfoInOutTime = function (graphdata)
     {
-    
+        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+
         $scope.highchartsNG.series = [{
             name: "Attendence",
             colorByPoint: true,
@@ -137,7 +120,9 @@
     //in the front end like criteria, date, value
     var ReRenderGraphInfo = function (graphdata)
     {
-        
+        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
+
         $scope.highchartsNG.series = [{
             name: "Attendence",
             colorByPoint: true,
@@ -167,8 +152,6 @@
      //values which are stored in the daily summary
     $scope.$watch('Criteria', function () {
         var GraphClass = { Criteria: $scope.Criteria.repeatSelect };
-        
-       
         $http({ method: 'POST', url: '/Home/GetCriteriaNames', data: JSON.stringify(GraphClass) }).
    then(function (response) {
        $scope.Value.availableOptions = response.data;
@@ -179,50 +162,136 @@
     },true);
     
     
-    $scope.highchartsNG = {
-        options: {
-            chart: {
-                type: 'pie'
-            }
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: false
-                },
-                showInLegend: true
-            }
-        },
-        series: [{
-            name: "Employees",
-            colorByPoint: true,
-            data: [{
-                name: "Absent Employees",
-                y: 56.33
-            }, {
-                name: "Present Employees",
-                y: 24.03,
-                sliced: true,
-                selected: true
-            }, {
-                name: "On Leave",
-                y: 10.38
-            }, {
-                name: "Day Off",
-                y: 4.77
-            }]
-        }],
-        title: {
-            text: 'Daily Summary'
-        },
-        //once we have fetched the info from the database we will do loading :false
-        loading: true
+    
+    $scope.GetBestCriteria = function ()
+    {
+        $http({ method: 'POST', url: '/Home/GetBestCriteria', data: JSON.stringify({ CriteriaValue: $scope.Criteria.repeatSelect }) }).
+  then(function (response) {
+      console.log(response.data);
+      ChangeToColumnGraph(response.data);
+
+  }, function (response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+  });
+        //
+
     }
-   
+    var ChangeToPieGraph = function ()
+    {
+        $scope.highchartsNG = {
+            options: {
+                chart: {
+                    type: 'pie'
+                }
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: "Employees",
+                colorByPoint: true,
+                data: [{
+                    name: "Absent Employees",
+                    y: 56.33
+                }, {
+                    name: "Present Employees",
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: "On Leave",
+                    y: 10.38
+                }, {
+                    name: "Day Off",
+                    y: 4.77
+                }]
+            }],
+            title: {
+                text: 'Daily Summary'
+            },
+            //once we have fetched the info from the database we will do loading :false
+            loading: false
+        }
+    }
+    var ChangeToColumnGraph = function (data)
+    {
+        console.log(data);
+        var letspopulatedata = [];
+        for (var key in data)
+        {
+            console.log(key);
+            letspopulatedata.push({ "name": data[key].CriteriaName, "y":parseFloat((( data[key].ActualWorkMins / data[key].ExpectedWorkMins)*100).toPrecision(4)) });
+        }
+        console.log(letspopulatedata);
+        $scope.highchartsNG = {
+            options: {
+                chart: {
+                    type: 'column'
+                }
+            },
+            title: {
+                text: 'Comparision for the past 20 days'
+            },
+            subtitle: {
+                text: 'Evaluated by calculating Actual Work mins for the past 20 days.'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Percentage of Work Minutes'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [{
+                name: "Actual Minutes of Work in %",
+                colorByPoint: true,
+                data: letspopulatedata
+            }]
+        }
+
+
+
+    }
+
+
+
+    $scope.WorstCriteria = function ()
+    {
+
+
+
+
+    }
 
 });

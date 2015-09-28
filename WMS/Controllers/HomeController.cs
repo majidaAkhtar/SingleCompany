@@ -309,10 +309,89 @@ namespace WMS.Controllers
 
         }
         [HttpPost]
+        public ActionResult GetBestCriteria(string CriteriaValue)
+        {
+            List<DailySummary> BestCriteria = new List<DailySummary>();
+            using (TAS2013Entities dc = new TAS2013Entities())
+            {
+                DateTime To = (DateTime)dc.DailySummaries.Max(x => x.Date);
+                DateTime From = To.AddDays(-20);
+                var GetSummaries = dc.DailySummaries.Where(aa => aa.Criteria == CriteriaValue && (aa.Date >= From && aa.Date <= To)).ToList();
+                var DistinctCriterias= GetSummaries.Select(aa => new { aa.CriteriaValue }).Distinct().ToList();
+                foreach (var distinctcriteria in DistinctCriterias)
+                {
+                    DailySummary gatherinfo = new DailySummary();
+                    
+                    List<DailySummary> intermediate = GetSummaries.Where(aa => aa.CriteriaValue == distinctcriteria.CriteriaValue).ToList();
+                    gatherinfo = InitializeDailySummaryValues(intermediate);
+                  
+                    foreach (DailySummary inter in intermediate)
+                    {
+                        gatherinfo = AddValues(gatherinfo, inter);
+                    
+                    }
+                    BestCriteria.Add(gatherinfo);
+                
+                }
+            }
+            Console.Write(CriteriaValue);
+            return Json(BestCriteria, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        private DailySummary AddValues(DailySummary gatherinfo, DailySummary inter)
+        {
+
+            gatherinfo.ActualWorkMins = gatherinfo.ActualWorkMins +inter.ActualWorkMins ;
+            gatherinfo.ExpectedWorkMins = gatherinfo.ExpectedWorkMins + inter.ExpectedWorkMins;
+            return gatherinfo;
+           
+        }
+
+        private DailySummary InitializeDailySummaryValues(List<DailySummary> intermediate)
+        {
+            DailySummary gatherinfo = new DailySummary();
+            gatherinfo.CriteriaName = intermediate.FirstOrDefault().CriteriaName;
+            gatherinfo.CriteriaValue = intermediate.FirstOrDefault().CriteriaValue;
+            gatherinfo.Criteria = intermediate.FirstOrDefault().Criteria;
+            gatherinfo.AActualMins = 0;
+            gatherinfo.AbsentEmps = 0;
+            gatherinfo.ActualWorkMins = 0;
+            gatherinfo.AEIMins = 0;
+            gatherinfo.AEOMins = 0;
+            gatherinfo.AExpectedMins = 0;
+            gatherinfo.ALIMins = 0;
+            gatherinfo.ALOMins=0;
+            gatherinfo.ALossMins=0;
+            gatherinfo.AOTMins=0;
+           
+            gatherinfo.EIEmps=0;
+            gatherinfo.EIMins=0;
+            gatherinfo.EOEmps=0;
+            gatherinfo.EOMins=0;
+            gatherinfo.ExpectedWorkMins=0;
+            gatherinfo.HalfLvEmps=0;
+            gatherinfo.LIEmps=0;
+            gatherinfo.LIMins=0;
+            gatherinfo.LOEmps=0;
+            gatherinfo.LOMins=0;
+            gatherinfo.LossWorkMins=0;
+            gatherinfo.LvEmps=0;
+            gatherinfo.OnTimeEmps=0;
+            gatherinfo.OTEmps=0;
+            gatherinfo.OTMins=0;
+            gatherinfo.PresentEmps=0;
+            gatherinfo.ShortLvEmps=0;
+            gatherinfo.TotalEmps=0;
+            return gatherinfo;
+        }
+        [HttpPost]
         public ActionResult GetCriteriaNames(string Criteria)
         {
             using (TAS2013Entities dc = new TAS2013Entities())
             {
+              
                 var getSummaries = dc.DailySummaries.Where(aa => aa.Criteria == Criteria).Select(aa => new {aa.CriteriaValue, aa.CriteriaName}).Distinct().ToList();
                 return Json(new SelectList(
                               getSummaries.ToArray(),
