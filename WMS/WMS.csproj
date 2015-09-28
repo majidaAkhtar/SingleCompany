@@ -192,6 +192,7 @@
     <Content Include="Reports\Filters\StepTwoFilter.aspx" />
     <Content Include="Reports\Filters\StepFiveFilter.aspx" />
     <Content Include="Reports\Filters\StepThreeFilter.aspx" />
+    <Content Include="Reports\Filters\SummaryReports.aspx" />
     <Content Include="Reports\LeaveDatewise.aspx" />
     <Content Include="Reports\LvQuota.aspx" />
     <Content Include="Reports\MDetailExcelC.aspx" />
@@ -780,6 +781,13 @@
     </Compile>
     <Compile Include="Models\ZTable.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Filters\SummaryReports.aspx.cs">
+      <DependentUpon>SummaryReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Filters\SummaryReports.aspx.designer.cs">
+      <DependentUpon>SummaryReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\HRReportsMaker.cs" />
     <Compile Include="CustomClass\QueryBuilder.cs" />

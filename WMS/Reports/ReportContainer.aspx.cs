@@ -21,6 +21,8 @@ namespace WMS.Reports
         {
             String reportName = Request.QueryString["reportname"];
             String type = Request.QueryString["type"];
+            List<DailySummary> ViewDS = new List<DailySummary>();
+            List<DailySummary> TempDS = new List<DailySummary>();
             if (!Page.IsPostBack)
             {
                 List<string> list = Session["ReportSession"] as List<string>;
@@ -506,7 +508,19 @@ namespace WMS.Reports
                         LoadReport(PathString, GYL(ReportsFilterImplementation(fm, _TempViewList1, _ViewList1)));
                         // LoadReport(PathString, ReportsFilterImplementation(fm, _TempViewListMonthlyDataPer, _ViewListMonthlyDataPer), _dateFrom);
                         break;
-
+                        /////////////////////////////////////////////////////////////   
+                        /////////////////Summary Reports////////////////////////////
+                        ///////////////////////////////////////////////////////////
+                    case "company_consolidated": dt = qb.GetValuesfromDB("select * from DailySummary " + " where " + " (Date >= " + "'" + _dateFrom + "'" + " and Date <= " + "'"
+                                                     + _dateTo + "'" + " )");
+                        ViewDS = dt.ToList<DailySummary>();
+                        TempDS = new List<DailySummary>();
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/DSConsolidated.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        LoadReport(PathString, ReportsFilterImplementation(fm, TempDS, ViewDS,"C"), _dateFrom + " TO " + _dateTo);
+                        break;
 
 
                 }
@@ -519,6 +533,139 @@ namespace WMS.Reports
 
 
             }
+        }
+
+        private void LoadReport(string PathString, List<DailySummary> list, string p)
+        {
+            string _Header = title;
+            this.ReportViewer1.LocalReport.DisplayName = title;
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath(PathString);
+            System.Security.PermissionSet sec = new System.Security.PermissionSet(System.Security.Permissions.PermissionState.Unrestricted);
+            ReportViewer1.LocalReport.SetBasePermissionsForSandboxAppDomain(sec);
+            IEnumerable<DailySummary> ie;
+            ie = list.AsQueryable();
+            IEnumerable<EmpPhoto> companyImage;
+            companyImage = companyimage.AsQueryable();
+            ReportDataSource datasource1 = new ReportDataSource("DataSet1", ie);
+            ReportDataSource datasource2 = new ReportDataSource("DataSet2", companyImage);
+
+            ReportViewer1.LocalReport.DataSources.Clear();
+            ReportViewer1.LocalReport.EnableExternalImages = true;
+            ReportViewer1.LocalReport.DataSources.Add(datasource1);
+            ReportViewer1.LocalReport.DataSources.Add(datasource2);
+            ReportParameter rp = new ReportParameter("Date", p, false);
+            ReportParameter rp1 = new ReportParameter("Header", _Header, false);
+            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp1, rp });
+            ReportViewer1.LocalReport.Refresh();
+        }
+
+        private List<DailySummary> ReportsFilterImplementation(FiltersModel fm, List<DailySummary> TempDS, List<DailySummary> ViewDS,string Criteria)
+        {
+            switch (Criteria)
+            {
+                case "C":
+                    //for company
+                    if (fm.CompanyFilter.Count > 0)
+                    {
+                        foreach (var comp in fm.CompanyFilter)
+                        {
+                            short _compID = Convert.ToInt16(comp.ID);
+                            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _compID && aa.Criteria == Criteria).ToList());
+                        }
+                        ViewDS = TempDS.ToList();
+                    }
+                    else
+                        TempDS = ViewDS.ToList();
+                    TempDS.Clear();
+                    break;
+                case "L":
+                    if (fm.LocationFilter.Count > 0)
+                    {
+                        foreach (var loc in fm.LocationFilter)
+                        {
+                            short _locID = Convert.ToInt16(loc.ID);
+                            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _locID && aa.Criteria == Criteria).ToList());
+                        }
+                        ViewDS = TempDS.ToList();
+                    }
+                    else
+                        TempDS = ViewDS.ToList();
+                    TempDS.Clear();
+                    break;
+                case "D": 
+                    if (fm.DepartmentFilter.Count > 0)
+                    {
+                        foreach (var dept in fm.DepartmentFilter)
+                        {
+                            short _deptID = Convert.ToInt16(dept.ID);
+                            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _deptID && aa.Criteria == Criteria).ToList());
+                        }
+                        ViewDS = TempDS.ToList();
+                    }
+                    else
+                        TempDS = ViewDS.ToList();
+                    TempDS.Clear();
+                    break;
+                case "E": 
+                    if (fm.SectionFilter.Count > 0)
+                    {
+                        foreach (var sec in fm.SectionFilter)
+                        {
+                            short _secID = Convert.ToInt16(sec.ID);
+                            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _secID && aa.Criteria == Criteria).ToList());
+                        }
+                        ViewDS = TempDS.ToList();
+                    }
+                    else
+                        TempDS = ViewDS.ToList();
+                    TempDS.Clear();
+                    break;
+
+                case "S": 
+                    if (fm.ShiftFilter.Count > 0)
+                    {
+                        foreach (var shift in fm.ShiftFilter)
+                        {
+                            short _shiftID = Convert.ToInt16(shift.ID);
+                            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _shiftID && aa.Criteria == Criteria).ToList());
+                        }
+                        ViewDS = TempDS.ToList();
+                    }
+                    else
+                        TempDS = ViewDS.ToList();
+                    TempDS.Clear();
+                    break;
+                case "T": 
+                    if (fm.TypeFilter.Count > 0)
+                    {
+                        foreach (var type in fm.TypeFilter)
+                        {
+                            short _typeID = Convert.ToInt16(type.ID);
+                            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _typeID && aa.Criteria == Criteria).ToList());
+                        }
+                        ViewDS = TempDS.ToList();
+                    }
+                    else
+                        TempDS = ViewDS.ToList();
+                    TempDS.Clear();
+                    break;
+                //case "A":
+                //    if (fm.CompanyFilter.Count > 0)
+                //    {
+                //        foreach (var comp in fm.CompanyFilter)
+                //        {
+                //            short _compID = Convert.ToInt16(comp.ID);
+                //            TempDS.AddRange(ViewDS.Where(aa => aa.CriteriaValue == _compID && aa.Criteria == Criteria).ToList());
+                //        }
+                //        ViewDS = TempDS.ToList();
+                //    }
+                //    else
+                //        TempDS = ViewDS.ToList();
+                //    TempDS.Clear();
+                //    break;
+            }
+            return TempDS;
         }
 
         private void LoadReport(string PathString, List<ViewBadli> list, string p)
