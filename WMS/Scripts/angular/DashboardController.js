@@ -2,9 +2,21 @@
     //for popluating the Date input with the current date
     var today = new Date();
     $scope.DateFrom = today;
-    
+    $scope.selectedRowForToFrom = 0;
     //array with the criteria names
     $scope.selectedRow = 0;  // initialize our variable to null
+    $scope.setClickedRowForToFrom = function (index) {  //function that sets the value of selectedRow to current index
+        $scope.selectedRowForToFrom = index;
+        ChangeToPieGraph();
+        switch (index) {
+            case 0: ReRenderGraphInfo($scope.GraphData);
+                break;
+            case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
+            case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); break;
+
+        }
+
+    }
     $scope.setClickedRow = function (index) {  //function that sets the value of selectedRow to current index
         $scope.selectedRow = index;
         ChangeToPieGraph();
@@ -32,6 +44,23 @@
           { id: 'A', name: 'Category' }
         ]
     };
+    $scope.InitFunction = function ()
+    {
+
+        $http({ method: 'GET', url: '/Graph/GetInitialValues'}).
+   then(function (response) {
+       $scope.Criteria.availableOptions= response.data;
+       $scope.Criteria.repeatSelect = null;
+
+   }, function (response) {
+       // called asynchronously if an error occurs
+       // or server returns response with an error status.
+   });
+
+    }
+
+
+   
     //array with the values once the criteria is selected
     $scope.Value = {
         repeatSelect: null,
@@ -45,7 +74,7 @@
        
         $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
         
-        $http({ method: 'POST', url: '/Home/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
+        $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
    then(function (response) {
        $scope.GraphData = response.data;
        ChangeToPieGraph();
@@ -75,6 +104,9 @@
         $scope.highchartsNG.series = [{
             name: "Minutes",
             colorByPoint: true,
+            credits: {
+                enabled: false
+            },
             data: [{
                 name: "Expected Work Minutes",
                 y: graphdata.ExpectedWorkMins
@@ -152,7 +184,7 @@
      //values which are stored in the daily summary
     $scope.$watch('Criteria', function () {
         var GraphClass = { Criteria: $scope.Criteria.repeatSelect };
-        $http({ method: 'POST', url: '/Home/GetCriteriaNames', data: JSON.stringify(GraphClass) }).
+        $http({ method: 'POST', url: '/Graph/GetCriteriaNames', data: JSON.stringify(GraphClass) }).
    then(function (response) {
        $scope.Value.availableOptions = response.data;
    }, function (response) {
@@ -165,7 +197,7 @@
     
     $scope.GetBestCriteria = function ()
     {
-        $http({ method: 'POST', url: '/Home/GetBestCriteria', data: JSON.stringify({ CriteriaValue: $scope.Criteria.repeatSelect }) }).
+        $http({ method: 'POST', url: '/Graph/GetBestCriteria', data: JSON.stringify({ CriteriaValue: $scope.Criteria.repeatSelect }) }).
   then(function (response) {
       console.log(response.data);
       ChangeToColumnGraph(response.data);
@@ -185,17 +217,26 @@
                     type: 'pie'
                 }
             },
+            credits: {
+                enabled: false
+            },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
                 pie: {
-                    allowPointSelect: true,
+                    borderWidhth:0,
                     cursor: 'pointer',
+                    
                     dataLabels: {
-                        enabled: false
+                        enabled: true
                     },
                     showInLegend: true
+                }
+            },
+            dataLabels: {
+                style: {
+                    textShadow: ''
                 }
             },
             series: [{
@@ -238,6 +279,11 @@
             options: {
                 chart: {
                     type: 'column'
+                }
+            },
+            dataLabels: {
+                style: {
+                    textShadow: ''
                 }
             },
             title: {
@@ -286,12 +332,6 @@
 
 
 
-    $scope.WorstCriteria = function ()
-    {
-
-
-
-
-    }
+    
 
 });

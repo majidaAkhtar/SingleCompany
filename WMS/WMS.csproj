@@ -193,6 +193,7 @@
     <Content Include="Reports\Filters\StepFiveFilter.aspx" />
     <Content Include="Reports\Filters\StepThreeFilter.aspx" />
     <Content Include="Reports\Filters\SummaryReports.aspx" />
+    <Content Include="Reports\Graphs\Graphs.aspx" />
     <Content Include="Reports\LeaveDatewise.aspx" />
     <Content Include="Reports\LvQuota.aspx" />
     <Content Include="Reports\MDetailExcelC.aspx" />
@@ -221,10 +222,12 @@
     <Content Include="Scripts\dx.chartjs.js" />
     <Content Include="Scripts\Employee\empTypeCategory.js" />
     <Content Include="Scripts\Employee\empTypeCategoryCreate.js" />
+    <Content Include="Scripts\exporting.js" />
     <Content Include="Scripts\Filters\ClearSessionOnPageClose.js" />
     <Content Include="Scripts\Filters\DeleteSingleFilters.js" />
     <Content Include="Scripts\Filters\FilterScripts.js" />
     <Content Include="Scripts\globalize.min.js" />
+    <Content Include="Scripts\highcharts-3d.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\HR\DeptCompany.js" />
     <Content Include="Scripts\HR\DeptCompanyCreate.js" />
@@ -292,7 +295,6 @@
     <Content Include="ReportingEngine.Master" />
     <None Include="Properties\PublishProfiles\WMSProfile1.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -371,6 +373,7 @@
     <Content Include="Views\AttProcessors\Details.cshtml" />
     <Content Include="Views\AttProcessors\Index.cshtml" />
     <Content Include="Views\AttProcessors\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Graph\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -404,6 +407,7 @@
     <Compile Include="Controllers\Filters\CustomActionAttribute.cs" />
     <Compile Include="Controllers\Filters\CustomControllerAttributes.cs" />
     <Compile Include="Controllers\GradeController.cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobCardAppRController.cs" />
@@ -424,8 +428,10 @@
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\ShiftController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="CustomClass\CriteriaFoAngular.cs" />
     <Compile Include="CustomClass\CustomFunc.cs" />
     <Compile Include="CustomClass\DatatableToList.cs" />
+    <Compile Include="CustomClass\ValueForAngular.cs" />
     <Compile Include="HelperClass\AttDeptSummary.cs" />
     <Compile Include="HelperClass\GraphClass.cs" />
     <Compile Include="Models\AccessEmp.cs">
@@ -788,6 +794,13 @@
     </Compile>
     <Compile Include="Reports\Filters\SummaryReports.aspx.designer.cs">
       <DependentUpon>SummaryReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Graphs\Graphs.aspx.cs">
+      <DependentUpon>Graphs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Graphs\Graphs.aspx.designer.cs">
+      <DependentUpon>Graphs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\HRReportsMaker.cs" />
     <Compile Include="CustomClass\QueryBuilder.cs" />
@@ -1305,6 +1318,7 @@
       <Name>WMSLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
