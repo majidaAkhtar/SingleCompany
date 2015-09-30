@@ -146,10 +146,7 @@ namespace WMS.Controllers
                     user.MUser = true;
                 else
                     user.MUser = false;
-                if (Request.Form["MUser"] == "1")
-                    user.MUser = true;
-                else
-                    user.MUser = false;
+                
                 if (Request.Form["MHR"] == "1")
                     user.MHR = true;
                 else
@@ -341,7 +338,7 @@ namespace WMS.Controllers
             if (Request.Form["MRoster"].ToString() == "true")
                 user.MRoster = true;
             else
-                user.MUser = false;
+                user.MRoster = false;
             if (Request.Form["MHR"].ToString() == "true")
                 user.MHR = true;
             else

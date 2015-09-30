@@ -4,6 +4,7 @@
     $scope.DateFrom = today;
     $scope.selectedRowForToFrom = 0;
     //array with the criteria names
+    $scope.MultipleSelect = false;
     $scope.selectedRow = 0;  // initialize our variable to null
     $scope.setClickedRowForToFrom = function (index) {  //function that sets the value of selectedRow to current index
         $scope.selectedRowForToFrom = index;
@@ -58,9 +59,6 @@
    });
 
     }
-
-
-   
     //array with the values once the criteria is selected
     $scope.Value = {
         repeatSelect: null,
@@ -70,11 +68,8 @@
     //This function calls to the database to give the values stored in it 
     //by making a SUmmaryDataCriteria in the frontend
     $scope.RenderGraph = function () {
-
-       
-        $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
-        
-        $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
+         $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
+         $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
    then(function (response) {
        $scope.GraphData = response.data;
        ChangeToPieGraph();
@@ -94,8 +89,6 @@
 
 
     };
-
-
     var ReRenderGraphInfoExpectedTime = function (graphdata)
     {
         var chart = angular.element(document.getElementById('chart1')).highcharts();
@@ -192,9 +185,6 @@
        // or server returns response with an error status.
    });
     },true);
-    
-    
-    
     $scope.GetBestCriteria = function ()
     {
         $http({ method: 'POST', url: '/Graph/GetBestCriteria', data: JSON.stringify({ CriteriaValue: $scope.Criteria.repeatSelect }) }).

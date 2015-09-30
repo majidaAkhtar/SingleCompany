@@ -29,7 +29,7 @@
 </div>
 
                             <div class="col-md-4">
-                                Select All:<input type="checkbox" ng-model="color.notAnOption">
+                                Select All:<input type="checkbox" ng-model="MultipleSelect">
                                 Date : <input id="dateFrom" ng-model="DateFrom"  class="input-sm"  type="date" />
 <asp:button ng-click="RenderGraph()" OnClientClick="false" CssClass="btn">Fetch Summary</asp:button>
                             </div>
