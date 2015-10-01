@@ -5,14 +5,15 @@
     $scope.selectedRowForToFrom = 0;
     //array with the criteria names
     $scope.MultipleSelect = false;
+   
     $scope.selectedRow = 5;  // initialize our variable to null
     $scope.setClickedRowForToFrom = function (index) {  //function that sets the value of selectedRow to current index
         $scope.selectedRowForToFrom = index;
-        ChangeToPieGraph();
+        
         switch (index) {
             case 0: ReRenderGraphInfo($scope.GraphData);
                 break;
-            case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
+            case 1: ReRenderGraphInfo($scope.GraphData); break;
             case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); break;
 
         }
@@ -20,16 +21,8 @@
     }
     $scope.setClickedRow = function (index) {  //function that sets the value of selectedRow to current index
         $scope.selectedRow = index;
-        ChangeToPieGraph();
-        switch (index)
-        {
-            case 0: $scope.RenderDailyAttendance();
-                break;
-            case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
-            case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); break;
-
-        }
-       
+        $scope.RenderDailyAttendance();
+            
     }
     $scope.names = [
         'Daily Attendance','Daily In/Out Times','Daily Expected Mins'
@@ -71,51 +64,36 @@
     //Daily Attendance
     $scope.RenderDailyAttendance = function () {
         if ($scope.MultipleSelect == true)
-        {
+            {
             var ids = [];
-            $scope.Value.availableOptions.forEach(function (value) {
-                
-                ids.push(value.id);
-            });
+            $scope.Value.availableOptions.forEach(function (value) {ids.push(value.id); });
             $scope.GeneralCriteria= ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect;
-
             $http({ method: 'POST', url: '/Graph/GetGraphValuesForMultipleSelect', data: JSON.stringify({ GeneralCriteria: $scope.GeneralCriteria,Ids:ids }) }).
     then(function (response) {
-       
-        $scope.GraphData = response.data;
-        console.log($scope.GraphData);
-        ChangeToStackedColumnGraph($scope.GraphData);
-        var chart = angular.element(document.getElementById('chart1')).highcharts();
-        chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
-    }, function (response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-    });
-
-
-        }
+                            $scope.GraphData = response.data;
+                           ChangeToStackedColumnGraph($scope.GraphData);
+        
+                            }, function (response) {});
+            }
         else
-        {
+           {
 
             $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
             $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
       then(function (response) {
-          $scope.GraphData = response.data;
-          ChangeToPieGraph($scope.GraphData);
-          
-                
+                             $scope.GraphData = response.data;
+                             ChangeToPieGraph($scope.GraphData);
+                                }, function (response) {});
 
-
-      }, function (response) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-      });
-
-        }
+            }
   
 
     };
-   // $scope.RenderGraph = function () {
+    
+
+
+
+    // $scope.RenderGraph = function () {
    //      $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
    //      $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
    //then(function (response) {
@@ -193,7 +171,7 @@
     //in the front end like criteria, date, value
     var ReRenderGraphInfo = function (graphdata)
     {
-        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        
         chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
 
         $scope.highchartsNG.series = [{
@@ -247,8 +225,30 @@
         //
 
     }
-    var ChangeToPieGraph = function ()
+    var ChangeToPieGraph = function (graphdata)
     {
+        var ChartData=[];
+        switch ($scope.selectedRow)
+        {
+            case 0: ChartData.push({ "name": "Absent Employees", "y": parseFloat(graphdata.AbsentEmps) });
+                ChartData.push({ "name": "Present Employees", "y": parseFloat(graphdata.PresentEmps) });
+                ChartData.push({ "name": "On Leave", "y": (parseFloat(graphdata.LvEmps) + parseFloat(graphdata.ShortLvEmps) + parseFloat(graphdata.HalfLvEmps)) });
+                ChartData.push({ "name": "Day Off", "y": parseFloat(graphdata.DayOffEmps) });
+                break;
+            case 1:ChartData.push({ "name": "Early In", "y": parseFloat(graphdata.EIEmps) });
+                ChartData.push({ "name": "Early Out", "y": parseFloat(graphdata.EOEmps) });
+                ChartData.push({ "name": "Late In", "y": parseFloat(graphdata.LIEmps) });
+                ChartData.push({ "name": "Late Out", "y": parseFloat(graphdata.LOEmps) });
+               
+                break;
+            case 2:ChartData.push({ "name": "Expected Work Mins", "y": parseFloat(graphdata.ExpectedWorkMins) });
+                ChartData.push({ "name": "Actual Work Mins", "y": parseFloat(graphdata.ActualWorkMins) });
+                ChartData.push({ "name": "Loss Work Mins", "y": parseFloat(graphdata.LossWorkMins) });
+
+        }
+        
+      
+
         $scope.highchartsNG = {
             options: {
                 chart: {
@@ -278,79 +278,137 @@
                 }
             },
             series: [{
-                name: "Employees",
+                
                 colorByPoint: true,
-                data: [{
-                    name: "Absent Employees",
-                    y: 56.33
-                }, {
-                    name: "Present Employees",
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: "On Leave",
-                    y: 10.38
-                }, {
-                    name: "Day Off",
-                    y: 4.77
-                }]
-            }],
+                data:ChartData}],
             title: {
                 text: 'Daily Summary'
             },
             //once we have fetched the info from the database we will do loading :false
             loading: false
         }
+
+        switch ($scope.selectedRow)
+        {
+            case 0: $scope.highchartsNG.series[0].name = "Employees";
+                    var chart = angular.element(document.getElementById('chart1')).highcharts();
+                    chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
+
+                    break;
+            case 1: $scope.highchartsNG.series[0].name = "Employees";
+                var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+
+                break;
+            case 2: $scope.highchartsNG.series[0].name = "Minutes";
+                var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
+
+                    
+        }
     }
 
     var ChangeToStackedColumnGraph = function (data)
     {
-        var AbsentEmployees=[];
+        var bestCriteriaName = "";
+        var EIEmps = [];
+        var EOEmps = [];
+        var LIEmps = [];
+        var LOEmps = [];
+        var AbsentEmployees = [];
+        var ActualWorkMins = [];
+        var ExpectedWorkMins = [];
+        var LossWorkMins = [];
         var PresentEmployees=[];
         var OnLeave=[];
         var DayOff = [];
         var xaxis = [];
+        var Series = [];
         for (var key in data) {
             if (data[key] != null) {
-                
-                AbsentEmployees.push(parseFloat((parseFloat(data[key].AbsentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
-                PresentEmployees.push(parseFloat((parseFloat(data[key].PresentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
-                if (data[key].LvEmps != "0" || data[key].ShortLvEmps != "0" || data[key].HalfLvEmps != "0")
-                {
-                    var allLeaves = parseFloat(data[key].LvEmps) + parseFloat(data[key].HalfLvEmps) + parseFloat(data[key].ShortLvEmps);
-
-                    //console.log( parseFloat(data[key]).TotalEmps);
-                    OnLeave.push(parseFloat(((parseFloat(data[key].LvEmps) + parseFloat(data[key].ShortLvEmps) + parseFloat(data[key].HalfLvEmps)) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
-                }
-                else
-                    OnLeave.push(0);
-                DayOff.push(parseFloat((parseFloat(data[key].DayOffEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
                 xaxis.push(data[key].CriteriaName);
-              //  $scope.highchartsNG.xAxis.categories.push(data[key].CriteriaName);
+
+                switch ($scope.selectedRow)
+                {
+                    case 0: AbsentEmployees.push(parseFloat((parseFloat(data[key].AbsentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            PresentEmployees.push(parseFloat((parseFloat(data[key].PresentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            if (data[key].LvEmps != "0" || data[key].ShortLvEmps != "0" || data[key].HalfLvEmps != "0")
+                               OnLeave.push(parseFloat(((parseFloat(data[key].LvEmps) + parseFloat(data[key].ShortLvEmps) + parseFloat(data[key].HalfLvEmps)) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            else
+                               OnLeave.push(0);
+                            DayOff.push(parseFloat((parseFloat(data[key].DayOffEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            for (var i = 0; i < DayOff.length; i++)
+                                DayOff[i] = parseInt(DayOff[i], 10);
+                            var bestCompany = parseInt(PresentEmployees[0], 10);
+                            
+                            for (var i = 0; i < PresentEmployees.length; i++) {
+                                PresentEmployees[i] = parseInt(PresentEmployees[i], 10);
+                                if (bestCompany < PresentEmployees[i]) {
+                                    bestCompany = PresentEmployees[i];
+                                    bestCriteriaName = xaxis[i];
+
+                                }
+                            }
+                            
+                           
+
+                            for (var i = 0; i < AbsentEmployees.length; i++)
+                                AbsentEmployees[i] = parseInt(AbsentEmployees[i], 10);
+
+                            for (var i = 0; i < OnLeave.length; i++)
+                                OnLeave[i] = parseInt(OnLeave[i], 10);
+                            
+                            break;
+
+                    case 1: EIEmps.push(parseFloat((parseFloat(data[key].EIEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            EOEmps.push(parseFloat((parseFloat(data[key].EOEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            LIEmps.push(parseFloat((parseFloat(data[key].LIEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            LOEmps.push(parseFloat((parseFloat(data[key].LOEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                            for (var i = 0; i < EIEmps.length; i++)
+                                EIEmps[i] = parseInt(EIEmps[i], 10);
+                            for (var i = 0; i < EOEmps.length; i++)
+                                EOEmps[i] = parseInt(EOEmps[i], 10);
+                            for (var i = 0; i < LIEmps.length; i++)
+                                LIEmps[i] = parseInt(LIEmps[i], 10);
+                            for (var i = 0; i < LOEmps.length; i++)
+                                LOEmps[i] = parseInt(LOEmps[i], 10);
+                            break;
+                    case 2:  ActualWorkMins.push(parseFloat(data[key].ActualWorkMins)/parseFloat(data[key].ExpectedWorkMins));
+                        ExpectedWorkMins.push(parseFloat(data[key].ExpectedWorkMins));
+                        LossWorkMins.push(parseFloat(data[key].LossWorkMins));  
+                        for (var i = 0; i < ActualWorkMins.length; i++)
+                            ActualWorkMins[i] = parseInt(ActualWorkMins[i], 10);
+                        for (var i = 0; i < ExpectedWorkMins.length; i++)
+                            ExpectedWorkMins[i] = parseInt(ExpectedWorkMins[i], 10);
+                        for (var i = 0; i < LossWorkMins.length; i++)
+                            LossWorkMins[i] = parseInt(LossWorkMins[i], 10);
+                        break;
+                      
+
+                }
+               
+              
             }
         }
-        for (var i = 0; i < DayOff.length; i++) {
-            DayOff[i] = parseInt(DayOff[i], 10);
+        //switch case for series this was not added in the previous switch case because that switch case
+        // is surrounded by for loop
+        switch ($scope.selectedRow)
+        {
+            case 0: Series.push({ name: "Absent Employees", data: AbsentEmployees });
+                Series.push({ name: "Present Employees", data: PresentEmployees });
+                Series.push({ name: "On Leave", data: OnLeave });
+                Series.push({ name: "Day Off", data: DayOff });
+                break;
+            case 1: Series.push({ name: "Early In", data: EIEmps });
+                Series.push({ name: "Early Out", data: EOEmps });
+                Series.push({ name: "Late In", data: LIEmps });
+                Series.push({ name: "Late Out", data: LOEmps });
+            case 2: Series.push({ name: "Actual Work Minutes", data: ActualWorkMins });
+                Series.push({ name: "Expected Work Minutes", data: ExpectedWorkMins });
+                Series.push({ name: "Loss Work Minutes", data: LossWorkMins });
+               
+
         }
-        for (var i = 0; i < PresentEmployees.length; i++) {
-            PresentEmployees[i] = parseInt(PresentEmployees[i], 10);
-        }
-        for (var i = 0; i < AbsentEmployees.length; i++) {
-            AbsentEmployees[i] = parseInt(AbsentEmployees[i], 10);
-        }
-        for (var i = 0; i < OnLeave.length; i++) {
-            OnLeave[i] = parseInt(OnLeave[i], 10);
-        }
-        console.log(DayOff);
-        console.log(PresentEmployees);
-        console.log(AbsentEmployees);
-        console.log(OnLeave);
-        var Series = [];
-        Series.push({ name: "Absent Employees", data: AbsentEmployees });
-       Series.push({ name: "Present Employees", data: PresentEmployees });
-       Series.push({ name: "On Leave", data: OnLeave });
-       Series.push({ name: "Day Off", data: DayOff });
         $scope.highchartsNG = {
             options: {
                 chart: {
@@ -359,9 +417,6 @@
             },
             title: {
                 text: 'Daily Summaries Of Multiple Criteria'
-            },
-            subtitle: {
-                text: 'Shown in Percentages'
             },
                 xAxis: {
             categories: xaxis,
@@ -380,7 +435,7 @@
                 }
             },
             tooltip: {
-                valueSuffix: ' %'
+                valueSuffix: ' percent'
             },
             plotOptions: {
                 bar: {
@@ -407,9 +462,22 @@
 
         };
       
-        
+      
         $scope.highchartsNG.xAxis.title.text=null;
-       
+        switch ($scope.selectedRow) {
+            case 0: var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: "Most Present Employees In " + bestCriteriaName });
+                break;
+            case 1: var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: "" });
+
+                break;
+            case 2: var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: "" });
+
+                break;
+
+        }
     }
     var ChangeToColumnGraph = function (data)
     {
