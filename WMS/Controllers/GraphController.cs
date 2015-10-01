@@ -56,8 +56,26 @@ namespace WMS.Controllers
             }
 
 
+        }
 
+        [HttpPost]
+        public ActionResult GetGraphValuesForMultipleSelect(string GeneralCriteria, List<string> Ids)
+        {
+            List<DailySummary> GetListOfDailySummaries = new List<DailySummary>();
+            foreach (string id in Ids)
+            {
+                string CriteriaValue = "";
+                CriteriaValue = GeneralCriteria + id;
+              using (TAS2013Entities dc = new TAS2013Entities())
+                {
+                    DailySummary ds = dc.DailySummaries.Where(aa => aa.SummaryDateCriteria == CriteriaValue).FirstOrDefault();
+                    GetListOfDailySummaries.Add(ds);
+                    
+                }
+            }
+            return Json(GetListOfDailySummaries, JsonRequestBehavior.AllowGet);
 
+            
         }
         [HttpPost]
         public ActionResult GetBestCriteria(string CriteriaValue)

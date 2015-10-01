@@ -5,7 +5,7 @@
     $scope.selectedRowForToFrom = 0;
     //array with the criteria names
     $scope.MultipleSelect = false;
-    $scope.selectedRow = 0;  // initialize our variable to null
+    $scope.selectedRow = 5;  // initialize our variable to null
     $scope.setClickedRowForToFrom = function (index) {  //function that sets the value of selectedRow to current index
         $scope.selectedRowForToFrom = index;
         ChangeToPieGraph();
@@ -23,7 +23,7 @@
         ChangeToPieGraph();
         switch (index)
         {
-            case 0: ReRenderGraphInfo($scope.GraphData);
+            case 0: $scope.RenderDailyAttendance();
                 break;
             case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
             case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); break;
@@ -67,28 +67,76 @@
     };
     //This function calls to the database to give the values stored in it 
     //by making a SUmmaryDataCriteria in the frontend
-    $scope.RenderGraph = function () {
-         $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
-         $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
-   then(function (response) {
-       $scope.GraphData = response.data;
-       ChangeToPieGraph();
-       switch ($scope.selectedRow) {
-           case 0: ReRenderGraphInfo($scope.GraphData);
-               break;
-           case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
-           case 2: ReRenderGraphInfoExpectedTime($scope.GraphData);break;
+    //Daily Summaries
+    //Daily Attendance
+    $scope.RenderDailyAttendance = function () {
+        if ($scope.MultipleSelect == true)
+        {
+            var ids = [];
+            $scope.Value.availableOptions.forEach(function (value) {
+                
+                ids.push(value.id);
+            });
+            $scope.GeneralCriteria= ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect;
 
-       }
+            $http({ method: 'POST', url: '/Graph/GetGraphValuesForMultipleSelect', data: JSON.stringify({ GeneralCriteria: $scope.GeneralCriteria,Ids:ids }) }).
+    then(function (response) {
        
-       
-   }, function (response) {
-       // called asynchronously if an error occurs
-       // or server returns response with an error status.
-   });
+        $scope.GraphData = response.data;
+        console.log($scope.GraphData);
+        ChangeToStackedColumnGraph($scope.GraphData);
+        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
+    }, function (response) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+    });
 
+
+        }
+        else
+        {
+
+            $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
+            $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
+      then(function (response) {
+          $scope.GraphData = response.data;
+          ChangeToPieGraph($scope.GraphData);
+          
+                
+
+
+      }, function (response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
+
+        }
+  
 
     };
+   // $scope.RenderGraph = function () {
+   //      $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
+   //      $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
+   //then(function (response) {
+   //    $scope.GraphData = response.data;
+   //    ChangeToPieGraph();
+   //    switch ($scope.selectedRow) {
+   //        case 0: ReRenderGraphInfo($scope.GraphData);
+   //            break;
+   //        case 1: ReRenderGraphInfoInOutTime($scope.GraphData); break;
+   //        case 2: ReRenderGraphInfoExpectedTime($scope.GraphData);break;
+
+   //    }
+       
+       
+   //}, function (response) {
+   //    // called asynchronously if an error occurs
+   //    // or server returns response with an error status.
+   //});
+
+
+   // };
     var ReRenderGraphInfoExpectedTime = function (graphdata)
     {
         var chart = angular.element(document.getElementById('chart1')).highcharts();
@@ -255,13 +303,121 @@
             loading: false
         }
     }
+
+    var ChangeToStackedColumnGraph = function (data)
+    {
+        var AbsentEmployees=[];
+        var PresentEmployees=[];
+        var OnLeave=[];
+        var DayOff = [];
+        var xaxis = [];
+        for (var key in data) {
+            if (data[key] != null) {
+                
+                AbsentEmployees.push(parseFloat((parseFloat(data[key].AbsentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                PresentEmployees.push(parseFloat((parseFloat(data[key].PresentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                if (data[key].LvEmps != "0" || data[key].ShortLvEmps != "0" || data[key].HalfLvEmps != "0")
+                {
+                    var allLeaves = parseFloat(data[key].LvEmps) + parseFloat(data[key].HalfLvEmps) + parseFloat(data[key].ShortLvEmps);
+
+                    //console.log( parseFloat(data[key]).TotalEmps);
+                    OnLeave.push(parseFloat(((parseFloat(data[key].LvEmps) + parseFloat(data[key].ShortLvEmps) + parseFloat(data[key].HalfLvEmps)) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                }
+                else
+                    OnLeave.push(0);
+                DayOff.push(parseFloat((parseFloat(data[key].DayOffEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                xaxis.push(data[key].CriteriaName);
+              //  $scope.highchartsNG.xAxis.categories.push(data[key].CriteriaName);
+            }
+        }
+        for (var i = 0; i < DayOff.length; i++) {
+            DayOff[i] = parseInt(DayOff[i], 10);
+        }
+        for (var i = 0; i < PresentEmployees.length; i++) {
+            PresentEmployees[i] = parseInt(PresentEmployees[i], 10);
+        }
+        for (var i = 0; i < AbsentEmployees.length; i++) {
+            AbsentEmployees[i] = parseInt(AbsentEmployees[i], 10);
+        }
+        for (var i = 0; i < OnLeave.length; i++) {
+            OnLeave[i] = parseInt(OnLeave[i], 10);
+        }
+        console.log(DayOff);
+        console.log(PresentEmployees);
+        console.log(AbsentEmployees);
+        console.log(OnLeave);
+        var Series = [];
+        Series.push({ name: "Absent Employees", data: AbsentEmployees });
+       Series.push({ name: "Present Employees", data: PresentEmployees });
+       Series.push({ name: "On Leave", data: OnLeave });
+       Series.push({ name: "Day Off", data: DayOff });
+        $scope.highchartsNG = {
+            options: {
+                chart: {
+                    type: 'bar'
+                }
+            },
+            title: {
+                text: 'Daily Summaries Of Multiple Criteria'
+            },
+            subtitle: {
+                text: 'Shown in Percentages'
+            },
+                xAxis: {
+            categories: xaxis,
+            title: {
+                        text: null
+            }
+                },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Percentages',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' %'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            series:Series,
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            }
+
+        };
+      
+        
+        $scope.highchartsNG.xAxis.title.text=null;
+       
+    }
     var ChangeToColumnGraph = function (data)
     {
-        console.log(data);
+       
         var letspopulatedata = [];
         for (var key in data)
         {
-            console.log(key);
+            
             letspopulatedata.push({ "name": data[key].CriteriaName, "y":parseFloat((( data[key].ActualWorkMins / data[key].ExpectedWorkMins)*100).toPrecision(4)) });
         }
         console.log(letspopulatedata);
