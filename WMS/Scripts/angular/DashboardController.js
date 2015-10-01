@@ -403,9 +403,11 @@
                 Series.push({ name: "Early Out", data: EOEmps });
                 Series.push({ name: "Late In", data: LIEmps });
                 Series.push({ name: "Late Out", data: LOEmps });
+                break;
             case 2: Series.push({ name: "Actual Work Minutes", data: ActualWorkMins });
                 Series.push({ name: "Expected Work Minutes", data: ExpectedWorkMins });
                 Series.push({ name: "Loss Work Minutes", data: LossWorkMins });
+                break;
                
 
         }
