@@ -56,8 +56,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox20</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox18</rd:DefaultName>
                       <Style>
                         <Border>
@@ -91,8 +89,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox2</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox20</rd:DefaultName>
                       <Style>
                         <Border>
@@ -126,8 +122,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox3</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox41</rd:DefaultName>
                       <Style>
                         <Border>
@@ -161,8 +155,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox24</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox7</rd:DefaultName>
                       <Style>
                         <Border>
@@ -196,8 +188,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox7</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
@@ -231,8 +221,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox4</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox9</rd:DefaultName>
                       <Style>
                         <Border>
@@ -266,8 +254,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox5</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox70</rd:DefaultName>
                       <Style>
                         <Border>
@@ -301,11 +287,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox21</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
-
                       <rd:DefaultName>Textbox2</rd:DefaultName>
-
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -338,8 +320,6 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox23</rd:DefaultName>
-                      <RepeatWith>Tablix1</RepeatWith>
                       <rd:DefaultName>Textbox22</rd:DefaultName>
                       <Style>
                         <Border>
@@ -676,32 +656,6 @@
               <RepeatOnNewPage>true</RepeatOnNewPage>
             </TablixMember>
             <TablixMember>
-              <TablixMembers>
-                <TablixMember>
-                  <TablixMembers>
-                    <TablixMember>
-                      <TablixMembers>
-                        <TablixMember>
-                          <Group Name="Details" />
-                          <SortExpressions>
-                            <SortExpression>
-                              <Value>=Fields!EmpName.Value</Value>
-                            </SortExpression>
-                          </SortExpressions>
-                          <TablixMembers>
-                            <TablixMember>
-                              <KeepWithGroup>Before</KeepWithGroup>
-                              <RepeatOnNewPage>true</RepeatOnNewPage>
-                              <KeepTogether>true</KeepTogether>
-                            </TablixMember>
-                          </TablixMembers>
-                          <KeepTogether>true</KeepTogether>
-                        </TablixMember>
-                      </TablixMembers>
-                    </TablixMember>
-                  </TablixMembers>
-                </TablixMember>
-              </TablixMembers>
               <Group Name="Details" />
               <SortExpressions>
                 <SortExpression>
@@ -711,8 +665,6 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <RepeatRowHeaders>true</RepeatRowHeaders>
-        <FixedRowHeaders>true</FixedRowHeaders>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.05556in</Top>
         <Left>0.01455in</Left>
@@ -728,9 +680,6 @@
     <Height>1.98958in</Height>
     <Style />
   </Body>
-
-  <Width>10.51523in</Width>
-
   <Width>10.42363in</Width>
   <Page>
     <PageHeader>
@@ -777,10 +726,6 @@
           <Value>=First(Fields!EmpPic.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.08194in</Top>
-          <Left>9.32024in</Left>
-          <Height>0.55486in</Height>
-          <Width>1.04167in</Width>
           <Top>0.22708in</Top>
           <Left>9.09235in</Left>
           <Height>0.5in</Height>
@@ -878,8 +823,6 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>8.27in</PageHeight>
-    <PageWidth>11.69in</PageWidth>
     <PageHeight>8.5in</PageHeight>
     <PageWidth>11in</PageWidth>
     <LeftMargin>0.25in</LeftMargin>
@@ -1120,7 +1063,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>TASReportDataSet</rd:DataSetName>
-        <rd:SchemaPath>D:\Projects\CNS\Working Projects\Fatima Group\WMS App\WMS\WMS\Models\TASReportDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\Projects\CNS\Working Projects\WMS General\WMS\WMS\Models\TASReportDataSet.xsd</rd:SchemaPath>
         <rd:TableName>EmpView</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

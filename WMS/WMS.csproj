@@ -1262,16 +1262,30 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WMSLibrary\WMSLibrary.csproj">
+      <Project>{bee16d41-5976-4142-97d7-ae43d44519c9}</Project>
+      <Name>WMSLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <EmbeddedResource Include="Reports\RDLC\AttDepartmentSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\BadliReport.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DetailedAbsent.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRAbsent.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRDetailed.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DREarlyIn.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DREarlyOut.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRLateIn.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRLateOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRLeaveQuota.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRMissingAtt.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DRPresent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DSConsolidated.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DSEmpStrength.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DSWorkSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
@@ -1279,31 +1293,16 @@
     <EmbeddedResource Include="Reports\RDLC\MRDetailExcelC.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRDetailExcelP.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRLeaveBal.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MYLeaveSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\RAuditLog.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRSummaryC.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRAbsent.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRDetailed.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DREarlyIn.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DREarlyOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLateIn.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLateOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRMissingAtt.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRPresent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSheetC.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSheetP.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRSummary.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\MRSummaryC.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\MYLeaveSummary.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\RAuditLog.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\REditAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\RLeaveQuota.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\RShortLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\SummarizedMonthlyReport.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WMSLibrary\WMSLibrary.csproj">
-      <Project>{bee16d41-5976-4142-97d7-ae43d44519c9}</Project>
-      <Name>WMSLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
