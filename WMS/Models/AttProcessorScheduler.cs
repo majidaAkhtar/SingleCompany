@@ -14,7 +14,7 @@ namespace WMS.Models
     
     public partial class AttProcessorScheduler
     {
-        public int AttProcesserID { get; set; }
+        public int AttProcesserSchedulerID { get; set; }
         public System.DateTime WhenToProcess { get; set; }
         public string PeriodTag { get; set; }
         public System.DateTime DateFrom { get; set; }
@@ -22,8 +22,10 @@ namespace WMS.Models
         public short CompanyID { get; set; }
         public short LocationID { get; set; }
         public short CatID { get; set; }
+        public Nullable<bool> ProcessingDone { get; set; }
     
-        public virtual AttProcessorScheduler AttProcessorScheduler1 { get; set; }
-        public virtual AttProcessorScheduler AttProcessorScheduler2 { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

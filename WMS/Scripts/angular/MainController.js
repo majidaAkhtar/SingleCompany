@@ -1,1 +1,1 @@
-﻿var app = angular.module('UserLocation', ["highcharts-ng"]);
+﻿var app = angular.module('UserLocation', []);
