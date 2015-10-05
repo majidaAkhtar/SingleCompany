@@ -18,6 +18,7 @@ namespace WMS
                 //Deployment Type =false : Local Deployment
                 //Deployment Type =true: Server Deployment
                 GlobalVariables.DeploymentType = true;
+                HttpContext.Current.Server.ScriptTimeout = 90000;
             }
             else
                 Response.Redirect("~/Home");
