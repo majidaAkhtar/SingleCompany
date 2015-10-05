@@ -176,6 +176,7 @@ namespace WMS.Controllers
                                       Session["MRSummary"] = "1";
                                   if (v.MRoster == true)
                                       Session["MRoster"] = "1";
+                                  Session.Timeout = 30;
                                   HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
                                   return RedirectToAction("AfterLogin");
                               }
