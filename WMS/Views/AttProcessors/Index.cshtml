@@ -1,5 +1,5 @@
 @*@model IEnumerable<WMS.Models.AttProcessor>*@
-@model PagedList.IPagedList<WMS.Models.AttProcessor>
+@model PagedList.IPagedList<WMS.Models.AttProcessorScheduler>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
@@ -85,9 +85,9 @@
 			@item.Category.CatName
         </td>
  <td>
-          @Html.ActionLink(" ", "Edit", new { id=item.AttProcessorID} , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-sm btn-EditViewDelete" })
-          @Html.ActionLink(" ", "Details", new { id = item.AttProcessorID}, new { @class = "glyphicon glyphicon-list btn btn-primary btn-sm btn-EditViewDelete" }) 
-          @Html.ActionLink(" ", "Delete", new { id=item.AttProcessorID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
+          @Html.ActionLink(" ", "Edit", new { id=item.AttProcesserSchedulerID} , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-sm btn-EditViewDelete" })
+          @Html.ActionLink(" ", "Details", new { id = item.AttProcesserSchedulerID}, new { @class = "glyphicon glyphicon-list btn btn-primary btn-sm btn-EditViewDelete" }) 
+          @Html.ActionLink(" ", "Delete", new { id=item.AttProcesserSchedulerID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
           </td>
     </tr>
 }

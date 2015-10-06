@@ -128,8 +128,13 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DivID = new SelectList(db.Divisions.OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName", department.DivID);
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            User LoggedInUser = Session["LoggedUser"] as User;
+            QueryBuilder qb = new QueryBuilder();
+            string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
+            string query1 = qb.QueryForCompanyViewLinq(LoggedInUser);
+         
+            ViewBag.DivID = new SelectList(db.Divisions.Where(query).AsQueryable().OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName", department.DivID);
+ ViewBag.CompanyID = new SelectList(db.Companies.Where(query1).AsQueryable().OrderBy(s => s.CompName), "CompID", "CompName");
             return View(department);
         }
 

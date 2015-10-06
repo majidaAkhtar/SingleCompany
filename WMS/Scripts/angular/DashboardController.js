@@ -373,8 +373,9 @@
                             for (var i = 0; i < LOEmps.length; i++)
                                 LOEmps[i] = parseInt(LOEmps[i], 10);
                             break;
-                    case 2:  ActualWorkMins.push(parseFloat(data[key].ActualWorkMins)/parseFloat(data[key].ExpectedWorkMins));
+                    case 2:  ActualWorkMins.push(parseFloat(data[key].ActualWorkMins));
                         ExpectedWorkMins.push(parseFloat(data[key].ExpectedWorkMins));
+                       
                         LossWorkMins.push(parseFloat(data[key].LossWorkMins));  
                         for (var i = 0; i < ActualWorkMins.length; i++)
                             ActualWorkMins[i] = parseInt(ActualWorkMins[i], 10);
@@ -382,6 +383,7 @@
                             ExpectedWorkMins[i] = parseInt(ExpectedWorkMins[i], 10);
                         for (var i = 0; i < LossWorkMins.length; i++)
                             LossWorkMins[i] = parseInt(LossWorkMins[i], 10);
+                       // console.log(ActualWorkMins);
                         break;
                       
 
@@ -404,7 +406,8 @@
                 Series.push({ name: "Late In", data: LIEmps });
                 Series.push({ name: "Late Out", data: LOEmps });
                 break;
-            case 2: Series.push({ name: "Actual Work Minutes", data: ActualWorkMins });
+            case 2: console.log(ActualWorkMins);
+                Series.push({ name: "Actual Work Minutes", data: ActualWorkMins });
                 Series.push({ name: "Expected Work Minutes", data: ExpectedWorkMins });
                 Series.push({ name: "Loss Work Minutes", data: LossWorkMins });
                 break;

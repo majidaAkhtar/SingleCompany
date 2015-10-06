@@ -98,8 +98,8 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create([Bind(Include = "SectionID,SectionName,DeptID,CompanyID")] Section section)
         {
-            if (db.Sections.Where(aa => aa.SectionName == section.SectionName && aa.CompanyID == section.CompanyID).Count() > 0)
-                ModelState.AddModelError("SectionName", "Department Name is must be unique");
+            if (db.Sections.Where(aa => aa.SectionName == section.SectionName && aa.DeptID==section.DeptID && aa.CompanyID == section.CompanyID).Count() > 0)
+                ModelState.AddModelError("SectionName", "Name must be unique");
             if (section.CompanyID == null)
                 ModelState.AddModelError("CompanyID", "Please selct a Company");
             if (section.SectionName == "")

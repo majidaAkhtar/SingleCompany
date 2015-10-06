@@ -81,7 +81,7 @@ namespace WMS.Controllers
 
         public ViewResult Details(int id)
         {
-            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserSchedulerID == id);
             return View(attprocessor);
         }
 
@@ -117,6 +117,7 @@ namespace WMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                attprocessor.ProcessingDone = false;
                 context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();
                 return RedirectToAction("Index");  
@@ -130,7 +131,7 @@ namespace WMS.Controllers
  
         public ActionResult Edit(int id)
         {
-            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserSchedulerID == id);
             return View(attprocessor);
         }
 
@@ -154,7 +155,7 @@ namespace WMS.Controllers
  
         public ActionResult Delete(int id)
         {
-            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserSchedulerID == id);
             return View(attprocessor);
         }
 
@@ -164,7 +165,7 @@ namespace WMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserID == id);
+            AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserSchedulerID == id);
             context.AttProcessorSchedulers.Remove(attprocessor);
             context.SaveChanges();
             return RedirectToAction("Index");

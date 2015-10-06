@@ -224,7 +224,7 @@ namespace WMS.Controllers
                 emp.EmpNo = emp.EmpNo.ToUpper();
                 empNo = emp.EmpNo;
                 db.Emps.Add(emp);
-                ViewBag.JS = "toastr.success('" + emp.EmpName + " Successfully created');";
+                //ViewBag.JS = "toastr.success('" + emp.EmpName + " Successfully created');";
                 db.SaveChanges();
                 int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Employee, (byte)MyEnums.Operation.Add, DateTime.Now);

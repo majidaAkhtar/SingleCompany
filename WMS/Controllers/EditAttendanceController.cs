@@ -46,13 +46,15 @@ namespace WMS.Controllers
         {
             try
             {
+                User LoggedInUser = Session["LoggedUser"] as User;
                 ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
                 ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
                 ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
-                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName",LoggedInUser.CompanyID);
                 ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName");
                 ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
-                ViewData["datef"] = Convert.ToDateTime(Request.Form["DateFrom"].ToString()).ToString("yyyy-MM-dd");
+                ViewData["datef"] = Convert.ToDateTime(Request.Form["DateFrom"].ToString()).ToString("yyyy-MM-dd"); 
+                ViewBag.DesignationID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
                 //ViewData["datef"] = Request.Form["DateFrom"].ToString();
                 if (Request.Form["EmpNo"].ToString() != "" && Request.Form["DateFrom"].ToString() != "")
                 {
@@ -64,7 +66,7 @@ namespace WMS.Controllers
                     AttData _attData = new AttData();
                     List<Emp> _Emp = new List<Emp>();
                     int EmpID = 0;
-                    _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID ==compID).ToList();
+                    _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID ==compID && aa.Status==true).ToList();
                     if (_Emp.Count > 0)
                         EmpID = _Emp.FirstOrDefault().EmpID;
                     _attData = db.AttDatas.FirstOrDefault(aa => aa.EmpID == EmpID && aa.AttDate == _AttDataFrom);
@@ -122,6 +124,7 @@ namespace WMS.Controllers
             ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
             ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
             ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
+            ViewBag.DesignationID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
             try
             {
                 string STimeIn = form["Inhours"].ToString();
