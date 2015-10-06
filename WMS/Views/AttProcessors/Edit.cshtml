@@ -1,4 +1,4 @@
-@model WMS.Models.AttProcessor
+@model WMS.Models.AttProcessorScheduler
 
 @{
     ViewBag.Title = "Edit";
@@ -11,7 +11,7 @@
     <fieldset>
         <legend>AttProcessor</legend>
 
-        @Html.HiddenFor(model => model.AttProcessorID)
+        @Html.HiddenFor(model => model.AttProcesserSchedulerID)
 		@Html.Partial("_CreateOrEdit", Model)
 
         <p>

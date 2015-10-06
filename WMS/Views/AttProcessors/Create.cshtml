@@ -1,4 +1,4 @@
-@model WMS.Models.AttProcessor
+@model WMS.Models.AttProcessorScheduler
 
 @{
     ViewBag.Title = "Create";
@@ -25,11 +25,39 @@
                                 @Html.ValidationMessageFor(model => model.Company.CompID)
                             </div>
                         </div>
+         <div class="form-group">
+            <label class="control-label col-md-2">From:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateFrom,@DateTime.Today.ToString("dd-MMM-yyyy"))
+                @Html.ValidationMessageFor(model => model.DateFrom)
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="control-label col-md-2">To:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateTo,@DateTime.Today.ToString("dd-MMM-yyyy"))
+                @Html.ValidationMessageFor(model => model.DateTo)
+            </div>
+        </div>
+          <div class="form-group">
+            <label class="control-label col-md-2">When To Process:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WhenToProcess,@DateTime.Today.ToString("dd-MMM-yyyy"))
+                @Html.ValidationMessageFor(model => model.WhenToProcess)
+            </div>
+        </div>
+         <div class="form-group">
+                            <label class="control-label col-md-3">From:</label>
+                            <div class="col-md-4">
+                                @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.ValidationMessageFor(model => model.DateFrom)
+                            </div>
+                        </div>
 <div class="form-group">
                             <label class="control-label col-md-3">Location Name</label>
                             <div class="col-md-4">
                                 @Html.DropDownList("LocationID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                @Html.ValidationMessageFor(model => model.Company.CompID)
+                                @Html.ValidationMessageFor(model => model.Location.LocID)
                             </div>
                         </div>
 <div class="form-group">
