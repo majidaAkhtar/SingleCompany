@@ -160,7 +160,19 @@ namespace WMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult DivisionList(string ID)
+        {
+            short Code = Convert.ToInt16(ID);
+            var divisions = db.Divisions.Where(aa => aa.CompanyID == Code).OrderBy(s => s.DivisionName);
+            if (HttpContext.Request.IsAjaxRequest())
+                return Json(new SelectList(
+                                divisions.ToArray(),
+                                "DivisionID",
+                                "DivisionName")
+                           , JsonRequestBehavior.AllowGet);
 
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

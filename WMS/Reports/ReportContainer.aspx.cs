@@ -535,6 +535,7 @@ namespace WMS.Reports
                             PathString = "/Reports/RDLC/DSConsolidated.rdlc";
                         else
                             PathString = "/WMS/Reports/RDLC/DSConsolidated.rdlc";
+                        ReportsFilterImplementation(fm, _dateFrom, _dateTo, "L");
                         LoadReport(PathString, ReportsFilterImplementation(fm, _dateFrom, _dateTo, "L"), _dateFrom + " TO " + _dateTo, "Location Consolidated Summary");
                         break;
                     case "location_strength":
