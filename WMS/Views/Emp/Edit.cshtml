@@ -261,7 +261,7 @@
                          <div class="form-group">
                             <label class="control-label col-md-3">Date Of Birth</label>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.BirthDate)
+                                @Html.EditorFor(model =>model.BirthDate)
                                 @Html.ValidationMessageFor(model => model.BirthDate)
                             </div>
                          </div>
@@ -363,9 +363,3 @@
 <script src="@Url.Content("~/Scripts/Employee/crewCompany.js")"></script>
 <script src="@Url.Content("~/Scripts/Employee/desigCompany.js")"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        toastr.options.positionClass= 'toast-bottom-full-width';
-      @Html.Raw(ViewBag.JS)
-    });
-</script>

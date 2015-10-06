@@ -1906,6 +1906,10 @@
             <End Role="Emp" EntitySet="Emp" />
             <End Role="EmergencyDetail" EntitySet="EmergencyDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Emp_Company" Association="TAS2013Model.Store.FK_Emp_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Emp" EntitySet="Emp" />
+          </AssociationSet>
           <AssociationSet Name="FK_Emp_Crew" Association="TAS2013Model.Store.FK_Emp_Crew">
             <End Role="Crew" EntitySet="Crew" />
             <End Role="Emp" EntitySet="Emp" />
@@ -5542,6 +5546,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Emp_Company">
+          <End Role="Company" Type="TAS2013Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Emp" Type="TAS2013Model.Store.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Emp_Crew">
           <End Role="Crew" Type="TAS2013Model.Store.Crew" Multiplicity="0..1" />
           <End Role="Emp" Type="TAS2013Model.Store.Emp" Multiplicity="*" />
@@ -6275,6 +6291,10 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="Division" EntitySet="Divisions" />
           </AssociationSet>
+          <AssociationSet Name="FK_Emp_Company" Association="TAS2013Model.FK_Emp_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Emp" EntitySet="Emps" />
+          </AssociationSet>
           <AssociationSet Name="FK_EmpType_Company" Association="TAS2013Model.FK_EmpType_Company">
             <End Role="Company" EntitySet="Companies" />
             <End Role="EmpType" EntitySet="EmpTypes" />
@@ -6896,6 +6916,7 @@
           <NavigationProperty Name="Departments" Relationship="TAS2013Model.FK_Department_Company" FromRole="Company" ToRole="Department" />
           <NavigationProperty Name="Designations" Relationship="TAS2013Model.FK_Designation_Company" FromRole="Company" ToRole="Designation" />
           <NavigationProperty Name="Divisions" Relationship="TAS2013Model.FK_Division_Company" FromRole="Company" ToRole="Division" />
+          <NavigationProperty Name="Emps" Relationship="TAS2013Model.FK_Emp_Company" FromRole="Company" ToRole="Emp" />
           <NavigationProperty Name="EmpTypes" Relationship="TAS2013Model.FK_EmpType_Company" FromRole="Company" ToRole="EmpType" />
           <NavigationProperty Name="Grades" Relationship="TAS2013Model.FK_Grade_Company" FromRole="Company" ToRole="Grade" />
           <NavigationProperty Name="Sections" Relationship="TAS2013Model.FK_Section_Company1" FromRole="Company" ToRole="Section" />
@@ -7120,6 +7141,7 @@
           <NavigationProperty Name="AttMnDataPers" Relationship="TAS2013Model.FK_AttMnDataPer_Emp" FromRole="Emp" ToRole="AttMnDataPer" />
           <NavigationProperty Name="BadliRecords" Relationship="TAS2013Model.FK_BadliRecord_Emp" FromRole="Emp" ToRole="BadliRecord" />
           <NavigationProperty Name="Cards" Relationship="TAS2013Model.FK_Card_Emp" FromRole="Emp" ToRole="Card" />
+          <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_Emp_Company" FromRole="Emp" ToRole="Company" />
           <NavigationProperty Name="Crew" Relationship="TAS2013Model.FK_Emp_Crew" FromRole="Emp" ToRole="Crew" />
           <NavigationProperty Name="Designation" Relationship="TAS2013Model.FK_Emp_Designation1" FromRole="Emp" ToRole="Designation" />
           <NavigationProperty Name="EmergencyDetails" Relationship="TAS2013Model.FK_EmergencyDetails_Emp" FromRole="Emp" ToRole="EmergencyDetail" />
@@ -9921,6 +9943,18 @@
               <PropertyRef Name="CompID" />
             </Principal>
             <Dependent Role="Division">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_Company">
+          <End Role="Company" Type="TAS2013Model.Company" Multiplicity="0..1" />
+          <End Role="Emp" Type="TAS2013Model.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="Emp">
               <PropertyRef Name="CompanyID" />
             </Dependent>
           </ReferentialConstraint>
