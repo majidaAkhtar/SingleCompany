@@ -357,6 +357,7 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ProcessAtt\CriteriaValueAttProcessor.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\rosterScript.js" />
     <Content Include="Scripts\site.avatar.js" />
