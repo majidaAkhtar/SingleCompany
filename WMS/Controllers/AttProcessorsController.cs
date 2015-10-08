@@ -124,6 +124,19 @@ namespace WMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                string d=Request.Form["CriteriaID"].ToString();
+                switch (d)
+                {
+                    case "C":
+                        attprocessor.Criteria = "C";
+                        break;
+                    case "L": attprocessor.Criteria = "L";
+                        break;
+                    case "A": attprocessor.Criteria = "A"; break;
+                        
+                
+                }
                 attprocessor.ProcessingDone = false;
                 context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();

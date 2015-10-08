@@ -23,6 +23,7 @@ namespace WMS.Models
         public short LocationID { get; set; }
         public short CatID { get; set; }
         public Nullable<bool> ProcessingDone { get; set; }
+        public string Criteria { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Company Company { get; set; }
