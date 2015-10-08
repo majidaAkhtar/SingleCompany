@@ -2421,6 +2421,7 @@
           <Property Name="LocationID" Type="smallint" Nullable="false" />
           <Property Name="CatID" Type="smallint" Nullable="false" />
           <Property Name="ProcessingDone" Type="bit" />
+          <Property Name="Criteria" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AuditForm">
           <Key>
@@ -6811,6 +6812,7 @@
           <Property Name="LocationID" Type="Int16" Nullable="false" />
           <Property Name="CatID" Type="Int16" Nullable="false" />
           <Property Name="ProcessingDone" Type="Boolean" />
+          <Property Name="Criteria" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Category" Relationship="TAS2013Model.FK_AttProcessorScheduler_Category" FromRole="AttProcessorScheduler" ToRole="Category" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_AttProcessorScheduler_Company" FromRole="AttProcessorScheduler" ToRole="Company" />
           <NavigationProperty Name="Location" Relationship="TAS2013Model.FK_AttProcessorScheduler_Location" FromRole="AttProcessorScheduler" ToRole="Location" />
@@ -10801,6 +10803,7 @@
                 <ScalarProperty Name="LocationID" ColumnName="LocationID" />
                 <ScalarProperty Name="CatID" ColumnName="CatID" />
                 <ScalarProperty Name="ProcessingDone" ColumnName="ProcessingDone" />
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

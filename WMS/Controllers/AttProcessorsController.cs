@@ -101,6 +101,13 @@ namespace WMS.Controllers
     new SelectListItem { Selected = false, Text = "Summary", Value = "S"},
 
 }, "Value" , "Text",1);
+            ViewBag.CriteriaID = new SelectList(new List<SelectListItem>
+{
+    new SelectListItem { Selected = true, Text = "Company", Value = "C"},
+    new SelectListItem { Selected = false, Text = "Location", Value = "L"},
+    new SelectListItem { Selected = false, Text = "Category", Value = "A"},
+
+}, "Value", "Text", 1);
             ViewBag.CompanyID = new SelectList(db.Companies.Where(query).OrderBy(s=>s.CompName), "CompID", "CompName");
             query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
             ViewBag.LocationID = new SelectList(db.Locations.Where(query).OrderBy(s=>s.LocName), "LocID", "LocName");
@@ -117,6 +124,19 @@ namespace WMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                string d=Request.Form["CriteriaID"].ToString();
+                switch (d)
+                {
+                    case "C":
+                        attprocessor.Criteria = "C";
+                        break;
+                    case "L": attprocessor.Criteria = "L";
+                        break;
+                    case "A": attprocessor.Criteria = "A"; break;
+                        
+                
+                }
                 attprocessor.ProcessingDone = false;
                 context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();

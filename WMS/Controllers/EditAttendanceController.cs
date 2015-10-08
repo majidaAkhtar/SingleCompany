@@ -357,8 +357,7 @@ namespace WMS.Controllers
                     if (jobCardApp.CardType == 9)
                         jobCardApp.OtherValue = Convert.ToInt16(Request.Form["DesignationID"].ToString());
                 jobCardApp.Status = false;
-                if (!ValidateJobCard((DateTime)jobCardApp.DateStarted,(short)jobCardApp.CardType))
-                {
+               
                     switch (Request.Form["cars"].ToString())
                     {
                         case "shift":
@@ -406,7 +405,7 @@ namespace WMS.Controllers
                             }
                             break;
                     }
-                }
+                
                 //Add Job Card to JobCardData and Mark Legends in Attendance Data if attendance Created
                 Session["EditAttendanceDate"] = DateTime.Today.Date.ToString("yyyy-MM-dd");
                 ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");

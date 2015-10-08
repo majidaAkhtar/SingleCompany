@@ -9,66 +9,105 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>AttProcessor</legend>
+        <legend>Attendance Processor</legend>
+<div class="row">
+    <div class="col-md-8">
+   
 
-		<div class="editor-label">
-    @Html.LabelFor(model => model.PeriodTag, new { @class = "control-label col-md-2" })
-</div>
-<div class="editor-field">
+    <label class="control-label col-md-2">Period:</label>
      @Html.DropDownList("PeriodTag",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
     @Html.ValidationMessageFor(model => model.PeriodTag)
+
+
+        </div>
+    <div class="col-md-8">
+
+          <div class="form-group">
+                <label class="control-label col-md-2">Criteria</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("CriteriaID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                   
+                </div>
+            </div>
+
+    </div>
 </div>
-<div class="form-group">
-                            <label class="control-label col-md-3">Company Name</label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                @Html.ValidationMessageFor(model => model.Company.CompID)
-                            </div>
-                        </div>
-         <div class="form-group">
+	
+        <div class="row">
+             <div class="col-md-8" id="company">
+
+              <div class="form-group">
+                <label class="control-label col-md-2">Value:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                    @Html.ValidationMessageFor(model => model.CompanyID)
+                </div>
+            </div>
+            </div>
+             <div class="col-md-8" style="display:none;" id="location">
+
+              <div class="form-group">
+                <label class="control-label col-md-2">Value:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("LocationID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                    @Html.ValidationMessageFor(model => model.Location.LocID)
+                </div>
+            </div>
+            </div>
+             <div class="col-md-8" style="display:none;" id="category">
+
+              <div class="form-group">
+                <label class="control-label col-md-2">Value:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("CatID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                    @Html.ValidationMessageFor(model => model.Category.CatID)
+                </div>
+            </div>
+            </div>
+            <div class="col-md-8">
+
+                 <div class="form-group">
             <label class="control-label col-md-2">From:</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateFrom,@DateTime.Today.ToString("dd-MMM-yyyy"))
                 @Html.ValidationMessageFor(model => model.DateFrom)
             </div>
         </div>
-         <div class="form-group">
+            </div>
+            <div class="col-md-8">
+
+                 <div class="form-group">
             <label class="control-label col-md-2">To:</label>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 @Html.EditorFor(model => model.DateTo,@DateTime.Today.ToString("dd-MMM-yyyy"))
                 @Html.ValidationMessageFor(model => model.DateTo)
             </div>
         </div>
-          <div class="form-group">
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-8">
+                 <div class="form-group">
             <label class="control-label col-md-2">When To Process:</label>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 @Html.EditorFor(model => model.WhenToProcess,@DateTime.Today.ToString("dd-MMM-yyyy"))
                 @Html.ValidationMessageFor(model => model.WhenToProcess)
             </div>
         </div>
-         <div class="form-group">
-                            <label class="control-label col-md-3">From:</label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                @Html.ValidationMessageFor(model => model.DateFrom)
-                            </div>
-                        </div>
-<div class="form-group">
-                            <label class="control-label col-md-3">Location Name</label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("LocationID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                @Html.ValidationMessageFor(model => model.Location.LocID)
-                            </div>
-                        </div>
-<div class="form-group">
-                            <label class="control-label col-md-3">Category Name</label>
-                            <div class="col-md-4">
-                                @Html.DropDownList("CatID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                @Html.ValidationMessageFor(model => model.Category.CatID)
-                            </div>
-                        </div>
+
+            </div>
+            
+           
+        </div>
+        
+        
+         
+
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create" class="btn btn-default" />
         </p>
     </fieldset>
 }
@@ -78,3 +117,5 @@
 </div>
 
 
+
+<script src="@Url.Content("~/Scripts/ProcessAtt/CriteriaValueAttProcessor.js")"></script>
