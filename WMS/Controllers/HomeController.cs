@@ -179,22 +179,22 @@ namespace WMS.Controllers
                                   HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
                                   return RedirectToAction("AfterLogin");
                               }
-                              else
-                              {
-                                  int LoginCount = 0;
-                                  bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
-                                  if (successOnConversion == true)
-                                  {
-                                      LoginCount++;
-                                      Session["LoginCount"] = LoginCount + "";
-                                  }
-                                  else
-                                  {
-                                      Session["LoginCount"] = "1";
-                                  }
+                              //else
+                              //{
+                              //    int LoginCount = 0;
+                              //    bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                              //    if (successOnConversion == true)
+                              //    {
+                              //        LoginCount++;
+                              //        Session["LoginCount"] = LoginCount + "";
+                              //    }
+                              //    else
+                              //    {
+                              //        Session["LoginCount"] = "1";
+                              //    }
 
 
-                              }
+                              //}
                           }
                       }
                   //}
@@ -215,7 +215,7 @@ namespace WMS.Controllers
                   //}
                   return RedirectToAction("index");
 
-                //}
+               // }
 
 
 
