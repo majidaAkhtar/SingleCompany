@@ -114,13 +114,13 @@ namespace WMS.Controllers
         {
             try
             {
-                //using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "fatima-group.com"))
-                //{
-                //  //validate the credentials
-                // //bool isValid = pc.ValidateCredentials("ffl.ithelpdesk", "fatima@0202");
-                //  bool isValid = pc.ValidateCredentials(u.UserName, u.Password);
-                //  if (isValid)
-                //  {
+                using (PrincipalContext pc = new PrincipalContext(ContextType.Domain, "fatima-group.com"))
+                {
+                  //validate the credentials
+                 //bool isValid = pc.ValidateCredentials("ffl.ithelpdesk", "fatima@0202");
+                  bool isValid = pc.ValidateCredentials(u.UserName, u.Password);
+                  if (isValid)
+                  {
                       if (ModelState.IsValid) // this is check validity
                       {
                           using (TAS2013Entities dc = new TAS2013Entities())
@@ -179,43 +179,45 @@ namespace WMS.Controllers
                                   HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
                                   return RedirectToAction("AfterLogin");
                               }
-                              //else
-                              //{
-                              //    int LoginCount = 0;
-                              //    bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
-                              //    if (successOnConversion == true)
-                              //    {
-                              //        LoginCount++;
-                              //        Session["LoginCount"] = LoginCount + "";
-                              //    }
-                              //    else
-                              //    {
-                              //        Session["LoginCount"] = "1";
-                              //    }
+                              else
+                              {
+                                  int LoginCount = 0;
+                                  bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                                  if (successOnConversion == true)
+                                  {
+                                      LoginCount++;
+                                      Session["LoginCount"] = LoginCount + "";
+                                  }
+                                  else
+                                  {
+                                      Session["LoginCount"] = "1";
+                                  }
 
 
-                              //}
+                              }
                           }
                       }
-                  //}
-                  //else
-                  //{
-                  //    int LoginCount = 0;
-                  //    bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
-                  //    if (successOnConversion == true)
-                  //    {
-                  //        LoginCount++;
-                  //        Session["LoginCount"] = LoginCount + "";
-                  //    }
-                  //    else
-                  //    {
-                  //        Session["LoginCount"] = "1";
-                  //    }
+                  }
+                  else
+                  {
+                      int LoginCount = 0;
+                      bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                      if (successOnConversion == true)
+                      {
+                          LoginCount++;
+                          Session["LoginCount"] = LoginCount + "";
+                      }
+                      else
+                      {
+                          Session["LoginCount"] = "1";
+                      }
 
-                  //}
+                  }
                   return RedirectToAction("index");
 
-               // }
+
+               }
+
 
 
 
