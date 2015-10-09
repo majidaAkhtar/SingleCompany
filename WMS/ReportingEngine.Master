@@ -159,9 +159,8 @@
     <footer>
 
     </footer>
-     <script src="../../Scripts/angular/MainController.js"></script>  
-<script src="../../Scripts/angular/UserController.js"></script>   
-<script src="../../Scripts/angular/UserEditController.js"></script>  
+     <script src="../../Scripts/angular/reportingEngineMainController.js"></script>  
+ 
 <script src="../../Scripts/angular/DashboardController.js"></script>  
 </body>
 

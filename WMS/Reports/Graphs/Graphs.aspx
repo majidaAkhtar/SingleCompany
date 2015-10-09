@@ -29,7 +29,8 @@
             </div>
             <div class="col-md-4">
                 Select All:<input type="checkbox" ng-model="MultipleSelect">
-                Date : <input id="dateFrom" ng-model="DateFrom"  class="input-sm"  type="date" />
+                DateFrom : <input id="dateFrom" ng-model="DateFrom"  class="input-sm"  type="date" />
+                 DateTo : <input id="date1" ng-model="DateTo"  class="input-sm"  type="date" />
                 <asp:button ng-click="RenderGraph()" OnClientClick="false" Class="btn btn-success btn-sm">Fetch Summary</asp:button>
             </div>
         </div>
@@ -57,8 +58,16 @@
                     <asp:button ng-click="GetBestCriteria()" OnClientClick="false">Evaluation for the past 20 days</asp:button>
                 </div>
             </div>
-            <div class="col-md-10"> 
-                <highchart id="chart1" config="highchartsNG"></highchart>
+            
+            <div class="col-md-10" >
+                <div class ="row"> 
+                    <div class="col-md-6" >
+                        <highchart id="chart1" config="highchartsNG"></highchart>
+                    </div> 
+                    <div class="col-md-6" >
+                        <highchart id="HighchartforSameDate" config="highchartsBG"></highchart>
+                    </div> 
+                </div> 
             </div>
         </div>
     </div>

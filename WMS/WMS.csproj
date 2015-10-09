@@ -210,6 +210,7 @@
     <Content Include="Scripts\angular\DashboardController.js" />
     <Content Include="Scripts\angular\highcharts-ng.js" />
     <Content Include="Scripts\angular\MainController.js" />
+    <Content Include="Scripts\angular\reportingEngineMainController.js" />
     <Content Include="Scripts\angular\UserController.js" />
     <Content Include="Scripts\angular\UserEditController.js" />
     <Content Include="Scripts\EditAttendance.js" />
@@ -1319,7 +1320,6 @@
     <EmbeddedResource Include="Reports\RDLC\RShortLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\SummarizedMonthlyReport.rdlc" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\WMSLibrary\WMSLibrary.csproj">
       <Project>{bee16d41-5976-4142-97d7-ae43d44519c9}</Project>
@@ -1327,7 +1327,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
