@@ -143,6 +143,8 @@ namespace WMS
             Session["LogedUserID"] = null;
             Session["LoggedUser"] = null;
         }
+
+
     }
 
 
