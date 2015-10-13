@@ -25,6 +25,25 @@ namespace WMS.Controllers
             return Json(getInitialValues, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult GetDatesValues()
+        {
+            DateTime dateFrom = new DateTime();
+            DateTime dateTo = new DateTime();
+            List<DateTime> dtlist = new List<DateTime>();
+            FiltersModel fm = Session["FiltersModel"] as FiltersModel;
+            List<string> list = Session["ReportSession"] as List<string>;
+            dateFrom = Convert.ToDateTime(list[0]);
+            dateTo = Convert.ToDateTime(list[1]);
+            dtlist.Add(dateFrom);
+            dtlist.Add(dateTo);
+            return Json(list, JsonRequestBehavior.AllowGet);
+
+            
+        }
+
+
+
         private List<CriteriaFoAngular> GetInitialValuesFromFilters(FiltersModel fm)
         {
             List<CriteriaFoAngular> populateData = new List<CriteriaFoAngular>();

@@ -63,8 +63,7 @@ namespace WMS.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> ResignDate { get; set; }
-        
-        
+       
         public string HomeAdd { get; set; }
         public bool ProcessAtt { get; set; }
         public bool ProcessIn { get; set; }

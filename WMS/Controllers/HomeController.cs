@@ -219,6 +219,7 @@ namespace WMS.Controllers
 
 
 
+
                 //using (var context = new PrincipalContext(ContextType.Domain, "fatima-group.com", "ffl.ithelpdesk@fatima-group.com", "fatima@0202"))
                 //{
                 //    using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))

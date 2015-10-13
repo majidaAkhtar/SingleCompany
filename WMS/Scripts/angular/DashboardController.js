@@ -11,10 +11,18 @@
         $scope.selectedRowForToFrom = index;
         
         switch (index) {
-            case 0: ReRenderGraphInfo($scope.GraphData);
+            case 0: 
+                if (datefrom[0] == datefrom[1]) {
+                    ReRenderGraphInfo($scope.GraphData);
+                    ReRenderGraphInfoInOutTime($scope.GraphData);
+                }
+
+                else { }
                 break;
-            case 1: ReRenderGraphInfo($scope.GraphData); break;
-            case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); break;
+            case 1: ReRenderGraphInfo($scope.GraphData); 
+                    break;
+            case 2: ReRenderGraphInfoExpectedTime($scope.GraphData); 
+                    break;
 
         }
 
@@ -50,6 +58,28 @@
        // called asynchronously if an error occurs
        // or server returns response with an error status.
    });
+
+
+      
+            $http({ method: 'GET', url: '/Graph/GetDatesValues'}).
+       then(function (response) {
+           console.log(response.data);
+           var datefrom = [];
+           datefrom = response.data;
+           $scope.DateFrom = new Date(datefrom[0]);
+           $scope.DateTo = new Date(datefrom[1]);
+           if (datefrom[0] == datefrom[1])
+           {
+               $scope.names = [
+        'Strength', 'Work Times'
+               ];
+
+           }
+
+       }, function (response) {
+           // called asynchronously if an error occurs
+           // or server returns response with an error status.
+       });
 
     }
     //array with the values once the criteria is selected
@@ -143,10 +173,10 @@
     }
     var ReRenderGraphInfoInOutTime = function (graphdata)
     {
-        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
         chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
 
-        $scope.highchartsNG.series = [{
+        $scope.highchartsBG.series = [{
             name: "Attendence",
             colorByPoint: true,
             data: [{
@@ -165,7 +195,7 @@
                 y: graphdata.LOEmps
             }]
         }];
-        $scope.highchartsNG.loading = false;
+        $scope.highchartsBG.loading = false;
     }
     //This function takes the values given back by the database after selecting everything
     //in the front end like criteria, date, value
@@ -227,18 +257,27 @@
     }
     var ChangeToPieGraph = function (graphdata)
     {
-        var ChartData=[];
+        var ChartData = [];
+        var ChartData1 = [];
         switch ($scope.selectedRow)
         {
             case 0: ChartData.push({ "name": "Absent Employees", "y": parseFloat(graphdata.AbsentEmps) });
                 ChartData.push({ "name": "Present Employees", "y": parseFloat(graphdata.PresentEmps) });
                 ChartData.push({ "name": "On Leave", "y": (parseFloat(graphdata.LvEmps) + parseFloat(graphdata.ShortLvEmps) + parseFloat(graphdata.HalfLvEmps)) });
                 ChartData.push({ "name": "Day Off", "y": parseFloat(graphdata.DayOffEmps) });
+                ChartData1.push({ "name": "Early In", "y": parseFloat(graphdata.EIEmps) });
+                ChartData1.push({ "name": "Early Out", "y": parseFloat(graphdata.EOEmps) });
+                ChartData1.push({ "name": "Late In", "y": parseFloat(graphdata.LIEmps) });
+                ChartData1.push({ "name": "Late Out", "y": parseFloat(graphdata.LOEmps) });
+
                 break;
-            case 1:ChartData.push({ "name": "Early In", "y": parseFloat(graphdata.EIEmps) });
-                ChartData.push({ "name": "Early Out", "y": parseFloat(graphdata.EOEmps) });
-                ChartData.push({ "name": "Late In", "y": parseFloat(graphdata.LIEmps) });
-                ChartData.push({ "name": "Late Out", "y": parseFloat(graphdata.LOEmps) });
+            case 1: ChartData.push({ "name": "Expected Work Mins", "y": parseFloat(graphdata.ExpectedWorkMins) });
+                ChartData.push({ "name": "Actual Work Mins", "y": parseFloat(graphdata.ActualWorkMins) });
+                ChartData.push({ "name": "Loss Work Mins", "y": parseFloat(graphdata.LossWorkMins )});
+                ChartData1.push({ "name": "Early In", "y": parseFloat((graphdata.EIMins / 60).toPrecision(4))});
+                ChartData1.push({ "name": "Early Out", "y": parseFloat((graphdata.EOMins / 60).toPrecision(4))});
+                ChartData1.push({ "name": "Late In", "y": parseFloat((graphdata.LIMins / 60).toPrecision(4))});
+                ChartData1.push({ "name": "Late Out", "y": parseFloat((graphdata.LOMins / 60).toPrecision(4)) });
                
                 break;
             case 2:ChartData.push({ "name": "Expected Work Mins", "y": parseFloat(graphdata.ExpectedWorkMins) });
@@ -247,7 +286,45 @@
 
         }
         
-      
+        $scope.highchartsBG = {
+            options: {
+                chart: {
+                    type: 'pie'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    borderWidhth: 0,
+                    cursor: 'pointer',
+
+                    dataLabels: {
+                        enabled: true
+                    },
+                    showInLegend: true
+                }
+            },
+            dataLabels: {
+                style: {
+                    textShadow: ''
+                }
+            },
+            series: [{
+
+                colorByPoint: true,
+                data: ChartData1
+            }],
+            title: {
+                text: 'Daily Summary'
+            },
+            //once we have fetched the info from the database we will do loading :false
+            loading: false
+        }
 
         $scope.highchartsNG = {
             options: {
@@ -291,9 +368,11 @@
         switch ($scope.selectedRow)
         {
             case 0: $scope.highchartsNG.series[0].name = "Employees";
+                $scope.highchartsBG.series[0].name = "Time In/Out";
                     var chart = angular.element(document.getElementById('chart1')).highcharts();
                     chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
-
+                    var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+                    chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
                     break;
             case 1: $scope.highchartsNG.series[0].name = "Employees";
                 var chart = angular.element(document.getElementById('chart1')).highcharts();
