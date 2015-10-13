@@ -166,6 +166,7 @@
     <Content Include="Content\style\filters-page.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="ErrorPages\ErrorPage.aspx" />
     <Content Include="Reports\AttEdit.aspx" />
     <Content Include="Reports\AuditLog.aspx" />
     <Content Include="Reports\DAbsent.aspx" />
@@ -435,6 +436,13 @@
     <Compile Include="CustomClass\CustomFunc.cs" />
     <Compile Include="CustomClass\DatatableToList.cs" />
     <Compile Include="CustomClass\ValueForAngular.cs" />
+    <Compile Include="ErrorPages\ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HelperClass\AttDeptSummary.cs" />
     <Compile Include="HelperClass\GraphClass.cs" />
     <Compile Include="Models\AccessEmp.cs">

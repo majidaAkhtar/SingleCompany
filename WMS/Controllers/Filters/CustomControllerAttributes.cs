@@ -137,42 +137,80 @@ namespace WMS.Controllers.Filters
 
         private bool CheckAttEditPermision(User _User)
         {
-            if(_User.MEditAtt == true)
-                return true;
-            else
+            try
+            {
+                if (_User.MEditAtt == true)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
                 return false;
+            }
         }
 
         private bool CheckUserPermision(User _User)
         {
-            if(_User.MUser == true)
-                return true;
-            else
+            try
+            {
+                if (_User.MUser == true)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
                 return false;
+            }
         }
 
         private bool CheckDevicePermision(User _User)
         {
-            if (_User.MDevice == true)
-                return true;
-            else
+            try
+            {
+                if (_User.MDevice == true)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+
                 return false;
+            }
         }
 
         private bool CheckLeavePermision(User _User)
         {
-            if (_User.MLeave == true)
-                return true;
-            else
+            try
+            {
+                if (_User.MLeave == true)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+
                 return false;
+            }
         }
 
         private bool CheckHRPermision(User _User)
         {
-            if (_User.MHR == true)
-                return true;
-            else
+            try
+            {
+                if (_User.MHR == true)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+
                 return false;
+            }
         } 
     }
 }
