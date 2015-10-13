@@ -45,15 +45,7 @@
                       </tr>
                     </table>
                 </div>
-                <div class="row">
-                    <table class="table table-bordered"> 
-                     <tr>From/To Summaries</tr>
-                      <tr ng-repeat="x in names" ng-class="{'selected':$index == selectedRowForToFrom}" ng-click="setClickedRowForToFrom($index)">
-                        <td>{{ x }}</td>
-   
-                      </tr>
-                    </table>
-                </div>
+               
                 <div class="row">
                     <asp:button ng-click="GetBestCriteria()" OnClientClick="false">Evaluation for the past 20 days</asp:button>
                 </div>
