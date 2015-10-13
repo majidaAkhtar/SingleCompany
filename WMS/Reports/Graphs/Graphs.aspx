@@ -31,7 +31,7 @@
                 Select All:<input type="checkbox" ng-model="MultipleSelect">
                 DateFrom : <input id="dateFrom" ng-model="DateFrom"  class="input-sm"  type="date" />
                  DateTo : <input id="date1" ng-model="DateTo"  class="input-sm"  type="date" />
-                <asp:button ng-click="RenderGraph()" OnClientClick="false" Class="btn btn-success btn-sm">Fetch Summary</asp:button>
+             
             </div>
         </div>
         <div class="row">
