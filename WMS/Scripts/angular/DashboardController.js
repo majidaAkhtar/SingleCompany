@@ -192,27 +192,33 @@
                 }
                 var ids = [];
                 $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
-                console.log(ids);
+            
                 for (var id in ids) {
                     {
                         
-                        var nameOfSeries = ids[id];
-                    var tempcontainer = [];
-                    for (var key2 in graphdata)
-                    {
-                        if (graphdata[key2] != null && graphdata[key2].CriteriaName == nameOfSeries) {
-                            tempcontainer.push(graphdata[key2].ActualWorkMins);
-                                    
+                            
+                            var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata)
+                        {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].ActualWorkMins/60).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].LossWorkMins / 60).toPrecision(8)));
+                                }
+
+                            }
+
 
                         }
-
-
-                    }
-                     
-                    ChartData.push({ "name": nameOfSeries, data: tempcontainer });
+                   
+                    
+                        ChartData1.push({name:ids[id],data:tempcontainer1});
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+                    
                 }
                 }
-                console.log(ChartData);
+               
                 break;
             case 1: ChartData.push({ "name": "Expected Work Hours", "y": parseFloat((graphdata.ExpectedWorkMins / 60).toPrecision(4)) });
                 ChartData.push({ "name": "Actual Work Hours", "y": parseFloat((graphdata.ActualWorkMins / 60).toPrecision(4)) });
@@ -228,9 +234,8 @@
 
 
         }
-        console.log(xaxis);
-
-
+        
+       
         $scope.highchartsBG = {
             options: {
                 chart: {
@@ -275,7 +280,7 @@
         $scope.highchartsNG = {
             options: {
                 chart: {
-                    type: 'pie'
+                    type: 'line'
                 }
             },
             credits: {
@@ -307,11 +312,7 @@
                     textShadow: ''
                 }
             },
-            series: [{
-
-                colorByPoint: true,
-                data: ChartData
-            }],
+            series: ChartData1,
             title: {
                 text: textTwo
             },
@@ -358,7 +359,7 @@
             else {
 
                 $scope.names = [
-        'Work Done', 'Work Loss', 'Over time (Hours)', 'Late In (Hours)', 'Present', 'Absent', 'Leave', 'Early in', 'Early Out', 'Late In', 'Late Out', 'OverTime'
+        'Work Loss/Done', 'Over time (Hours)', 'Late In (Hours)', 'Present', 'Absent', 'Leave', 'Early in', 'Early Out', 'Late In', 'Late Out', 'OverTime'
                 ];
 
             }
