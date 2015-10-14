@@ -5,7 +5,7 @@
     $scope.selectedRowForToFrom = 0;
     //array with the criteria names
     $scope.MultipleSelect = false;
-   
+    var datefrom = [];
     $scope.selectedRow = 5;  // initialize our variable to null
  
     $scope.setClickedRow = function (index) {  //function that sets the value of selectedRow to current index
@@ -44,18 +44,35 @@
       
             $http({ method: 'GET', url: '/Graph/GetDatesValues'}).
        then(function (response) {
-           console.log(response.data);
-           var datefrom = [];
+           
+          
            datefrom = response.data;
            $scope.DateFrom = new Date(datefrom[0]);
            $scope.DateTo = new Date(datefrom[1]);
-           if (datefrom[0] == datefrom[1])
-           {
+           if ($scope.MultipleSelect == true) {
+               if (datefrom[0] == datefrom[1]) {
+                   $scope.names = [
+            'Strength', 'Work Times'
+                   ];
+
+               }
+               else {
+
+                   $scope.names = [
+           'Work Done', 'Work Loss', 'Over time (Hours)', 'Late In (Hours)', 'Present', 'Absent', 'Leave', 'Early in', 'Early Out', 'Late In', 'Late Out', 'OverTime'
+                   ];
+
+               }
+
+           }
+           else {
+
                $scope.names = [
-        'Strength', 'Work Times'
+           'Strength', 'Work Times'
                ];
 
            }
+           
 
        }, function (response) {
            // called asynchronously if an error occurs
@@ -75,129 +92,297 @@
     //Daily Attendance
     $scope.RenderDailyAttendance = function () {
         if ($scope.MultipleSelect == true)
-            {
-            var ids = [];
-            $scope.Value.availableOptions.forEach(function (value) {ids.push(value.id); });
-            $scope.GeneralCriteria= ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect;
-            $http({ method: 'POST', url: '/Graph/GetGraphValuesForMultipleSelect', data: JSON.stringify({ GeneralCriteria: $scope.GeneralCriteria,Ids:ids }) }).
-    then(function (response) {
-                            $scope.GraphData = response.data;
-                           ChangeToStackedColumnGraph($scope.GraphData);
-        
-                            }, function (response) {});
-            }
-        else
-           {
+        {
+            var fromString = $scope.DateFrom.getFullYear() + "/" + $scope.DateFrom.getMonth() + "/" + $scope.DateFrom.getDate();
+            var toString = $scope.DateTo.getFullYear() + "/" + $scope.DateTo.getMonth() + "/" + $scope.DateTo.getDate();
+            if (fromString == toString) {
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.id); });
+                $scope.GeneralCriteria = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect;
+                $http({ method: 'POST', url: '/Graph/GetGraphValuesForMultipleSelect', data: JSON.stringify({ GeneralCriteria: $scope.GeneralCriteria, Ids: ids }) }).
+        then(function (response) {
+            $scope.GraphData = response.data;
+            ChangeToStackedColumnGraph($scope.GraphData);
 
-            $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
-            $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
-      then(function (response) {
-                             $scope.GraphData = response.data;
-                             ChangeToPieGraph($scope.GraphData);
-                                }, function (response) {});
+        }, function (response) { });
+            }
+            else {
+                 var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.id); });
+                $scope.GeneralCriteria =$scope.Criteria.repeatSelect;
+                $http({ method: 'POST', url: '/Graph/GetGraphValuesForMultipleSelectAndDifferentDate', data: JSON.stringify({ GeneralCriteria: $scope.GeneralCriteria, Ids: ids,datefrom:$scope.DateFrom,dateto:$scope.DateTo }) }).
+        then(function (response) {
+            $scope.GraphData = response.data;
+            ChangeToNormalLineGraph($scope.GraphData);
+
+        }, function (response) { });
+
+
+            }
+
+
+
+
+        }
+        else
+        {
+            
+            var fromString = $scope.DateFrom.getFullYear() + "/" + $scope.DateFrom.getMonth() + "/" + $scope.DateFrom.getDate();
+            var toString = $scope.DateTo.getFullYear() + "/" + $scope.DateTo.getMonth() + "/" + $scope.DateTo.getDate();
+          
+            if (fromString == toString) {
+                $scope.finalCriteriaForDB = ('' + $scope.DateFrom.getFullYear()).slice(-2) + ('0' + ($scope.DateFrom.getMonth() + 1)).slice(-2) + ('0' + $scope.DateFrom.getDate()).slice(-2) + $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
+                $http({ method: 'POST', url: '/Graph/GetGraphValues', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB }) }).
+          then(function (response) {
+              $scope.GraphData = response.data;
+              ChangeToPieGraph($scope.GraphData);
+          }, function (response) { });
+
+            }
+            else {
+                $scope.finalCriteriaForDB = $scope.Criteria.repeatSelect + $scope.Value.repeatSelect;
+                $http({ method: 'POST', url: '/Graph/GetGraphValuesForDifferentDatesSS', data: JSON.stringify({ CriteriaValue: $scope.finalCriteriaForDB,datefrom:$scope.DateFrom,dateto:$scope.DateTo }) }).
+         then(function (response) {
+             $scope.GraphData = response.data;
+            
+             ChangeToStackedColumnGraph($scope.GraphData);
+         }, function (response) { });
+
+            }
 
             }
   
 
     };
-    
-
-
-      
-    var ReRenderGraphInfoExpectedTime = function (graphdata)
+    var ChangeToNormalLineGraph = function (graphdata)
     {
-        var chart = angular.element(document.getElementById('chart1')).highcharts();
-        chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
-       
-        $scope.highchartsNG.series = [{
-            name: "Minutes",
-            colorByPoint: true,
+        var textOne = "";
+        var textTwo = "";
+        var bestWorkDone = "";
+        var ChartData = [];
+        var xaxis = [];
+        var ChartData1 = [];
+        //switch ($scope.selectedRow) {
+        //    case 0://work done
+        //        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        //        chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
+        //        var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+        //        chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+
+        //        break;
+        //    case 1:
+        //        var chart = angular.element(document.getElementById('chart1')).highcharts();
+        //        chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+        //        var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+        //        chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
+
+
+        //        break;
+
+
+        //}
+        switch ($scope.selectedRow) {
+            case 0: 
+                textOne = "Work Done";
+                textTwo = "Work Loss";
+                for (var d = angular.copy($scope.DateFrom) ; d <= $scope.DateTo; d.setDate(d.getDate() + 1)) {
+                    
+                        var date = ('' + d.getFullYear()).slice(-2) + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)
+                        xaxis.push(date);
+                }
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                console.log(ids);
+                for (var id in ids) {
+                    {
+                        
+                        var nameOfSeries = ids[id];
+                    var tempcontainer = [];
+                    for (var key2 in graphdata)
+                    {
+                        if (graphdata[key2] != null && graphdata[key2].CriteriaName == nameOfSeries) {
+                            tempcontainer.push(graphdata[key2].ActualWorkMins);
+                                    
+
+                        }
+
+
+                    }
+                     
+                    ChartData.push({ "name": nameOfSeries, data: tempcontainer });
+                }
+                }
+                console.log(ChartData);
+                break;
+            case 1: ChartData.push({ "name": "Expected Work Hours", "y": parseFloat((graphdata.ExpectedWorkMins / 60).toPrecision(4)) });
+                ChartData.push({ "name": "Actual Work Hours", "y": parseFloat((graphdata.ActualWorkMins / 60).toPrecision(4)) });
+                ChartData.push({ "name": "Loss Work Hours", "y": parseFloat((graphdata.LossWorkMins / 60).toPrecision(4)) });
+                ChartData1.push({ "name": "Early In", "y": parseFloat((graphdata.EIMins / 60).toPrecision(4)) });
+                ChartData1.push({ "name": "Early Out", "y": parseFloat((graphdata.EOMins / 60).toPrecision(4)) });
+                ChartData1.push({ "name": "Late In", "y": parseFloat((graphdata.LIMins / 60).toPrecision(4)) });
+                ChartData1.push({ "name": "Late Out", "y": parseFloat((graphdata.LOMins / 60).toPrecision(4)) });
+                textOne = "Early/Late Hours";
+                textTwo = "Work Hours";
+
+                break;
+
+
+        }
+        console.log(xaxis);
+
+
+        $scope.highchartsBG = {
+            options: {
+                chart: {
+                    type: 'line'
+                },
+                colors: {
+                    radialGradient: {
+                        cx: 0.5,
+                        cy: 0.3,
+                        r: 0.7
+                    }
+                }
+            },
             credits: {
                 enabled: false
             },
-            data: [{
-                name: "Expected Work Minutes",
-                y: graphdata.ExpectedWorkMins
-            }, {
-                name: "Actual Work Minutes",
-                y: graphdata.ActualWorkMins,
-                sliced: true,
-                selected: true
-            }, {
-                name: "Loss Work Minutes",
-                y: graphdata.LossWorkMins
-            }]
-        }];
-        $scope.highchartsNG.loading = false;
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+               
+            },
+                xAxis: {
+            categories: xaxis,
+            title: {
+                        text: null
+            }
+                },
+            dataLabels: {
+                style: {
+                    textShadow: ''
+                }
+            },
+            series: ChartData,
+            title: {
+                text: textOne
+            },
+            //once we have fetched the info from the database we will do loading :false
+            loading: false
+        }
+
+        $scope.highchartsNG = {
+            options: {
+                chart: {
+                    type: 'pie'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    borderWidhth: 0,
+                    cursor: 'pointer',
+
+                    dataLabels: {
+                        enabled: true
+                    },
+                    showInLegend: true
+                }
+            },
+
+                xAxis: {
+            categories: xaxis,
+            title: {
+                        text: null
+            }
+                },
+            dataLabels: {
+                style: {
+                    textShadow: ''
+                }
+            },
+            series: [{
+
+                colorByPoint: true,
+                data: ChartData
+            }],
+            title: {
+                text: textTwo
+            },
+            //once we have fetched the info from the database we will do loading :false
+            loading: false
+        }
+        switch ($scope.selectedRow) {
+            case 0: $scope.highchartsNG.series[0].name = "Employees";
+                $scope.highchartsBG.series[0].name = "Time In/Out";
+                var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
+                var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+                break;
+            case 1: $scope.highchartsNG.series[0].name = "Employees";
+                var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+                var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+                chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
+
+
+                break;
+
+
+        }
+
+
     }
-    var ReRenderGraphInfoInOutTime = function (graphdata)
-    {
-        var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
-        chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
 
-        $scope.highchartsBG.series = [{
-            name: "Attendence",
-            colorByPoint: true,
-            data: [{
-                name: "Early In Employees",
-                y: graphdata.EIEmps
-            }, {
-                name: "Early Out Employees",
-                y: graphdata.EOEmps,
-                sliced: true,
-                selected: true
-            }, {
-                name: "Late In Employees",
-                y: graphdata.LIEmps
-            }, {
-                name: "Late Out Employees",
-                y: graphdata.LOEmps
-            }]
-        }];
-        $scope.highchartsBG.loading = false;
+    $scope.$watch('DateFrom', function () { checkForMultipleSelect(); }, true);
+    $scope.$watch('DateTo', function () { checkForMultipleSelect(); }, true);
+    var checkForMultipleSelect = function ()
+    {
+        var fromString = $scope.DateFrom.getFullYear() + "/" + $scope.DateFrom.getMonth() + "/" + $scope.DateFrom.getDate();
+        var toString = $scope.DateTo.getFullYear() + "/" + $scope.DateTo.getMonth() + "/" + $scope.DateTo.getDate();
+
+        if ($scope.MultipleSelect == true) {
+            if (fromString == toString) {
+                $scope.names = [
+         'Strength', 'Work Times'
+                ];
+
+            }
+            else {
+
+                $scope.names = [
+        'Work Done', 'Work Loss', 'Over time (Hours)', 'Late In (Hours)', 'Present', 'Absent', 'Leave', 'Early in', 'Early Out', 'Late In', 'Late Out', 'OverTime'
+                ];
+
+            }
+
+        }
+        else {
+
+            $scope.names = [
+        'Strength', 'Work Times'
+            ];
+
+        }
     }
-    //This function takes the values given back by the database after selecting everything
-    //in the front end like criteria, date, value
-    var ReRenderGraphInfo = function (graphdata)
-    {
-        
-        chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
+    $scope.$watch('MultipleSelect', function () {
+        checkForMultipleSelect();
 
-        $scope.highchartsNG.series = [{
-            name: "Attendence",
-            colorByPoint: true,
-            data: [{
-                name: "Absent Employees",
-                y: graphdata.AbsentEmps
-            }, {
-                name: "Present Employees",
-                y: graphdata.PresentEmps,
-                sliced: true,
-                selected: true
-            }, {
-                name: "On Leave",
-                y: graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps
-            }, {
-                name: "Day Off",
-                y: graphdata.DayOffEmps
-            }]
-        }];
-        $scope.highchartsNG.loading = false;
-
-    };
-    //Once the criteria changes a backend call is made which gets all the unique values of the 
-    //selected criteria from the dailysummary table. e.g. if we select C all the  companies will
-    //be rendered in the frontend but the  companies wont be duplicated. although in the dailysummary
-    //table there are duplicates for the same company the backend will return all the unique company
-     //values which are stored in the daily summary
+    }, true);
     $scope.$watch('Criteria', function () {
         var GraphClass = { Criteria: $scope.Criteria.repeatSelect };
         $http({ method: 'POST', url: '/Graph/GetCriteriaNames', data: JSON.stringify(GraphClass) }).
    then(function (response) {
        $scope.Value.availableOptions = response.data;
    }, function (response) {
-       // called asynchronously if an error occurs
-       // or server returns response with an error status.
+       
    });
     },true);
     $scope.GetBestCriteria = function ()
@@ -220,6 +405,25 @@
         var textTwo = "";
         var ChartData = [];
         var ChartData1 = [];
+        switch ($scope.selectedRow) {
+            case 0: 
+                var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
+                var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+               
+                break;
+            case 1: 
+                var chart = angular.element(document.getElementById('chart1')).highcharts();
+                chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
+                var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
+                chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
+
+
+                break;
+
+
+        }
         switch ($scope.selectedRow)
         {
             case 0: ChartData.push({ "name": "Absent Employees", "y": parseFloat(graphdata.AbsentEmps) });
@@ -245,9 +449,7 @@
                 textTwo = "Work Hours";
                
                 break;
-            case 2:ChartData.push({ "name": "Expected Work Mins", "y": parseFloat(graphdata.ExpectedWorkMins) });
-                ChartData.push({ "name": "Actual Work Mins", "y": parseFloat(graphdata.ActualWorkMins) });
-                ChartData.push({ "name": "Loss Work Mins", "y": parseFloat(graphdata.LossWorkMins) });
+           
 
         }
        
@@ -256,6 +458,13 @@
             options: {
                 chart: {
                     type: 'pie'
+                },
+                colors: {
+                    radialGradient: {
+                        cx: 0.5,
+                        cy: 0.3,
+                        r: 0.7
+                    }
                 }
             },
             credits: {
@@ -351,10 +560,9 @@
         }
        
     }
-
     var ChangeToStackedColumnGraph = function (data)
     {
-       
+        
         var bestCriteriaName = "";
         var EIEmps = [];
         var EOEmps = [];
@@ -370,13 +578,28 @@
         var xaxis = [];
         var Series = [];
         var Series1 = [];
+        var dynamictype = 'bar';
         var xaxis1 = [];
         var textOne = "";
+        var yAxis = "Percentages";
         var textTwo = "";
         for (var key in data) {
             if (data[key] != null) {
-                xaxis.push(data[key].CriteriaName);
+                var fromString = $scope.DateFrom.getFullYear() + "/" + $scope.DateFrom.getMonth() + "/" + $scope.DateFrom.getDate();
+                var toString = $scope.DateTo.getFullYear() + "/" + $scope.DateTo.getMonth() + "/" + $scope.DateTo.getDate();
 
+                if ($scope.MultipleSelect == false && fromString != toString)
+                {
+                    for (var d = angular.copy($scope.DateFrom) ; d <= $scope.DateTo; d.setDate(d.getDate() + 1)) {
+                        {
+                            var date = ('' + d.getFullYear()).slice(-2) + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)
+                            xaxis.push(date);
+                        } 
+                    }
+                    dynamictype = 'area';
+                }
+                else
+                xaxis.push(data[key].CriteriaName);
                 switch ($scope.selectedRow)
                 {
                     case 0: AbsentEmployees.push(parseFloat((parseFloat(data[key].AbsentEmps) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
@@ -425,7 +648,7 @@
                     
                     case 1:  ActualWorkMins.push(parseFloat((data[key].ActualWorkMins/60).toPrecision(4)));
                         ExpectedWorkMins.push(parseFloat((data[key].ExpectedWorkMins/60).toPrecision(4)));
-                       
+                        yAxis = "Hours";
                         LossWorkMins.push(parseFloat((data[key].LossWorkMins/60).toPrecision(4)));  
                         for (var i = 0; i < ActualWorkMins.length; i++)
                             ActualWorkMins[i] = parseInt(ActualWorkMins[i], 10);
@@ -498,26 +721,29 @@
                 break;
 
         }
-        console.log(xaxis);
         $scope.highchartsNG = {
             options: {
                 chart: {
-                    type: 'bar'
+                    type: dynamictype
+                }
+            }, plotOptions : {
+                series: {
+                    stacking: "normal"
                 }
             },
             title: {
                 text: textOne
             },
-                xAxis: {
-            categories: xaxis,
-            title: {
-                        text: null
-            }
-                },
+            xAxis: {
+                categories: xaxis,
+                title: {
+                    text: null
+                }
+            },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Percentages',
+                    text: yAxis,
                     align: 'high'
                 },
                 labels: {
@@ -527,13 +753,7 @@
             tooltip: {
                 valueSuffix: ' percent'
             },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
+           
             series:Series,
             legend: {
                 layout: 'vertical',
@@ -551,10 +771,11 @@
             }
 
         };
+        
         $scope.highchartsBG = {
             options: {
                 chart: {
-                    type: 'bar'
+                    type: dynamictype
                 }
             },
             title: {
@@ -569,7 +790,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Percentages',
+                    text: yAxis,
                     align: 'high'
                 },
                 labels: {
@@ -579,11 +800,9 @@
             tooltip: {
                 valueSuffix: ' percent'
             },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
+            plotOptions : {
+                series: {
+                    stacking: "normal"
                 }
             },
             series: Series1,
@@ -603,10 +822,45 @@
             }
 
         };
+        var fromString = $scope.DateFrom.getFullYear() + "/" + $scope.DateFrom.getMonth() + "/" + $scope.DateFrom.getDate();
+        var toString = $scope.DateTo.getFullYear() + "/" + $scope.DateTo.getMonth() + "/" + $scope.DateTo.getDate();
+
+        if ($scope.MultipleSelect == false && fromString != toString) {
+            $scope.highchartsNG.plotOptions = {
+                "series": {
+                    "stacking": "normal"
+                }
+            };
+        
+        $scope.highchartsBG.plotOptions = {
+            "series": {
+                "stacking": "normal"
+            }
+        };
+    
+
+        }
+        else {
+            $scope.highchartsNG.plotOptions = {
+
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            };
+            $scope.highchartsBG.plotOptions = {
+
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            };
+
+        }
       
-      
-        $scope.highchartsNG.xAxis.title.text = null;
-        $scope.highchartsBG.xAxis.title.text = null;
+       
 
     }
     var ChangeToColumnGraph = function (data)

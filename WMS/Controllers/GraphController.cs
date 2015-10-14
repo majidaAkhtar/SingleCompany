@@ -62,7 +62,55 @@ namespace WMS.Controllers
                 
             return populateData;
         }
+        [HttpPost]
+        public ActionResult GetGraphValuesForMultipleSelectAndDifferentDate(string GeneralCriteria, List<string> Ids, string datefrom, string dateto)
+        {
+            List<DailySummary> GetListOfDailySummaries = new List<DailySummary>();
+            using (TAS2013Entities dc = new TAS2013Entities())
+            {
+                
+                    foreach (var id in Ids)
+                    {
+                        for (DateTime date = Convert.ToDateTime(datefrom); date.Date <= Convert.ToDateTime(dateto).Date; date = date.AddDays(1))
+                        {
+                            string query = date.Year.ToString().Substring(2) + (("0" + date.Month).Count() != 2 ? date.Month + "" : ("0" + date.Month)) + (("0" + date.Day).Count() != 2 ? date.Day + "" : ("0" + date.Day)) + GeneralCriteria + id;
+                        DailySummary ds = dc.DailySummaries.Where(aa => aa.SummaryDateCriteria == query).FirstOrDefault();
+                        GetListOfDailySummaries.Add(ds);
 
+                    }
+
+
+                }
+
+                return Json(GetListOfDailySummaries, JsonRequestBehavior.AllowGet);
+
+            }
+        
+        }
+        [HttpPost]
+        public ActionResult GetGraphValuesForDifferentDatesSS(string CriteriaValue, string datefrom,string dateto)
+        {
+            List<DailySummary> GetListOfDailySummaries = new List<DailySummary>();
+            string criteria = CriteriaValue.Substring(0,1);
+            string value  = CriteriaValue.Substring(1);
+            if (value.ToLower() != "null")
+            {
+                using (TAS2013Entities dc = new TAS2013Entities())
+                {
+
+                    for (DateTime date = Convert.ToDateTime(datefrom); date.Date <= Convert.ToDateTime(dateto).Date; date = date.AddDays(1))
+                    {
+                        string query = date.Year.ToString().Substring(2) + (("0" + date.Month).Count() != 2 ? date.Month + "" : ("0" + date.Month)) + (("0" + date.Day).Count() != 2 ? date.Day + "" : ("0" + date.Day)) + criteria + value;
+                        short criteriav = Convert.ToInt16(value);
+                        DailySummary ds = dc.DailySummaries.Where(aa => aa.SummaryDateCriteria == query).First();
+                        GetListOfDailySummaries.Add(ds);
+
+                    }
+
+                }
+            }
+            return Json(GetListOfDailySummaries, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public ActionResult GetGraphValues(string CriteriaValue)
         {
