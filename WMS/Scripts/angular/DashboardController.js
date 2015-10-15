@@ -34,7 +34,7 @@
    then(function (response) {
        $scope.Criteria.availableOptions= response.data;
        $scope.Criteria.repeatSelect = null;
-
+     
    }, function (response) {
        // called asynchronously if an error occurs
        // or server returns response with an error status.
@@ -59,7 +59,7 @@
                else {
 
                    $scope.names = [
-           'Work Done', 'Work Loss', 'Over time (Hours)', 'Late In (Hours)', 'Present', 'Absent', 'Leave', 'Early in', 'Early Out', 'Late In', 'Late Out', 'OverTime'
+           'Work Loss/Work Done', 'Over time (Hours)/OverTime(Employees)', 'Late In (Hours)/Late In(Employees)', 'Late Out(Hours)/Late Out(Employees)', 'Present/Absent', 'Leave', 'Early In(Hours)/Early In(Employees)', 'Early Out(Hours)/Early Out(Employees)'
                    ];
 
                }
@@ -162,42 +162,19 @@
         var ChartData = [];
         var xaxis = [];
         var ChartData1 = [];
-        //switch ($scope.selectedRow) {
-        //    case 0://work done
-        //        var chart = angular.element(document.getElementById('chart1')).highcharts();
-        //        chart.setTitle(null, { text: (((graphdata.PresentEmps) / (graphdata.PresentEmps + graphdata.AbsentEmps + graphdata.LvEmps + graphdata.ShortLvEmps + graphdata.HalfLvEmps + graphdata.DayOffEmps)) * 100).toPrecision(4) + "% employees present" });
-        //        var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
-        //        chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
-
-        //        break;
-        //    case 1:
-        //        var chart = angular.element(document.getElementById('chart1')).highcharts();
-        //        chart.setTitle(null, { text: (((graphdata.EIEmps + graphdata.LOEmps) / (graphdata.EIEmps + graphdata.LOEmps + graphdata.EOEmps + graphdata.LIEmps)) * 100).toPrecision(4) + "% employees did overtime" });
-        //        var chart = angular.element(document.getElementById('HighchartforSameDate')).highcharts();
-        //        chart.setTitle(null, { text: ((graphdata.ActualWorkMins / graphdata.ExpectedWorkMins) * 100).toPrecision(4) + "% minutes were productively utilized" });
-
-
-        //        break;
-
-
-        //}
+        for (var d = angular.copy($scope.DateFrom) ; d <= $scope.DateTo; d.setDate(d.getDate() + 1)) {
+            var date = ('' + d.getFullYear()).slice(-2) + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)
+            xaxis.push(date);
+        }
         switch ($scope.selectedRow) {
             case 0: 
                 textOne = "Work Done";
                 textTwo = "Work Loss";
-                for (var d = angular.copy($scope.DateFrom) ; d <= $scope.DateTo; d.setDate(d.getDate() + 1)) {
-                    
-                        var date = ('' + d.getFullYear()).slice(-2) + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2)
-                        xaxis.push(date);
-                }
                 var ids = [];
                 $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
-            
                 for (var id in ids) {
                     {
-                        
-                            
-                            var tempcontainer = [];
+                        var tempcontainer = [];
                         var tempcontainer1 = [];
                         for (var key2 in graphdata)
                         {
@@ -208,31 +185,187 @@
                                 }
 
                             }
-
-
                         }
-                   
-                    
                         ChartData1.push({name:ids[id],data:tempcontainer1});
                         ChartData.push({ name: ids[id], data: tempcontainer });
                     
-                }
+                    }
                 }
                
                 break;
-            case 1: ChartData.push({ "name": "Expected Work Hours", "y": parseFloat((graphdata.ExpectedWorkMins / 60).toPrecision(4)) });
-                ChartData.push({ "name": "Actual Work Hours", "y": parseFloat((graphdata.ActualWorkMins / 60).toPrecision(4)) });
-                ChartData.push({ "name": "Loss Work Hours", "y": parseFloat((graphdata.LossWorkMins / 60).toPrecision(4)) });
-                ChartData1.push({ "name": "Early In", "y": parseFloat((graphdata.EIMins / 60).toPrecision(4)) });
-                ChartData1.push({ "name": "Early Out", "y": parseFloat((graphdata.EOMins / 60).toPrecision(4)) });
-                ChartData1.push({ "name": "Late In", "y": parseFloat((graphdata.LIMins / 60).toPrecision(4)) });
-                ChartData1.push({ "name": "Late Out", "y": parseFloat((graphdata.LOMins / 60).toPrecision(4)) });
-                textOne = "Early/Late Hours";
-                textTwo = "Work Hours";
+            case 1: textOne = "Over time (Hours)";
+                textTwo = "OverTime(Employees)";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata)
+                        {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].OTMins/60).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].OTEmps).toPrecision(8)));
+                                }
+
+                            }
+                        }
+                        ChartData1.push({name:ids[id],data:tempcontainer1});
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+                    
+                    }
+                }
 
                 break;
+            case 2: textOne = "Late In (Hours)";
+                textTwo = "Late In(Employees)";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata) {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].LIMins / 60).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].LIEmps).toPrecision(8)));
+                                }
 
+                            }
+                        }
+                        ChartData1.push({ name: ids[id], data: tempcontainer1 });
+                        ChartData.push({ name: ids[id], data: tempcontainer });
 
+                    }
+                }
+
+                break;
+            case 3: textOne = "Late Out(Hours)";
+                textTwo = "Late Out(Employees)";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata) {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].LOMins / 60).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].LOEmps).toPrecision(8)));
+                                }
+
+                            }
+                        }
+                        ChartData1.push({ name: ids[id], data: tempcontainer1 });
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+
+                    }
+                }
+
+                break;
+            case 4: textOne = "Present";
+                textTwo = "Absent";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata) {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].PresentEmps).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].AbsentEmps).toPrecision(8)));
+                                }
+
+                            }
+                        }
+                        ChartData1.push({ name: ids[id], data: tempcontainer1 });
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+
+                    }
+                }
+
+                break;
+            case 5: textOne = "Leave";
+                textTwo = "Present";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata) {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat(((parseFloat(data[key].LvEmps) + parseFloat(data[key].ShortLvEmps) + parseFloat(data[key].HalfLvEmps)) / parseFloat(data[key].TotalEmps)) * 100).toPrecision(4));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].PresentEmps).toPrecision(8)));
+                                }
+
+                            }
+                        }
+                        ChartData1.push({ name: ids[id], data: tempcontainer1 });
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+
+                    }
+                }
+
+                break;
+            case 6: textOne = "Early In(Hours)";
+                textTwo = "Early In(Employees)";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata) {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].EIMins/60).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].EIEmps).toPrecision(8)));
+                                }
+
+                            }
+                        }
+                        ChartData1.push({ name: ids[id], data: tempcontainer1 });
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+
+                    }
+                }
+
+                break;
+            case 7: textOne = "Early Out(Hours)";
+                textTwo = "Early Out(Employees)";
+                var ids = [];
+                $scope.Value.availableOptions.forEach(function (value) { ids.push(value.name); });
+                for (var id in ids) {
+                    {
+                        var tempcontainer = [];
+                        var tempcontainer1 = [];
+                        for (var key2 in graphdata) {
+                            if (graphdata[key2] != null && graphdata[key2].CriteriaName == ids[id]) {
+                                {
+                                    tempcontainer.push(parseFloat((graphdata[key2].EOMins / 60).toPrecision(8)));
+                                    tempcontainer1.push(parseFloat((graphdata[key2].EOEmps).toPrecision(8)));
+                                }
+
+                            }
+                        }
+                        ChartData1.push({ name: ids[id], data: tempcontainer1 });
+                        ChartData.push({ name: ids[id], data: tempcontainer });
+
+                    }
+                }
+
+                break;
+                // $scope.names = [
+              //  'Work Loss/Work Done', 'Over time (Hours)/OverTime(Employees)', 'Late In (Hours)/Late In(Employees)', 'Late Out(Hours)/Late Out(Employees)', 'Present/Absent', 'Leave/Present', 'Early In(Hours)/Early In(Employees)', 'Early Out(Hours)/Early Out(Employees)'
+         //   ];
+               
         }
         
        
@@ -341,7 +474,6 @@
 
 
     }
-
     $scope.$watch('DateFrom', function () { checkForMultipleSelect(); }, true);
     $scope.$watch('DateTo', function () { checkForMultipleSelect(); }, true);
     var checkForMultipleSelect = function ()
@@ -359,8 +491,9 @@
             else {
 
                 $scope.names = [
-        'Work Loss/Done', 'Over time (Hours)', 'Late In (Hours)', 'Present', 'Absent', 'Leave', 'Early in', 'Early Out', 'Late In', 'Late Out', 'OverTime'
+       'Work Loss/Work Done', 'Over time (Hours)/OverTime(Employees)', 'Late In (Hours)/Late In(Employees)', 'Late Out(Hours)/Late Out(Employees)', 'Present/Absent', 'Leave', 'Early In(Hours)/Early In(Employees)', 'Early Out(Hours)/Early Out(Employees)'
                 ];
+
 
             }
 
@@ -372,6 +505,11 @@
             ];
 
         }
+        $('#slimTable').slimScroll({
+            height: '200px',
+            width: '180px'
+
+        });
     }
     $scope.$watch('MultipleSelect', function () {
         checkForMultipleSelect();
