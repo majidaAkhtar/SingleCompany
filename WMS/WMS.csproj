@@ -209,6 +209,7 @@
     <Content Include="Reports\ReportContainer.aspx" />
     <Content Include="Reports\SummaryReports.aspx" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular\angular-bootstrap-select.js" />
     <Content Include="Scripts\angular\DashboardController.js" />
     <Content Include="Scripts\angular\highcharts-ng.js" />
     <Content Include="Scripts\angular\MainController.js" />
@@ -367,6 +368,7 @@
     <Content Include="Scripts\site.avatar.js" />
     <Content Include="Scripts\Employee\wingSection.js" />
     <Content Include="Scripts\Employee\wingSectionCreate.js" />
+    <Content Include="Scripts\slimscroll.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config">
