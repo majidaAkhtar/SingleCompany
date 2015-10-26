@@ -365,6 +365,7 @@
     <Content Include="Scripts\ProcessAtt\CriteriaValueAttProcessor.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\rosterScript.js" />
+    <Content Include="Scripts\Shift\GetUserSpecificShifts.js" />
     <Content Include="Scripts\site.avatar.js" />
     <Content Include="Scripts\Employee\wingSection.js" />
     <Content Include="Scripts\Employee\wingSectionCreate.js" />
