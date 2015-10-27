@@ -17,7 +17,7 @@ namespace WMS
             {
                 //Deployment Type =false : Local Deployment
                 //Deployment Type =true: Server Deployment
-                GlobalVariables.DeploymentType = true;
+                GlobalVariables.DeploymentType = false;
             }
             else
                 Response.Redirect("~/Home");
