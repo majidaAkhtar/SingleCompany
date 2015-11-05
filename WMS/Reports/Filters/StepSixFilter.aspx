@@ -91,6 +91,7 @@
                                     <ul>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_att">Employee Attendance</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_absent">Employee Absent</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=Employee_Att_Summary_New_report">Employee AttSummary (Page Break)</a></li>
                                     </ul>
                                 </li>
                                 <li>
