@@ -17,4 +17,15 @@
                 break;
         }
     });
+
+    $('#ProcessCats').change(function () {
+        switch ($("#ProcessCats option:selected").html()) {
+            case 'Yes':
+                $('#CategoryID').css('display', 'inline');
+                break;
+            case 'No': $('#CategoryID').css('display', 'none');
+                break;
+        }
+    });
+
 });

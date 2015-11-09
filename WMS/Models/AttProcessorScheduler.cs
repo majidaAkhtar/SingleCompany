@@ -25,6 +25,7 @@ namespace WMS.Models
         public Nullable<bool> ProcessingDone { get; set; }
         public string Criteria { get; set; }
         public Nullable<bool> ProcessCat { get; set; }
+        public Nullable<int> UserID { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Company Company { get; set; }

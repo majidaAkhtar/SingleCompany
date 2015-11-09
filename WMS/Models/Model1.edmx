@@ -2425,6 +2425,7 @@
           <Property Name="ProcessingDone" Type="bit" />
           <Property Name="Criteria" Type="nvarchar" MaxLength="50" />
           <Property Name="ProcessCat" Type="bit" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="AuditForm">
           <Key>
@@ -6838,6 +6839,7 @@
           <Property Type="Boolean" Name="ProcessingDone" />
           <Property Type="String" Name="Criteria" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="ProcessCat" />
+          <Property Type="Int32" Name="UserID" />
           <NavigationProperty Name="Category" Relationship="TAS2013Model.FK_AttProcessorScheduler_Category" FromRole="AttProcessorScheduler" ToRole="Category" />
           <NavigationProperty Name="Company" Relationship="TAS2013Model.FK_AttProcessorScheduler_Company" FromRole="AttProcessorScheduler" ToRole="Company" />
           <NavigationProperty Name="Location" Relationship="TAS2013Model.FK_AttProcessorScheduler_Location" FromRole="AttProcessorScheduler" ToRole="Location" />
@@ -10839,6 +10841,7 @@
           <EntitySetMapping Name="AttProcessorSchedulers">
             <EntityTypeMapping TypeName="TAS2013Model.AttProcessorScheduler">
               <MappingFragment StoreEntitySet="AttProcessorScheduler">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ProcessCat" ColumnName="ProcessCat" />
                 <ScalarProperty Name="Criteria" ColumnName="Criteria" />
                 <ScalarProperty Name="ProcessingDone" ColumnName="ProcessingDone" />
