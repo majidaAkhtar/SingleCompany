@@ -207,7 +207,6 @@
     <Content Include="Reports\MSummary.aspx" />
     <Content Include="Reports\MSummaryC.aspx" />
     <Content Include="Reports\ReportContainer.aspx" />
-    <Content Include="Reports\SummaryReports.aspx" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular\angular-bootstrap-select.js" />
     <Content Include="Scripts\angular\DashboardController.js" />
@@ -660,6 +659,9 @@
     <Compile Include="Models\Region.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Remark.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -706,6 +708,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserSafety.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewAbsent.cs">
@@ -1123,13 +1128,6 @@
     <Compile Include="Reports\ReportHome.aspx.designer.cs">
       <DependentUpon>ReportHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\SummaryReports.aspx.cs">
-      <DependentUpon>SummaryReports.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\SummaryReports.aspx.designer.cs">
-      <DependentUpon>SummaryReports.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1316,6 +1314,7 @@
     <EmbeddedResource Include="Reports\RDLC\DRPresent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\EmpAttSummaryNew.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MLvConsumed.rdlc" />

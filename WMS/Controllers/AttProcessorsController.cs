@@ -43,7 +43,7 @@ namespace WMS.Controllers
              else
                searchString = currentFilter;
 
-            List<AttProcessorScheduler> attprocess = context.AttProcessorSchedulers.ToList();
+            List<AttProcessorScheduler> attprocess = context.AttProcessorSchedulers.Where(aa=>aa.ProcessingDone==false).ToList();
             switch (sortOrder)
             {
                 case "tag_desc": attprocess = attprocess.OrderByDescending(s => s.PeriodTag).ToList();                   break;
@@ -95,19 +95,18 @@ namespace WMS.Controllers
             QueryBuilder qb = new QueryBuilder();
             String query = qb.QueryForCompanyViewLinq(LoggedInUser);
             ViewBag.PeriodTag = new SelectList(new List<SelectListItem>
-{
-    new SelectListItem { Selected = true, Text = "Daily", Value = "D"},
-    new SelectListItem { Selected = false, Text = "Monthly", Value = "M"},
-    new SelectListItem { Selected = false, Text = "Summary", Value = "S"},
+            {
+                new SelectListItem { Selected = true, Text = "Daily", Value = "D"},
+                new SelectListItem { Selected = false, Text = "Monthly", Value = "M"},
+                new SelectListItem { Selected = false, Text = "Summary", Value = "S"},
 
-}, "Value" , "Text",1);
+            }, "Value" , "Text",1);
             ViewBag.CriteriaID = new SelectList(new List<SelectListItem>
-{
-    new SelectListItem { Selected = true, Text = "Company", Value = "C"},
-    new SelectListItem { Selected = false, Text = "Location", Value = "L"},
-    new SelectListItem { Selected = false, Text = "Category", Value = "A"},
+            {
+                new SelectListItem { Selected = true, Text = "Company", Value = "C"},
+                new SelectListItem { Selected = false, Text = "Location", Value = "L"},
 
-}, "Value", "Text", 1);
+            }, "Value", "Text", 1);
             ViewBag.CompanyID = new SelectList(db.Companies.Where(query).OrderBy(s=>s.CompName), "CompID", "CompName");
             query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
             ViewBag.LocationID = new SelectList(db.Locations.Where(query).OrderBy(s=>s.LocName), "LocID", "LocName");
@@ -124,7 +123,6 @@ namespace WMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 string d=Request.Form["CriteriaID"].ToString();
                 switch (d)
                 {
@@ -134,15 +132,13 @@ namespace WMS.Controllers
                     case "L": attprocessor.Criteria = "L";
                         break;
                     case "A": attprocessor.Criteria = "A"; break;
-                        
-                
                 }
                 attprocessor.ProcessingDone = false;
+                attprocessor.WhenToProcess = DateTime.Today;
                 context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();
                 return RedirectToAction("Index");  
             }
-
             return View(attprocessor);
         }
         

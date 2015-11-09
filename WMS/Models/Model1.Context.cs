@@ -88,6 +88,7 @@ namespace WMS.Models
         public DbSet<ReaderVendor> ReaderVendors { get; set; }
         public DbSet<Reason> Reasons { get; set; }
         public DbSet<Region> Regions { get; set; }
+        public DbSet<Remark> Remarks { get; set; }
         public DbSet<Roster> Rosters { get; set; }
         public DbSet<RosterApp> RosterApps { get; set; }
         public DbSet<RosterDetail> RosterDetails { get; set; }
@@ -103,6 +104,7 @@ namespace WMS.Models
         public DbSet<UserLocation> UserLocations { get; set; }
         public DbSet<UserModule> UserModules { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<UserSafety> UserSafeties { get; set; }
         public DbSet<ZTable> ZTables { get; set; }
         public DbSet<EmergencyView> EmergencyViews { get; set; }
         public DbSet<EmpView> EmpViews { get; set; }

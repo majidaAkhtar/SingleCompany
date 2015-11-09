@@ -91,6 +91,7 @@ namespace WMS.Controllers
                     Session["MRoster"] = "0";
                     Session["MRDetail"] = "0";
                     Session["MRSummary"] = "0";
+                    Session["MProcess"] = "0";
                     return View();
                 }
                 else if (Session["LogedUserID"].ToString() == "")
@@ -168,6 +169,8 @@ namespace WMS.Controllers
                                       Session["MRAudit"] = "1";
                                   if (v.MRManualEditAtt == true)
                                       Session["MRManualEditAtt"] = "1";
+                                  if (v.MProcess == true)
+                                      Session["MProcess"] = "1";
                                   if (v.MREmployee == true)
                                       Session["MREmployee"] = "1";
                                   if (v.MRDetail == true)

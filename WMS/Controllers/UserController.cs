@@ -103,7 +103,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,CompanyID,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRoster,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID")] User user)
+        public ActionResult Create([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,CompanyID,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRoster,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
         {
             int count = Convert.ToInt32(Request.Form["uLocationCount"]);
             if (count > 0)
@@ -195,6 +195,10 @@ namespace WMS.Controllers
                     user.MRManualEditAtt = true;
                 else
                     user.MRManualEditAtt = false;
+                if (Request.Form["MProcess"] == "1")
+                    user.MProcess = true;
+                else
+                    user.MProcess = false;
                 if (Request.Form["MREmployee"] == "1")
                     user.MREmployee = true;
                 else
@@ -303,7 +307,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,CompanyID,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,CompanyID,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
         {
             bool check = false;
             user.RoleID = Convert.ToByte(Request.Form["RoleID"].ToString());
@@ -383,6 +387,10 @@ namespace WMS.Controllers
                 user.MRManualEditAtt = true;
             else
                 user.MRManualEditAtt = false;
+            if (Request.Form["MProcess"].ToString() == "true")
+                user.MProcess = true;
+            else
+                user.MProcess = false;
             if (Request.Form["MREmployee"].ToString() == "true")
                 user.MREmployee = true;
             else

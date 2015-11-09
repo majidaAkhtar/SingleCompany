@@ -57,6 +57,7 @@ namespace WMS.Models
         public Nullable<bool> ViewLocation { get; set; }
         public Nullable<short> LocationID { get; set; }
         public Nullable<bool> MRoster { get; set; }
+        public Nullable<bool> MProcess { get; set; }
     
         public virtual ICollection<AttDataManEdit> AttDataManEdits { get; set; }
         public virtual ICollection<AuditLog> AuditLogs { get; set; }

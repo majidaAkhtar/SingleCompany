@@ -6,7 +6,6 @@
     ViewBag.Title = "Attendance Processor";
 }
 
-<h2>Index</h2>
 <div>
     <div>
       <form class ="form-inline" role="form">
@@ -35,26 +34,19 @@
         <th>
             @Html.ActionLink("To", "Index", new { sortOrder = ViewBag.ToSortParm })
         </th>
-        <th>
-            Processing Completed
-        </th>
-        <th>
-            @Html.ActionLink("Processing Completed", "Index", new { sortOrder = ViewBag.WhenToSortParm })
-      
-        </th>
          <th>
-            @Html.ActionLink("Company Name", "Index", new { sortOrder = ViewBag.CompanySortParm })
+            @Html.ActionLink("Company", "Index", new { sortOrder = ViewBag.CompanySortParm })
     
         </th>
         <th>
-             @Html.ActionLink("Location Name", "Index", new { sortOrder = ViewBag.LocationSortParm })
+             @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationSortParm })
     
         </th>
         <th>
-              @Html.ActionLink("Category Name", "Index", new { sortOrder = ViewBag.CatSortParm })
+              @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CatSortParm })
     
         </th>
-<th style="width:90px">Edit|View|Delete</th>
+@*<th style="width:90px">Edit|View|Delete</th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -69,12 +61,6 @@
         <td>
 			@String.Format("{0:g}", item.DateTo)
         </td>
-        <td>
-			@item.ProcessingDone
-        </td>
-        <td>
-			@String.Format("{0:g}", item.WhenToProcess)
-        </td>
           <td>
 			@item.Company.CompName
         </td>
@@ -84,11 +70,11 @@
         <td>
 			@item.Category.CatName
         </td>
- <td>
+@* <td>
           @Html.ActionLink(" ", "Edit", new { id=item.AttProcesserSchedulerID} , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-sm btn-EditViewDelete" })
           @Html.ActionLink(" ", "Details", new { id = item.AttProcesserSchedulerID}, new { @class = "glyphicon glyphicon-list btn btn-primary btn-sm btn-EditViewDelete" }) 
           @Html.ActionLink(" ", "Delete", new { id=item.AttProcesserSchedulerID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
-          </td>
+          </td>*@
     </tr>
 }
 

@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $('#location').css('display', 'none');
     $('#CriteriaID').change(function () {
         console.log($("#CriteriaID option:selected").html());
         switch ($("#CriteriaID option:selected").html()) {
