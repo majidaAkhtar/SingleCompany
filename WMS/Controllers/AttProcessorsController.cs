@@ -133,8 +133,7 @@ namespace WMS.Controllers
                 case "C":
                     attprocessor.Criteria = "C";
                     break;
-                case "L": attprocessor.Criteria = "L";
-                    break;
+                case "L": attprocessor.Criteria = "L"; break;
                 case "A": attprocessor.Criteria = "A"; break;
             }
             int a = Convert.ToInt16(Request.Form["ProcessCats"].ToString());
@@ -144,8 +143,10 @@ namespace WMS.Controllers
                 attprocessor.ProcessCat = false;
             attprocessor.ProcessingDone = false;
             attprocessor.WhenToProcess = DateTime.Today;
+            int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
             if (ModelState.IsValid)
             {
+                attprocessor.UserID = _userID;
                 context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();
                 return RedirectToAction("Index");  
