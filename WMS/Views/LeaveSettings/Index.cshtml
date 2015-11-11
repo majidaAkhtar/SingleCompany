@@ -5,6 +5,7 @@
 
 <h2>Leaves Settings</h2>
 <hr />
+<p class="ErorrMessage">@ViewBag.CMessage</p>
 <div class="form-group CreateBtnMargin"><a    href="~/LeaveSettings/LvQuotaList">List of Employees Leave Quotas</a></div>
     <section class="col-md-6">
          <header><h4>Add Leave Balance (Year Closing)</h4></header>
@@ -38,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-                <p class="ErorrMessage">@ViewBag.CMessage</p>
                 <div class="row" style="margin-left:10%; margin-bottom:3%">
                     <div class="col-md-6">
                     </div>
@@ -50,40 +50,36 @@
             <section class="col-md-6">
 
             </section>
-        </article><article class="row">
+        </article>
+        }
+        @using (Html.BeginForm("AdjustLeaveQuotaStepOne", "LeaveSettings", FormMethod.Post))
+        {
+        <header><h4>Adjust Leave Balance</h4></header>
+        <article class="row">
             <section class="col-md-6">
                 <div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Casual Leaves</label>
+                            <label>Emp No</label>
                         </div>
                         <div class="col-md-6">
-                            <input id="CLeaves" name="CLeaves" type="number" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Annual Leaves</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input id="ALeaves" name="ALeaves" type="number" class="form-control"/>
+                            <input id="AdjustEmpNo" name="AdjustEmpNo" class="form-control"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Sick Leaves</label>
+                            <label>Company</label>
                         </div>
-                        <div class="col-md-6">
-                            <input id="SLeaves" name="SLeaves" type="number" class="form-control"/>
+                        <div class="col-md-6" style="margin-top:10px;">
+                             @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
                         </div>
                     </div>
                 </div>
-                <p class="ErorrMessage">@ViewBag.CMessage</p>
                 <div class="row" style="margin-left:10%; margin-bottom:3%">
                     <div class="col-md-6">
                     </div>
                     <div class="col-md-6">
-                        <input type="submit" value="Save"  class="btn btn-sm btn-success"/>
+                        <input type="submit" value="Next"  class="btn btn-sm btn-success"/>
                     </div>
                 </div>
             </section>
@@ -173,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-                <p class="ErorrMessage" style="margin-left:5%; margin-bottom:3%">@ViewBag.CMessage</p>
                 <div class="row" style="margin-left:10%; margin-bottom:3%">
                     <div class="col-md-6">
                     </div>
