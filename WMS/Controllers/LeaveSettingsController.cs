@@ -174,7 +174,8 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             List<UserLocation> uloc = new List<UserLocation>();
             uloc = db.UserLocations.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
-            if (uloc.Where(aa => aa.LocationID == LoggedInUser.LocationID).Count() > 0)
+            short empLocID = (short)emps.FirstOrDefault().LocID;
+            if (uloc.Where(aa => aa.LocationID == empLocID).Count() > 0)
             {
                 check = true;
             }
