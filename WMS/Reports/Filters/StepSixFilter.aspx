@@ -87,7 +87,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <h5>Deatiled</h5>
+                                    <h5>Detailed</h5>
                                     <ul>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_att">Employee Attendance</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_absent">Employee Absent</a></li>

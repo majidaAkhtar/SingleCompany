@@ -2943,7 +2943,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=SUM (IIF (Fields!StatusP.Value and Fields!StatusEI.Value and Fields!StatusLI.Value,1,0))</Value>
+                              <Value>=-Sum(Cdbl(IIF(Isnumeric(Fields!StatusEI.Value) and Isnumeric(Fields!StatusLI.Value) ,0,IIF(Isnumeric(Fields!StatusP.Value) ,Fields!StatusP.Value,0))))</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -2970,6 +2970,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
