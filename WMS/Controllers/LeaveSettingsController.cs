@@ -76,6 +76,112 @@ namespace WMS.Controllers
             return View();
         }
 
+        #region --Adjust Leave Quota--
+        public ActionResult AdjustLeaveQuotaStepOne()
+        {
+            string EmpNo= Request.Form["AdjustEmpNo"].ToString();
+            int CompanyID = Convert.ToInt32(Request.Form["CompanyID"].ToString());
+            User LoggedInUser = Session["LoggedUser"] as User;
+            var emp = db.Emps.Where(aa => aa.CompanyID == CompanyID && aa.EmpNo == EmpNo && aa.Status==true).ToList();
+            if (emp.Count > 0)
+            {
+                //Check for Employee lies under user permission
+                if (CheckEmpValidation(emp))
+                {
+                    int EmpID = emp.FirstOrDefault().EmpID;
+                    var lvType = db.LvConsumeds.Where(aa => aa.EmpID == EmpID).ToList();
+                    if (lvType.Count > 0)
+                    {
+                        //go to next page
+                        LeaveQuotaModel lvModel = new LeaveQuotaModel();
+                        lvModel.EmpID = emp.FirstOrDefault().EmpID;
+                        lvModel.EmpNo = emp.FirstOrDefault().EmpNo;
+                        lvModel.EmpName = emp.FirstOrDefault().EmpName;
+                        lvModel.SectionName = emp.FirstOrDefault().Section.SectionName;
+                        foreach (var lv in lvType)
+                        {
+                            switch (lv.LeaveType)
+                            {
+                                case "A"://CL
+                                    lvModel.CL = (float)lv.YearRemaining;
+                                    break;
+                                case "B"://AL
+                                    lvModel.AL = (float)lv.YearRemaining;
+                                    break;
+                                case "C"://SL
+                                    lvModel.SL = (float)lv.YearRemaining;
+                                    break;
+                            }
+                        }
+                        return View("AdjustLeaves", lvModel); 
+                    }
+                }
+                else
+                {
+                    ViewBag.CMessage = "Employee No " + Request.Form["AdjustEmpNo"].ToString() + ": Create Leave Quota for this employee";
+                }
+            }
+            else
+            {
+                ViewBag.CMessage = "Employee No " + Request.Form["EmpNo"].ToString() + " not found";
+
+            }
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+            return View("Index");
+        }
+        public ActionResult AdjustLeaves(FormCollection collection)
+        {
+            int AL = Convert.ToInt32(Request.Form["ALeaves"].ToString());
+            int CL = Convert.ToInt32(Request.Form["CLeaves"].ToString());
+            int SL = Convert.ToInt32(Request.Form["SLeaves"].ToString());
+            int EmpID = Convert.ToInt32(Request.Form["EmpID"].ToString());
+            var lvType = db.LvConsumeds.Where(aa => aa.EmpID == EmpID).ToList();
+            if (lvType.Count > 0)
+            {
+                foreach (var lv in lvType)
+                {
+                    switch (lv.LeaveType)
+                    {
+                        case "A"://CL
+                            lv.YearRemaining = (float)CL;
+                            lv.GrandTotalRemaining = (float)CL;
+                            break;
+                        case "B"://AL
+                            lv.YearRemaining = (float)AL;
+                            lv.GrandTotalRemaining = (float)AL;
+                            break;
+                        case "C"://SL
+                            lv.YearRemaining = (float)SL;
+                            lv.GrandTotalRemaining = (float)SL;
+                            break;
+                    }
+                    db.SaveChanges();
+                }
+            }
+            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName");
+            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.CatID = new SelectList(db.Categories.OrderBy(s => s.CatName), "CatID", "CatName");
+            return View("Index");
+        }
+
+        public bool CheckEmpValidation(List<Emp> emps)
+        {
+            bool check = false;
+            User LoggedInUser = Session["LoggedUser"] as User;
+            List<UserLocation> uloc = new List<UserLocation>();
+            uloc = db.UserLocations.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
+            if (uloc.Where(aa => aa.LocationID == LoggedInUser.LocationID).Count() > 0)
+            {
+                check = true;
+            }
+            return check;
+
+        }
+        #endregion
         //
         // GET: /LeaveSettings/Create
         [HttpPost]
