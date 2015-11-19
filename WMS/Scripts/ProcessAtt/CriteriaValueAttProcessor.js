@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $('#location').css('display', 'none');
     $('#CriteriaID').change(function () {
         console.log($("#CriteriaID option:selected").html());
         switch ($("#CriteriaID option:selected").html()) {
@@ -16,4 +17,15 @@
                 break;
         }
     });
+
+    $('#ProcessCats').change(function () {
+        switch ($("#ProcessCats option:selected").html()) {
+            case 'Yes':
+                $('#CategoryID').css('display', 'inline');
+                break;
+            case 'No': $('#CategoryID').css('display', 'none');
+                break;
+        }
+    });
+
 });

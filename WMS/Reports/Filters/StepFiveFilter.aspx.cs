@@ -100,6 +100,7 @@ namespace WMS.Reports.Filters
             string query = qb.QueryForCompanyFilters(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
             _View = dt.ToList<EmpView>().AsQueryable().SortBy("EmpNo").ToList();
+            _View = _View.Where(aa => aa.Status == true).ToList();
             if (fm.CompanyFilter.Count > 0)
             {
                 foreach (var comp in fm.CompanyFilter)

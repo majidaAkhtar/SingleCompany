@@ -77,7 +77,10 @@
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-phone"></i>  Attendance <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="~/EditAttendance">Edit</a></li>
+                          @if(Session["MProcess"].ToString() == "1")
+                        {
                          <li><a href="~/AttProcessors">Process Attendance</a></li>
+                          }
                       </ul>
                     </li>
                   }
@@ -124,8 +127,7 @@
                       </ul>
                     </li>
                   }*@
-                    <li><a href="~/Reports/ReportHome.aspx"><i class="glyphicon glyphicon-stats"></i>  Reports</a></li>
-                    <li><a href="~/Reports/Filters/StepOneFilter.aspx"><i class="glyphicon glyphicon-stats"></i>  Reports II</a></li>
+                    <li><a href="~/Reports/Filters/StepOneFilter.aspx"><i class="glyphicon glyphicon-stats"></i> Reports</a></li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>  <b class="caret"></b></a>
                       <ul class="dropdown-menu">

@@ -182,7 +182,7 @@
                     },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall"}) 
             </div>
         </div>
-
+        
         <div class="form-group">
            <div class="control-label col-md-4">Can View</div>
             <div class="col-md-6">
@@ -246,7 +246,15 @@
                         },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall"}) 
                 </div>
             </div>
-
+         <div class="form-group">
+                    <div class="control-label col-md-6">Process</div>
+                    <div class="col-md-6">
+                        @Html.DropDownList("MProcess", new List<SelectListItem>
+                        { new SelectListItem { Text = "No", Value = "0", Selected=true},
+                            new SelectListItem { Text = "Yes", Value = "1"}
+                            },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall"}) 
+                    </div>
+                </div>
             <div class="form-group">
                  <div class="control-label col-md-6">Leave</div>
                 <div class="col-md-6">
@@ -257,7 +265,7 @@
                 </div>
             </div>
          <div class="form-group">
-                    <div class="control-label col-md-4">Roster</div>
+                    <div class="control-label col-md-6">Roster</div>
                     <div class="col-md-6">
                         @Html.DropDownList("MRoster", new List<SelectListItem>
                         { new SelectListItem { Text = "No", Value = "false", Selected=true},
