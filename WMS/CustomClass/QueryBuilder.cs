@@ -145,7 +145,7 @@ namespace WMS.CustomClass
             //List<UserLocation> ulocs = new List<UserLocation>();
             //List<string> _CriteriaForOrLoc = new List<string>();
             //ulocs = db.UserLocations.Where(aa => aa.UserID == _user.UserID).ToList();
-            string query = " where ";
+            string query = "  ";
             //foreach (var uloc in ulocs)
             //{
             //    _CriteriaForOrLoc.Add(" LocationID = " + uloc.LocationID + " ");

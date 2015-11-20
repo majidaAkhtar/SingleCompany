@@ -39,7 +39,7 @@ namespace WMS.Controllers
             User LoggedInUser = HttpContext.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
-            var sections = db.Sections.Where(query).AsQueryable();
+            var sections = db.Sections.AsQueryable();
 
             if (!String.IsNullOrEmpty(searchString))
             {

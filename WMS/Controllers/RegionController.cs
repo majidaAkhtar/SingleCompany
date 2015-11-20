@@ -36,7 +36,7 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
-            var locations = db.Locations.Where(query).GroupBy(x => x.CityID).Select(group => group.FirstOrDefault());
+            var locations = db.Locations.GroupBy(x => x.CityID).Select(group => group.FirstOrDefault());
             List<City> ct = new List<City>();
             foreach (var loc in locations)
                 ct.Add(loc.City);

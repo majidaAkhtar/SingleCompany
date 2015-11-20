@@ -44,8 +44,8 @@ namespace WMS.Controllers
             string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
            
           //  var locations = qb.GetUserLocationsLinq(locations, LoggedInUser);
-          
-            var locations = db.Locations.Where(query);
+
+            var locations = db.Locations.AsQueryable();
                 locations = locations.Include(l => l.City).Include(l => l.City.Region);
             // 
            // var locations = dt.ToList<DerivedLocation>();

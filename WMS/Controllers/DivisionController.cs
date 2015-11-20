@@ -37,7 +37,7 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
-            var divisions = db.Divisions.Where(query).AsQueryable();
+            var divisions = db.Divisions.AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
                 divisions = divisions.Where(s => s.DivisionName.ToUpper().Contains(searchString.ToUpper()));

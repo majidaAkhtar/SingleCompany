@@ -89,7 +89,7 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
           
-            ViewBag.LocationID = new SelectList(db.Locations.Where(query).OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.RosterType = new SelectList(db.RosterTypes.OrderBy(s=>s.Name), "ID", "Name");
             return View();
         }

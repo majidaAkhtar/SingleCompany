@@ -15,13 +15,7 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.CrewID)
-        <div class="form-group">
-            <div class="control-label col-md-2">Company Name</div>
-            <div class="col-md-10">
-                 @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                @Html.ValidationMessageFor(model => model.Company.CompName)
-            </div>
-        </div>
+       
         <div class="form-group">
             @Html.LabelFor(model => model.CrewName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">

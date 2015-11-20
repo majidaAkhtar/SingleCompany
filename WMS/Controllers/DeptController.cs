@@ -38,7 +38,7 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
-            var departments = db.Departments.Where(query).AsQueryable();
+            var departments = db.Departments.AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
                 departments = departments.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper())
@@ -127,7 +127,7 @@ namespace WMS.Controllers
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
             string query1 = qb.QueryForCompanyViewLinq(LoggedInUser);
          
-            ViewBag.DivID = new SelectList(db.Divisions.Where(query).AsQueryable().OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName", department.DivID);
+            ViewBag.DivID = new SelectList(db.Divisions.AsQueryable().OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName", department.DivID);
             return View(department);
         }
 

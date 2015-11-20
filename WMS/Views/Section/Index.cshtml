@@ -39,9 +39,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.Department.DeptName)
         </td>
-<td>
-            @Html.DisplayFor(modelItem => item.Company.CompName)
-        </td>
         <td>
             @Html.ActionLink(" ", "Edit", new { id=item.SectionID }, new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs" })
             @Html.ActionLink(" ", "Details", new { id=item.SectionID }, new { @class = "glyphicon glyphicon-pencil btn btn-info btn-xs" }) 

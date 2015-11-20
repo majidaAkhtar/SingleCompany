@@ -27,9 +27,6 @@
         <th>
             @Html.ActionLink("Designation", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
-        <th>
-            Company Name
-        </th>
         <th>Edit|View|Delete</th>
     </tr>
 
@@ -37,9 +34,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.DesignationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Company.CompName)
         </td>
         <td>
             @Html.ActionLink(" ", "Edit", new { id=item.DesignationID }, new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs" }) 

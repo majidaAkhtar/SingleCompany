@@ -36,7 +36,7 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
-            var crew = db.Crews.Where(query).AsQueryable();
+            var crew = db.Crews.AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
                 crew = crew.Where(s => s.CrewName.ToUpper().Contains(searchString.ToUpper()));
