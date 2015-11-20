@@ -98,8 +98,6 @@
       [EmpView].[DesigID] AS [DesigID], 
       [EmpView].[JobID] AS [JobID], 
       [EmpView].[Gender] AS [Gender], 
-      [EmpView].[ShiftID] AS [ShiftID], 
-      [EmpView].[LocID] AS [LocID], 
       [EmpView].[TypeID] AS [TypeID], 
       [EmpView].[GradeID] AS [GradeID], 
       [EmpView].[SecID] AS [SecID], 
@@ -114,7 +112,9 @@
       [EmpView].[EmpID] AS [EmpID], 
       [EmpView].[DivisionName] AS [DivisionName], 
       [EmpView].[DeptName] AS [DeptName], 
-      [EmpView].[DivID] AS [DivID]
+      [EmpView].[DivID] AS [DivID], 
+      [EmpView].[ShiftID] AS [ShiftID], 
+      [EmpView].[LocID] AS [LocID]
       FROM [dbo].[EmpView] AS [EmpView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewAttData" EntityType="TAS2013Model.Store.ViewAttData" store:Type="Views" store:Schema="dbo" store:Name="ViewAttData">
@@ -596,8 +596,6 @@
             <DefiningQuery>SELECT 
       [ViewLvApplication].[DesignationName] AS [DesignationName], 
       [ViewLvApplication].[GradeName] AS [GradeName], 
-      [ViewLvApplication].[CompName] AS [CompName], 
-      [ViewLvApplication].[JobTitle] AS [JobTitle], 
       [ViewLvApplication].[CityName] AS [CityName], 
       [ViewLvApplication].[RegionName] AS [RegionName], 
       [ViewLvApplication].[LocName] AS [LocName], 
@@ -611,12 +609,10 @@
       [ViewLvApplication].[NicNo] AS [NicNo], 
       [ViewLvApplication].[JoinDate] AS [JoinDate], 
       [ViewLvApplication].[ResignDate] AS [ResignDate], 
-      [ViewLvApplication].[ProcessAtt] AS [ProcessAtt], 
       [ViewLvApplication].[Status] AS [Status], 
       [ViewLvApplication].[SectionName] AS [SectionName], 
       [ViewLvApplication].[DeptName] AS [DeptName], 
       [ViewLvApplication].[DivisionName] AS [DivisionName], 
-      [ViewLvApplication].[CompanyID] AS [CompanyID], 
       [ViewLvApplication].[CatID] AS [CatID], 
       [ViewLvApplication].[SecID] AS [SecID], 
       [ViewLvApplication].[ShiftID] AS [ShiftID], 
@@ -1426,6 +1422,14 @@
           <AssociationSet Name="FK_Site_City" Association="TAS2013Model.Store.FK_Site_City">
             <End Role="City" EntitySet="City" />
             <End Role="Site" EntitySet="Site" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="TAS2013Model.Store.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole1" Association="TAS2013Model.Store.FK_User_UserRole1">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRoleData_User" Association="TAS2013Model.Store.FK_UserRoleData_User">
             <End Role="User" EntitySet="User" />
@@ -2456,7 +2460,8 @@
           <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="300" />
-          <Property Name="UserRole" Type="char" MaxLength="1" />
+          <Property Name="UserRoleL" Type="char" MaxLength="1" />
+          <Property Name="UserRoleD" Type="char" MaxLength="1" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Status" Type="bit" />
@@ -2502,6 +2507,7 @@
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="TableName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoleType" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="UserRoleData">
           <Key>
@@ -2518,41 +2524,28 @@
         <EntityType Name="EmpView">
           <Key>
             <PropertyRef Name="EmpNo" />
-            <PropertyRef Name="GradeName" />
-            <PropertyRef Name="SectionName" />
-            <PropertyRef Name="CrewName" />
-            <PropertyRef Name="DeptID" />
-            <PropertyRef Name="TypeName" />
-            <PropertyRef Name="LocName" />
-            <PropertyRef Name="ShiftName" />
-            <PropertyRef Name="DesignationName" />
             <PropertyRef Name="EmpName" />
             <PropertyRef Name="EmpID" />
-            <PropertyRef Name="DivisionName" />
-            <PropertyRef Name="DeptName" />
-            <PropertyRef Name="DivID" />
           </Key>
           <Property Name="EmpNo" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="GradeName" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="SectionName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="CrewName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="DeptID" Type="smallint" Nullable="false" />
-          <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CrewName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptID" Type="smallint" />
+          <Property Name="TypeName" Type="varchar" MaxLength="30" />
           <Property Name="CatID" Type="smallint" />
           <Property Name="CatName" Type="nvarchar" MaxLength="50" />
           <Property Name="RegionName" Type="nvarchar" MaxLength="50" />
           <Property Name="RegionID" Type="tinyint" />
           <Property Name="CityName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LocName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="LocName" Type="varchar" MaxLength="30" />
           <Property Name="CityID" Type="smallint" />
-          <Property Name="ShiftName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="DesignationName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="ShiftName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="200" />
           <Property Name="EmpName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="DesigID" Type="int" />
           <Property Name="JobID" Type="smallint" />
           <Property Name="Gender" Type="tinyint" />
-          <Property Name="ShiftID" Type="tinyint" />
-          <Property Name="LocID" Type="smallint" />
           <Property Name="TypeID" Type="tinyint" />
           <Property Name="GradeID" Type="smallint" />
           <Property Name="SecID" Type="smallint" />
@@ -2565,9 +2558,11 @@
           <Property Name="CrewID" Type="smallint" />
           <Property Name="HasOT" Type="bit" />
           <Property Name="EmpID" Type="int" Nullable="false" />
-          <Property Name="DivisionName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="DeptName" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="DivID" Type="smallint" Nullable="false" />
+          <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DivID" Type="smallint" />
+          <Property Name="ShiftID" Type="tinyint" />
+          <Property Name="LocID" Type="smallint" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'TAS2013.dbo.ViewAttData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -3197,8 +3192,6 @@
           </Key>
           <Property Name="DesignationName" Type="nvarchar" MaxLength="200" />
           <Property Name="GradeName" Type="nvarchar" MaxLength="20" />
-          <Property Name="CompName" Type="nvarchar" MaxLength="50" />
-          <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="CityName" Type="nvarchar" MaxLength="50" />
           <Property Name="RegionName" Type="nvarchar" MaxLength="50" />
           <Property Name="LocName" Type="varchar" MaxLength="30" />
@@ -3212,12 +3205,10 @@
           <Property Name="NicNo" Type="nvarchar" MaxLength="50" />
           <Property Name="JoinDate" Type="date" />
           <Property Name="ResignDate" Type="date" />
-          <Property Name="ProcessAtt" Type="bit" />
           <Property Name="Status" Type="bit" />
           <Property Name="SectionName" Type="nvarchar" MaxLength="50" />
           <Property Name="DeptName" Type="nvarchar" MaxLength="100" />
           <Property Name="DivisionName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CompanyID" Type="smallint" />
           <Property Name="CatID" Type="smallint" />
           <Property Name="SecID" Type="smallint" />
           <Property Name="ShiftID" Type="tinyint" />
@@ -4507,6 +4498,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_UserRole">
+          <End Role="UserRole" Type="TAS2013Model.Store.UserRole" Multiplicity="0..1" />
+          <End Role="User" Type="TAS2013Model.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="RoleLegend" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole1">
+          <End Role="UserRole" Type="TAS2013Model.Store.UserRole" Multiplicity="0..1" />
+          <End Role="User" Type="TAS2013Model.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="RoleLegend" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRoleData_User">
           <End Role="User" Type="TAS2013Model.Store.User" Multiplicity="0..1" />
           <End Role="UserRoleData" Type="TAS2013Model.Store.UserRoleData" Multiplicity="*" />
@@ -4870,6 +4885,14 @@
           <AssociationSet Name="FK_Shift_RosterType" Association="TAS2013Model.FK_Shift_RosterType">
             <End Role="RosterType" EntitySet="RosterTypes" />
             <End Role="Shift" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="TAS2013Model.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole1" Association="TAS2013Model.FK_User_UserRole1">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRoleData_User" Association="TAS2013Model.FK_UserRoleData_User">
             <End Role="User" EntitySet="Users" />
@@ -5993,7 +6016,8 @@
           <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Password" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="UserRole" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UserRoleL" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UserRoleD" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="DateTime" Name="DateCreated" Precision="3" />
           <Property Type="String" Name="Name" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Status" />
@@ -6027,6 +6051,8 @@
           <NavigationProperty Name="AttProcessorSchedulers" Relationship="TAS2013Model.FK_AttProcessorScheduler_User" FromRole="User" ToRole="AttProcessorScheduler" />
           <NavigationProperty Name="AuditLogs" Relationship="TAS2013Model.FK_AuditLog_User" FromRole="User" ToRole="AuditLog" />
           <NavigationProperty Name="LvApplications" Relationship="TAS2013Model.FK_LvApplication_User" FromRole="User" ToRole="LvApplication" />
+          <NavigationProperty Name="UserRole" Relationship="TAS2013Model.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="UserRole1" Relationship="TAS2013Model.FK_User_UserRole1" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserRoleDatas" Relationship="TAS2013Model.FK_UserRoleData_User" FromRole="User" ToRole="UserRoleData" />
         </EntityType>
         <EntityType Name="UserModule">
@@ -6044,6 +6070,9 @@
           <Property Type="String" Name="RoleName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="TableName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RoleType" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="TAS2013Model.FK_User_UserRole" FromRole="UserRole" ToRole="User" />
+          <NavigationProperty Name="Users1" Relationship="TAS2013Model.FK_User_UserRole1" FromRole="UserRole" ToRole="User" />
         </EntityType>
         <EntityType Name="UserRoleData">
           <Key>
@@ -6058,41 +6087,28 @@
         <EntityType Name="EmpView">
           <Key>
             <PropertyRef Name="EmpNo" />
-            <PropertyRef Name="GradeName" />
-            <PropertyRef Name="SectionName" />
-            <PropertyRef Name="CrewName" />
-            <PropertyRef Name="DeptID" />
-            <PropertyRef Name="TypeName" />
-            <PropertyRef Name="LocName" />
-            <PropertyRef Name="ShiftName" />
-            <PropertyRef Name="DesignationName" />
             <PropertyRef Name="EmpName" />
             <PropertyRef Name="EmpID" />
-            <PropertyRef Name="DivisionName" />
-            <PropertyRef Name="DeptName" />
-            <PropertyRef Name="DivID" />
           </Key>
           <Property Type="String" Name="EmpNo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="GradeName" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SectionName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CrewName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="DeptID" Nullable="false" />
-          <Property Type="String" Name="TypeName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GradeName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SectionName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CrewName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="DeptID" />
+          <Property Type="String" Name="TypeName" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Type="Int16" Name="CatID" />
           <Property Type="String" Name="CatName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="RegionName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Byte" Name="RegionID" />
           <Property Type="String" Name="CityName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LocName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LocName" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Type="Int16" Name="CityID" />
-          <Property Type="String" Name="ShiftName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DesignationName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShiftName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DesignationName" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="EmpName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="DesigID" />
           <Property Type="Int16" Name="JobID" />
           <Property Type="Byte" Name="Gender" />
-          <Property Type="Byte" Name="ShiftID" />
-          <Property Type="Int16" Name="LocID" />
           <Property Type="Byte" Name="TypeID" />
           <Property Type="Int16" Name="GradeID" />
           <Property Type="Int16" Name="SecID" />
@@ -6105,9 +6121,11 @@
           <Property Type="Int16" Name="CrewID" />
           <Property Type="Boolean" Name="HasOT" />
           <Property Type="Int32" Name="EmpID" Nullable="false" />
-          <Property Type="String" Name="DivisionName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="DeptName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="DivID" Nullable="false" />
+          <Property Type="String" Name="DivisionName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DeptName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="DivID" />
+          <Property Type="Byte" Name="ShiftID" />
+          <Property Type="Int16" Name="LocID" />
         </EntityType>
         <EntityType Name="ViewAttData">
           <Key>
@@ -6695,8 +6713,6 @@
           </Key>
           <Property Type="String" Name="DesignationName" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="GradeName" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CompName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobTitle" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CityName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="RegionName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LocName" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -6710,12 +6726,10 @@
           <Property Type="String" Name="NicNo" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="JoinDate" Precision="0" />
           <Property Type="DateTime" Name="ResignDate" Precision="0" />
-          <Property Type="Boolean" Name="ProcessAtt" />
           <Property Type="Boolean" Name="Status" />
           <Property Type="String" Name="SectionName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DeptName" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DivisionName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="CompanyID" />
           <Property Type="Int16" Name="CatID" />
           <Property Type="Int16" Name="SecID" />
           <Property Type="Byte" Name="ShiftID" />
@@ -7981,6 +7995,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_UserRole">
+          <End Type="TAS2013Model.UserRole" Role="UserRole" Multiplicity="0..1" />
+          <End Type="TAS2013Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="RoleLegend" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole1">
+          <End Type="TAS2013Model.UserRole" Role="UserRole" Multiplicity="0..1" />
+          <End Type="TAS2013Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="RoleLegend" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRoleData_User">
           <End Type="TAS2013Model.User" Role="User" Multiplicity="0..1" />
           <End Type="TAS2013Model.UserRoleData" Role="UserRoleData" Multiplicity="*" />
@@ -9107,7 +9145,8 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="UserRoleD" ColumnName="UserRoleD" />
+                <ScalarProperty Name="UserRoleL" ColumnName="UserRoleL" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -9125,6 +9164,7 @@
           <EntitySetMapping Name="UserRoles">
             <EntityTypeMapping TypeName="TAS2013Model.UserRole">
               <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -9145,6 +9185,8 @@
           <EntitySetMapping Name="EmpViews">
             <EntityTypeMapping TypeName="TAS2013Model.EmpView">
               <MappingFragment StoreEntitySet="EmpView">
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="DivID" ColumnName="DivID" />
                 <ScalarProperty Name="DeptName" ColumnName="DeptName" />
                 <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
@@ -9160,8 +9202,6 @@
                 <ScalarProperty Name="SecID" ColumnName="SecID" />
                 <ScalarProperty Name="GradeID" ColumnName="GradeID" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="LocID" ColumnName="LocID" />
-                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="DesigID" ColumnName="DesigID" />
@@ -9715,12 +9755,10 @@
                 <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="SecID" ColumnName="SecID" />
                 <ScalarProperty Name="CatID" ColumnName="CatID" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
                 <ScalarProperty Name="DeptName" ColumnName="DeptName" />
                 <ScalarProperty Name="SectionName" ColumnName="SectionName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ProcessAtt" ColumnName="ProcessAtt" />
                 <ScalarProperty Name="ResignDate" ColumnName="ResignDate" />
                 <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
                 <ScalarProperty Name="NicNo" ColumnName="NicNo" />
@@ -9734,8 +9772,6 @@
                 <ScalarProperty Name="LocName" ColumnName="LocName" />
                 <ScalarProperty Name="RegionName" ColumnName="RegionName" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="CompName" ColumnName="CompName" />
                 <ScalarProperty Name="GradeName" ColumnName="GradeName" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
               </MappingFragment>

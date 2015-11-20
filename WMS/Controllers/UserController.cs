@@ -301,7 +301,7 @@ namespace WMS.Controllers
         public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
         {
             bool check = false;
-            user.UserRole = Request.Form["RoleID"].ToString();
+            user.UserRoleD = Request.Form["RoleID"].ToString();
             if (Request.Form["Status"].ToString() == "true")
                 user.Status = true;
             else

@@ -26,7 +26,8 @@ namespace WMS.Models
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string UserRole { get; set; }
+        public string UserRoleL { get; set; }
+        public string UserRoleD { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string Name { get; set; }
         public Nullable<bool> Status { get; set; }
@@ -61,6 +62,8 @@ namespace WMS.Models
         public virtual ICollection<AttProcessorScheduler> AttProcessorSchedulers { get; set; }
         public virtual ICollection<AuditLog> AuditLogs { get; set; }
         public virtual ICollection<LvApplication> LvApplications { get; set; }
+        public virtual UserRole UserRole { get; set; }
+        public virtual UserRole UserRole1 { get; set; }
         public virtual ICollection<UserRoleData> UserRoleDatas { get; set; }
     }
 }

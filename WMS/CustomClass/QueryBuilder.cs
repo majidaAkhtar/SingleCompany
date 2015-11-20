@@ -49,7 +49,7 @@ namespace WMS.CustomClass
                 CategoryUser.Add(" CatID = 3  ");
             }
             userRoleData = db.UserRoleDatas.Where(aa => aa.RoleUserID == _user.UserID).ToList();
-            switch (_user.UserRole)
+            switch (_user.UserRoleD)
             {
                 case "A"://Admin
 

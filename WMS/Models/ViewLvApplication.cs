@@ -16,8 +16,6 @@ namespace WMS.Models
     {
         public string DesignationName { get; set; }
         public string GradeName { get; set; }
-        public string CompName { get; set; }
-        public string JobTitle { get; set; }
         public string CityName { get; set; }
         public string RegionName { get; set; }
         public string LocName { get; set; }
@@ -31,12 +29,10 @@ namespace WMS.Models
         public string NicNo { get; set; }
         public Nullable<System.DateTime> JoinDate { get; set; }
         public Nullable<System.DateTime> ResignDate { get; set; }
-        public Nullable<bool> ProcessAtt { get; set; }
         public Nullable<bool> Status { get; set; }
         public string SectionName { get; set; }
         public string DeptName { get; set; }
         public string DivisionName { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<short> CatID { get; set; }
         public Nullable<short> SecID { get; set; }
         public Nullable<byte> ShiftID { get; set; }

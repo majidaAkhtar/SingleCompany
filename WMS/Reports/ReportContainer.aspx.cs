@@ -1220,20 +1220,6 @@ namespace WMS.Reports
 
         private List<ViewLvApplication> ReportsFilterImplementation(FiltersModel fm, List<ViewLvApplication> _TempViewList, List<ViewLvApplication> _ViewList)
         {
-            //for company
-            if (fm.CompanyFilter.Count > 0)
-            {
-                foreach (var comp in fm.CompanyFilter)
-                {
-                    short _compID = Convert.ToInt16(comp.ID);
-                    _TempViewList.AddRange(_ViewList.Where(aa => aa.CompanyID == _compID).ToList());
-                }
-                _ViewList = _TempViewList.ToList();
-            }
-            else
-                _TempViewList = _ViewList.ToList();
-            _TempViewList.Clear();
-
 
 
             //for location

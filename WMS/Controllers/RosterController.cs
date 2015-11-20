@@ -29,7 +29,7 @@ namespace WMS.Controllers
         {
             User LoggedInUser = Session["LoggedUser"] as User;
             List<RosterApp> rosterapps = new List<RosterApp>();
-            if (LoggedInUser.UserRole == "A")
+            if (LoggedInUser.UserRoleD == "A")
             {
                 rosterapps = db.RosterApps.Where(aa => aa.Status == true).ToList();
             }
