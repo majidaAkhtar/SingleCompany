@@ -154,7 +154,6 @@ namespace WMS.Controllers
                     shift.StartTime = TimeSpan.Zero;
                 //shift.OpenShift = false;
                 //shift.HasBreak = false;
-                shift.CompanyID = LoggedInUser.CompanyID;
                 shift.GZDays = shift.Holiday;
                 db.Shifts.Add(shift);
                 db.SaveChanges();
@@ -223,7 +222,6 @@ namespace WMS.Controllers
             if (ModelState.IsValid)
             {
                 User LoggedInUser = Session["LoggedUser"] as User;
-                shift.CompanyID = LoggedInUser.CompanyID;
                 shift.GZDays = shift.Holiday;
                 db.Entry(shift).State = EntityState.Modified;
                 db.SaveChanges();

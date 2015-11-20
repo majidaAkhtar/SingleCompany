@@ -41,7 +41,7 @@ namespace WMS.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 designation = designation.Where(s => s.DesignationName.ToUpper().Contains(searchString.ToUpper())
-                    ||s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
+                    );
             }
 
             switch (sortOrder)
@@ -82,7 +82,6 @@ namespace WMS.Controllers
          [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -92,12 +91,8 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Create([Bind(Include = "DesignationID,DesignationName,CompanyID")] Designation designation)
+        public ActionResult Create([Bind(Include = "DesignationID,DesignationName")] Designation designation)
         {
-            if (db.Designations.Where(aa => aa.DesignationName == designation.DesignationName && aa.CompanyID == designation.CompanyID).Count() > 0)
-                ModelState.AddModelError("DesignationName", "Department Name is must be unique");
-            if (designation.CompanyID == null)
-                ModelState.AddModelError("CompanyID", "Please selct a Company");
             if (string.IsNullOrEmpty(designation.DesignationName))
                 ModelState.AddModelError("DesignationName", "This field is required!");
             if (designation.DesignationName != null)
@@ -108,13 +103,8 @@ namespace WMS.Controllers
                 {
                     ModelState.AddModelError("DesignationName", "This field only contain Alphabets");
                 }
-                if (CheckDuplicate(designation.DesignationName,(short)designation.CompanyID))
-                {
-                    ModelState.AddModelError("DesignationName", "This Designation already exist in record, Please select an unique name");
-                }
                 // on test basis
             }
-            designation.CompanyID = designation.CompanyID;
             if (ModelState.IsValid)
             {
                 db.Designations.Add(designation);
@@ -123,16 +113,15 @@ namespace WMS.Controllers
                 HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Designation, (byte)MyEnums.Operation.Add, DateTime.Now);
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",designation.CompanyID);
             return View(designation);
         }
         // Check Duplicate
-        private bool CheckDuplicate(string _Name,short CompID)
+        private bool CheckDuplicate(string _Name)
         {
             var _desig = db.Designations;
             foreach (var item in _desig)
             {
-                if (item.DesignationName.ToUpper() == _Name.ToUpper() && item.CompanyID==CompID)
+                if (item.DesignationName.ToUpper() == _Name.ToUpper())
                     return true;
             }
             return false;
@@ -148,7 +137,6 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Designation designation = db.Designations.Find(id);
-             ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",designation.CompanyID);
             if (designation == null)
             {
                 return HttpNotFound();
@@ -162,9 +150,8 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include = "DesignationID,DesignationName,CompanyID")] Designation designation)
+        public ActionResult Edit([Bind(Include = "DesignationID,DesignationName")] Designation designation)
         {
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", designation.CompanyID);
             if (string.IsNullOrEmpty(designation.DesignationName))
                 ModelState.AddModelError("DesignationName", "This field is required!");
             if (designation.DesignationName != null)

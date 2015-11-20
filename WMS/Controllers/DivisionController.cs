@@ -77,7 +77,6 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -86,7 +85,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DivisionID,DivisionName,CompanyID")] Division division)
+        public ActionResult Create([Bind(Include="DivisionID,DivisionName")] Division division)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +93,6 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(division);
         }
 
@@ -107,7 +105,7 @@ namespace WMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Division division = db.Divisions.Find(id);
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName",division.CompanyID);
+            
             if (division == null)
             {
                 return HttpNotFound();
@@ -121,7 +119,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include = "DivisionID,DivisionName,CompanyID")] Division division)
+        public ActionResult Edit([Bind(Include = "DivisionID,DivisionName")] Division division)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +127,6 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(division);
         }
 
@@ -163,7 +160,7 @@ namespace WMS.Controllers
         public ActionResult DivisionList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var divisions = db.Divisions.Where(aa => aa.CompanyID == Code).OrderBy(s => s.DivisionName);
+            var divisions = db.Divisions.OrderBy(s => s.DivisionName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 divisions.ToArray(),

@@ -168,26 +168,6 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="ErrorPages\ErrorPage.aspx" />
-    <Content Include="Reports\AttEdit.aspx" />
-    <Content Include="Reports\AuditLog.aspx" />
-    <Content Include="Reports\DAbsent.aspx" />
-    <Content Include="Reports\Dashboard.aspx" />
-    <Content Include="Reports\DAttendance.aspx" />
-    <Content Include="Reports\DDetailed.aspx" />
-    <Content Include="Reports\DEarlyIn.aspx" />
-    <Content Include="Reports\DEarlyOut.aspx" />
-    <Content Include="Reports\DetailedAbsent.aspx" />
-    <Content Include="Reports\DLateIn.aspx" />
-    <Content Include="Reports\DLateOut.aspx" />
-    <Content Include="Reports\DLeave.aspx" />
-    <Content Include="Reports\DMissingAtt.aspx" />
-    <Content Include="Reports\DMultipleInOut.aspx" />
-    <Content Include="Reports\DOverTime.aspx" />
-    <Content Include="Reports\DPresent.aspx" />
-    <Content Include="Reports\DShortLeave.aspx" />
-    <Content Include="Reports\EditAttendance.aspx" />
-    <Content Include="Reports\EmpAttSummary.aspx" />
-    <Content Include="Reports\EmployeeDetail.aspx" />
     <Content Include="Reports\Filters\StepFourFilter.aspx" />
     <Content Include="Reports\Filters\StepOneFilter.aspx" />
     <Content Include="Reports\Filters\StepSixFilter.aspx" />
@@ -196,16 +176,6 @@
     <Content Include="Reports\Filters\StepThreeFilter.aspx" />
     <Content Include="Reports\Filters\SummaryReports.aspx" />
     <Content Include="Reports\Graphs\Graphs.aspx" />
-    <Content Include="Reports\LeaveDatewise.aspx" />
-    <Content Include="Reports\LvQuota.aspx" />
-    <Content Include="Reports\MDetailExcelC.aspx" />
-    <Content Include="Reports\MDetailExcelP.aspx" />
-    <Content Include="Reports\MYLeaveSummary.aspx" />
-    <Content Include="Reports\MLvConsumed.aspx" />
-    <Content Include="Reports\MSheet.aspx" />
-    <Content Include="Reports\MSheetC.aspx" />
-    <Content Include="Reports\MSummary.aspx" />
-    <Content Include="Reports\MSummaryC.aspx" />
     <Content Include="Reports\ReportContainer.aspx" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular\angular-bootstrap-select.js" />
@@ -218,11 +188,6 @@
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\EditAttendance.js" />
     <Content Include="Scripts\Employee\catEmpTypeCompanyCreate.js" />
-    <Content Include="Scripts\Employee\companyGradeCreate.js" />
-    <Content Include="Scripts\Employee\crewCompany.js" />
-    <Content Include="Scripts\Employee\crewCompanyCreate.js" />
-    <Content Include="Scripts\Employee\desigCompany.js" />
-    <Content Include="Scripts\Employee\desigCompanyCreate.js" />
     <Content Include="Scripts\dx.chartjs.js" />
     <Content Include="Scripts\Employee\empTypeCategory.js" />
     <Content Include="Scripts\Employee\empTypeCategoryCreate.js" />
@@ -237,7 +202,7 @@
     <Content Include="Scripts\HR\DeptCompanyCreate.js" />
     <Content Include="Scripts\HR\DivisionCompany.js" />
     <Content Include="Scripts\HR\DivisionCompanyCreate.js" />
-    <Content Include="Scripts\JavaScript1.js" />
+    <Content Include="Scripts\Leaves\LeaveQuota.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery.maskedinput.js" />
@@ -249,8 +214,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="LogIn.aspx" />
-    <Content Include="Reports\Employee.aspx" />
     <Content Include="Reports\ReportHome.aspx" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -260,7 +223,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Employee\companyGrade.js" />
     <Content Include="Scripts\DatePickerReady.js" />
     <Content Include="Models\TASReportDataSet.xsc">
       <DependentUpon>TASReportDataSet.xsd</DependentUpon>
@@ -453,9 +415,6 @@
     <Compile Include="Models\AccessEmp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AttCode.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AttData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -498,12 +457,6 @@
     <Compile Include="Models\City.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Company.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanyImage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Crew.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -522,9 +475,6 @@
     <Compile Include="Models\Division.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DOJJ.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DownloadTime.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -532,18 +482,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DutyTime.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Emergency.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EmergencyAuto.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EmergencyDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EmergencyView.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Emp.cs">
@@ -561,9 +499,6 @@
     <Compile Include="Models\EmpPhoto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmpPresence.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EmpRdr.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -577,9 +512,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Holiday.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ImportLeave.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JobCard.cs">
@@ -604,9 +536,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LvData.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LvQuota.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LvShort.cs">
@@ -660,9 +589,6 @@
     <Compile Include="Models\Region.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Remark.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Roster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -675,16 +601,10 @@
     <Compile Include="Models\RosterType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SampleTable.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Section.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServiceLog.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\setDateTime.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shift.cs">
@@ -696,13 +616,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TestView.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserLocation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModule.cs">
@@ -711,10 +625,7 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserSafety.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewAbsent.cs">
+    <Compile Include="Models\UserRoleData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewAttData.cs">
@@ -741,28 +652,13 @@
     <Compile Include="Models\ViewDivision.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewEarlyIN.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewEarlyOut.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewEditAttendance.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewEmergencyDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewEmpPic.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewEmpType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewLateComer.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewLateOut.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewLeaveData.cs">
@@ -777,9 +673,6 @@
     <Compile Include="Models\ViewLvConsumed.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewMissingAtt.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewMonthlyData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -789,13 +682,7 @@
     <Compile Include="Models\ViewMultipleInOut.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewOverTime.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewPollData.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewPresentEmp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewSection.cs">
@@ -805,9 +692,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewSummary.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ZTable.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Reports\Filters\SummaryReports.aspx.cs">
@@ -824,12 +708,10 @@
     <Compile Include="Reports\Graphs\Graphs.aspx.designer.cs">
       <DependentUpon>Graphs.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\HRReportsMaker.cs" />
     <Compile Include="CustomClass\QueryBuilder.cs" />
     <Compile Include="CustomClass\SessionManager.cs" />
     <Compile Include="HelperClass\ImageConversion.cs" />
     <Compile Include="HelperClass\MyGeneralClass.cs" />
-    <Compile Include="Models\WMSContext.cs" />
     <Compile Include="ReportingEngine.Master.cs">
       <DependentUpon>ReportingEngine.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -837,171 +719,17 @@
     <Compile Include="ReportingEngine.Master.designer.cs">
       <DependentUpon>ReportingEngine.Master</DependentUpon>
     </Compile>
-    <Compile Include="Reports\AuditLog.aspx.cs">
-      <DependentUpon>AuditLog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\AuditLog.aspx.designer.cs">
-      <DependentUpon>AuditLog.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelperClass\MyEnums.cs" />
     <Compile Include="HelperClass\MyHelper.cs" />
-    <Compile Include="LogIn.aspx.cs">
-      <DependentUpon>LogIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LogIn.aspx.designer.cs">
-      <DependentUpon>LogIn.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Models\TASReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TASReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\AttEdit.aspx.cs">
-      <DependentUpon>AttEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\AttEdit.aspx.designer.cs">
-      <DependentUpon>AttEdit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DAbsent.aspx.cs">
-      <DependentUpon>DAbsent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DAbsent.aspx.designer.cs">
-      <DependentUpon>DAbsent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DAttendance.aspx.cs">
-      <DependentUpon>DAttendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DAttendance.aspx.designer.cs">
-      <DependentUpon>DAttendance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DDetailed.aspx.cs">
-      <DependentUpon>DDetailed.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DDetailed.aspx.designer.cs">
-      <DependentUpon>DDetailed.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DEarlyIn.aspx.cs">
-      <DependentUpon>DEarlyIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DEarlyIn.aspx.designer.cs">
-      <DependentUpon>DEarlyIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DEarlyOut.aspx.cs">
-      <DependentUpon>DEarlyOut.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DEarlyOut.aspx.designer.cs">
-      <DependentUpon>DEarlyOut.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DetailedAbsent.aspx.cs">
-      <DependentUpon>DetailedAbsent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DetailedAbsent.aspx.designer.cs">
-      <DependentUpon>DetailedAbsent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DLateIn.aspx.cs">
-      <DependentUpon>DLateIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DLateIn.aspx.designer.cs">
-      <DependentUpon>DLateIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DLateOut.aspx.cs">
-      <DependentUpon>DLateOut.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DLateOut.aspx.designer.cs">
-      <DependentUpon>DLateOut.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DLeave.aspx.cs">
-      <DependentUpon>DLeave.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DLeave.aspx.designer.cs">
-      <DependentUpon>DLeave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DMissingAtt.aspx.cs">
-      <DependentUpon>DMissingAtt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DMissingAtt.aspx.designer.cs">
-      <DependentUpon>DMissingAtt.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DMultipleInOut.aspx.cs">
-      <DependentUpon>DMultipleInOut.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DMultipleInOut.aspx.designer.cs">
-      <DependentUpon>DMultipleInOut.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DOverTime.aspx.cs">
-      <DependentUpon>DOverTime.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DOverTime.aspx.designer.cs">
-      <DependentUpon>DOverTime.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DPresent.aspx.cs">
-      <DependentUpon>DPresent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DPresent.aspx.designer.cs">
-      <DependentUpon>DPresent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\DShortLeave.aspx.cs">
-      <DependentUpon>DShortLeave.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\DShortLeave.aspx.designer.cs">
-      <DependentUpon>DShortLeave.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\EditAttendance.aspx.cs">
-      <DependentUpon>EditAttendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\EditAttendance.aspx.designer.cs">
-      <DependentUpon>EditAttendance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\EmpAttSummary.aspx.cs">
-      <DependentUpon>EmpAttSummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\EmpAttSummary.aspx.designer.cs">
-      <DependentUpon>EmpAttSummary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Employee.aspx.cs">
-      <DependentUpon>Employee.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\Employee.aspx.designer.cs">
-      <DependentUpon>Employee.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\EmployeeDetail.aspx.cs">
-      <DependentUpon>EmployeeDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\EmployeeDetail.aspx.designer.cs">
-      <DependentUpon>EmployeeDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Reports\Filters\StepFourFilter.aspx.cs">
       <DependentUpon>StepFourFilter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1045,76 +773,6 @@
       <DependentUpon>StepThreeFilter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\GlobalVariables.cs" />
-    <Compile Include="Reports\LeaveDatewise.aspx.cs">
-      <DependentUpon>LeaveDatewise.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\LeaveDatewise.aspx.designer.cs">
-      <DependentUpon>LeaveDatewise.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\LvQuota.aspx.cs">
-      <DependentUpon>LvQuota.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\LvQuota.aspx.designer.cs">
-      <DependentUpon>LvQuota.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MDetailExcelC.aspx.cs">
-      <DependentUpon>MDetailExcelC.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MDetailExcelC.aspx.designer.cs">
-      <DependentUpon>MDetailExcelC.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MDetailExcelP.aspx.cs">
-      <DependentUpon>MDetailExcelP.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MDetailExcelP.aspx.designer.cs">
-      <DependentUpon>MDetailExcelP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MYLeaveSummary.aspx.cs">
-      <DependentUpon>MYLeaveSummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MYLeaveSummary.aspx.designer.cs">
-      <DependentUpon>MYLeaveSummary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MLvConsumed.aspx.cs">
-      <DependentUpon>MLvConsumed.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MLvConsumed.aspx.designer.cs">
-      <DependentUpon>MLvConsumed.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MSheet.aspx.cs">
-      <DependentUpon>MSheet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MSheet.aspx.designer.cs">
-      <DependentUpon>MSheet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MSheetC.aspx.cs">
-      <DependentUpon>MSheetC.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MSheetC.aspx.designer.cs">
-      <DependentUpon>MSheetC.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MSummary.aspx.cs">
-      <DependentUpon>MSummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MSummary.aspx.designer.cs">
-      <DependentUpon>MSummary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\MSummaryC.aspx.cs">
-      <DependentUpon>MSummaryC.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Reports\MSummaryC.aspx.designer.cs">
-      <DependentUpon>MSummaryC.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Reports\ReportContainer.aspx.cs">
       <DependentUpon>ReportContainer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1129,14 +787,6 @@
     <Compile Include="Reports\ReportHome.aspx.designer.cs">
       <DependentUpon>ReportHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Site1.Master.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site1.Master.designer.cs">
-      <DependentUpon>Site1.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CompanyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1223,7 +873,6 @@
     <Content Include="Views\LvShort\Details.cshtml" />
     <Content Include="Views\LvShort\Edit.cshtml" />
     <Content Include="Views\LvShort\Index.cshtml" />
-    <Content Include="Site1.Master" />
     <Content Include="Views\Dept\Create.cshtml" />
     <Content Include="Views\Dept\Delete.cshtml" />
     <Content Include="Views\Dept\Details.cshtml" />
@@ -1277,11 +926,6 @@
     <Content Include="Views\Roster\RosterContinue.cshtml" />
     <Content Include="Views\LeaveQuota\Index.cshtml" />
     <Content Include="Views\LeaveSettings\LvQuotaList.cshtml" />
-    <Content Include="Views\Company\Create.cshtml" />
-    <Content Include="Views\Company\Delete.cshtml" />
-    <Content Include="Views\Company\Details.cshtml" />
-    <Content Include="Views\Company\Edit.cshtml" />
-    <Content Include="Views\Company\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -1296,44 +940,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="Reports\RDLC\AttDepartmentSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\BadliReport.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DetailedAbsent.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRAbsent.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRDetailed.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DREarlyIn.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DREarlyOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLateIn.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLateOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLeave.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRLeaveQuota.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRMissingAtt.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRPresent.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\DSConsolidated.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\EmpAttSummaryNew.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MLvConsumed.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRDetailExcelC.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRDetailExcelP.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRLeaveBal.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRSheetC.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRSheetP.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MRSummaryC.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MYLeaveSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\RAuditLog.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\REditAttendance.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\RLeaveQuota.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\RShortLeave.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\SummarizedMonthlyReport.rdlc" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WMSLibrary\WMSLibrary.csproj">
       <Project>{bee16d41-5976-4142-97d7-ae43d44519c9}</Project>

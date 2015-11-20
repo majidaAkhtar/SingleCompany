@@ -16,8 +16,6 @@ namespace WMS.Controllers
         TAS2013Entities db = new TAS2013Entities();
         public ActionResult Index()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
-            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
             
@@ -36,9 +34,7 @@ namespace WMS.Controllers
             switch (Request.Form["cars"].ToString())
             {
                 case "company":
-                    string companyIDs = Request.Form["CompanyID"].ToString();
-                    int compID = Convert.ToInt32(Request.Form["CompanyID"].ToString());
-                    _Emp = db.Emps.Where(aa => aa.CompanyID == compID && aa.EmpType.CatID == catID).ToList();
+                    _Emp = db.Emps.Where(aa => aa.EmpType.CatID == catID).ToList();
                     break;
                 case "location":
                     int locID = Convert.ToInt32(Request.Form["LocationID"].ToString());
@@ -46,9 +42,8 @@ namespace WMS.Controllers
 
                     break;
                 case "employee":
-                    int compIDemp = Convert.ToInt32(Request.Form["CompanyIDEmp"].ToString());
                     string empNo = Request.Form["EmpNo"].ToString();
-                    _Emp = db.Emps.Where(aa => aa.CompanyID == compIDemp && aa.EmpNo == empNo).ToList();
+                    _Emp = db.Emps.Where(aa => aa.EmpNo == empNo).ToList();
                     break;
             }
             User LoggedInUser = Session["LoggedUser"] as User;
@@ -63,8 +58,6 @@ namespace WMS.Controllers
                 ViewBag.CMessage = "Employee No "+Request.Form["EmpNo"].ToString()+" not found";
                 
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
-            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
             return View("Index");
@@ -80,9 +73,8 @@ namespace WMS.Controllers
         public ActionResult AdjustLeaveQuotaStepOne()
         {
             string EmpNo= Request.Form["AdjustEmpNo"].ToString();
-            int CompanyID = Convert.ToInt32(Request.Form["CompanyID"].ToString());
             User LoggedInUser = Session["LoggedUser"] as User;
-            var emp = db.Emps.Where(aa => aa.CompanyID == CompanyID && aa.EmpNo == EmpNo && aa.Status==true).ToList();
+            var emp = db.Emps.Where(aa => aa.EmpNo == EmpNo && aa.Status==true).ToList();
             if (emp.Count > 0)
             {
                 //Check for Employee lies under user permission
@@ -126,8 +118,6 @@ namespace WMS.Controllers
                 ViewBag.CMessage = "Employee No " + Request.Form["EmpNo"].ToString() + " not found";
 
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
-            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
             return View("Index");
@@ -161,8 +151,6 @@ namespace WMS.Controllers
                     db.SaveChanges();
                 }
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName");
-            ViewBag.CompanyIDEmp = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName");
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s => s.CatName), "CatID", "CatName");
             return View("Index");
@@ -171,14 +159,14 @@ namespace WMS.Controllers
         public bool CheckEmpValidation(List<Emp> emps)
         {
             bool check = false;
-            User LoggedInUser = Session["LoggedUser"] as User;
-            List<UserLocation> uloc = new List<UserLocation>();
-            uloc = db.UserLocations.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
-            short empLocID = (short)emps.FirstOrDefault().LocID;
-            if (uloc.Where(aa => aa.LocationID == empLocID).Count() > 0)
-            {
-                check = true;
-            }
+            //User LoggedInUser = Session["LoggedUser"] as User;
+            //List<UserLocation> uloc = new List<UserLocation>();
+            //uloc = db.UserLocations.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
+            //short empLocID = (short)emps.FirstOrDefault().LocID;
+            //if (uloc.Where(aa => aa.LocationID == empLocID).Count() > 0)
+            //{
+            //    check = true;
+            //}
             return check;
 
         }
@@ -302,7 +290,6 @@ namespace WMS.Controllers
                             lvConsumed.OctConsumed = 0;
                             lvConsumed.NovConsumed = 0;
                             lvConsumed.DecConsumed = 0;
-                            lvConsumed.CompanyID = emp.CompanyID;
                             switch (lvType.LvType1)
                             {
                                 case "A"://CL

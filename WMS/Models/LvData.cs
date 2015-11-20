@@ -24,7 +24,6 @@ namespace WMS.Models
         public Nullable<bool> Processed { get; set; }
         public Nullable<bool> HalfLeave { get; set; }
         public Nullable<bool> FirstHalf { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<bool> Active { get; set; }
     
         public virtual LvApplication LvApplication { get; set; }

@@ -44,7 +44,6 @@ namespace WMS.Models
         public Nullable<short> BreakMin { get; set; }
         public Nullable<bool> GZDays { get; set; }
         public Nullable<bool> OpenShift { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<short> LocationID { get; set; }
     
         public virtual DaysName DaysName { get; set; }

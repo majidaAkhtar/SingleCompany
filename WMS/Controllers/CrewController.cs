@@ -39,7 +39,7 @@ namespace WMS.Controllers
             var crew = db.Crews.Where(query).AsQueryable();
             if (!String.IsNullOrEmpty(searchString))
             {
-                crew = crew.Where(s => s.CrewName.ToUpper().Contains(searchString.ToUpper()) || s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
+                crew = crew.Where(s => s.CrewName.ToUpper().Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
@@ -77,7 +77,6 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -87,12 +86,8 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Create([Bind(Include = "CrewID,CrewName,CompanyID")] Crew crew)
+        public ActionResult Create([Bind(Include = "CrewID,CrewName")] Crew crew)
         {
-            if (db.Crews.Where(aa => aa.CrewName == crew.CrewName && aa.CompanyID==crew.CompanyID).Count() > 0)
-                ModelState.AddModelError("CrewName", "Crew Name is must be unique");
-            if(crew.CompanyID==null)
-                ModelState.AddModelError("CrewName", "Please selct a Company");
             if (crew.CrewName == "")
                 ModelState.AddModelError("CrewName", "Please enter Crew Name");
             if (ModelState.IsValid)
@@ -101,7 +96,6 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(crew);
         }
 
@@ -118,7 +112,6 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(crew);
         }
 
@@ -128,10 +121,8 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include = "CrewID,CrewName,CompanyID")] Crew crew)
+        public ActionResult Edit([Bind(Include = "CrewID,CrewName")] Crew crew)
         {
-            if (crew.CompanyID == null)
-                ModelState.AddModelError("CrewName", "Please selct a Company");
             if (crew.CrewName == "")
                 ModelState.AddModelError("CrewName", "Please enter Crew Name");
             if (ModelState.IsValid)
@@ -140,7 +131,6 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(crew);
         }
 

@@ -52,7 +52,6 @@ namespace WMS
                     Session["LogedUserID"] = v.UserID.ToString();
                     Session["LogedUserFullname"] = v.UserName;
                     Session["LoggedUser"] = v;
-                    Session["UserCompany"] = v.CompanyID.ToString();
                     if (v.MHR == true)
                         Session["MHR"] = "1";
                     if (v.MDevice == true)

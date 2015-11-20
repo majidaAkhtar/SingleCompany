@@ -22,7 +22,7 @@ namespace WMS.Controllers
         public ActionResult Index()
         {
             User LoggedInUser = Session["LoggedUser"] as User;
-            var lvshorts = db.LvShorts.Where(aa=>aa.CompanyID == LoggedInUser.CompanyID).OrderBy(s=>s.CreatedDate).ToList();
+            var lvshorts = db.LvShorts.OrderBy(s=>s.CreatedDate).ToList();
             return View(lvshorts);
         }
 
@@ -107,7 +107,6 @@ namespace WMS.Controllers
                 int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                 User LoggedInUser = Session["LoggedUser"] as User;
                 lvshort.CreatedBy = _userID;
-                lvshort.CompanyID = LoggedInUser.CompanyID;
                 lvshort.Status = true;
                 db.LvShorts.Add(lvshort);
                 db.SaveChanges();

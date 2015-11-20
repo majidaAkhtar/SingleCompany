@@ -93,8 +93,7 @@ namespace WMS.Reports.Filters
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
-            List<Company> _View = da.Companies.Where(query).OrderBy(s=>s.CompName).ToList();
-            GridViewCompany.DataSource = _View.Where(aa => aa.CompName.ToUpper().Contains(search.ToUpper())).ToList();
+            
             GridViewCompany.DataBind();
         }
 

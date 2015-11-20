@@ -14,15 +14,9 @@ namespace WMS.Models
     
     public partial class UserRole
     {
-        public UserRole()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
-        public byte RoleID { get; set; }
+        public string RoleLegend { get; set; }
         public string RoleName { get; set; }
         public string Description { get; set; }
-    
-        public virtual ICollection<User> Users { get; set; }
+        public string TableName { get; set; }
     }
 }

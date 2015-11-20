@@ -66,14 +66,6 @@
                             <input id="AdjustEmpNo" name="AdjustEmpNo" class="form-control"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Company</label>
-                        </div>
-                        <div class="col-md-6" style="margin-top:10px;">
-                             @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                        </div>
-                    </div>
                 </div>
                 <div class="row" style="margin-left:10%;margin-bottom:3%; margin-top:3%">
                     <div class="col-md-6">
@@ -90,96 +82,91 @@
             
         }
     </section>
-
- <section class="col-md-6">
-     <header><h4>Create Leave Quota</h4></header>
-        @using (Html.BeginForm("CreateLeaveQuota", "LeaveSettings", FormMethod.Post))
-        {
-        <article class="row">
-            <section class="col-md-6">
+    <section class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h4>Create Leave Quota</h4></div>
+            <div class="panel-body">
+                 @using (Html.BeginForm("CreateLeaveQuota", "LeaveSettings", FormMethod.Post))
+                {
                 <div>
                      <div style="margin-left:15%; font-size:15px">
-                          <div class="radio"><label><input type="radio" id="company" value="company" name="cars">By Company</label></div>
-                          <div class="radio"><label><input type="radio" value="location" name="cars">By Location</label></div>
-                          <div class="radio"><label><input type="radio" checked value="employee" name="cars">By Employee</label></div>
+                          <div class="radio"><label><input type="radio" checked value="ByEmployee" name="CreateLeaveCriteria">By Employee</label></div>
+                         <div class="radio"><label><input type="radio" value="ByCategory" name="CreateLeaveCriteria">By Category</label></div>
+                         <div class="radio"><label><input type="radio" value="ByEmpType" name="CreateLeaveCriteria">By Employee Type</label></div>
                      </div>
-                    <div class="row">
-                         <div id="Option5" class="desc" style="display: none;">
-                            <div class="row" style="margin-left:10%; margin-bottom:3%">
-                                <div class="col-md-6">
-                                    <label>Company</label>
-                                </div>
-                                <div class="col-md-6">
-                                    @Html.DropDownList("CompanyID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                </div>
+                    <div id="ByEmpDiv" class="desc" style="display: none;">
+                        <div class="row" style="margin-left:10%; margin-bottom:5%; margin-top:5%">
+                            <div class="col-md-3">
+                                <label>Employee No</label>
                             </div>
-                        </div>
-                         <div id="Option6" class="desc" style="display: none;">
-                            <div class="row" style="margin-left:10%; margin-bottom:3%">
-                                <div class="col-md-6">
-                                    <label>Location</label>
-                                </div>
-                                <div class="col-md-6">
-                                    @Html.DropDownList("LocationID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                </div>
-                            </div>
-                        </div>
-                        <div id="Option4" class="desc" style="display: none;">
-                            <div class="row" style="margin-left:10%; margin-bottom:3%">
-                                <div class="col-md-6">
-                                    <label>Employee No</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input id="EmpNo" name="EmpNo" type="text" class="form-control"/>
-                                    @Html.DropDownList("CompanyIDEmp",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                                </div>
+                            <div class="col-md-6">
+                                <input id="EmpNo" name="EmpNo" type="text" class="form-control"/>
+                                    
                             </div>
                         </div>
                     </div>
-                     <div class="row" style="margin-left:5%; margin-bottom:3%">
-                        <div class="col-md-6">
-                            <label>Employee Type</label>
-                        </div>
-                        <div class="col-md-6">
-                             @Html.DropDownList("CatID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                    <div id="ByEmpTypeDiv" class="desc" style="display: none;">
+                        <div class="row" style="margin-left:10%; margin-bottom:5%; margin-top:5%">
+                            <div class="col-md-3">
+                                <label>Employee Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.DropDownList("CatID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                    
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-left:5%; margin-bottom:3%">
-                        <div class="col-md-6">
+                    <div id="ByCatDiv" class="desc" style="display: none;">
+                        <div class="row" style="margin-left:10%; margin-bottom:5%; margin-top:5%">
+                            <div class="col-md-3">
+                                <label>Category</label>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.DropDownList("CatID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:10%; margin-bottom:1%; margin-top:5%">
+                        <div class="col-md-3">
                             <label>Casual Leaves</label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="CLeaves" name="CLeaves" type="number" class="form-control"/>
+                                    
                         </div>
                     </div>
-                    <div class="row" style="margin-left:5%; margin-bottom:3%">
-                        <div class="col-md-6">
+                    <div class="row" style="margin-left:10%; margin-bottom:1%">
+                        <div class="col-md-3">
                             <label>Annual Leaves</label>
                         </div>
-                        <div class="col-md-6">
-                            <input id="ALeaves" name="ALeaves" type="number" class="form-control"/>
+                        <div class="col-md-4">
+                           <input id="ALeaves" name="ALeaves" type="number" class="form-control"/>
                         </div>
                     </div>
-                    <div class="row" style="margin-left:5%; margin-bottom:3%">
-                        <div class="col-md-6">
+                    <div class="row" style="margin-left:10%; margin-bottom:1%">
+                        <div class="col-md-3">
                             <label>Sick Leaves</label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="SLeaves" name="SLeaves" type="number" class="form-control"/>
+                                    
                         </div>
                     </div>
                 </div>
                 <div class="row" style="margin-left:10%; margin-bottom:3%">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                     </div>
-                    <div class="col-md-6">
-                        <input type="submit" value="Save"  class="btn btn-sm btn-success"/>
+                    <div class="col-md-4">
+                        <input type="submit" value="Save"  class="btn btn-xs btn-success"/>
                     </div>
                 </div>
-            </section>
-        </article>
-        }
+                }
+            </div>
+        </div>
+     <header></header>
+       
     </section>
 
-<script src="@Url.Content("~/Scripts/JavaScript1.js")"></script>
+<script src="@Url.Content("~/Scripts/Leaves/LeaveQuota.js")"></script>
 

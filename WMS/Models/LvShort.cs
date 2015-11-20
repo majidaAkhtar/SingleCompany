@@ -26,7 +26,6 @@ namespace WMS.Models
         public Nullable<int> ApprovedBy { get; set; }
         public Nullable<bool> Status { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<short> CompanyID { get; set; }
     
         public virtual Emp Emp { get; set; }
     }

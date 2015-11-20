@@ -99,7 +99,6 @@ namespace WMS.Controllers
         public ActionResult Create()
         {
             ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpName), "EmpID", "EmpNo");
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             ViewBag.LvType = new SelectList(db.LvTypes.Where(aa=>aa.Enable==true).OrderBy(s=>s.LvType1).ToList(), "LvType1", "LvDesc");
             return View();
         }
@@ -115,9 +114,8 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             if (lvapplication.FromDate.Date > lvapplication.ToDate.Date)
                 ModelState.AddModelError("FromDate", "From Date should be smaller than To Date");
-            Int16 CompID = Convert.ToInt16(Request.Form["CompanyID"]);
             string _EmpNo = Request.Form["EmpNo"].ToString();
-            List<Emp> _emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID == CompID).ToList();
+            List<Emp> _emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo).ToList();
             if (_emp.Count == 0 )
             {
                 ModelState.AddModelError("EmpNo", "Emp No not exist");
@@ -143,7 +141,6 @@ namespace WMS.Controllers
                                 lvapplication.LvDate = DateTime.Today;
                                 int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                                 lvapplication.CreatedBy = _userID;
-                                lvapplication.CompanyID = _emp.FirstOrDefault().CompanyID;
                                 lvapplication.Active = true;
                                 db.LvApplications.Add(lvapplication);
                                 if (db.SaveChanges() > 0)
@@ -179,7 +176,6 @@ namespace WMS.Controllers
                                     lvapplication.LvDate = DateTime.Today;
                                     int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                                     lvapplication.CreatedBy = _userID;
-                                    lvapplication.CompanyID = _emp.FirstOrDefault().CompanyID;
                                     lvapplication.Active = true;
                                     db.LvApplications.Add(lvapplication);
                                     if (db.SaveChanges() > 0)
@@ -207,7 +203,6 @@ namespace WMS.Controllers
             }
             else
                 ModelState.AddModelError("LvType", "Leave is not created. Please contact with network administrator");
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpName), "EmpID", "EmpNo", lvapplication.EmpID);
             ViewBag.LvType = new SelectList(db.LvTypes.Where(aa=>aa.Enable==true).OrderBy(s=>s.LvType1), "LvType1", "LvDesc", lvapplication.LvType);
             return View(lvapplication);
@@ -241,7 +236,6 @@ namespace WMS.Controllers
             if (ModelState.IsValid)
             {
                 User LoggedInUser = Session["LoggedUser"] as User;
-                lvapplication.CompanyID = LoggedInUser.CompanyID;
                 db.Entry(lvapplication).State = EntityState.Modified;
                 db.SaveChanges();
                 int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());

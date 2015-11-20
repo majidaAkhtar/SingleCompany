@@ -8,7 +8,7 @@
     <div>
       <form class ="form-inline" role="form">
           <div class="form-group"> <h2>Readers</h2> </div>
-          <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-sm btn-success" })</p></div>
+          <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-xs btn-success" })</p></div>
           <div class="form-group pull-right SearchBtnMargin">
               @using (Html.BeginForm("Index", "Reader", FormMethod.Get))
                 {<p>Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string,new { @class = "form-control" })  
@@ -82,9 +82,9 @@
                     @Html.DisplayFor(modelItem => item.ReaderType.ReaderVendor.VendorName)
                 </td>
                 <td>
-                    @Html.ActionLink(" ", "Edit", new { id=item.RdrID }, new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-sm" })
-                    @Html.ActionLink(" ", "Details", new { id=item.RdrID }, new { @class = "glyphicon glyphicon-list btn btn-primary btn-sm" }) 
-                    @Html.ActionLink(" ", "Delete", new { id=item.RdrID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
+                    @Html.ActionLink(" ", "Edit", new { id=item.RdrID }, new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs" })
+                    @Html.ActionLink(" ", "Details", new { id=item.RdrID }, new { @class = "glyphicon glyphicon-pencil btn btn-info btn-xs" }) 
+                    @Html.ActionLink(" ", "Delete", new { id=item.RdrID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-xs" })
                 </td>
             </tr>
         }

@@ -29,7 +29,7 @@ namespace WMS.Controllers
         {
             User LoggedInUser = Session["LoggedUser"] as User;
             List<RosterApp> rosterapps = new List<RosterApp>();
-            if (LoggedInUser.RoleID == 1)
+            if (LoggedInUser.UserRole == "A")
             {
                 rosterapps = db.RosterApps.Where(aa => aa.Status == true).ToList();
             }
@@ -302,7 +302,6 @@ namespace WMS.Controllers
                 {
                     RosterDetail _RotaDetail = new RosterDetail();
                     _RotaDetail.CriteriaValueDate = criteria.ToString() + criteriaValue.ToString() + roster.DutyDate.ToString("yyMMdd");
-                    _RotaDetail.CompanyID = _selectedShift.CompanyID;
                     _RotaDetail.OpenShift = _selectedShift.OpenShift;
                     _RotaDetail.UserID = _userID;
                     _RotaDetail.RosterAppID = _RotaAppID;

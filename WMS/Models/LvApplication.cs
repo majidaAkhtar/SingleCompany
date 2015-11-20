@@ -34,7 +34,6 @@ namespace WMS.Models
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<int> ApprovedBy { get; set; }
         public string LvStatus { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<bool> Active { get; set; }
     
         public virtual Emp Emp { get; set; }

@@ -60,7 +60,7 @@ namespace WMS.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var readers = db.Readers.Where(aa=>aa.CompanyID == LoggedInUser.CompanyID).Include(r => r.Location).Include(r => r.RdrDutyCode).Include(r => r.ReaderType).Include(r => r.ReaderType.ReaderVendor);
+            var readers = db.Readers.Include(r => r.Location).Include(r => r.RdrDutyCode).Include(r => r.ReaderType).Include(r => r.ReaderType.ReaderVendor);
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -134,7 +134,6 @@ namespace WMS.Controllers
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName");
             ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -144,7 +143,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Create([Bind(Include = "RdrID,RdrName,RdrDutyID,IpAdd,IpPort,RdrTypeID,Status,LocID,CompanyID")] Reader reader)
+        public ActionResult Create([Bind(Include = "RdrID,RdrName,RdrDutyID,IpAdd,IpPort,RdrTypeID,Status,LocID")] Reader reader)
         {
             // Regex for IP [0-9]+(\.[0-9][0-9]?)?
             if (string.IsNullOrEmpty(reader.IpAdd))
@@ -188,7 +187,6 @@ namespace WMS.Controllers
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
             ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", reader.CompanyID);
             return View(reader);
         }
         // GET: /Reader/Edit/5
@@ -207,7 +205,6 @@ namespace WMS.Controllers
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
             ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", reader.CompanyID);
             return View(reader);
         }
 
@@ -217,7 +214,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include = "RdrID,RdrName,RdrDutyID,IpAdd,IpPort,RdrTypeID,Status,LocID,CompanyID")] Reader reader)
+        public ActionResult Edit([Bind(Include = "RdrID,RdrName,RdrDutyID,IpAdd,IpPort,RdrTypeID,Status,LocID")] Reader reader)
         {
             if (string.IsNullOrEmpty(reader.IpAdd))
                 ModelState.AddModelError("IpAdd", "Required");
@@ -257,7 +254,6 @@ namespace WMS.Controllers
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
             ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s=>s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName", reader.CompanyID);
             return View(reader);
         }
 

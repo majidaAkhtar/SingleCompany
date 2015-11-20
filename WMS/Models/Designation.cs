@@ -21,9 +21,7 @@ namespace WMS.Models
     
         public int DesignationID { get; set; }
         public string DesignationName { get; set; }
-        public short CompanyID { get; set; }
     
-        public virtual Company Company { get; set; }
         public virtual ICollection<Emp> Emps { get; set; }
     }
 }

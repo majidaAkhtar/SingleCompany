@@ -74,17 +74,17 @@ namespace WMS.Reports
                         
 
                         break;
-                    case "department_attendance_summary": HRReportsMaker hrm = new HRReportsMaker();
-                        List<AttDeptSummary> AttDept = hrm.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
-                        title = "Department Attendace Summary";
-                        if (GlobalVariables.DeploymentType == false)
-                            PathString = "/Reports/RDLC/AttDepartmentSummary.rdlc";
-                        else
-                            PathString = "/WMS/Reports/RDLC/AttDepartmentSummary.rdlc";
+                    //case "department_attendance_summary": HRReportsMaker hrm = new HRReportsMaker();
+                    //    List<AttDeptSummary> AttDept = hrm.GetListForAttDepartmentsSummary(Session["FiltersModel"] as FiltersModel, _dateFrom, _dateTo);
+                    //    title = "Department Attendace Summary";
+                    //    if (GlobalVariables.DeploymentType == false)
+                    //        PathString = "/Reports/RDLC/AttDepartmentSummary.rdlc";
+                    //    else
+                    //        PathString = "/WMS/Reports/RDLC/AttDepartmentSummary.rdlc";
 
-                        LoadReport(PathString, AttDept, _dateFrom + " TO " + _dateTo);
+                    //    LoadReport(PathString, AttDept, _dateFrom + " TO " + _dateTo);
 
-                        break;
+                    //    break;
                     case "emp_record": DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query + " and Status=1 ");
                         List<EmpView> _ViewList = dt.ToList<EmpView>();
                         List<EmpView> _TempViewList = new List<EmpView>();
@@ -1361,21 +1361,6 @@ namespace WMS.Reports
 
         public List<EmpView> ReportsFilterImplementation(FiltersModel fm, List<EmpView> _TempViewList, List<EmpView> _ViewList)
         {
-            //for company
-            if (fm.CompanyFilter.Count > 0)
-            {
-                foreach (var comp in fm.CompanyFilter)
-                {
-                    short _compID = Convert.ToInt16(comp.ID);
-                    _TempViewList.AddRange(_ViewList.Where(aa => aa.CompanyID == _compID).ToList());
-                }
-                _ViewList = _TempViewList.ToList();
-            }
-            else
-                _TempViewList = _ViewList.ToList();
-            _TempViewList.Clear();
-
-
 
             //for location
             if (fm.LocationFilter.Count > 0)
@@ -1502,19 +1487,6 @@ namespace WMS.Reports
         //ViewAttData
         public List<ViewAttData> ReportsFilterImplementation(FiltersModel fm, List<ViewAttData> _TempViewList, List<ViewAttData> _ViewList)
         {
-            //for company
-            if (fm.CompanyFilter.Count > 0)
-            {
-                foreach (var comp in fm.CompanyFilter)
-                {
-                    short _compID = Convert.ToInt16(comp.ID);
-                    _TempViewList.AddRange(_ViewList.Where(aa => aa.CompanyID == _compID).ToList());
-                }
-                _ViewList = _TempViewList.ToList();
-            }
-            else
-                _TempViewList = _ViewList.ToList();
-            _TempViewList.Clear();
 
 
 
@@ -1653,8 +1625,6 @@ namespace WMS.Reports
                 if (fm.CompanyFilter.Count > 0)
                 {
                     int id = Int32.Parse(fm.CompanyFilter.First().ID);
-                    Company comp = ctx.Companies.Where(aa => aa.CompID == id).FirstOrDefault();
-                    companyimage.Add(ctx.EmpPhotoes.Where(aa => aa.PhotoID == comp.ImageID).First());
                 }
                 else
                 {
@@ -2326,8 +2296,6 @@ namespace WMS.Reports
                     DesigID = (short)emp.DesigID;
                     CrewName = emp.CrewName;
                     CrewID = (short)emp.CrewID;
-                    CompanyName = emp.CompName;
-                    CompanyID = (short)emp.CompanyID;
                     switch (leave.LeaveType)
                     {
                         case "A"://Casual
@@ -2379,7 +2347,7 @@ namespace WMS.Reports
                             BalSL = (float)leave.YearRemaining;
                             break;
                     }
-                    AddDataToDT(EmpID, EmpNo, EmpName, TotalAL, BalAL, TotalCL, BalCL, TotalSL, BalSL, JanAL, JanCL, JanSL, FebAL, FebCL, FebSL, MarchAL, MarchCL, MarchSL, AprilAL, AprilCL, AprilSL, MayAL, MayCL, MaySL, JunAL, JunCL, JunSL, JullyAL, JullyCL, JullySL, AugAL, AugCL, AugSL, SepAL, SepCL, SepSL, OctAL, OctCL, OctSL, NovAL, NovCL, NovSL, DecAL, DecCL, DecSL, Remarks, DeptName, (short)DeptID, LocationName, (short)LocationID, SecName, (short)SecID, DesgName, DesigID, CrewName, CrewID, CompanyName, (short)CompanyID);
+                    AddDataToDT(EmpID, EmpNo, EmpName, TotalAL, BalAL, TotalCL, BalCL, TotalSL, BalSL, JanAL, JanCL, JanSL, FebAL, FebCL, FebSL, MarchAL, MarchCL, MarchSL, AprilAL, AprilCL, AprilSL, MayAL, MayCL, MaySL, JunAL, JunCL, JunSL, JullyAL, JullyCL, JullySL, AugAL, AugCL, AugSL, SepAL, SepCL, SepSL, OctAL, OctCL, OctSL, NovAL, NovCL, NovSL, DecAL, DecCL, DecSL, Remarks, DeptName, (short)DeptID, LocationName, (short)LocationID, SecName, (short)SecID, DesgName, DesigID, CrewName, CrewID);
                 }
             }
             return MYLeaveSummaryDT;
@@ -2497,11 +2465,11 @@ namespace WMS.Reports
             float OctAL, float OctCL, float OctSL,
             float NovAL, float NovCL, float NovSL,
             float DecAL, float DecCL, float DecSL,
-            string Remarks, string DeptName, short DeptID, string LocationName, short LocationID, string SecName, short SecID, string DesgName, short DesgID, string CrewName, short CrewID, string CompanyName, short CompanyID)
+            string Remarks, string DeptName, short DeptID, string LocationName, short LocationID, string SecName, short SecID, string DesgName, short DesgID, string CrewName, short CrewID)
         {
             MYLeaveSummaryDT.Rows.Add(EmpID, EmpNo, EmpName, TotalAL, BalAL, TotalCL, BalCL, TotalSL, BalSL, JanAL, JanCL, JanSL, FebAL, FebCL, FebSL, MarchAL, MarchCL, MarchSL,
                 AprilAL, AprilCL, AprilSL, MayAL, MayCL, MaySL, JunAL, JunCL, JunSL, JullyAL, JullyCL, JullySL, AugAL, AugCL, AugSL,
-                SepAL, SepCL, SepSL, OctAL, OctCL, OctSL, NovAL, NovCL, NovSL, DecAL, DecCL, DecSL, Remarks, DeptName, DeptID, LocationName, LocationID, CrewName, CrewID, SecName, SecID, CompanyName, CompanyID);
+                SepAL, SepCL, SepSL, OctAL, OctCL, OctSL, NovAL, NovCL, NovSL, DecAL, DecCL, DecSL, Remarks, DeptName, DeptID, LocationName, LocationID, CrewName, CrewID, SecName, SecID);
         }
 
         #region --Leave Process--

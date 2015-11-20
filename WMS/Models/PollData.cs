@@ -25,7 +25,6 @@ namespace WMS.Models
         public Nullable<byte> RdrDuty { get; set; }
         public Nullable<bool> Process { get; set; }
         public Nullable<bool> Split { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<System.DateTime> AddedDate { get; set; }
     
         public virtual Reader Reader { get; set; }

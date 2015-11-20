@@ -43,7 +43,7 @@ namespace WMS.Controllers
             {
                 departments = departments.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper())
                     ||s.Division.DivisionName.ToUpper().Contains(searchString.ToUpper())
-                    ||s.Company.CompName.ToUpper().Contains(searchString.ToUpper()));
+                    );
             }
 
             switch (sortOrder)
@@ -81,7 +81,6 @@ namespace WMS.Controllers
         public ActionResult Create()
         {
             ViewBag.DivID = new SelectList(db.Divisions.OrderBy(s=>s.DivisionName) , "DivisionID", "DivisionName");
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -91,12 +90,8 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-           public ActionResult Create([Bind(Include = "DeptID,DeptName,DivID,CompanyID")] Department department)
+           public ActionResult Create([Bind(Include = "DeptID,DeptName,DivID")] Department department)
         {
-            if (db.Departments.Where(aa => aa.DeptName == department.DeptName&& aa.CompanyID == department.CompanyID).Count() > 0)
-                ModelState.AddModelError("DeptName", "Department Name is must be unique");
-            if (department.CompanyID == null)
-                ModelState.AddModelError("DeptName", "Please selct a Company");
             if (department.DeptName == "")
                 ModelState.AddModelError("DeptName", "Please enter Department Name");
             if (department.DivID ==null)
@@ -111,7 +106,6 @@ namespace WMS.Controllers
             }
 
             ViewBag.DivID = new SelectList(db.Divisions.OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName", department.DivID);
-            ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(department);
         }
 
@@ -134,7 +128,6 @@ namespace WMS.Controllers
             string query1 = qb.QueryForCompanyViewLinq(LoggedInUser);
          
             ViewBag.DivID = new SelectList(db.Divisions.Where(query).AsQueryable().OrderBy(s=>s.DivisionName), "DivisionID", "DivisionName", department.DivID);
- ViewBag.CompanyID = new SelectList(db.Companies.Where(query1).AsQueryable().OrderBy(s => s.CompName), "CompID", "CompName");
             return View(department);
         }
 
@@ -144,10 +137,8 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-           public ActionResult Edit([Bind(Include = "DeptID,DeptName,DivID,CompanyID")] Department department)
+           public ActionResult Edit([Bind(Include = "DeptID,DeptName,DivID")] Department department)
         {
-            if (department.CompanyID == null)
-                ModelState.AddModelError("DeptName", "Please selct a Company");
             if (department.DeptName == "")
                 ModelState.AddModelError("DeptName", "Please enter Department Name");
             if (department.DivID == null)

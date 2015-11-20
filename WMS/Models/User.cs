@@ -20,20 +20,19 @@ namespace WMS.Models
             this.AttProcessorSchedulers = new HashSet<AttProcessorScheduler>();
             this.AuditLogs = new HashSet<AuditLog>();
             this.LvApplications = new HashSet<LvApplication>();
+            this.UserRoleDatas = new HashSet<UserRoleData>();
         }
     
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public Nullable<byte> RoleID { get; set; }
+        public string UserRole { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string Name { get; set; }
         public Nullable<bool> Status { get; set; }
-        public Nullable<short> Department { get; set; }
         public Nullable<bool> CanEdit { get; set; }
         public Nullable<bool> CanDelete { get; set; }
         public Nullable<bool> CanView { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<bool> CanAdd { get; set; }
         public Nullable<int> EmpID { get; set; }
         public Nullable<bool> MHR { get; set; }
@@ -55,8 +54,6 @@ namespace WMS.Models
         public Nullable<bool> ViewPermanentStaff { get; set; }
         public Nullable<bool> ViewPermanentMgm { get; set; }
         public Nullable<bool> ViewContractual { get; set; }
-        public Nullable<bool> ViewLocation { get; set; }
-        public Nullable<short> LocationID { get; set; }
         public Nullable<bool> MRoster { get; set; }
         public Nullable<bool> MProcess { get; set; }
     
@@ -64,6 +61,6 @@ namespace WMS.Models
         public virtual ICollection<AttProcessorScheduler> AttProcessorSchedulers { get; set; }
         public virtual ICollection<AuditLog> AuditLogs { get; set; }
         public virtual ICollection<LvApplication> LvApplications { get; set; }
-        public virtual UserRole UserRole { get; set; }
+        public virtual ICollection<UserRoleData> UserRoleDatas { get; set; }
     }
 }

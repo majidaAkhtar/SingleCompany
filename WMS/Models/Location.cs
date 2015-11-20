@@ -25,7 +25,6 @@ namespace WMS.Models
         public short LocID { get; set; }
         public string LocName { get; set; }
         public Nullable<short> CityID { get; set; }
-        public Nullable<short> CompanyID { get; set; }
     
         public virtual ICollection<AttProcessorScheduler> AttProcessorSchedulers { get; set; }
         public virtual City City { get; set; }

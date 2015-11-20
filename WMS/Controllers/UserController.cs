@@ -54,7 +54,6 @@ namespace WMS.Controllers
             //    string Time = Request.Form["StudentList[" + i.ToString() + "].Date"].ToString();
             //}
 
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName");
             ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo");
             ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
             ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName");
@@ -103,7 +102,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,CompanyID,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRoster,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
+        public ActionResult Create([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRoster,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
         {
             int count = Convert.ToInt32(Request.Form["uLocationCount"]);
             if (count > 0)
@@ -228,10 +227,6 @@ namespace WMS.Controllers
                     user.ViewContractual = true;
                 else
                     user.ViewContractual = false;
-                if (Request.Form["ViewLocation"] == "1")
-                    user.ViewLocation = true;
-                else
-                    user.ViewLocation = false;
 
                 if (check == false)
                 {
@@ -251,20 +246,18 @@ namespace WMS.Controllers
                             string uLocID = "uLocation" + i;
                             string LocName = Request.Form[uLocID].ToString();
                             int locID = locs.Where(aa => aa.LocName == LocName).FirstOrDefault().LocID;
-                            UserLocation uloc = new UserLocation();
-                            uloc.UserID = user.UserID;
-                            uloc.LocationID = (short)locID;
-                            db.UserLocations.Add(uloc);
+                            //UserLocation uloc = new UserLocation();
+                            //uloc.UserID = user.UserID;
+                            //uloc.LocationID = (short)locID;
+                            //db.UserLocations.Add(uloc);
                             db.SaveChanges();
                         }
                         return RedirectToAction("Index");
                     }
                 }
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", user.CompanyID);
             ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", user.EmpID);
-            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.RoleID);
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName", user.LocationID);
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.UserRole);
             return View(user);
         }
 
@@ -295,10 +288,8 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", user.CompanyID);
             ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", user.EmpID);
-            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.RoleID);
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName", user.LocationID);
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.UserRole);
             return View(user);
         }
 
@@ -307,10 +298,10 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,CompanyID,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
         {
             bool check = false;
-            user.RoleID = Convert.ToByte(Request.Form["RoleID"].ToString());
+            user.UserRole = Request.Form["RoleID"].ToString();
             if (Request.Form["Status"].ToString() == "true")
                 user.Status = true;
             else
@@ -414,36 +405,36 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 int count = Convert.ToInt32(Request.Form["uLocationCount"]);
                 List<Location> locs = new List<Location>();
-                List<UserLocation> userLocs = db.UserLocations.Where(aa=>aa.UserID==user.UserID).ToList();
-                locs = db.Locations.ToList();
-                List<int> currentLocIDs = new List<int>();
-                foreach (var uloc in userLocs)
-                {
-                    UserLocation ul = db.UserLocations.First(aa=>aa.UserLocID==uloc.UserLocID);
-                    db.UserLocations.Remove(ul);
-                    db.SaveChanges();
-                }
-                userLocs = new List<UserLocation>();
-                for (int i = 1; i <= count; i++)
-                {
-                    string uLocID = "uLocation" + i;
-                    string LocName = Request.Form[uLocID].ToString();
-                    int locID = locs.Where(aa => aa.LocName == LocName).FirstOrDefault().LocID;
-                    currentLocIDs.Add(locID);
-                    if(userLocs.Where(aa=>aa.LocationID==locID).Count()>0)
-                    {
+                //List<UserLocation> userLocs = db.UserLocations.Where(aa=>aa.UserID==user.UserID).ToList();
+                //locs = db.Locations.ToList();
+                //List<int> currentLocIDs = new List<int>();
+                //foreach (var uloc in userLocs)
+                //{
+                //    UserLocation ul = db.UserLocations.First(aa=>aa.UserLocID==uloc.UserLocID);
+                //    db.UserLocations.Remove(ul);
+                //    db.SaveChanges();
+                //}
+                //userLocs = new List<UserLocation>();
+                //for (int i = 1; i <= count; i++)
+                //{
+                //    string uLocID = "uLocation" + i;
+                //    string LocName = Request.Form[uLocID].ToString();
+                //    int locID = locs.Where(aa => aa.LocName == LocName).FirstOrDefault().LocID;
+                //    currentLocIDs.Add(locID);
+                //    if(userLocs.Where(aa=>aa.LocationID==locID).Count()>0)
+                //    {
                         
-                    }
-                    else
-                    {
-                        UserLocation uloc = new UserLocation();
-                        uloc.UserID = user.UserID;
-                        uloc.LocationID = (short)locID;
-                        db.UserLocations.Add(uloc);
-                        userLocs.Add(uloc);
-                        db.SaveChanges();
-                    }   
-                }
+                //    }
+                //    else
+                //    {
+                //        UserLocation uloc = new UserLocation();
+                //        uloc.UserID = user.UserID;
+                //        uloc.LocationID = (short)locID;
+                //        db.UserLocations.Add(uloc);
+                //        userLocs.Add(uloc);
+                //        db.SaveChanges();
+                //    }   
+                //}
                 //foreach (var item in userLocs)
                 //{
                 //    if (!currentLocIDs.Contains((int)item.LocationID))
@@ -455,10 +446,8 @@ namespace WMS.Controllers
 
             }
 
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", user.CompanyID);
             ViewBag.EmpID = new SelectList(db.Emps, "EmpID", "EmpNo", user.EmpID);
-            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.RoleID);
-            ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName", user.LocationID);
+            ViewBag.RoleID = new SelectList(db.UserRoles, "RoleID", "RoleName", user.UserRole);
             return View(user);
         }
 
@@ -509,16 +498,16 @@ namespace WMS.Controllers
 
         public ActionResult SelectedUserLocList(int id)
         {
-            List<UserLocation> userLoc = db.UserLocations.Where(aa=>aa.UserID==id).ToList();
+            //List<UserLocation> userLoc = db.UserLocations.Where(aa=>aa.UserID==id).ToList();
             List<Location> _locs = db.Locations.ToList();
             List<Location> locs = new List<Location>();
-            var uloc = new List<UserLocation>();
+            //var uloc = new List<UserLocation>();
 
-            foreach (var loc in userLoc)
-            {
-                Location ll = db.Locations.FirstOrDefault(aa => aa.LocID == loc.LocationID);
-                locs.Add(ll);
-            }
+            //foreach (var loc in userLoc)
+            //{
+            //    Location ll = db.Locations.FirstOrDefault(aa => aa.LocID == loc.LocationID);
+            //    locs.Add(ll);
+            //}
             return Json(new SelectList(
                            locs.ToArray(),
                            "LocID",

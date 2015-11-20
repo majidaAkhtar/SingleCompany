@@ -22,9 +22,7 @@ namespace WMS.Models
         public short DeptID { get; set; }
         public string DeptName { get; set; }
         public short DivID { get; set; }
-        public short CompanyID { get; set; }
     
-        public virtual Company Company { get; set; }
         public virtual Division Division { get; set; }
         public virtual ICollection<Section> Sections { get; set; }
     }

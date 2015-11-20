@@ -9,7 +9,6 @@ namespace WMS.Controllers
     public class LeaveController
     {
         #region -- Add Leaves--
-        List<LvQuota> _empQuota = new List<LvQuota>();
         public string AddLeavesToLvApplication()
         {
             string error = "";
@@ -138,7 +137,6 @@ namespace WMS.Controllers
                 _LVData.LvID = lvappl.LvID;
                 _LVData.AttDate = datetime.Date;
                 _LVData.LvCode = lvappl.LvType;
-                _LVData.CompanyID = lvappl.CompanyID;
                 try
                 {
                     using (var context = new TAS2013Entities())

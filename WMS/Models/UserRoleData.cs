@@ -12,18 +12,13 @@ namespace WMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class UserRoleData
     {
-        public Category()
-        {
-            this.AttProcessorSchedulers = new HashSet<AttProcessorScheduler>();
-            this.EmpTypes = new HashSet<EmpType>();
-        }
+        public int RoleDataID { get; set; }
+        public string RoleDataLegend { get; set; }
+        public Nullable<int> RoleDataValue { get; set; }
+        public Nullable<int> RoleUserID { get; set; }
     
-        public short CatID { get; set; }
-        public string CatName { get; set; }
-    
-        public virtual ICollection<AttProcessorScheduler> AttProcessorSchedulers { get; set; }
-        public virtual ICollection<EmpType> EmpTypes { get; set; }
+        public virtual User User { get; set; }
     }
 }

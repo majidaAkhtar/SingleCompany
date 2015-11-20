@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
 
     $('#TypeID').empty();
-    var convalue = $('#CatID').val() + "s" + $('#CompanyID').val();
-    var URL = '/WMS/Emp/EmpTypeList';
-    // var URL = '/Emp/EmpTypeList';
+    var convalue = $('#CatID').val();
+    //var URL = '/WMS/Emp/EmpTypeList';
+     var URL = '/Emp/EmpTypeList';
     $.getJSON(URL + '/' + convalue, function (data) {
         var selectedItemID = document.getElementById("selectedTypeIdHidden").value;
         var items;
@@ -22,9 +22,9 @@
 
     $('#CatID').change(function () {
         $('#TypeID').empty();
-        var convalue = $('#CatID').val() + "s" + $('#CompanyID').val();
-        var URL = '/WMS/Emp/EmpTypeList';
-        //  var URL = '/Emp/EmpTypeList';
+        var convalue = $('#CatID').val();
+        //var URL = '/WMS/Emp/EmpTypeList';
+          var URL = '/Emp/EmpTypeList';
         $.getJSON(URL + '/' + convalue, function (data) {
             var selectedItemID = document.getElementById("selectedTypeIdHidden").value;
             var items;

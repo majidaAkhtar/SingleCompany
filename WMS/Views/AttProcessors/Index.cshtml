@@ -10,7 +10,7 @@
     <div>
       <form class ="form-inline" role="form">
           <div class="form-group"> <h2>Attendance Processor</h2> </div>
-          <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-sm btn-success" })</p></div>
+          <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-xs btn-success" })</p></div>
           <div class="form-group pull-right"  style="margin-top:15px">
               @using (Html.BeginForm("Index", "AttProcessor", FormMethod.Get))
                 {<p><span style="font-weight:bold">Find: </span>  @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" } )  
@@ -114,9 +114,9 @@
             @item.User.Name
         </td>
 @* <td>
-          @Html.ActionLink(" ", "Edit", new { id=item.AttProcesserSchedulerID} , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-sm btn-EditViewDelete" })
-          @Html.ActionLink(" ", "Details", new { id = item.AttProcesserSchedulerID}, new { @class = "glyphicon glyphicon-list btn btn-primary btn-sm btn-EditViewDelete" }) 
-          @Html.ActionLink(" ", "Delete", new { id=item.AttProcesserSchedulerID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
+          @Html.ActionLink(" ", "Edit", new { id=item.AttProcesserSchedulerID} , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs btn-EditViewDelete" })
+          @Html.ActionLink(" ", "Details", new { id = item.AttProcesserSchedulerID}, new { @class = "glyphicon glyphicon-pencil btn btn-info btn-xs btn-EditViewDelete" }) 
+          @Html.ActionLink(" ", "Delete", new { id=item.AttProcesserSchedulerID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-xs" })
           </td>*@
     </tr>
 }

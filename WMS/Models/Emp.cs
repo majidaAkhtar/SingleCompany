@@ -21,7 +21,6 @@ namespace WMS.Models
             this.AttMnDataPers = new HashSet<AttMnDataPer>();
             this.BadliRecords = new HashSet<BadliRecord>();
             this.Cards = new HashSet<Card>();
-            this.EmergencyDetails = new HashSet<EmergencyDetail>();
             this.EmpAccesses = new HashSet<EmpAccess>();
             this.EmpPhotoes = new HashSet<EmpPhoto>();
             this.LvApplications = new HashSet<LvApplication>();
@@ -65,12 +64,6 @@ namespace WMS.Models
         public Nullable<bool> FlagFace { get; set; }
         public Nullable<bool> FlagCard { get; set; }
         public Nullable<int> EmpImageID { get; set; }
-        public Nullable<short> CompanyID { get; set; }
-        public Nullable<bool> Presence { get; set; }
-        public Nullable<short> ReaderID { get; set; }
-        public Nullable<System.DateTime> LastEntryDateTime { get; set; }
-        public Nullable<bool> IsSafe { get; set; }
-        public Nullable<short> CompID { get; set; }
         public Nullable<bool> HasOT { get; set; }
     
         public virtual ICollection<AttData> AttDatas { get; set; }
@@ -78,10 +71,8 @@ namespace WMS.Models
         public virtual ICollection<AttMnDataPer> AttMnDataPers { get; set; }
         public virtual ICollection<BadliRecord> BadliRecords { get; set; }
         public virtual ICollection<Card> Cards { get; set; }
-        public virtual Company Company { get; set; }
         public virtual Crew Crew { get; set; }
         public virtual Designation Designation { get; set; }
-        public virtual ICollection<EmergencyDetail> EmergencyDetails { get; set; }
         public virtual Grade Grade { get; set; }
         public virtual JobTitle JobTitle { get; set; }
         public virtual Location Location { get; set; }
@@ -94,7 +85,6 @@ namespace WMS.Models
         public virtual ICollection<EmpPhoto> EmpPhotoes { get; set; }
         public virtual ICollection<LvApplication> LvApplications { get; set; }
         public virtual ICollection<LvConsumed> LvConsumeds { get; set; }
-        public virtual LvQuota LvQuota { get; set; }
         public virtual ICollection<LvShort> LvShorts { get; set; }
     }
 }

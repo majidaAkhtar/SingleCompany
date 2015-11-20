@@ -46,7 +46,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="EmpDate,JobDataID,EmpID,Dated,SubmittedFrom,WrkCardID,CompanyID,SendTo,Approved,Rejected,DateCreated,Remarks,TimeIn,TimeOut,WorkMin")] JobCardEmp jobcardemp)
+        public ActionResult Create([Bind(Include="EmpDate,JobDataID,EmpID,Dated,SubmittedFrom,WrkCardID,SendTo,Approved,Rejected,DateCreated,Remarks,TimeIn,TimeOut,WorkMin")] JobCardEmp jobcardemp)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="EmpDate,JobDataID,EmpID,Dated,SubmittedFrom,WrkCardID,CompanyID,SendTo,Approved,Rejected,DateCreated,Remarks,TimeIn,TimeOut,WorkMin")] JobCardEmp jobcardemp)
+        public ActionResult Edit([Bind(Include="EmpDate,JobDataID,EmpID,Dated,SubmittedFrom,WrkCardID,SendTo,Approved,Rejected,DateCreated,Remarks,TimeIn,TimeOut,WorkMin")] JobCardEmp jobcardemp)
         {
             if (ModelState.IsValid)
             {

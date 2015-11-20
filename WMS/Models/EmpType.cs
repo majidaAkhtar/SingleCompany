@@ -22,10 +22,8 @@ namespace WMS.Models
         public byte TypeID { get; set; }
         public string TypeName { get; set; }
         public Nullable<short> CatID { get; set; }
-        public Nullable<short> CompanyID { get; set; }
     
         public virtual Category Category { get; set; }
-        public virtual Company Company { get; set; }
         public virtual ICollection<Emp> Emps { get; set; }
     }
 }

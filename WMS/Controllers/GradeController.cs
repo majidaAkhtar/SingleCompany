@@ -74,7 +74,6 @@ namespace WMS.Controllers
           [CustomActionAttribute]
         public ActionResult Create()
         {
-            ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View();
         }
 
@@ -84,13 +83,10 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-          public ActionResult Create([Bind(Include = "GradeID,GradeName,CompID")] Grade grade)
+          public ActionResult Create([Bind(Include = "GradeID,GradeName")] Grade grade)
         {
-            if (grade.CompID == null)
-            {
-                ModelState.AddModelError("CompID", "This CompanyID is not existing");
-            }
-            if(db.Grades.Where(aa=>aa.GradeName==grade.GradeName && aa.CompID==grade.CompID ).Count()>0)
+           
+            if(db.Grades.Where(aa=>aa.GradeName==grade.GradeName ).Count()>0)
                 ModelState.AddModelError("GradeName", "Grade Name must be unique");
             if (ModelState.IsValid)
             {
@@ -99,7 +95,6 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
             }
             
-            ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(grade);
         }
 
@@ -116,7 +111,6 @@ namespace WMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompID", "CompName");
             return View(grade);
         }
 
@@ -126,7 +120,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-          public ActionResult Edit([Bind(Include = "GradeID,GradeName,CompID")] Grade grade)
+          public ActionResult Edit([Bind(Include = "GradeID,GradeName")] Grade grade)
         {
             if (ModelState.IsValid)
             {
@@ -134,7 +128,6 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompID = new SelectList(db.Companies.OrderBy(s=>s.CompName), "CompanyID", "CompName", grade.Company.CompName);
             return View(grade);
         }
 

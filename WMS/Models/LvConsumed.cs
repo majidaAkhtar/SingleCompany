@@ -17,7 +17,6 @@ namespace WMS.Models
         public string EmpLvType { get; set; }
         public int EmpID { get; set; }
         public string LeaveType { get; set; }
-        public Nullable<short> CompanyID { get; set; }
         public Nullable<double> JanConsumed { get; set; }
         public Nullable<double> FebConsumed { get; set; }
         public Nullable<double> MarchConsumed { get; set; }

@@ -101,15 +101,6 @@ namespace WMS.Reports.Filters
             DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
             _View = dt.ToList<EmpView>().AsQueryable().SortBy("EmpNo").ToList();
             _View = _View.Where(aa => aa.Status == true).ToList();
-            if (fm.CompanyFilter.Count > 0)
-            {
-                foreach (var comp in fm.CompanyFilter)
-                {
-                    short _compID = Convert.ToInt16(comp.ID);
-                    _TempView.AddRange(_View.Where(aa => aa.CompanyID == _compID).ToList());
-                }
-                _View = _TempView.ToList();
-            }
             if (fm.DivisionFilter.Count > 0)
             {
                 _TempView.Clear();

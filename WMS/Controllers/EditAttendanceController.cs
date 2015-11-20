@@ -30,11 +30,9 @@ namespace WMS.Controllers
             ViewData["JobDateTo"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
             ViewBag.JobCardType = new SelectList(db.JobCards, "WorkCardID", "WorkCardName");
             ViewBag.ShiftList = new SelectList(db.Shifts, "ShiftID", "ShiftName");
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName",LoggedInUser.CompanyID);
-            ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
             ViewBag.CrewList = new SelectList(db.Crews, "CrewID", "CrewName");
             ViewBag.SectionList = new SelectList(db.Sections, "SectionID", "SectionName");
-            ViewBag.DesignationID = new SelectList(db.Designations.Where(aa=>aa.CompanyID==LoggedInUser.CompanyID), "DesignationID", "DesignationName");
+            ViewBag.DesignationID = new SelectList(db.Designations, "DesignationID", "DesignationName");
             ViewBag.Message = "";
             return View();
         }
@@ -50,8 +48,6 @@ namespace WMS.Controllers
                 ViewBag.JobCardType = new SelectList(db.JobCards.OrderBy(s=>s.WorkCardName), "WorkCardID", "WorkCardName");
                 ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
                 ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
-                ViewBag.CompanyID = new SelectList(db.Companies.OrderBy(s => s.CompName), "CompID", "CompName",LoggedInUser.CompanyID);
-                ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName");
                 ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
                 ViewData["datef"] = Convert.ToDateTime(Request.Form["DateFrom"].ToString()).ToString("yyyy-MM-dd"); 
                 ViewBag.DesignationID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
@@ -61,12 +57,10 @@ namespace WMS.Controllers
                     string _EmpNo = Request.Form["EmpNo"].ToString();
                     DateTime _AttDataFrom = Convert.ToDateTime(Request.Form["DateFrom"].ToString());
                     Session["EditAttendanceDate"] = Request.Form["DateFrom"].ToString();
-                    var _CompId = Request.Form["CompanyID"];
-                    int compID = Convert.ToInt32(_CompId); 
                     AttData _attData = new AttData();
                     List<Emp> _Emp = new List<Emp>();
                     int EmpID = 0;
-                    _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID ==compID && aa.Status==true).ToList();
+                    _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.Status==true).ToList();
                     if (_Emp.Count > 0)
                         EmpID = _Emp.FirstOrDefault().EmpID;
                     _attData = db.AttDatas.FirstOrDefault(aa => aa.EmpID == EmpID && aa.AttDate == _AttDataFrom);
@@ -122,8 +116,6 @@ namespace WMS.Controllers
             ViewBag.ShiftList = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
             ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
             ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
-            ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
-            ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
             ViewBag.DesignationID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
             try
             {
@@ -341,7 +333,6 @@ namespace WMS.Controllers
             try
             {
                 string _EmpNo = "";
-                int CompID = Convert.ToInt16(Request.Form["CompanyIDJobCard"].ToString());
                 List<Emp> _Emp = new List<Emp>();
                 short _WorkCardID = Convert.ToInt16(Request.Form["JobCardType"].ToString());
                 //First Save Job Card Application
@@ -391,7 +382,7 @@ namespace WMS.Controllers
                             if (Request.Form["cars"].ToString() == "employee")
                             {
                                 _EmpNo = Request.Form["JobEmpNo"];
-                                _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.CompanyID == CompID).ToList();
+                                _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo).ToList();
                                 if (_Emp.Count > 0)
                                 {
                                     jobCardApp.CriteriaData = _Emp.FirstOrDefault().EmpID;
@@ -416,9 +407,7 @@ namespace WMS.Controllers
                 ViewData["datef"] = Session["EditAttendanceDate"].ToString();
                 ViewData["JobDateFrom"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
                 ViewData["JobDateTo"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
-                ViewBag.CompanyID = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
-                ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
-                ViewBag.DesignationID = new SelectList(db.Designations.Where(aa => aa.CompanyID == LoggedInUser.CompanyID), "DesignationID", "DesignationName");
+                ViewBag.DesignationID = new SelectList(db.Designations, "DesignationID", "DesignationName");
                     return View("Index");
             }
             catch (Exception)
@@ -431,8 +420,7 @@ namespace WMS.Controllers
                 ViewBag.CrewList = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
                 ViewBag.SectionList = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
                 ViewBag.CMessage = "An Error occured while creating Job Card of" + Request.Form["JobCardType"].ToString();
-                ViewBag.CompanyIDJobCard = new SelectList(db.Companies, "CompID", "CompName", LoggedInUser.CompanyID);
-                ViewBag.DesignationID = new SelectList(db.Designations.Where(aa => aa.CompanyID == LoggedInUser.CompanyID), "DesignationID", "DesignationName");
+                ViewBag.DesignationID = new SelectList(db.Designations, "DesignationID", "DesignationName");
                 return View("Index");
             }
         }
@@ -453,7 +441,7 @@ namespace WMS.Controllers
         public ActionResult CompanyIDJobCardList(string ID)
         {
             short Code = Convert.ToInt16(ID);
-            var secs = db.Designations.Where(aa => aa.CompanyID == Code).OrderBy(s => s.DesignationName);
+            var secs = db.Designations.OrderBy(s => s.DesignationName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 secs.ToArray(),
