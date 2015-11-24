@@ -38,11 +38,8 @@ namespace WMS.Controllers
             ViewBag.CurrentFilter = searchString;
             User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
-            var locations= db.Locations.GroupBy(x => x.CityID).Select(group => group.FirstOrDefault());
             List<City> ct = new List<City>();
-            foreach (var loc in locations)
-                ct.Add(loc.City);
+            ct = db.Cities.ToList();
             var cities = ct.AsEnumerable<City>();
              if (!String.IsNullOrEmpty(searchString))
             {

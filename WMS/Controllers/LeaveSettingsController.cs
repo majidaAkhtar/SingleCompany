@@ -30,7 +30,12 @@ namespace WMS.Controllers
             int SL = Convert.ToInt32(Request.Form["SLeaves"].ToString());
             List<Emp> _Emp = new List<Emp>();
             List<LvType> _lvType = new List<LvType>();
-            byte catID = Convert.ToByte(Request.Form["CatID"].ToString());
+           
+           //string di = Convert.ToString(Request.Form["CatID"].ToString());//124,4 
+            
+            string di = Convert.ToString(Request.Form["CatID"].Substring(0,1));
+            //byte catID = Convert.ToByte(Request.Form["CatID"].ToString());
+            byte catID = Convert.ToByte(di);
             switch (Request.Form["cars"].ToString())
             {
                 case "company":
