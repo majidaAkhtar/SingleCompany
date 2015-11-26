@@ -84,6 +84,9 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
+            List<Department> dept = new List<Department>();
+            dept = db.Departments.ToList();
+          
             ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
             return View();
         }
@@ -106,6 +109,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+         
             ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName", section.DeptID);
             return View(section);
         }

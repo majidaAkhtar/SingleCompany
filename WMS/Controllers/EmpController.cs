@@ -434,7 +434,19 @@ namespace WMS.Controllers
         }
 
         #region --Cascade DropDown--
+        public ActionResult DepartmentList()
+        {
+           
+            var dept = db.Departments.ToList();
+            if (HttpContext.Request.IsAjaxRequest())
+                return Json(new SelectList(
+                                dept.ToArray(),
+                                "DeptID",
+                                "DeptName")
+                           , JsonRequestBehavior.AllowGet);
 
+            return RedirectToAction("Index");
+        }
         public ActionResult SectionList(string ID)
         {
             short id = Convert.ToInt16(ID);

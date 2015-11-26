@@ -157,10 +157,10 @@ namespace WMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult DivisionList(string ID)
+        public ActionResult DivisionList()
         {
-            short Code = Convert.ToInt16(ID);
-            var divisions = db.Divisions.OrderBy(s => s.DivisionName);
+
+            var divisions = db.Divisions.ToList();
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
                                 divisions.ToArray(),

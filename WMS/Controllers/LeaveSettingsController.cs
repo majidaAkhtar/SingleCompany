@@ -18,7 +18,7 @@ namespace WMS.Controllers
         {
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
-            
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             return View();
         }
 
@@ -28,27 +28,40 @@ namespace WMS.Controllers
             int AL = Convert.ToInt32(Request.Form["ALeaves"].ToString());
             int CL = Convert.ToInt32(Request.Form["CLeaves"].ToString());
             int SL = Convert.ToInt32(Request.Form["SLeaves"].ToString());
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             List<Emp> _Emp = new List<Emp>();
             List<LvType> _lvType = new List<LvType>();
            
-           //string di = Convert.ToString(Request.Form["CatID"].ToString());//124,4 
+         
             
-            string di = Convert.ToString(Request.Form["CatID"].Substring(0,1));
-            //byte catID = Convert.ToByte(Request.Form["CatID"].ToString());
-            byte catID = Convert.ToByte(di);
-            switch (Request.Form["cars"].ToString())
-            {
-                case "company":
-                    _Emp = db.Emps.Where(aa => aa.EmpType.CatID == catID).ToList();
-                    break;
-                case "location":
-                    int locID = Convert.ToInt32(Request.Form["LocationID"].ToString());
-                    _Emp = db.Emps.Where(aa => aa.LocID == locID && aa.EmpType.CatID == catID).ToList();
+            string di = Convert.ToString(Request.Form["CatID"].ToString());//CatID is 4,4
 
+            int comma = di.IndexOf(',');
+            string b = di;
+            if (comma != -1)
+            {
+                b = di.Substring(0, comma);//CatID is 4
+            }
+            //byte catID = Convert.ToByte(Request.Form["CatID"].ToString());
+            byte catID = Convert.ToByte(b);
+            string de = Request.Form["CreateLeaveCriteria"].ToString();
+            switch (de)
+            {
+
+                case "ByCategory":
+                    int  catid = Convert.ToInt32(Request.Form["CatID"].ToString());
+                    _Emp = db.Emps.Where(aa => aa.EmpType.CatID == catid).ToList();
+                  
                     break;
-                case "employee":
+                case "ByEmployee":
                     string empNo = Request.Form["EmpNo"].ToString();
                     _Emp = db.Emps.Where(aa => aa.EmpNo == empNo).ToList();
+                    break;
+                case "ByEmpType":
+                   
+                    int EmpType = Convert.ToInt32(Request.Form["TypeID"].ToString());
+                   _Emp = db.Emps.Where(aa => aa.TypeID == EmpType).ToList();
+
                     break;
             }
             User LoggedInUser = Session["LoggedUser"] as User;
@@ -65,6 +78,10 @@ namespace WMS.Controllers
             }
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
+
+
+
             return View("Index");
         }
         //
@@ -125,6 +142,7 @@ namespace WMS.Controllers
             }
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             return View("Index");
         }
         public ActionResult AdjustLeaves(FormCollection collection)
@@ -158,6 +176,7 @@ namespace WMS.Controllers
             }
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
             ViewBag.CatID = new SelectList(db.Categories.OrderBy(s => s.CatName), "CatID", "CatName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             return View("Index");
         }
 

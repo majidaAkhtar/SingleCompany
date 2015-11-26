@@ -48,6 +48,7 @@ namespace WMS.Controllers
             ViewBag.LocationSortParm = sortOrder == "Location" ? "Location_desc" : "Location";
             ViewBag.RdrTypeSortParm = String.IsNullOrEmpty(sortOrder) ? "RdrType_desc" : "RdrType";
             ViewBag.VendorSortParm = String.IsNullOrEmpty(sortOrder) ? "Vendor_desc" : "Vendor";
+
             ViewBag.StatusSortParm = String.IsNullOrEmpty(sortOrder) ? "Status_desc" : "Status";
             User LoggedInUser = Session["LoggedUser"] as User;
             if (searchString != null)
