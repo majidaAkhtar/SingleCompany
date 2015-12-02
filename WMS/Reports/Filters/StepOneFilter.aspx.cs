@@ -166,11 +166,11 @@ namespace WMS.Reports.Filters
 
         private void BindGridViewLocation(string search)
         {
-            User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
-            List<Location> _View = da.Locations.Where(query).OrderBy(s=>s.LocName).ToList();
-            GridViewLocation.DataSource = _View.Where(aa => aa.LocName.ToUpper().Contains(search.ToUpper())).ToList();
+            //User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
+            //QueryBuilder qb = new QueryBuilder();
+            //string query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
+            //List<Location> _View = da.Locations.Where(query).OrderBy(s=>s.LocName).ToList();
+            GridViewLocation.DataSource = da.Locations.Where(aa => aa.LocName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewLocation.DataBind();
         }
 

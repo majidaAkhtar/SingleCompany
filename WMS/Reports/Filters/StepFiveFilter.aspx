@@ -86,7 +86,7 @@
                                          <asp:BoundField DataField="EmpNo" HeaderText="P.No" />
                                         <asp:BoundField DataField="EmpName" HeaderText="Name" />
                                         <asp:BoundField DataField ="DeptName" HeaderText ="Department" />
-                                        <asp:BoundField DataField="CompName" HeaderText="Company Name" />
+                                   
                     
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />

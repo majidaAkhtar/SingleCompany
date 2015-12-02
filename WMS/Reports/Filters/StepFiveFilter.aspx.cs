@@ -95,12 +95,12 @@ namespace WMS.Reports.Filters
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
             List<EmpView> _View = new List<EmpView>();
             List<EmpView> _TempView = new List<EmpView>();
-            User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForCompanyFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
-            _View = dt.ToList<EmpView>().AsQueryable().SortBy("EmpNo").ToList();
-            _View = _View.Where(aa => aa.Status == true).ToList();
+            //User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
+            //QueryBuilder qb = new QueryBuilder();
+            //string query = qb.QueryForCompanyFilters(LoggedInUser);
+            //DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
+            //_View = dt.ToList<EmpView>().AsQueryable().SortBy("EmpNo").ToList();
+            _View = da.EmpViews.Where(aa => aa.Status == true).ToList();
             if (fm.DivisionFilter.Count > 0)
             {
                 _TempView.Clear();
