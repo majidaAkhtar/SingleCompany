@@ -51,7 +51,7 @@
                     <div class="col-md-8">
                         <div class="row"> 
                             <div class="col-md-8">
-                                <h3>Choose Company or location</h3>
+                                <h3>Choose location</h3>
                                  </div>
                             
                                <div class="col-md-3">
